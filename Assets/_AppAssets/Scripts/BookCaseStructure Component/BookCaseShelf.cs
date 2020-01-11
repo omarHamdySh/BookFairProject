@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BookCaseRow : MonoBehaviour
+public class BookCaseShelf : MonoBehaviour
 {
     public bool IsDomy,IsDomyUp;
 }
