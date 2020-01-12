@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BookCase : MonoBehaviour
 {
-    public List<BookCaseRow> ActiveRow;
-    public BookCaseRow upRowDomy, downRowDomy;
+    public List<BookCaseShelf> ActiveRow;
+    public BookCaseShelf upRowDomy, downRowDomy;
 
     private void Start()
     {
@@ -14,11 +14,11 @@ public class BookCase : MonoBehaviour
 
     public void FetchRows()
     {
-        foreach (BookCaseRow i in GetComponentsInChildren<BookCaseRow>())
+        foreach (BookCaseShelf i in GetComponentsInChildren<BookCaseShelf>())
         {
             if (!i.IsDomy)
             {
-                ActiveRow.Add(i.GetComponent<BookCaseRow>());
+                ActiveRow.Add(i.GetComponent<BookCaseShelf>());
             }
             else
             {
