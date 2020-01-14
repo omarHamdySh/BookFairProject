@@ -12,7 +12,6 @@ namespace PathCreation.Examples
         public EndOfPathInstruction endOfPathInstruction;
 
         public float duration = 1;
-        float distanceTravelled;
         bool clicked;
 
         void Start()
