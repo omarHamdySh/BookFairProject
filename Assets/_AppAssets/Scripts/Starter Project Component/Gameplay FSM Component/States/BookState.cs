@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AssemblyDisAssemblyTutorialState : IGameplayState
+public class BookState : IGameplayState
 {
-    GameplayState stateName = GameplayState.AssemblyDisassemblyTutorial;
+    GameplayState stateName = GameplayState.Book;
 
     public GameplayFSMManager gameplayFSMManager;
 

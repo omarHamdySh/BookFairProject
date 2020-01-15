@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TutorialState : IGameplayState
+public class ShelfState : IGameplayState
 {
-    GameplayState stateName = GameplayState.Tutorial;
+    GameplayState stateName = GameplayState.Shelf;
     public GameplayFSMManager gameplayFSMManager;
 
 

@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class Shelf : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    GameplayState stateName = GameplayState.Floor;
+
+    public GameplayFSMManager gameplayFSMManager;
+
+
+    public void OnStateEnter()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnStateExit()
     {
-        
+
+    }
+
+    public void OnStateUpdate()
+    {
+
+    }
+    string ToString()
+    {
+        return stateName.ToString();
+    }
+
+    public GameplayState GetState()
+    {
+        return stateName;
     }
 }

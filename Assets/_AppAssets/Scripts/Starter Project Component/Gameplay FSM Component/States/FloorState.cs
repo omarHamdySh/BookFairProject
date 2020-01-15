@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestingState : IGameplayState
+public class FloorState : IGameplayState
 {
-    GameplayState stateName = GameplayState.Testing;
+    GameplayState stateName = GameplayState.Floor;
 
     public GameplayFSMManager gameplayFSMManager;
 
 
     public void OnStateEnter()
     {
-
+        
     }
 
     public void OnStateExit()

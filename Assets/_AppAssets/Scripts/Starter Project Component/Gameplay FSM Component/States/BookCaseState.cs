@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootingState : IGameplayState
+public class BookCaseState : IGameplayState
 {
-    GameplayState stateName = GameplayState.Shooting;
+    GameplayState stateName = GameplayState.BookCase;
 
     public GameplayFSMManager gameplayFSMManager;
 
