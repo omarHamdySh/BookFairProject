@@ -9,6 +9,8 @@ public class TestCamerPath : MonoBehaviour
     [SerializeField] private Transform cameraPos;
     [SerializeField] private Transform[] rootWayPoints;
 
+    public bool isGettingFocus = false;
+
     private bool isRoot = true, isMoving;
     private int row = 0, column = 0, prevRow = 0, prevColumn = 0;
     private float currSpeed = 0;
@@ -17,7 +19,7 @@ public class TestCamerPath : MonoBehaviour
     {
         if (!isMoving)
         {
-            if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow)) && isRoot)
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) && isRoot)
             {
                 if (Input.GetKeyDown(KeyCode.UpArrow) && row < rootWayPoints.Length - 1)
                 {
@@ -32,9 +34,9 @@ public class TestCamerPath : MonoBehaviour
                     DecideSpeed();
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Escape))
+            else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Escape) || isGettingFocus)
             {
-                if (Input.GetKeyDown(KeyCode.Return) && column < rootWayPoints[row].childCount - 1)
+                if ((Input.GetKeyDown(KeyCode.Return) || isGettingFocus) && column < rootWayPoints[row].childCount - 1)
                 {
                     column++;
                     isMoving = true;
@@ -51,6 +53,7 @@ public class TestCamerPath : MonoBehaviour
                         isRoot = true;
                     }
                 }
+                isGettingFocus = false;
             }
         }
     }

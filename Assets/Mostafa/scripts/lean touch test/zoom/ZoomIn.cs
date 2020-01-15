@@ -5,26 +5,28 @@ using Lean.Touch;
 
 public class ZoomIn : MonoBehaviour
 {
-    public CameraHandler cameraHandler;
+    [SerializeField] private TestCamerPath myTestCameraPath;
+
     private LeanSelectable ls;
 
-
-    // Start is called before the first frame update
     void Start()
     {
-        Lean.Touch.LeanTouch.OnFingerTap += zoomIn;
+        LeanTouch.OnFingerTap += zoomIn;
         ls = GetComponent<LeanSelectable>();
     }
 
-    void zoomIn(Lean.Touch.LeanFinger finger)
+    void zoomIn(LeanFinger finger)
     {
-        
-            if(ls.IsSelected)
+        if (ls.IsSelected)
+        {
+            if (myTestCameraPath)
             {
-                    cameraHandler.select(transform);
+                myTestCameraPath.isGettingFocus = true;
             }
-        
+            else
+            {
+                print("testcamera not added");
+            }
+        }
     }
-
-    
 }
