@@ -40,7 +40,6 @@ namespace PathCreation.Examples
                         points = 0;
                     }
                     transform.DOMove(pathCreator.path.GetPoint(pathpointIndex), duration).OnComplete(fireUnClick);
-
                 }
             }
         }
