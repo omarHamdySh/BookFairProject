@@ -12,12 +12,11 @@ using UnityEngine;
 /// </summary>
 public enum GameplayState
 {
-    Tutorial,
-    AssemblyDisassembly,
-    AssemblyDisassemblyTutorial,
-    Shooting,
-    Testing,
-    Transition,
+    Floor,
+    BookCase,
+    Shelf,
+    Book,
+    BookPage, 
     Pause
 }
 
@@ -41,24 +40,31 @@ public class GameplayFSMManager : MonoBehaviour
     /// </summary>
 
     [HideInInspector]
-    public AssemblyDissassemblyState assemblyDissassemblyState;
+    public FloorState floorState;
+
     [HideInInspector]
-    public AssemblyDisAssemblyTutorialState assemblyDisAssemblyTutorialState;
+    public ShelfState shelfState;
+
     [HideInInspector]
-    public ShootingState shootingState;
+    public BookCaseState bookCaseState;
+
     [HideInInspector]
-    public TestingState testingState;
+    public BookState bookState;
+
     [HideInInspector]
-    public TutorialState tutorialState;
-    [HideInInspector]
-    public StateTransition stateTransition;
+    public BookPageState bookPageState;
+
     [HideInInspector]
     public PauseState pauseState;
+
     //define a temp to know which the state the player come from it to pause state
     [HideInInspector]
     public IGameplayState tempFromPause;
+
+    //
     [HideInInspector]
     public IGameplayState tempTransitionTo;
+
     [HideInInspector]
     public IGameplayState tempTransitionFrom;
     
@@ -86,43 +92,40 @@ public class GameplayFSMManager : MonoBehaviour
         /// </summary>
 
         ////Instantiate the first state
-        assemblyDissassemblyState = new AssemblyDissassemblyState()
+        floorState = new FloorState()
         {
             gameplayFSMManager = this
         };
 
-        assemblyDisAssemblyTutorialState = new AssemblyDisAssemblyTutorialState()
+        bookCaseState = new BookCaseState()
         {
             gameplayFSMManager = this
         };
 
-        shootingState = new ShootingState()
+        shelfState = new ShelfState()
         {
             gameplayFSMManager = this
         };
 
-        testingState = new TestingState()
+        bookState = new BookState()
         {
             gameplayFSMManager = this
         };
 
-        tutorialState = new TutorialState()
-        {
-            gameplayFSMManager = this
-        };
 
         pauseState = new PauseState()
         {
             gameplayFSMManager = this
         };
 
-        stateTransition = new StateTransition()
+
+        bookPageState = new BookPageState()
         {
             gameplayFSMManager = this
         };
 
         //push the first state for the player
-        PushState(tutorialState);
+        PushState(floorState);
 
         if (hintTxt)
         {
@@ -279,93 +282,34 @@ public class GameplayFSMManager : MonoBehaviour
         #endregion
     }
 
-    /// <summary>
-    /// functions to defining how changing the gameplay state
-    /// </summary>
-    ///
-    public void changeToAState(GameplayState toState) {
-        switch (toState)
-        {
-            case GameplayState.Tutorial:
-                toTutorial();
-                break;
-            case GameplayState.AssemblyDisassembly:
-                toAssemblyDisassembly();
-                break;
-            case GameplayState.AssemblyDisassemblyTutorial:
-                toAssemblyDisassemblyTutorial();
-                break;
-            case GameplayState.Shooting:
-                toSooting();
-                break;
-            case GameplayState.Testing:
-                toTesting();
-                break;
-            case GameplayState.Pause:
-                pauseGame();
-                break;
-            default:
-                break;
-        }
-    }
-    public void toTutorial()
+
+    public void toFloorState()
     {
         PopState();
-        PushState(tutorialState);
+        PushState(floorState);
     }
-    public void toSooting() {
+    public void toBookCaseState() {
 
         PopState();
-        PushState(shootingState);
+        PushState(bookCaseState);
     }
-    public void toTesting()
+    public void toShelfState()
     {
         PopState();
-        PushState(testingState);
+        PushState(shelfState);
     }
-    public void toAssemblyDisassembly()
+    public void toBookStae()
     {
         PopState();
-        PushState(assemblyDissassemblyState);
+        PushState(bookState);
     }
-    public void toAssemblyDisassemblyTutorial()
+    public void toBookPageState()
     {
         PopState();
-        PushState(assemblyDisAssemblyTutorialState);
+        PushState(bookPageState);
     }
 
 
-    public void toTutorialWthTransition()
-    {
-        holdTempTransitionTo(tutorialState);
-        PopState();
-        PushState(stateTransition);
-    }
-    public void toSootingWthTransition()
-    {
-
-        holdTempTransitionTo(shootingState);
-        PopState();
-        PushState(stateTransition);
-    }
-    public void toTestingWthTransition()
-    {
-        holdTempTransitionTo(testingState);
-        PopState();
-        PushState(stateTransition);
-    }
-    public void toAssemblyDisassemblyWthTransition()
-    {
-        holdTempTransitionTo(assemblyDissassemblyState);
-        PopState();
-        PushState(stateTransition);
-    }
-    public void toAssemblyDisassemblyTutorialWthTransition()
-    {
-        holdTempTransitionTo(assemblyDisAssemblyTutorialState);
-        PopState();
-        PushState(stateTransition);
-    }
     public void pauseGame()
     {
         if (tempFromPause == null)
