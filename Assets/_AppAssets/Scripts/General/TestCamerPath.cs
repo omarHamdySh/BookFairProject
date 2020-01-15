@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TestCamerPath : MonoBehaviour
 {
+    #region CameraPathMovement
     [SerializeField] private float toFloorSpeed, toBockcaseSpeed, toBookcaseShelfSpeed, toBookcaseBook;
     [SerializeField] private Transform cameraPos;
     [SerializeField] private Transform[] rootWayPoints;
@@ -11,12 +12,6 @@ public class TestCamerPath : MonoBehaviour
     private bool isRoot = true, isMoving;
     private int row = 0, column = 0, prevRow = 0, prevColumn = 0;
     private float currSpeed = 0;
-
-    private void Update()
-    {
-        DecideMovingAccordingToInput();
-        MoveCamera();
-    }
 
     private void DecideMovingAccordingToInput()
     {
@@ -93,5 +88,12 @@ public class TestCamerPath : MonoBehaviour
                 isMoving = false;
             }
         }
+    }
+    #endregion
+
+    private void Update()
+    {
+        DecideMovingAccordingToInput();
+        MoveCamera();
     }
 }
