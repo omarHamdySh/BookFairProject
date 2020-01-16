@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using System;
 
 public class TestCamerPath : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class TestCamerPath : MonoBehaviour
     [SerializeField] private float toFloorSpeed, toBockcaseSpeed, toBookcaseShelfSpeed, toBookcaseBook;
     [SerializeField] private Transform cameraPos;
     [SerializeField] private Transform[] rootWayPoints;
+    [SerializeField] private float animationDelay;
 
     [HideInInspector] public bool isGettingFocus = false;
 
@@ -82,18 +85,57 @@ public class TestCamerPath : MonoBehaviour
     {
         if (isMoving)
         {
-            cameraPos.position = Vector3.Lerp(cameraPos.position, rootWayPoints[row].GetChild(column).position,
-                currSpeed * Time.deltaTime);
-            if (cameraPos.position == rootWayPoints[row].GetChild(column).position)
+            cameraPos.DOMove(rootWayPoints[row].GetChild(column).position, animationDelay).OnComplete(OnFinishMoving);
+            //cameraPos.position = Vector3.Lerp(cameraPos.position, rootWayPoints[row].GetChild(column).position,
+            //    currSpeed * Time.deltaTime);
+            //if (cameraPos.position == rootWayPoints[row].GetChild(column).position)
+            //{
+            //    prevColumn = column;
+            //    prevRow = row;
+            //    isMoving = false;
+            //}
+        }
+    }
+
+    private void OnFinishMoving()
+    {
+        prevColumn = column;
+        prevRow = row;
+        isMoving = false;
+    }
+    #endregion
+    public void moveUp()
+    {
+        if (!isMoving)
+        {
+            if (isRoot)
             {
-                prevColumn = column;
-                prevRow = row;
-                isMoving = false;
+                if (row < rootWayPoints.Length - 1)
+                {
+                    row++;
+                    isMoving = true;
+                    DecideSpeed();
+                }
+
             }
         }
     }
-    #endregion
 
+    public void moveDown()
+    {
+        if (!isMoving)
+        {
+            if (isRoot)
+            {
+                if (row > 0)
+                {
+                    row--;
+                    isMoving = true;
+                    DecideSpeed();
+                }
+            }
+        }
+    }
     private void Update()
     {
         DecideMovingAccordingToInput();
