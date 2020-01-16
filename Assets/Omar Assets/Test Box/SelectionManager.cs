@@ -24,11 +24,17 @@ public class SelectionManager : MonoBehaviour
     public void selectThis(GameObject selectedObject)
     {
         this.selectedObject = selectedObject;
+        this.selectedObject.GetComponent<ZoomIn>().zoomIn();
+        print("Select: "+selectedObject.name);
     }
+
     public void deselectThis(GameObject selectedObject)
     {
+        print("DeSelect: " + selectedObject.name);
+
         if (this.selectedObject = selectedObject)
         {
+
             this.selectedObject = null;
         }
     }

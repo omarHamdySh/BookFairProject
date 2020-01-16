@@ -8,14 +8,13 @@ public class ZoomIn : MonoBehaviour
     [SerializeField] private TestCamerPath myTestCameraPath;
 
     private LeanSelectable ls;
-
     void Start()
     {
-        LeanTouch.OnFingerTap += zoomIn;
         ls = GetComponent<LeanSelectable>();
     }
 
-    void zoomIn(LeanFinger finger)
+
+    public void zoomIn()
     {
         if (ls.IsSelected)
         {
