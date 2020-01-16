@@ -103,6 +103,7 @@ public class TestCamerPath : MonoBehaviour
         prevRow = row;
         isMoving = false;
     }
+
     #endregion
     public void moveUp()
     {
