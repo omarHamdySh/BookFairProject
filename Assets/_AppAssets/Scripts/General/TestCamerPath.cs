@@ -9,7 +9,7 @@ public class TestCamerPath : MonoBehaviour
     [SerializeField] private Transform cameraPos;
     [SerializeField] private Transform[] rootWayPoints;
 
-    public bool isGettingFocus = false;
+    [HideInInspector] public bool isGettingFocus = false;
 
     private bool isRoot = true, isMoving;
     private int row = 0, column = 0, prevRow = 0, prevColumn = 0;
