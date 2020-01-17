@@ -29,12 +29,14 @@ public class TestCamerPath : MonoBehaviour
                     row++;
                     isMoving = true;
                     DecideSpeed();
+                    MoveCamera();
                 }
                 else if (Input.GetKeyDown(KeyCode.DownArrow) && row > 0)
                 {
                     row--;
                     isMoving = true;
                     DecideSpeed();
+                    MoveCamera();
                 }
             }
             else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Escape) || isGettingFocus)
@@ -45,6 +47,7 @@ public class TestCamerPath : MonoBehaviour
                     isMoving = true;
                     isRoot = false;
                     DecideSpeed();
+                    MoveCamera();
                 }
                 else if (Input.GetKeyDown(KeyCode.Escape) && column > 0)
                 {
@@ -55,6 +58,7 @@ public class TestCamerPath : MonoBehaviour
                     {
                         isRoot = true;
                     }
+                    MoveCamera();
                 }
                 isGettingFocus = false;
             }
@@ -167,6 +171,6 @@ public class TestCamerPath : MonoBehaviour
     private void Update()
     {
         DecideMovingAccordingToInput();
-        MoveCamera();
+        //MoveCamera();
     }
 }
