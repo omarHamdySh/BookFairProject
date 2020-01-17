@@ -137,6 +137,33 @@ public class TestCamerPath : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// This method for moving right in any list of object
+    /// </summary>
+    /// <param name="objectListCount">list of object count</param>
+    /// <param name="currentIndex">Index of the current Selected</param>
+    public void MoveRight(int objectListCount, ref int currentIndex)
+    {
+        if (!isMoving)
+        {
+            currentIndex = (currentIndex + 1) % objectListCount;
+        }
+    }
+
+    /// <summary>
+    /// This method for moving left in any list of object
+    /// </summary>
+    /// <param name="objectListCount">list of object count</param>
+    /// <param name="currentIndex">Index of the current Selected</param>
+    public void MoveLeft(int objectListCount, ref int currentIndex)
+    {
+        if (!isMoving)
+        {
+            currentIndex = (currentIndex - 1 < 0) ? objectListCount - 1 : currentIndex - 1;
+        }
+    }
+
     private void Update()
     {
         DecideMovingAccordingToInput();
