@@ -18,15 +18,20 @@ namespace PathCreation.Examples
 
         [SerializeField] private int verticesMultiplier;
 
-        public float duration = 1;
-        bool clicked;
+        private IScrollable scrollable;
 
         public float speed = 5;
 
         float distanceTravelled;
 
+        bool motionStarted = false;
+
+        float currentScrollSpeed;
+
         void Start()
         {
+            scrollable = GetComponent<IScrollable>();
+
             pathCreator = transform.parent.GetComponent<PathCreator>();
 
             if (pathCreator != null)
@@ -42,17 +47,34 @@ namespace PathCreation.Examples
 
         void Update()
         {
-            if(pathCreator != null)
-            {
-                distanceTravelled += speed * Time.deltaTime;
-                transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
-                transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
-            }
-        }
+            currentScrollSpeed = scrollable.getScrollSpeed();
 
-        public void fireUnClick()
-        {
-            clicked = false;
+            if (motionStarted && currentScrollSpeed == 0) // If the object is not moving, declare land State and fire land event
+            {
+                motionStarted = false;
+                scrollable.onLand();
+                return;
+            }
+            else if(currentScrollSpeed == 0)
+            {
+                return;
+            }
+
+            if (currentScrollSpeed > 0)
+            {
+                if (!motionStarted)
+                {
+                    motionStarted = true;
+                    scrollable.onDeparture();
+                }
+
+                scrollable.onMoving();
+            }
+
+            distanceTravelled += currentScrollSpeed * Time.deltaTime;
+            transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
+            transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
+
         }
 
         // If the path changes during the game, update the distance travelled so that the follower's position on the new path
