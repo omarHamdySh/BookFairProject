@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class CameraPath : MonoBehaviour
+using DG.Tweening;
+public class CameraPath : MonoBehaviour,ITraverseable
 {
-    private Node currentNode;
+    private PathNode currentNode,endNode;
     private int currentLevel;
 
-    public List<Node> levels;
+    public List<PathNode> levels;
 
     public Transform cameraTransform;
 
@@ -42,4 +42,84 @@ public class CameraPath : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// To Check whether y-axis of the currentNode and the target node are equal or not.
+    /// It will be used 2 times in the path finding algorithms
+    /// </summary>
+    /// <param name="currentNode"></param>
+    /// <param name="targetNode"></param>
+    /// <returns></returns>
+    public bool areYsEqual(PathNode currentNode, PathNode targetNode)
+    {
+        if (currentNode.nodeYIndex == targetNode.nodeYIndex)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// To Check whether x-axis of the currentNode and the target node are equal or not.
+    /// </summary>
+    /// <param name="currentNode"></param>
+    /// <param name="targetNode"></param>
+    /// <returns></returns>
+    public bool areXsEquals(PathNode currentNode, PathNode targetNode)
+    {
+
+        if (currentNode.nodeXIndex == targetNode.nodeYIndex)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// To Check whether x-axis of the currentNode reached the root or not yet.
+    /// </summary>
+    /// <param name="currentNode"></param>
+    /// <returns></returns>
+    public bool areX_AtRoot(PathNode currentNode)
+    {
+
+        if (currentNode.nodeXIndex == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+
+    public void move()
+    {
+        transform.DOMove(currentNode.next.transform.position, 0.5f).OnComplete(onLand);
+    }
+
+    public void onMoving()
+    {
+       
+    }
+
+    public void onLand()
+    {
+        if (currentNode != endNode)
+        {
+            move();
+        }
+    }
+
+    public void onDeparture()
+    {
+       
+    }
 }

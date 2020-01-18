@@ -1,12 +1,4 @@
-﻿public interface IScrollable
+﻿public interface IScrollable: ITraverseable
 {
-    void move();
-
-    void onMoving();
-
-    void onLand();
-
-    void onDeparture();
-
     float getScrollSpeed();
 }
