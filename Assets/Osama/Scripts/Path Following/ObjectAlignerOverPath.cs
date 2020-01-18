@@ -8,9 +8,15 @@ namespace PathCreation.Examples
     public class ObjectAlignerOverPath : MonoBehaviour
     {
         private int points = 0;
-        [SerializeField] private int pathpointIndex;
-        public PathCreator pathCreator;
+
+        [SerializeField]
+        private int pathpointIndex;
+
+        private PathCreator pathCreator;// Must be the parent of scrollable objects
+
         public EndOfPathInstruction endOfPathInstruction;
+
+        [SerializeField] private int verticesMultiplier;
 
         public float duration = 1;
         bool clicked;
@@ -18,40 +24,24 @@ namespace PathCreation.Examples
         public float speed = 5;
 
         float distanceTravelled;
-        float initialTravelledDistance;
 
         void Start()
         {
+            pathCreator = transform.parent.GetComponent<PathCreator>();
+
             if (pathCreator != null)
             {
                 // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
                 pathCreator.pathUpdated += OnPathChanged;
                 points = transform.GetSiblingIndex();
-                pathpointIndex = points * 15;
+                pathpointIndex = points * verticesMultiplier;
                 transform.position = pathCreator.path.GetPoint(pathpointIndex);
             }
-
-            distanceTravelled += pathCreator.path.GetClosestDistanceAlongPath(transform.position) +speed * Time.deltaTime;
+            distanceTravelled += pathCreator.path.GetClosestDistanceAlongPath(transform.position);
         }
 
         void Update()
         {
-            //if (pathCreator != null)
-            //{
-            //    if (Input.GetKeyDown(KeyCode.Space) && !clicked)
-            //    {
-            //        clicked = true;
-            //        pathpointIndex = (++points) * 15;
-
-            //        if (pathpointIndex >= pathCreator.path.NumPoints - 15)
-            //        {
-            //            points = 0;
-            //        }
-            //        transform.DOMove(pathCreator.path.GetPoint(pathpointIndex), duration).OnComplete(fireUnClick);
-
-            //    }
-            //}
-
             if(pathCreator != null)
             {
                 distanceTravelled += speed * Time.deltaTime;
@@ -62,7 +52,6 @@ namespace PathCreation.Examples
 
         public void fireUnClick()
         {
-
             clicked = false;
         }
 
