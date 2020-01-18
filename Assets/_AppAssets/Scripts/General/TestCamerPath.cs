@@ -111,6 +111,7 @@ public class TestCamerPath : MonoBehaviour
     #endregion
     public void moveUp()
     {
+        print("suppose to move up");
         if (!isMoving)
         {
             if (isRoot)
@@ -120,6 +121,7 @@ public class TestCamerPath : MonoBehaviour
                     row++;
                     isMoving = true;
                     DecideSpeed();
+                    MoveCamera();
                 }
 
             }
@@ -128,6 +130,7 @@ public class TestCamerPath : MonoBehaviour
 
     public void moveDown()
     {
+        print("suppose to move down");
         if (!isMoving)
         {
             if (isRoot)
@@ -137,7 +140,8 @@ public class TestCamerPath : MonoBehaviour
                     row--;
                     isMoving = true;
                     DecideSpeed();
-                }
+                    MoveCamera();
+                                   }
             }
         }
     }
