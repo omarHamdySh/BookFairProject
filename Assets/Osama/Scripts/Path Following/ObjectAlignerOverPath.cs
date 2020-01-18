@@ -8,62 +8,73 @@ namespace PathCreation.Examples
     public class ObjectAlignerOverPath : MonoBehaviour
     {
         private int points = 0;
-        [SerializeField] private int pathpointIndex;
-        public PathCreator pathCreator;
+
+        [SerializeField]
+        private int pathpointIndex;
+
+        private PathCreator pathCreator;// Must be the parent of scrollable objects
+
         public EndOfPathInstruction endOfPathInstruction;
 
-        public float duration = 1;
-        bool clicked;
+        [SerializeField] private int verticesMultiplier;
+
+        private IScrollable scrollable;
 
         public float speed = 5;
 
         float distanceTravelled;
-        float initialTravelledDistance;
+
+        bool motionStarted = false;
+
+        float currentScrollSpeed;
 
         void Start()
         {
+            scrollable = GetComponent<IScrollable>();
+
+            pathCreator = transform.parent.GetComponent<PathCreator>();
+
             if (pathCreator != null)
             {
                 // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
                 pathCreator.pathUpdated += OnPathChanged;
                 points = transform.GetSiblingIndex();
-                pathpointIndex = points * 15;
+                pathpointIndex = points * verticesMultiplier;
                 transform.position = pathCreator.path.GetPoint(pathpointIndex);
             }
-
-            distanceTravelled += pathCreator.path.GetClosestDistanceAlongPath(transform.position) +speed * Time.deltaTime;
+            distanceTravelled += pathCreator.path.GetClosestDistanceAlongPath(transform.position);
         }
 
         void Update()
         {
-            //if (pathCreator != null)
-            //{
-            //    if (Input.GetKeyDown(KeyCode.Space) && !clicked)
-            //    {
-            //        clicked = true;
-            //        pathpointIndex = (++points) * 15;
+            currentScrollSpeed = scrollable.getScrollSpeed();
 
-            //        if (pathpointIndex >= pathCreator.path.NumPoints - 15)
-            //        {
-            //            points = 0;
-            //        }
-            //        transform.DOMove(pathCreator.path.GetPoint(pathpointIndex), duration).OnComplete(fireUnClick);
-
-            //    }
-            //}
-
-            if(pathCreator != null)
+            if (motionStarted && currentScrollSpeed == 0) // If the object is not moving, declare land State and fire land event
             {
-                distanceTravelled += speed * Time.deltaTime;
-                transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
-                transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
+                motionStarted = false;
+                scrollable.onLand();
+                return;
             }
-        }
+            else if(currentScrollSpeed == 0)
+            {
+                return;
+            }
 
-        public void fireUnClick()
-        {
+            if (currentScrollSpeed > 0)
+            {
+                if (!motionStarted)
+                {
+                    motionStarted = true;
+                    scrollable.onDeparture();
+                }
 
-            clicked = false;
+                scrollable.onMoving();
+            }
+
+            distanceTravelled += currentScrollSpeed * Time.deltaTime;
+            transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
+            transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
+
         }
 
         // If the path changes during the game, update the distance travelled so that the follower's position on the new path

@@ -69,6 +69,11 @@ public class GameManager : MonoBehaviour
     public ControllerModesNames currentControlleMode;
     //-------------------------------------------
     public GameLevelsNames currentLevel;
+
+    //--------------------------------------------
+
+    [SerializeField] public PathDataSO pathData;
+
     #endregion
 
 
