@@ -500,13 +500,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41feb1f7f7e1ca449a03bc130b326f94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentNode: {fileID: 1043064002}
+  endNode: {fileID: 438040006}
   levels:
   - {fileID: 1043064002}
   - {fileID: 1853483696}
   - {fileID: 222492069}
   cameraTransform: {fileID: 78352325}
-  x: 0
-  y: 0
+  cameraState: 0
 --- !u!4 &913288495
 Transform:
   m_ObjectHideFlags: 0
@@ -852,7 +853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   previous: {fileID: 1043064002}
-  next: {fileID: 438040006}
+  next: {fileID: 1915230679}
   nodeXIndex: 0
   nodeYIndex: 0
 --- !u!4 &1915230680
