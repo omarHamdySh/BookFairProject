@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using mostafa;
 public class CameraPath : MonoBehaviour,ITraverseable
 {
     public PathNode currentNode, endNode;
@@ -11,6 +12,8 @@ public class CameraPath : MonoBehaviour,ITraverseable
 
     public Transform cameraTransform;
 
+
+  
     public enum CameraMoveState
     {
         NotMoving,
@@ -20,27 +23,42 @@ public class CameraPath : MonoBehaviour,ITraverseable
     }
 
     public CameraMoveState cameraState;
-    
-    // Start is called before the first frame update
-    void Awake()
+
+    #region Singleton
+    public static CameraPath instance { private set; get; }
+    private void Awake()
     {
-        
+        if (!instance)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         cameraState = CameraMoveState.NotMoving;
 
-        for(int i = 0; i < levels.Count; i++)
+        for (int i = 0; i < levels.Count; i++)
         {
             levels[i].nodeYIndex = i;
         }
 
     }
+    #endregion
+
+
+    void Start()
+    {
+        //endNode = currentNode;
+    }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        gotoNode(currentNode.nodeXIndex, currentNode.nodeYIndex);
 
-        move();
-        Debug.Log(calculateDistanceToNode(endNode));
+        step();
+        
     }
 
     public void gotoNode(int index, int level)
@@ -126,6 +144,11 @@ public class CameraPath : MonoBehaviour,ITraverseable
 
     public void move()
     {
+        cameraState = CameraMoveState.MoveOut;
+    }
+
+    public void step()
+    {
         
 
         if (cameraState != CameraMoveState.NotMoving)
@@ -171,19 +194,25 @@ public class CameraPath : MonoBehaviour,ITraverseable
 
             }
 
+            gotoNode(currentNode.nodeXIndex, currentNode.nodeYIndex);
+
             if (areNodesEqual(currentNode, endNode)){
                 cameraState = CameraMoveState.NotMoving;
             }
-            gotoNode(currentNode.nodeXIndex, currentNode.nodeYIndex);
-            //transform.DOMove(currentNode.transform.position, 0.5f);
-            
         }
+
     }
 
     int calculateDistanceToNode(PathNode targetNode)
     {
         return currentNode.nodeXIndex + targetNode.nodeXIndex + Mathf.Abs(currentNode.nodeYIndex - targetNode.nodeYIndex);
     }
+
+    public void setTarget(PathNode targetNode)
+    {
+        endNode = targetNode;
+    }
+
     public void onMoving()
     {
        
@@ -191,7 +220,7 @@ public class CameraPath : MonoBehaviour,ITraverseable
 
     public void onLand()
     {
-        
+        step();
     }
 
 
