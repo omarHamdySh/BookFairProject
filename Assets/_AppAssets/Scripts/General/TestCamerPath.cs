@@ -177,4 +177,7 @@ public class TestCamerPath : MonoBehaviour
         DecideMovingAccordingToInput();
         //MoveCamera();
     }
+
+
+
 }
