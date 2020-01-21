@@ -71,10 +71,12 @@ namespace PathCreation.Examples
                 scrollable.onMoving();
             }
 
+
+
+
             distanceTravelled += currentScrollSpeed * Time.deltaTime;
             transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
             transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
-
         }
 
         // If the path changes during the game, update the distance travelled so that the follower's position on the new path
