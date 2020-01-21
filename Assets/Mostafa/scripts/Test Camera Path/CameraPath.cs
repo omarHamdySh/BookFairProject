@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using mostafa;
 public class CameraPath : MonoBehaviour,ITraverseable
 {
     public PathNode currentNode, endNode;
@@ -11,7 +12,9 @@ public class CameraPath : MonoBehaviour,ITraverseable
 
     public Transform cameraTransform;
 
-    enum CameraMoveState
+
+  
+    public enum CameraMoveState
     {
         NotMoving,
         MoveOut,
@@ -19,25 +22,43 @@ public class CameraPath : MonoBehaviour,ITraverseable
         MoveVertically
     }
 
-    CameraMoveState cameraState;
-    public int x;
-    public int y;
+    public CameraMoveState cameraState;
 
-    // Start is called before the first frame update
-    void Start()
+    #region Singleton
+    public static CameraPath instance { private set; get; }
+    private void Awake()
     {
-        gotoNode(0, 0);
+        if (!instance)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
-        for(int i = 0; i < levels.Count; i++)
+        cameraState = CameraMoveState.NotMoving;
+
+        for (int i = 0; i < levels.Count; i++)
         {
             levels[i].nodeYIndex = i;
         }
+
+    }
+    #endregion
+
+
+    void Start()
+    {
+        //endNode = currentNode;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        gotoNode(x, y);    
+
+        step();
+        
     }
 
     public void gotoNode(int index, int level)
@@ -83,7 +104,7 @@ public class CameraPath : MonoBehaviour,ITraverseable
     public bool areXsEquals(PathNode currentNode, PathNode targetNode)
     {
 
-        if (currentNode.nodeXIndex == targetNode.nodeYIndex)
+        if (currentNode.nodeXIndex == targetNode.nodeXIndex)
         {
             return true;
         }
@@ -123,26 +144,73 @@ public class CameraPath : MonoBehaviour,ITraverseable
 
     public void move()
     {
-        if(!areNodesEqual(currentNode, endNode)){
-            cameraState = CameraMoveState.NotMoving;
-        }
+        cameraState = CameraMoveState.MoveOut;
+    }
 
-        switch (cameraState)
+    public void step()
+    {
+        
+
+        if (cameraState != CameraMoveState.NotMoving)
         {
-            case CameraMoveState.MoveOut:
-                if (areX_AtRoot(currentNode)) currentNode = currentNode.previous;
-                else cameraState = cameraState = CameraMoveState.MoveVertically;
-                break;
 
-            case CameraMoveState.MoveVertically:
-                if (!areYsEqual(currentNode, endNode))
-                {
-                    if (currentNode.nodeYIndex < endNode.nodeYIndex) currentNode = levels[currentNode.nodeYIndex - 1];
-                }
-                break;
+            switch (cameraState)
+            {
+                case CameraMoveState.MoveOut:
+                    if (areX_AtRoot(currentNode)) {
+                        Debug.Log("0");
+                        cameraState = CameraMoveState.MoveVertically;
+                    }
+                    else currentNode = currentNode.previous;
+                    break;
 
+                case CameraMoveState.MoveVertically:
+                        if (areYsEqual(currentNode, endNode))
+                        {
+                            Debug.Log("1");
+                            cameraState = CameraMoveState.MoveIn;
+                        }
+                        else
+                        {
+                            if (currentNode.nodeYIndex > endNode.nodeYIndex) currentNode = levels[currentNode.nodeYIndex - 1];
+                            else if (currentNode.nodeYIndex < endNode.nodeYIndex) currentNode = levels[currentNode.nodeYIndex + 1];
+                        
+                        }
+                    break;
+                case CameraMoveState.MoveIn:
+                    
+                        if (areXsEquals(currentNode, endNode))
+                        {
+                            Debug.Log("2");
+                            cameraState = CameraMoveState.NotMoving;
+                        }
+                        else
+                        {
+                            
+                            currentNode = currentNode.next;
+                        }
+                    break;
+
+
+            }
+
+            gotoNode(currentNode.nodeXIndex, currentNode.nodeYIndex);
+
+            if (areNodesEqual(currentNode, endNode)){
+                cameraState = CameraMoveState.NotMoving;
+            }
         }
-        transform.DOMove(currentNode.next.transform.position, 0.5f).OnComplete(onLand);
+
+    }
+
+    int calculateDistanceToNode(PathNode targetNode)
+    {
+        return currentNode.nodeXIndex + targetNode.nodeXIndex + Mathf.Abs(currentNode.nodeYIndex - targetNode.nodeYIndex);
+    }
+
+    public void setTarget(PathNode targetNode)
+    {
+        endNode = targetNode;
     }
 
     public void onMoving()
@@ -152,10 +220,7 @@ public class CameraPath : MonoBehaviour,ITraverseable
 
     public void onLand()
     {
-        if (currentNode != endNode)
-        {
-            move();
-        }
+        step();
     }
 
 
