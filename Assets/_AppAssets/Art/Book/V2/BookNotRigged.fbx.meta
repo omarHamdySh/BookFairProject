@@ -8,12 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.001
-    second: {fileID: 2100000, guid: 0a2dc6ab6d1a55e44a1552ce711c46ff, type: 2}
+    second: {fileID: 2100000, guid: 68512552f04e4cc4b984c2d2fe56955e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: No Name
-    second: {fileID: 2100000, guid: abc4b4c5e9fa1414ab81378bd8cf7d45, type: 2}
+    second: {fileID: 2100000, guid: 5a52c10d7253f984b8bb571d0654a744, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -97,7 +97,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

@@ -6,10 +6,17 @@ public class TestRandomBookCaver : MonoBehaviour
 {
     [SerializeField] private List<Sprite> bookCovers;
 
-    [SerializeField] private SpriteRenderer[] covers;
+    [SerializeField] private Transform[] covers;
+
+    private List<Material> coverMaterials;
 
     private void Start()
     {
+        foreach (Transform i in covers)
+        {
+            coverMaterials.Add(i.GetChild(0).GetComponent<MeshRenderer>().material);
+        }
+
         RandomCovers();
     }
 
@@ -23,10 +30,10 @@ public class TestRandomBookCaver : MonoBehaviour
         }
 
         // Assaign random sprite and remove it's index from the random index list
-        foreach (SpriteRenderer i in covers)
+        foreach (Material i in coverMaterials)
         {
             int index = Random.Range(0, randomIndexesList.Count);
-            i.sprite = bookCovers[randomIndexesList[index]];
+            i.mainTexture = bookCovers[randomIndexesList[index]].texture;
             randomIndexesList.RemoveAt(index);
         }
     }
