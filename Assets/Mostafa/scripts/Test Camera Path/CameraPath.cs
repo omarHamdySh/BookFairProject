@@ -56,26 +56,12 @@ public class CameraPath : MonoBehaviour,ITraverseable
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        step();
+        
+        
         
     }
 
-    public void gotoNode(int index, int level)
-    {
-        if(level < levels.Count){
-            currentLevel = level;
-            currentNode = levels[level];
-        }
-
-        for(int i = 0; i < index && currentNode.next != null; i++){
-            currentNode = currentNode.next;
-        }
-
-        cameraTransform.position = currentNode.transform.position;
-
-    }
-
+    
     /// <summary>
     /// To Check whether y-axis of the currentNode and the target node are equal or not.
     /// It will be used 2 times in the path finding algorithms
@@ -141,10 +127,19 @@ public class CameraPath : MonoBehaviour,ITraverseable
 
         return false;
     }
-
+   
     public void move()
     {
-        cameraState = CameraMoveState.MoveOut;
+        if(!areNodesEqual(currentNode, endNode)){
+        
+            step();
+            cameraTransform.DOMove(currentNode.transform.position, .5f).OnComplete(move).OnUpdate(onMoving);
+        
+        }else{
+
+            onLand();
+        
+        }
     }
 
     public void step()
@@ -158,7 +153,6 @@ public class CameraPath : MonoBehaviour,ITraverseable
             {
                 case CameraMoveState.MoveOut:
                     if (areX_AtRoot(currentNode)) {
-                        Debug.Log("0");
                         cameraState = CameraMoveState.MoveVertically;
                     }
                     else currentNode = currentNode.previous;
@@ -167,7 +161,6 @@ public class CameraPath : MonoBehaviour,ITraverseable
                 case CameraMoveState.MoveVertically:
                         if (areYsEqual(currentNode, endNode))
                         {
-                            Debug.Log("1");
                             cameraState = CameraMoveState.MoveIn;
                         }
                         else
@@ -181,12 +174,10 @@ public class CameraPath : MonoBehaviour,ITraverseable
                     
                         if (areXsEquals(currentNode, endNode))
                         {
-                            Debug.Log("2");
                             cameraState = CameraMoveState.NotMoving;
                         }
                         else
-                        {
-                            
+                        {                           
                             currentNode = currentNode.next;
                         }
                     break;
@@ -194,7 +185,6 @@ public class CameraPath : MonoBehaviour,ITraverseable
 
             }
 
-            gotoNode(currentNode.nodeXIndex, currentNode.nodeYIndex);
 
             if (areNodesEqual(currentNode, endNode)){
                 cameraState = CameraMoveState.NotMoving;
@@ -213,19 +203,26 @@ public class CameraPath : MonoBehaviour,ITraverseable
         endNode = targetNode;
     }
 
-    public void onMoving()
+    public void gotoTarget()
     {
-       
+        onDeparture();
+        cameraState = CameraMoveState.MoveOut;
+        move();
     }
 
     public void onLand()
     {
-        step();
+        print("done");
     }
 
 
     public void onDeparture()
     {
-       
+        print("depart");   
+    }
+
+    public void onMoving()
+    {
+        print("moving");
     }
 }

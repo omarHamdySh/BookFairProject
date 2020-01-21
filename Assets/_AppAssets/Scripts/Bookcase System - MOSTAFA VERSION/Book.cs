@@ -53,7 +53,7 @@ namespace mostafa
         public void focus()
         {
             CameraPath.instance.setTarget(pathNode);
-            CameraPath.instance.move();
+            CameraPath.instance.gotoTarget();
         }
 
         public void unfocus()
