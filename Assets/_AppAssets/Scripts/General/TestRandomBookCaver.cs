@@ -8,7 +8,7 @@ public class TestRandomBookCaver : MonoBehaviour
 
     [SerializeField] private Transform[] covers;
 
-    private List<Material> coverMaterials;
+    private List<Material> coverMaterials = new List<Material>();
 
     private void Start()
     {
