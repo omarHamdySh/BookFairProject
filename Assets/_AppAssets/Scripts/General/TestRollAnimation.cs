@@ -10,4 +10,12 @@ public class TestRollAnimation : MonoBehaviour
     {
         myAnim.SetBool("Open", check);
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
+        {
+            ToggleRollAnimation(!myAnim.GetBool("Open"));
+        }
+    }
 }
