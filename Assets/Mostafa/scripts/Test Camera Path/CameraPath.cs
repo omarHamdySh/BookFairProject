@@ -133,7 +133,7 @@ public class CameraPath : MonoBehaviour,ITraverseable
         if(!areNodesEqual(currentNode, endNode)){
         
             step();
-            cameraTransform.DOMove(currentNode.transform.position, .5f).OnComplete(move).OnUpdate(onMoving);
+            cameraTransform.DOMove(currentNode.transform.position, .1f).OnComplete(move).OnUpdate(onMoving);
         
         }else{
 
@@ -152,34 +152,34 @@ public class CameraPath : MonoBehaviour,ITraverseable
             switch (cameraState)
             {
                 case CameraMoveState.MoveOut:
+                    if(currentNode.previous != null) currentNode = currentNode.previous;
                     if (areX_AtRoot(currentNode)) {
                         cameraState = CameraMoveState.MoveVertically;
                     }
-                    else currentNode = currentNode.previous;
                     break;
 
                 case CameraMoveState.MoveVertically:
+
+                        if (currentNode.nodeYIndex > endNode.nodeYIndex) currentNode = levels[currentNode.nodeYIndex - 1];
+                        else if (currentNode.nodeYIndex < endNode.nodeYIndex) currentNode = levels[currentNode.nodeYIndex + 1];
+                       
                         if (areYsEqual(currentNode, endNode))
                         {
                             cameraState = CameraMoveState.MoveIn;
                         }
-                        else
-                        {
-                            if (currentNode.nodeYIndex > endNode.nodeYIndex) currentNode = levels[currentNode.nodeYIndex - 1];
-                            else if (currentNode.nodeYIndex < endNode.nodeYIndex) currentNode = levels[currentNode.nodeYIndex + 1];
                         
-                        }
+                        
                     break;
                 case CameraMoveState.MoveIn:
-                    
+                        
+                        if(currentNode.next != null) currentNode = currentNode.next;
+                        
                         if (areXsEquals(currentNode, endNode))
                         {
                             cameraState = CameraMoveState.NotMoving;
                         }
-                        else
-                        {                           
-                            currentNode = currentNode.next;
-                        }
+                            
+                        
                     break;
 
 
