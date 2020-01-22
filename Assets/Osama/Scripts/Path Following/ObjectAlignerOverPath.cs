@@ -20,8 +20,6 @@ namespace PathCreation.Examples
 
         private IScrollable scrollable;
 
-        public float speed = 5;
-
         float distanceTravelled;
 
         bool motionStarted = false;
@@ -55,6 +53,7 @@ namespace PathCreation.Examples
                 scrollable.onLand();
                 return;
             }
+
             else if(currentScrollSpeed == 0)
             {
                 return;
@@ -70,9 +69,6 @@ namespace PathCreation.Examples
 
                 scrollable.onMoving();
             }
-
-
-
 
             distanceTravelled += currentScrollSpeed * Time.deltaTime;
             transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);

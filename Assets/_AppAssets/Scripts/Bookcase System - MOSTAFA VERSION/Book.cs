@@ -26,11 +26,6 @@ namespace mostafa
             return 0;
         }
 
-        public void move()
-        {
-            print("move");
-        }
-
         public void select()
         {
             mostafa.SelectionManager.instance.selectThis(this);
@@ -59,6 +54,21 @@ namespace mostafa
         public void unfocus()
         {
           
+        }
+
+        public void move(Vector3 destination, float duration)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int getObjectIndex()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void setObjectIndex(int objectIndex)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
