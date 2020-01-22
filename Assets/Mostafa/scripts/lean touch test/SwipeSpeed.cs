@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class SwipeSpeed : MonoBehaviour
 {
+
+    [SerializeField]
+    private PathDataSO pathData;
+
     private float swipeTime;
     public float LastSwipeTime;
 
     public int direction;
 
-    public float scrollSpeed = 1;
+    public float scrollSpeed = 0;
 
     public float distance = 0;
 
     private Vector2 pivot;
+
+    public float minSpeed;
+    public float maxSpeed;
 
     #region Singleton
     public static SwipeSpeed instance { private set; get; }
@@ -35,13 +42,16 @@ public class SwipeSpeed : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        reset();
+        pathData.BookcaseScrollSpeed = scrollSpeed;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-       
+        pathData.BookcaseScrollSpeed = scrollSpeed;
+
+        scrollSpeed *= 0.1f;
     }
 
     public void setDirection(int dir)
@@ -53,20 +63,21 @@ public class SwipeSpeed : MonoBehaviour
     public void add()
     {
         swipeTime = Time.time;
-        pivot = Lean.Touch.LeanTouch.Fingers[0].ScreenPosition;
+        pivot = Lean.Touch.LeanTouch.Fingers[0].StartScreenPosition;
     }
 
     public void calculateTime()
     {
         LastSwipeTime = Time.time - swipeTime;
-        distance = Lean.Touch.LeanTouch.Fingers[0].GetScaledDistance(pivot);
-        scrollSpeed = distance/(LastSwipeTime*100)*direction;
-
+        distance = Lean.Touch.LeanTouch.Fingers[0].GetScreenDistance(pivot);
+        scrollSpeed = Mathf.Clamp(distance/(LastSwipeTime), 20, 50) * direction;
+           
         reset();
     }
+
+
     public void reset()
-    {
-        swipeTime = 0;
+    {        
         direction = 0;
         distance = 0;
         LastSwipeTime = 0;
