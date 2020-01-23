@@ -9,6 +9,11 @@ public class Floor : MonoBehaviour, IScrollable
     public BookFair fair;
     public List<Bookcase> bookcases;
 
+    public int getObjectIndex()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public float getScrollSpeed()
     {
         if(GameManager.Instance)
@@ -27,6 +32,11 @@ public class Floor : MonoBehaviour, IScrollable
         print("move");
     }
 
+    public void move(Vector3 destination, float duration)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void onDeparture()
     {
         print("onDeparture");
@@ -40,5 +50,10 @@ public class Floor : MonoBehaviour, IScrollable
     public void onMoving()
     {
         print("onMoving");
+    }
+
+    public void setObjectIndex(int objectIndex)
+    {
+        throw new System.NotImplementedException();
     }
 }

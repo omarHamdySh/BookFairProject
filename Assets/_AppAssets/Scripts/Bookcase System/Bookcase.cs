@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PathCreation.Examples;
 
-[RequireComponent(typeof(ObjectAlignerOverPath))]
+
 public class Bookcase : MonoBehaviour, IScrollable, IClickable
 {
     BookFair fair;
@@ -21,26 +21,6 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
         return 0;
     }
 
-    public void move()
-    {
-        print("move");
-    }
-
-    public void onDeparture()
-    {
-        print("onDeparture");
-    }
-
-    public void onLand()
-    {
-        print("onLand");
-    }
-
-    public void onMoving()
-    {
-        print("onMoving");
-    }
-
     public void focus()
     {
         print("focus");
@@ -49,5 +29,35 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
     public void unfocus()
     {
         print("focus");
+    }
+
+    public void move(Vector3 destination, float duration)
+    {
+        //throw new System.NotImplementedException();
+    }
+
+    public void onMoving()
+    {
+        
+    }
+
+    public void onLand()
+    {
+        
+    }
+
+    public void onDeparture()
+    {
+
+    }
+
+    public int getObjectIndex()
+    {
+        return 0;
+    }
+
+    public void setObjectIndex(int objectIndex)
+    {
+        //throw new System.NotImplementedException();
     }
 }

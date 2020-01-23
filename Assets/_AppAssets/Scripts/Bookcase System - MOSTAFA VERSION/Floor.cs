@@ -13,6 +13,11 @@ namespace mostafa
         public BookFair fair;
         public List<Bookcase> bookcases;
 
+        public int getObjectIndex()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public float getScrollSpeed()
         {
             if (GameManager.Instance)
@@ -26,7 +31,7 @@ namespace mostafa
             return 0;
         }
 
-        public void move()
+        public void move(Vector3 destination, float duration)
         {
             print("move");
         }
@@ -44,6 +49,11 @@ namespace mostafa
         public void onMoving()
         {
             print("onMoving");
+        }
+
+        public void setObjectIndex(int objectIndex)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

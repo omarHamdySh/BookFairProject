@@ -1,13 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using PathCreation.Examples;
+using DG.Tweening;
 
-[RequireComponent(typeof(ObjectAlignerOverPath))]
+[RequireComponent(typeof(ObjectAlignerOverPathv2))]
 public class Shelf : MonoBehaviour, IScrollable, IClickable
 {
     BookFair fair;
     public List<Book> bookList = new List<Book>();
+
+    [Space, SerializeField, Tooltip("This identifies the object index in the array")]
+    private int objectIndex;
+
+    private void Awake()
+    {
+        objectIndex = transform.GetSiblingIndex();
+    }
+
+    public int ObjectIndex { get => objectIndex; set => objectIndex = value; }
 
     public float getScrollSpeed()
     {
@@ -21,9 +31,10 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
         return 0;
     }
 
-    public void move()
+    public void move(Vector3 destination, float duration)
     {
         print("move");
+        transform.DOMove(destination, duration);
     }
 
     public void onDeparture()
@@ -50,5 +61,10 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
     {
         print("focus");
     }
-}
 
+    public int getObjectIndex() { return objectIndex; }
+
+    public void setObjectIndex(int _objectIndex) {
+        objectIndex = _objectIndex;
+    }
+}

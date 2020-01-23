@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7139043a80f65f74cac00ed94eba535a, type: 3}
   m_Name: PathDataSO
   m_EditorClassIdentifier: 
-  floorScrollSpeed: 5.57
-  bookcaseScrollSpeed: -0.019056998
-  shelfScrollSpeed: 4.3
-  bookScrollSpeed: 5
+  floorScrollSpeed: 0
+  bookcaseScrollSpeed: 1
+  shelfScrollSpeed: 0.08
+  bookScrollSpeed: 0
