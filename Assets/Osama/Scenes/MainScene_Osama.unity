@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 319957540}
   - component: {fileID: 319957542}
   - component: {fileID: 319957541}
+  - component: {fileID: 319957544}
   - component: {fileID: 319957543}
   m_Layer: 0
   m_Name: Shelf 6
@@ -327,6 +328,20 @@ MeshFilter:
   m_GameObject: {fileID: 319957539}
   m_Mesh: {fileID: 6909427140162784630, guid: ab8556ba746ffb64aa9ba3a9854abb76, type: 3}
 --- !u!114 &319957543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319957539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc56606403ee02e48abe652b70f6696d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bookList: []
+  objectIndex: 0
+--- !u!114 &319957544
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -525,6 +540,80 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentStateTxt: {fileID: 0}
   hintTxt: {fileID: 0}
+--- !u!1001 &1294836743
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1574356787}
+    m_Modifications:
+    - target: {fileID: 132188884372250092, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: verticesMultiplier
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8283329183536121081, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_Name
+      value: BookcaseHigh (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6d10c0efa3d4b1449ac1a298f3326860, type: 3}
 --- !u!1 &1429091630
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,6 +625,7 @@ GameObject:
   - component: {fileID: 1429091631}
   - component: {fileID: 1429091633}
   - component: {fileID: 1429091632}
+  - component: {fileID: 1429091635}
   - component: {fileID: 1429091634}
   m_Layer: 0
   m_Name: Shelf 1
@@ -605,6 +695,20 @@ MeshFilter:
   m_GameObject: {fileID: 1429091630}
   m_Mesh: {fileID: 3886985017020124712, guid: ab8556ba746ffb64aa9ba3a9854abb76, type: 3}
 --- !u!114 &1429091634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429091630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc56606403ee02e48abe652b70f6696d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bookList: []
+  objectIndex: 0
+--- !u!114 &1429091635
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -699,6 +803,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1574356787 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5064707571758706966, guid: 9496b0251fb6eb84c9f6417f7bb3d9d3,
+    type: 3}
+  m_PrefabInstance: {fileID: 5064707571331671457}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1675688687
 GameObject:
   m_ObjectHideFlags: 0
@@ -906,6 +1016,80 @@ MonoBehaviour:
     showNormalsHelpInfo: 0
     tabIndex: 0
   initialized: 1
+--- !u!1001 &1938080109
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1574356787}
+    m_Modifications:
+    - target: {fileID: 132188884372250092, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: verticesMultiplier
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949198539568379626, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8283329183536121081, guid: 6d10c0efa3d4b1449ac1a298f3326860,
+        type: 3}
+      propertyPath: m_Name
+      value: BookcaseHigh (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6d10c0efa3d4b1449ac1a298f3326860, type: 3}
 --- !u!1 &2024218739
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,34 +1176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f90b3d9741593a44a8ec1104b86bfc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &132188885937248175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8283329182013066917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 785b3e2ca2621ec43a84e04ba264addc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &132188885937248176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8283329182013066917}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26f68981bd873134bb44c82b279d42d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathpointIndex: 0
-  endOfPathInstruction: 0
-  verticesMultiplier: 10
-  speed: 5
 --- !u!23 &279251923990283037
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1335,6 +1491,7 @@ GameObject:
   - component: {fileID: 4019335154507548765}
   - component: {fileID: 3786847185398948943}
   - component: {fileID: 1926705780009734328}
+  - component: {fileID: 2406360008988674797}
   - component: {fileID: 2406360008988674796}
   m_Layer: 0
   m_Name: Shelf 2
@@ -1344,6 +1501,20 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!114 &2406360008988674796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2406360008988674795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc56606403ee02e48abe652b70f6696d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bookList: []
+  objectIndex: 0
+--- !u!114 &2406360008988674797
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1704,6 +1875,7 @@ GameObject:
   - component: {fileID: 868619047113152640}
   - component: {fileID: 850742403472788322}
   - component: {fileID: 3515191232592994303}
+  - component: {fileID: 4365328315015532408}
   - component: {fileID: 4365328315015532407}
   m_Layer: 0
   m_Name: Shelf 3
@@ -1713,6 +1885,20 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!114 &4365328315015532407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4365328315015532406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc56606403ee02e48abe652b70f6696d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bookList: []
+  objectIndex: 0
+--- !u!114 &4365328315015532408
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1753,6 +1939,7 @@ GameObject:
   - component: {fileID: 1061146746187195527}
   - component: {fileID: 2536306558631597842}
   - component: {fileID: 3259682489432704347}
+  - component: {fileID: 4744158424769423329}
   - component: {fileID: 4744158424769423328}
   m_Layer: 0
   m_Name: Shelf 4
@@ -1762,6 +1949,20 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!114 &4744158424769423328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4744158424769423327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc56606403ee02e48abe652b70f6696d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bookList: []
+  objectIndex: 0
+--- !u!114 &4744158424769423329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1833,6 +2034,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1902154821}
     m_Modifications:
+    - target: {fileID: 5064707571364125937, guid: 9496b0251fb6eb84c9f6417f7bb3d9d3,
+        type: 3}
+      propertyPath: verticesMultiplier
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7663830779659125114, guid: 9496b0251fb6eb84c9f6417f7bb3d9d3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1871,7 +2077,7 @@ PrefabInstance:
     - target: {fileID: 7663830779659125114, guid: 9496b0251fb6eb84c9f6417f7bb3d9d3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7663830779659125114, guid: 9496b0251fb6eb84c9f6417f7bb3d9d3,
         type: 3}
@@ -2082,6 +2288,7 @@ GameObject:
   - component: {fileID: 3078038302369437857}
   - component: {fileID: 3123435502266631272}
   - component: {fileID: 7615907602764042473}
+  - component: {fileID: 8104918982584289016}
   - component: {fileID: 8104918982584289015}
   m_Layer: 0
   m_Name: Shelf 5
@@ -2091,6 +2298,20 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!114 &8104918982584289015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8104918982584289014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc56606403ee02e48abe652b70f6696d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bookList: []
+  objectIndex: 0
+--- !u!114 &8104918982584289016
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2111,8 +2332,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4949198541082000566}
-  - component: {fileID: 132188885937248175}
-  - component: {fileID: 132188885937248176}
+  - component: {fileID: 8283329182013066919}
   - component: {fileID: 8283329182013066918}
   m_Layer: 0
   m_Name: BookcaseHigh
@@ -2133,8 +2353,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39b00199b9b6e19408f154cbdafdd70f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direaction: 1
   objectsOverPath: []
+  shelfPathTransforms: []
+--- !u!114 &8283329182013066919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8283329182013066917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 785b3e2ca2621ec43a84e04ba264addc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8463635448539466331
 Transform:
   m_ObjectHideFlags: 0

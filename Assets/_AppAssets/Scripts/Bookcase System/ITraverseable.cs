@@ -1,6 +1,8 @@
-﻿public interface ITraverseable
+﻿using UnityEngine;
+
+public interface ITraverseable
 {
-    void move();
+    void move(Vector3 destination, float duration);
 
     void onMoving();
 

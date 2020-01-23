@@ -23,7 +23,7 @@ namespace mostafa
             return 0;
         }
 
-        public void move()
+        public void move(Vector3 destination, float duration)
         {
             print("move");
         }
@@ -51,6 +51,16 @@ namespace mostafa
         public void unfocus()
         {
             print("focus");
+        }
+
+        public int getObjectIndex()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void setObjectIndex(int objectIndex)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
