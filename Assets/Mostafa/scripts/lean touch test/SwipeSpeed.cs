@@ -46,8 +46,6 @@ public class SwipeSpeed : MonoBehaviour
     {
         pathData = GameManager.Instance.pathData;
         reset();
-        pathData.BookcaseScrollSpeed = horizontalScrollSpeed;
-
         horizontalScrollSpeed = 0.1f;
         verticalScrollSpeed = 0.1f;
     }
@@ -56,7 +54,6 @@ public class SwipeSpeed : MonoBehaviour
     {
         if (horizontalScrollSpeed * horizontalScrollSpeed > 0 || verticalScrollSpeed * verticalScrollSpeed > 0)
         {
-            pathData.BookcaseScrollSpeed = horizontalScrollSpeed;
             decay();
         }
     }
