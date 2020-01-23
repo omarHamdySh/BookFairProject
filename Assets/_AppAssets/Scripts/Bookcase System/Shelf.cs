@@ -12,12 +12,17 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
     [Space, SerializeField, Tooltip("This identifies the object index in the array")]
     private int objectIndex;
 
+    private bool isLanded;
+
     private void Awake()
     {
         objectIndex = transform.GetSiblingIndex();
     }
 
-    public int ObjectIndex { get => objectIndex; set => objectIndex = value; }
+    public int ObjectIndex {
+        get => objectIndex; 
+        set => objectIndex = value;
+    }
 
     public float getScrollSpeed()
     {
@@ -34,7 +39,9 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
     public void move(Vector3 destination, float duration)
     {
         print("move");
-        transform.DOMove(destination, duration);
+        isLanded = false;
+
+        transform.DOMove(destination, duration).OnComplete(onLand);
     }
 
     public void onDeparture()
@@ -45,6 +52,8 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
     public void onLand()
     {
         print("onLand");
+
+        isLanded = true;
     }
 
     public void onMoving()
@@ -66,5 +75,10 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
 
     public void setObjectIndex(int _objectIndex) {
         objectIndex = _objectIndex;
+    }
+
+    public bool getLandStatus()
+    {
+        return isLanded;
     }
 }

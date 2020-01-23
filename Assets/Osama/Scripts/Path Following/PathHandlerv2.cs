@@ -15,6 +15,8 @@ public class PathHandlerv2 : MonoBehaviour
 
     private bool motionStarted = false;
 
+    bool x = false;
+
     #endregion
 
     #region Getters/Setters
@@ -28,11 +30,7 @@ public class PathHandlerv2 : MonoBehaviour
     private void Start()
     {
         scrollables = GetComponentsInChildren<IScrollable>();
-        foreach (var ss in scrollables)
-        {
-            print("fFFFFF" + ss.GetHashCode() + "dsfsd" + ss.GetType());
-            //currentScrollSpeed = ss.getScrollSpeed();
-        }
+
         objectsOverPath = GetComponentsInChildren<ObjectAlignerOverPathv2>();
         shelfPathTransforms = GetComponentsInChildren<ShelfPathTransforms>();
     }
@@ -56,7 +54,7 @@ public class PathHandlerv2 : MonoBehaviour
             return;
         }
 
-        if (currentScrollSpeed > 0)
+        if (currentScrollSpeed != 0)
         {
             if (!motionStarted)
             {
@@ -77,43 +75,94 @@ public class PathHandlerv2 : MonoBehaviour
             {
                 foreach (var scrollable in scrollables)
                 {
-                    if (currentScrollSpeed > 0)
+                    if (x)
                     {
-                        Vector3 newDistenation = shelfPathTransforms[(scrollable.getObjectIndex() + 1) % shelfPathTransforms.Length].transform.position;
-                        scrollable.setObjectIndex((scrollable.getObjectIndex() + 1) % shelfPathTransforms.Length);
+                        if (currentScrollSpeed > 0)
+                        {
 
-                        scrollable.move(newDistenation, currentScrollSpeed);
-                    }
+                            var nextTransformIndex = (scrollable.getObjectIndex() + 1) % shelfPathTransforms.Length;
 
-                    else if (currentScrollSpeed < 0)
-                    {
-                        Debug.Log("else if (currentScrollSpeed < 0)");
+                            Vector3 newDestination = shelfPathTransforms[nextTransformIndex].transform.position;
+
+                            Debug.Log("newDestination: " + newDestination);
+
+                            if (scrollable.getLandStatus())
+                            {
+                                scrollable.setObjectIndex(nextTransformIndex);
+                            }
+
+                            scrollable.move(newDestination, currentScrollSpeed);
+                        }
+
+                        else if (currentScrollSpeed < 0)
+                        {
+                            Debug.Log("else if (currentScrollSpeed < 0)");
+
+                            var nextTransformIndex = ((shelfPathTransforms.Length - 1) + scrollable.getObjectIndex()) % shelfPathTransforms.Length;
+
+                            Vector3 newDestination = shelfPathTransforms[nextTransformIndex].transform.position;
+
+                            Debug.Log("newDestination: " + newDestination);
+
+                            if (scrollable.getLandStatus())
+                            {
+                                scrollable.setObjectIndex(nextTransformIndex);
+                            }
+
+                            scrollable.move(newDestination, -currentScrollSpeed);
+                        }
+                       
                     }
                 }
+                x = false;
             }
         }
     }
 
-    #endregion
 
-    //[ContextMenu("Another cycle of replacing the objects")]
-    //private void alignShelvesOverPath()
-    //{
-    //    objectsOverPath = GetComponentsInChildren<ObjectAlignerOverPathv2>();
-    //    shelfPathTransforms = GetComponentsInChildren<ShelfPathTransforms>();
+    /// <summary>
+    /// This method clamps the new index that you need to scroll to, just put the current index + or - 1 to scroll forward or backward
+    /// </summary>
+    /// <param name="newIndex"></param>
+    /// <returns></returns>
+    public int clampScrollIndex(int newIndex) {
 
-    //    foreach (var obj in objectsOverPath)
-    //    {
-    //        if (direaction > 0)
-    //        {
-    //            Vector3 newDistenation = shelfPathTransforms[(obj.ObjectIndex + 1) % shelfPathTransforms.Length].transform.position;
-    //            obj.ObjectIndex = (obj.ObjectIndex + 1) % shelfPathTransforms.Length;
-    //            obj.DOMOve(newDistenation);
-    //        }
-    //        else if (direaction < 0)
-    //        {
+        if (newIndex < 0)
+        {
+            return 5;
+        }
+        else if(newIndex>5) {
+            return 0;
+        } else {
+            return newIndex;
+        }
+    }
 
-    //        }
-    //    }
-    //}
-}
+    [ContextMenu("sdfsfdds")]
+    private void turnx()
+    {
+        x = true;
+    }
+        #endregion
+
+        //[ContextMenu("Another cycle of replacing the objects")]
+        //private void alignShelvesOverPath()
+        //{
+        //    objectsOverPath = GetComponentsInChildren<ObjectAlignerOverPathv2>();
+        //    shelfPathTransforms = GetComponentsInChildren<ShelfPathTransforms>();
+
+        //    foreach (var obj in objectsOverPath)
+        //    {
+        //        if (direaction > 0)
+        //        {
+        //            Vector3 newDistenation = shelfPathTransforms[(obj.ObjectIndex + 1) % shelfPathTransforms.Length].transform.position;
+        //            obj.ObjectIndex = (obj.ObjectIndex + 1) % shelfPathTransforms.Length;
+        //            obj.DOMOve(newDistenation);
+        //        }
+        //        else if (direaction < 0)
+        //        {
+
+        //        }
+        //    }
+        //}
+    }
