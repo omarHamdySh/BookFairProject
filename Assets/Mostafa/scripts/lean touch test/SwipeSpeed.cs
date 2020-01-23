@@ -5,15 +5,17 @@ using UnityEngine;
 public class SwipeSpeed : MonoBehaviour
 {
 
-    [SerializeField]
+   
     private PathDataSO pathData;
 
     private float swipeTime;
     public float LastSwipeTime;
 
-    public int direction;
+    public int horizontalDirection;
+    public int verticalDirection;
 
-    public float scrollSpeed = 0;
+    public float horizontalScrollSpeed;
+    public float verticalScrollSpeed;
 
     public float distance = 0;
 
@@ -42,44 +44,72 @@ public class SwipeSpeed : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pathData = GameManager.Instance.pathData;
         reset();
-        pathData.BookcaseScrollSpeed = scrollSpeed;
+        horizontalScrollSpeed = 0.1f;
+        verticalScrollSpeed = 0.1f;
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void Update()
     {
-        pathData.BookcaseScrollSpeed = scrollSpeed;
-
-        scrollSpeed *= 0.1f;
+        if (horizontalScrollSpeed * horizontalScrollSpeed > 0 || verticalScrollSpeed * verticalScrollSpeed > 0)
+        {
+            decay();
+        }
     }
 
-    public void setDirection(int dir)
+    public void setHDirection(int dir)
     {
-        direction = dir;
-        calculateTime();
+        horizontalDirection = dir;
+        calculateTimeHorizontal();
     }
 
+    public void setVDirection(int dir)
+    {
+        horizontalDirection = dir;
+        calculateTimeVertical();
+    }
     public void add()
     {
         swipeTime = Time.time;
         pivot = Lean.Touch.LeanTouch.Fingers[0].StartScreenPosition;
     }
 
-    public void calculateTime()
+    
+
+    public void calculateTimeHorizontal()
     {
         LastSwipeTime = Time.time - swipeTime;
         distance = Lean.Touch.LeanTouch.Fingers[0].GetScreenDistance(pivot);
-        scrollSpeed = Mathf.Clamp(distance/(LastSwipeTime), 20, 50) * direction;
-           
+        horizontalScrollSpeed = (distance/LastSwipeTime)/20 * horizontalDirection;
+
         reset();
     }
 
+    public void calculateTimeVertical()
+    {
+        LastSwipeTime = Time.time - swipeTime;
+        distance = Lean.Touch.LeanTouch.Fingers[0].GetScreenDistance(pivot);
+        verticalScrollSpeed = (distance / LastSwipeTime) / 20 * verticalDirection;
+
+        reset();
+    }
 
     public void reset()
     {        
-        direction = 0;
+        horizontalDirection = 0;
+        verticalDirection = 0;
         distance = 0;
         LastSwipeTime = 0;
+    }
+
+    public void decay()
+    {
+        float hSpeed = Mathf.Abs(horizontalScrollSpeed);
+        float vSpeed = Mathf.Abs(horizontalScrollSpeed);
+        if (hSpeed < 0.7f) horizontalScrollSpeed = 0;
+        if (vSpeed < 0.7f) horizontalScrollSpeed = 0;
+        horizontalScrollSpeed *= 0.97f;
+        verticalScrollSpeed *= 0.97f;
     }
 }
