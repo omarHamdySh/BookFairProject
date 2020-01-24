@@ -24,6 +24,13 @@ public class SwipeSpeed : MonoBehaviour
     public float minSpeed;
     public float maxSpeed;
 
+    //drag objeccts while finger is pressed
+    public bool drag;
+
+
+    public float dragDecay;
+    public float scrollDecay;
+
     #region Singleton
     public static SwipeSpeed instance { private set; get; }
     private void Awake()
@@ -48,11 +55,18 @@ public class SwipeSpeed : MonoBehaviour
         reset();
         horizontalScrollSpeed = 0.1f;
         verticalScrollSpeed = 0.1f;
+        drag = false;
     }
 
     private void Update()
     {
-        if (horizontalScrollSpeed * horizontalScrollSpeed > 0 || verticalScrollSpeed * verticalScrollSpeed > 0)
+        if (drag)
+        {
+            Vector2 tmpFingerPos = Lean.Touch.LeanTouch.Fingers[0].ScreenPosition;
+            horizontalScrollSpeed = (tmpFingerPos.x - pivot.x) * dragDecay;
+            verticalScrollSpeed = (tmpFingerPos.y - pivot.y) * dragDecay;
+        }
+        if (Mathf.Abs(horizontalScrollSpeed) > 0 || Mathf.Abs(verticalScrollSpeed) > 0)
         {
             decay();
         }
@@ -71,12 +85,13 @@ public class SwipeSpeed : MonoBehaviour
     }
     public void add()
     {
+        drag = true;
         swipeTime = Time.time;
         pivot = Lean.Touch.LeanTouch.Fingers[0].StartScreenPosition;
     }
 
     
-
+    //move objects horizontally
     public void calculateTimeHorizontal()
     {
         LastSwipeTime = Time.time - swipeTime;
@@ -86,6 +101,7 @@ public class SwipeSpeed : MonoBehaviour
         reset();
     }
 
+    //move objects horizontally
     public void calculateTimeVertical()
     {
         LastSwipeTime = Time.time - swipeTime;
@@ -101,6 +117,7 @@ public class SwipeSpeed : MonoBehaviour
         verticalDirection = 0;
         distance = 0;
         LastSwipeTime = 0;
+        drag = false;
     }
 
     public void decay()
@@ -109,7 +126,7 @@ public class SwipeSpeed : MonoBehaviour
         float vSpeed = Mathf.Abs(horizontalScrollSpeed);
         if (hSpeed < 0.7f) horizontalScrollSpeed = 0;
         if (vSpeed < 0.7f) horizontalScrollSpeed = 0;
-        horizontalScrollSpeed *= 0.97f;
-        verticalScrollSpeed *= 0.97f;
+        horizontalScrollSpeed *= scrollDecay;
+        verticalScrollSpeed *= scrollDecay;
     }
 }

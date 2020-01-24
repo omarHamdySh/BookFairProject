@@ -2638,6 +2638,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1701751595}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   ScreenDepth:
     Conversion: 1
     Camera: {fileID: 0}
@@ -3387,6 +3398,9 @@ MonoBehaviour:
   distance: 0
   minSpeed: 0
   maxSpeed: 0
+  drag: 0
+  dragDecay: 0.9
+  scrollDecay: 0.97
 --- !u!4 &1701751597
 Transform:
   m_ObjectHideFlags: 0
