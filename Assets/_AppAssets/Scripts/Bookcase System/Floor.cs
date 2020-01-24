@@ -56,4 +56,9 @@ public class Floor : MonoBehaviour, IScrollable
     {
         throw new System.NotImplementedException();
     }
+
+    public bool getLandStatus()
+    {
+        throw new System.NotImplementedException();
+    }
 }

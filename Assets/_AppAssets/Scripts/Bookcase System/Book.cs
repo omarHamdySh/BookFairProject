@@ -67,4 +67,9 @@ public class Book : MonoBehaviour, IScrollable, IClickable
     {
         throw new System.NotImplementedException();
     }
+
+    public bool getLandStatus()
+    {
+        throw new System.NotImplementedException();
+    }
 }

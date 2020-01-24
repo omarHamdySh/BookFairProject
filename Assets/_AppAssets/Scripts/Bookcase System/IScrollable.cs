@@ -5,4 +5,6 @@
     void setObjectIndex(int _objectIndex);
 
     float getScrollSpeed();
+
+    bool getLandStatus();
 }

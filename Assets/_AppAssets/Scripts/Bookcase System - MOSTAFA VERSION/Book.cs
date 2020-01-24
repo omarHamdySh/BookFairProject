@@ -70,5 +70,10 @@ namespace mostafa
         {
             throw new System.NotImplementedException();
         }
+
+        public bool getLandStatus()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
