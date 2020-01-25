@@ -3399,7 +3399,7 @@ MonoBehaviour:
   minSpeed: 0
   maxSpeed: 0
   drag: 0
-  dragDecay: 0.5
+  dragDecay: 5
   scrollDecay: 0.978
 --- !u!4 &1701751597
 Transform:
@@ -5021,23 +5021,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5064707571758706969, guid: 9496b0251fb6eb84c9f6417f7bb3d9d3,
         type: 3}
-      propertyPath: editorData.vertexPathMaxAngleError
-      value: 7.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5064707571758706969, guid: 9496b0251fb6eb84c9f6417f7bb3d9d3,
-        type: 3}
       propertyPath: editorData.tabIndex
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5064707571758706969, guid: 9496b0251fb6eb84c9f6417f7bb3d9d3,
         type: 3}
-      propertyPath: editorData.showVertexPathDisplayOptions
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5064707571758706969, guid: 9496b0251fb6eb84c9f6417f7bb3d9d3,
-        type: 3}
-      propertyPath: editorData.showVertexPathOptions
-      value: 0
+      propertyPath: editorData.vertexPathMaxAngleError
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7663830779659125114, guid: 9496b0251fb6eb84c9f6417f7bb3d9d3,
         type: 3}
