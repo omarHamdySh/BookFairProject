@@ -19,7 +19,8 @@ public class SwipeSpeed : MonoBehaviour
 
     public float distance = 0;
 
-    private Vector2 pivot;
+    private Vector2 swipePivot;
+    private Vector2 dragPivot;
 
     public float minSpeed;
     public float maxSpeed;
@@ -63,8 +64,9 @@ public class SwipeSpeed : MonoBehaviour
         if (drag)
         {
             Vector2 tmpFingerPos = Lean.Touch.LeanTouch.Fingers[0].ScreenPosition;
-            horizontalScrollSpeed = (tmpFingerPos.x - pivot.x) * dragDecay;
-            verticalScrollSpeed = (tmpFingerPos.y - pivot.y) * dragDecay;
+            horizontalScrollSpeed = (tmpFingerPos.x - dragPivot.x) * dragDecay;
+            verticalScrollSpeed = (tmpFingerPos.y - dragPivot.y) * dragDecay;
+            dragPivot = tmpFingerPos;
         }
         if (Mathf.Abs(horizontalScrollSpeed) > 0 || Mathf.Abs(verticalScrollSpeed) > 0)
         {
@@ -87,7 +89,8 @@ public class SwipeSpeed : MonoBehaviour
     {
         drag = true;
         swipeTime = Time.time;
-        pivot = Lean.Touch.LeanTouch.Fingers[0].StartScreenPosition;
+        swipePivot = Lean.Touch.LeanTouch.Fingers[0].StartScreenPosition;
+        dragPivot = Lean.Touch.LeanTouch.Fingers[0].StartScreenPosition; 
     }
 
     
@@ -95,7 +98,7 @@ public class SwipeSpeed : MonoBehaviour
     public void calculateTimeHorizontal()
     {
         LastSwipeTime = Time.time - swipeTime;
-        distance = Lean.Touch.LeanTouch.Fingers[0].GetScreenDistance(pivot);
+        distance = Lean.Touch.LeanTouch.Fingers[0].GetScreenDistance(swipePivot);
         horizontalScrollSpeed = (distance/LastSwipeTime)/20 * horizontalDirection;
 
         reset();
@@ -105,7 +108,7 @@ public class SwipeSpeed : MonoBehaviour
     public void calculateTimeVertical()
     {
         LastSwipeTime = Time.time - swipeTime;
-        distance = Lean.Touch.LeanTouch.Fingers[0].GetScreenDistance(pivot);
+        distance = Lean.Touch.LeanTouch.Fingers[0].GetScreenDistance(swipePivot);
         verticalScrollSpeed = (distance / LastSwipeTime) / 20 * verticalDirection;
 
         reset();
