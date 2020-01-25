@@ -58,11 +58,12 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
 
     public void setObjectIndex(int objectIndex)
     {
-        //throw new System.NotImplementedException();
+        ////throw new System.NotImplementedException();
     }
 
     public bool getLandStatus()
     {
-        throw new System.NotImplementedException();
+        // throw new System.NotImplementedException();
+        return true;
     }
 }

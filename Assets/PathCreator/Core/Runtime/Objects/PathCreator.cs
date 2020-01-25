@@ -69,6 +69,8 @@ namespace PathCreation {
             }
         }
 
+        
+
 #if UNITY_EDITOR
 
         // Draw the path when path objected is not selected (if enabled in settings)
