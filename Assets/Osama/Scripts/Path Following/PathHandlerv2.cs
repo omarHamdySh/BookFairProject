@@ -15,7 +15,7 @@ public class PathHandlerv2 : MonoBehaviour
 
     private bool motionStarted = false;
 
-    bool x = false;
+    public bool x = false;
 
     #endregion
 
