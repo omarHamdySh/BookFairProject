@@ -19,23 +19,29 @@ public class SelectionManager : MonoBehaviour
     }
     #endregion
 
-    [HideInInspector] public GameObject selectedObject;
+    [HideInInspector] public IClickable selectedObject;
 
-    public void selectThis(GameObject selectedObject)
+    public void selectThis(IClickable selectedObject)
     {
-        this.selectedObject = selectedObject;
-        this.selectedObject.GetComponent<ZoomIn>().zoomIn();
-        print("Select: "+selectedObject.name);
+
+        if (this.selectedObject != selectedObject)
+        {
+            deselectThis(selectedObject);
+            this.selectedObject = selectedObject;
+            this.selectedObject.focus();
+        }
+
     }
 
-    public void deselectThis(GameObject selectedObject)
+    public void deselectThis(IClickable selectedObject)
     {
-        print("DeSelect: " + selectedObject.name);
 
-        if (this.selectedObject = selectedObject)
+
+        if (this.selectedObject == selectedObject)
         {
-
+            this.selectedObject.unfocus();
             this.selectedObject = null;
         }
     }
 }
+

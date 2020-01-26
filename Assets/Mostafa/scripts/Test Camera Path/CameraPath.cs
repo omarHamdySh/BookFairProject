@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using mostafa;
+
 public class CameraPath : MonoBehaviour,ITraverseable
 {
-    public PathNode currentNode, endNode;
+    public CameraPathNode currentNode, endNode;
     private int currentLevel;
 
-    public List<PathNode> levels;
+    public List<CameraPathNode> levels;
 
     public Transform cameraTransform;
 
@@ -69,7 +69,7 @@ public class CameraPath : MonoBehaviour,ITraverseable
     /// <param name="currentNode"></param>
     /// <param name="targetNode"></param>
     /// <returns></returns>
-    public bool areYsEqual(PathNode currentNode, PathNode targetNode)
+    public bool areYsEqual(CameraPathNode currentNode, CameraPathNode targetNode)
     {
         if (currentNode.nodeYIndex == targetNode.nodeYIndex)
         {
@@ -87,7 +87,7 @@ public class CameraPath : MonoBehaviour,ITraverseable
     /// <param name="currentNode"></param>
     /// <param name="targetNode"></param>
     /// <returns></returns>
-    public bool areXsEquals(PathNode currentNode, PathNode targetNode)
+    public bool areXsEquals(CameraPathNode currentNode, CameraPathNode targetNode)
     {
 
         if (currentNode.nodeXIndex == targetNode.nodeXIndex)
@@ -105,7 +105,7 @@ public class CameraPath : MonoBehaviour,ITraverseable
     /// </summary>
     /// <param name="currentNode"></param>
     /// <returns></returns>
-    public bool areX_AtRoot(PathNode currentNode)
+    public bool areX_AtRoot(CameraPathNode currentNode)
     {
         
         if (currentNode.nodeXIndex == 0)
@@ -118,7 +118,7 @@ public class CameraPath : MonoBehaviour,ITraverseable
         }
     }
 
-    public bool areNodesEqual(PathNode currentNode, PathNode targetNode)
+    public bool areNodesEqual(CameraPathNode currentNode, CameraPathNode targetNode)
     {
         if(currentNode.nodeXIndex == targetNode.nodeXIndex && currentNode.nodeYIndex == targetNode.nodeYIndex)
         {
@@ -193,12 +193,12 @@ public class CameraPath : MonoBehaviour,ITraverseable
 
     }
 
-    int calculateDistanceToNode(PathNode targetNode)
+    int calculateDistanceToNode(CameraPathNode targetNode)
     {
         return currentNode.nodeXIndex + targetNode.nodeXIndex + Mathf.Abs(currentNode.nodeYIndex - targetNode.nodeYIndex);
     }
 
-    public void setTarget(PathNode targetNode)
+    public void setTarget(CameraPathNode targetNode)
     {
         endNode = targetNode;
     }

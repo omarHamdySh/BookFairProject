@@ -6,7 +6,7 @@ using Lean.Touch;
 public class BookPage : MonoBehaviour, IClickable
 {
     
-    public PathNode pathNode;
+    public CameraPathNode pathNode;
     LeanSelectable leanSelectable;
     public string pageInfo;
 

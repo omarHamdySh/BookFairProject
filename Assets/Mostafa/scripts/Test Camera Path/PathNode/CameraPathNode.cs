@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class PathNode : MonoBehaviour
+public class CameraPathNode : MonoBehaviour
 {
-    public PathNode previous;
-    public PathNode next;
+    public CameraPathNode previous;
+    public CameraPathNode next;
     public int nodeXIndex;
     public int nodeYIndex;
 
     // Start is called before the first frame update
     void Start()
     {
-        PathNode tmpNode = GetComponent<PathNode>();
+        CameraPathNode tmpNode = GetComponent<CameraPathNode>();
 
         int xIndexCounter = 0;
         while(tmpNode.previous != null)
@@ -34,12 +34,12 @@ public class PathNode : MonoBehaviour
         
     }
 
-    public PathNode getNext()
+    public CameraPathNode getNext()
     {
         return next;
     }
 
-    public PathNode getPrevious()
+    public CameraPathNode getPrevious()
     {
         return previous;
     }

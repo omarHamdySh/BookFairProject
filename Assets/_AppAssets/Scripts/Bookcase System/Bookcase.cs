@@ -8,7 +8,7 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
 {
     BookFair fair;
     List<Shelf> shelves;
-    public PathNode pathNode;
+    public CameraPathNode pathNode;
     LeanSelectable leanSelectable;
 
     public float getScrollSpeed()
