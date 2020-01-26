@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PathCreation.Examples;
-
+using Lean.Touch;
 
 public class Bookcase : MonoBehaviour, IScrollable, IClickable
 {
     BookFair fair;
     List<Shelf> shelves;
+    public PathNode pathNode;
+    LeanSelectable leanSelectable;
 
     public float getScrollSpeed()
     {
@@ -19,6 +21,11 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
             }
         }
         return 0;
+    }
+
+    void Start()
+    {
+        leanSelectable = GetComponent<LeanSelectable>();
     }
 
     public void focus()

@@ -8,6 +8,7 @@ public class Floor : MonoBehaviour, IScrollable
 {
     public BookFair fair;
     public List<Bookcase> bookcases;
+    public PathNode pathNode;
 
     public int getObjectIndex()
     {

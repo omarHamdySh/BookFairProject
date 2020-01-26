@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using PathCreation.Examples;
 
-[RequireComponent(typeof(ObjectAlignerOverPath))]
+[RequireComponent(typeof(ObjectAlignerOverPath), typeof(Lean.Touch.LeanSelectable))]
 public class Book : MonoBehaviour, IScrollable, IClickable
 {
     public string title;
     public Texture2D image;
     List<BookPage> pages;
-    
+    public PathNode pathNode;
+
     public float getScrollSpeed()
     {
         if (GameManager.Instance)
@@ -26,6 +27,11 @@ public class Book : MonoBehaviour, IScrollable, IClickable
     public void move()
     {
         print("move");
+    }
+
+    public void select()
+    {
+        mostafa.SelectionManager.instance.selectThis(this);
     }
 
     public void onDeparture()
@@ -45,7 +51,8 @@ public class Book : MonoBehaviour, IScrollable, IClickable
 
     public void focus()
     {
-        print("focus");
+        CameraPath.instance.setTarget(pathNode);
+        CameraPath.instance.gotoTarget();
     }
 
     public void unfocus()

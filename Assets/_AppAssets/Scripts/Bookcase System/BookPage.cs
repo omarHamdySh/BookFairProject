@@ -1,11 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Lean.Touch;
 
 public class BookPage : MonoBehaviour, IClickable
 {
-    //text content of the page
+    
+    public PathNode pathNode;
+    LeanSelectable leanSelectable;
     public string pageInfo;
+
+    void Start()
+    {
+        leanSelectable = GetComponent<LeanSelectable>();
+    }
 
     public void focus()
     {
