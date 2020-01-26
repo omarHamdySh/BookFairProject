@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PathCreation.Examples;
 
-[RequireComponent(typeof(ObjectAlignerOverPath))]
+[RequireComponent(typeof(ObjectAlignerOverPathv2))]
 public class Floor : MonoBehaviour, IScrollable
 {
     public BookFair fair;
