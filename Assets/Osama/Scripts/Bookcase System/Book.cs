@@ -1,16 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using PathCreation.Examples;
+using DG.Tweening;
 
-[RequireComponent(typeof(ObjectAlignerOverPath))]
 public class Book : MonoBehaviour, IScrollable, IClickable
 {
     public string title;
     public Texture2D image;
     List<BookPage> pages;
-    
+
+    [Space, SerializeField, Tooltip("This identifies the object index in the array")]
+    private int objectIndex;
+
+    private bool isLanded = true;
+
+    private void Awake()
+    {
+        objectIndex = transform.GetSiblingIndex();
+    }
+
+    public int ObjectIndex
+    {
+        get => objectIndex;
+        set => objectIndex = value;
+    }
+
     public float getScrollSpeed()
     {
         if (GameManager.Instance)
@@ -23,53 +36,74 @@ public class Book : MonoBehaviour, IScrollable, IClickable
         return 0;
     }
 
-    public void move()
+    public void move(Vector3 destination, float duration)
     {
-        print("move");
+        print("Book, move");
+        isLanded = false;
+
+        transform.DOMove(destination, duration)
+            .SetEase(GameManager.Instance.pathData.MovementEase)
+            .OnComplete(onLand);
+    }
+
+    public void move(Vector3 destination, float duration, bool visibility)
+    {
+        print("Book, move, 2");
+        isLanded = false;
+
+        transform.DOMove(destination, duration)
+            .SetEase(GameManager.Instance.pathData.MovementEase)
+            .OnComplete(onLand);
+
+        gameObject.SetActive(visibility);
     }
 
     public void onDeparture()
     {
-        print("onDeparture");
+        print("Book, onDeparture");
     }
 
     public void onLand()
     {
-        print("onLand");
+        print("Book, onLand");
+
+        gameObject.SetActive(true);
+
+        isLanded = true;
+
+        Debug.Log("onLand(), isLanded: " + isLanded);
     }
 
     public void onMoving()
     {
-        print("onMoving");
+        print("Book, onMoving");
     }
 
     public void focus()
     {
-        print("focus");
+        print("Book, focus");
     }
 
     public void unfocus()
     {
-        print("focus");
+        print("Book, unfocus");
     }
-
-    public void move(Vector3 destination, float duration)
-    {
-        throw new System.NotImplementedException();
-    }
-
+    
     public int getObjectIndex()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Book, getObjectIndex");
+        return objectIndex;
     }
 
-    public void setObjectIndex(int objectIndex)
+    public void setObjectIndex(int _objectIndex)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Book, setObjectIndex");
+        objectIndex = _objectIndex;
     }
 
     public bool getLandStatus()
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Book, getLandStatus, isLanded : " + isLanded);
+        return isLanded;
     }
 }

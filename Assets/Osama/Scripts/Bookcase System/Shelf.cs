@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-[RequireComponent(typeof(ObjectAlignerOverPathv2))]
 public class Shelf : MonoBehaviour, IScrollable, IClickable
 {
     BookFair fair;
@@ -12,7 +10,7 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
     [Space, SerializeField, Tooltip("This identifies the object index in the array")]
     private int objectIndex;
 
-    private bool isLanded;
+    private bool isLanded = true;
 
     private void Awake()
     {
@@ -38,47 +36,73 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
 
     public void move(Vector3 destination, float duration)
     {
-        print("move");
+        print("Shelf, move");
         isLanded = false;
 
-        transform.DOMove(destination, duration).OnComplete(onLand);
+        transform.DOMove(destination, duration)
+            .SetEase(GameManager.Instance.pathData.MovementEase)
+            .OnComplete(onLand);
+    }
+
+    public void move(Vector3 destination, float duration, bool visibility)
+    {
+        print("Shelf, move, 2");
+        isLanded = false;
+
+        transform.DOMove(destination, duration)
+            .SetEase(GameManager.Instance.pathData.MovementEase)
+            .OnComplete(onLand);
+
+        gameObject.SetActive(visibility);
     }
 
     public void onDeparture()
     {
-        print("onDeparture");
+        print("Shelf, onDeparture");
+        //isLanded = false;
     }
 
     public void onLand()
     {
-        print("onLand");
+        print("Shelf, onLand");
+
+        gameObject.SetActive(true);
 
         isLanded = true;
+
+        Debug.Log("onLand(), isLanded: " + isLanded);
     }
 
     public void onMoving()
     {
-        print("onMoving");
+        print("Shelf, onMoving");
     }
 
     public void focus()
     {
-        print("focus");
+        print("Shelf, focus");
     }
 
     public void unfocus()
     {
-        print("focus");
+        print("Shelf, unfocus");
     }
 
-    public int getObjectIndex() { return objectIndex; }
+    public int getObjectIndex()
+    {
+        Debug.Log("Shelf, getObjectIndex");
+        return objectIndex;
+    }
 
-    public void setObjectIndex(int _objectIndex) {
+    public void setObjectIndex(int _objectIndex)
+    {
+        Debug.Log("Shelf, setObjectIndex");
         objectIndex = _objectIndex;
     }
 
     public bool getLandStatus()
     {
+        Debug.Log("Shelf, getLandStatus, isLanded : " + isLanded);
         return isLanded;
     }
 }

@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
-public class BookcasePathTransforms : MonoBehaviour
+public class ObjectAlignerOverPathv2 : MonoBehaviour
 {
 }
