@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public class SelectionManager : MonoBehaviour
 {
     #region Singleton
@@ -43,5 +43,6 @@ public class SelectionManager : MonoBehaviour
             this.selectedObject = null;
         }
     }
+
 }
 

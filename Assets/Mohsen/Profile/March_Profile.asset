@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a34fa72bd4185749832024e9c8010bf, type: 3}
   m_Name: ScreenSpaceReflections
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb84e30e02715445aeb9959894e3b4d, type: 3}
   m_Name: ColorGrading
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -156,28 +156,28 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 1
-    value: -10.9
+    value: -13.8
   tint:
     overrideState: 1
-    value: 1.8
+    value: -2
   colorFilter:
     overrideState: 1
-    value: {r: 2, g: 2, b: 2, a: 1}
+    value: {r: 1, g: 1, b: 1, a: 1}
   hueShift:
     overrideState: 1
-    value: -1
+    value: 0
   saturation:
     overrideState: 1
-    value: 54.4
+    value: 14.5
   brightness:
     overrideState: 0
     value: 0
   postExposure:
     overrideState: 1
-    value: 1.68
+    value: 1
   contrast:
     overrideState: 1
-    value: -10.7
+    value: 11.6
   mixerRedOutRedIn:
     overrideState: 0
     value: 100
