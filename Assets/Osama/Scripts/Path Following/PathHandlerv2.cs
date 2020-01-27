@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PathHandlerv2 : MonoBehaviour
 {
-    [SerializeField] private ObjectAlignerOverPathv2[] objectsOverPath;
-    [SerializeField] private ShelfPathTransforms[] shelfPathTransforms;
+    [SerializeField] private ObjectAlignerOverPathv2[] bookcaseOverPath;
+    [SerializeField] private ShelfPathTransforms[] bookCasePathTransforms;
 
     #region Private Varibales
 
@@ -27,12 +27,17 @@ public class PathHandlerv2 : MonoBehaviour
 
     #region MonoBehaviours
 
-    private void Start()
+    private void Awake()
     {
         scrollables = GetComponentsInChildren<IScrollable>();
 
-        objectsOverPath = GetComponentsInChildren<ObjectAlignerOverPathv2>();
-        shelfPathTransforms = GetComponentsInChildren<ShelfPathTransforms>();
+        bookcaseOverPath = GetComponentsInChildren<ObjectAlignerOverPathv2>();
+        bookCasePathTransforms = GetComponentsInChildren<ShelfPathTransforms>();
+    }
+
+    public Vector3 GetPosOverPath(int pathPointIndex)
+    {
+        return bookCasePathTransforms[pathPointIndex].transform.position;
     }
 
     private void Update()
@@ -80,9 +85,9 @@ public class PathHandlerv2 : MonoBehaviour
                         if (currentScrollSpeed > 0)
                         {
 
-                            var nextTransformIndex = (scrollable.getObjectIndex() + 1) % shelfPathTransforms.Length;
+                            var nextTransformIndex = (scrollable.getObjectIndex() + 1) % bookCasePathTransforms.Length;
 
-                            Vector3 newDestination = shelfPathTransforms[nextTransformIndex].transform.position;
+                            Vector3 newDestination = bookCasePathTransforms[nextTransformIndex].transform.position;
 
                             Debug.Log("newDestination: " + newDestination);
 
@@ -98,9 +103,9 @@ public class PathHandlerv2 : MonoBehaviour
                         {
                             Debug.Log("else if (currentScrollSpeed < 0)");
 
-                            var nextTransformIndex = ((shelfPathTransforms.Length - 1) + scrollable.getObjectIndex()) % shelfPathTransforms.Length;
+                            var nextTransformIndex = ((bookCasePathTransforms.Length - 1) + scrollable.getObjectIndex()) % bookCasePathTransforms.Length;
 
-                            Vector3 newDestination = shelfPathTransforms[nextTransformIndex].transform.position;
+                            Vector3 newDestination = bookCasePathTransforms[nextTransformIndex].transform.position;
 
                             Debug.Log("newDestination: " + newDestination);
 
@@ -111,7 +116,7 @@ public class PathHandlerv2 : MonoBehaviour
 
                             scrollable.move(newDestination, -currentScrollSpeed);
                         }
-                       
+
                     }
                 }
                 x = false;
@@ -125,15 +130,19 @@ public class PathHandlerv2 : MonoBehaviour
     /// </summary>
     /// <param name="newIndex"></param>
     /// <returns></returns>
-    public int clampScrollIndex(int newIndex) {
+    public int clampScrollIndex(int newIndex)
+    {
 
         if (newIndex < 0)
         {
             return 5;
         }
-        else if(newIndex>5) {
+        else if (newIndex > 5)
+        {
             return 0;
-        } else {
+        }
+        else
+        {
             return newIndex;
         }
     }
@@ -143,26 +152,26 @@ public class PathHandlerv2 : MonoBehaviour
     {
         x = true;
     }
-        #endregion
+    #endregion
 
-        //[ContextMenu("Another cycle of replacing the objects")]
-        //private void alignShelvesOverPath()
-        //{
-        //    objectsOverPath = GetComponentsInChildren<ObjectAlignerOverPathv2>();
-        //    shelfPathTransforms = GetComponentsInChildren<ShelfPathTransforms>();
+    //[ContextMenu("Another cycle of replacing the objects")]
+    //private void alignShelvesOverPath()
+    //{
+    //    objectsOverPath = GetComponentsInChildren<ObjectAlignerOverPathv2>();
+    //    shelfPathTransforms = GetComponentsInChildren<ShelfPathTransforms>();
 
-        //    foreach (var obj in objectsOverPath)
-        //    {
-        //        if (direaction > 0)
-        //        {
-        //            Vector3 newDistenation = shelfPathTransforms[(obj.ObjectIndex + 1) % shelfPathTransforms.Length].transform.position;
-        //            obj.ObjectIndex = (obj.ObjectIndex + 1) % shelfPathTransforms.Length;
-        //            obj.DOMOve(newDistenation);
-        //        }
-        //        else if (direaction < 0)
-        //        {
+    //    foreach (var obj in objectsOverPath)
+    //    {
+    //        if (direaction > 0)
+    //        {
+    //            Vector3 newDistenation = shelfPathTransforms[(obj.ObjectIndex + 1) % shelfPathTransforms.Length].transform.position;
+    //            obj.ObjectIndex = (obj.ObjectIndex + 1) % shelfPathTransforms.Length;
+    //            obj.DOMOve(newDistenation);
+    //        }
+    //        else if (direaction < 0)
+    //        {
 
-        //        }
-        //    }
-        //}
-    }
+    //        }
+    //    }
+    //}
+}

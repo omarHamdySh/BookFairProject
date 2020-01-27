@@ -5,6 +5,49 @@ using DG.Tweening;
 
 public class ObjectAlignerOverPathv2 : MonoBehaviour
 {
+    public int pathpointIndex;
+
+    [SerializeField] private PathHandlerv2 pathHandler;
+
+    private IScrollable scrollable;
+    private float currentScrollSpeed;
+    private bool motionStarted = false;
+
+    private void Start()
+    {
+        pathpointIndex = transform.GetSiblingIndex();
+        transform.position = pathHandler.GetPosOverPath(pathpointIndex);
+        scrollable = GetComponent<IScrollable>();
+
+    }
+
+    private void Update()
+    {
+        currentScrollSpeed = scrollable.getScrollSpeed();
+
+        if (motionStarted && currentScrollSpeed == 0) // If the object is not moving, declare land State and fire land event
+        {
+            motionStarted = false;
+            scrollable.onLand();
+            return;
+        }
+        else if (currentScrollSpeed == 0)
+        {
+            return;
+        }
+
+        if (currentScrollSpeed > 0)
+        {
+            if (!motionStarted)
+            {
+                motionStarted = true;
+                scrollable.onDeparture();
+            }
+
+            scrollable.onMoving();
+        }
+    }
+
     //#region Private Varibales
 
     //private int objectIndex;// object index in the array of the objects (Shelves, Books)
