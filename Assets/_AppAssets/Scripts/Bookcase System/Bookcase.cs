@@ -102,4 +102,9 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
         // throw new System.NotImplementedException();
         return isLanded;
     }
+
+    public void move(Vector3 destination, float duration, bool visibilty)
+    {
+        throw new System.NotImplementedException();
+    }
 }

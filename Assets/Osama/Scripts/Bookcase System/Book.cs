@@ -2,11 +2,13 @@
 using UnityEngine;
 using DG.Tweening;
 
+[RequireComponent(typeof(Lean.Touch.LeanSelectable))]
 public class Book : MonoBehaviour, IScrollable, IClickable
 {
     public string title;
     public Texture2D image;
     List<BookPage> pages;
+    public CameraPathNode pathNode;
 
     [Space, SerializeField, Tooltip("This identifies the object index in the array")]
     private int objectIndex;
@@ -58,6 +60,11 @@ public class Book : MonoBehaviour, IScrollable, IClickable
         gameObject.SetActive(visibility);
     }
 
+    public void select()
+    {
+        SelectionManager.instance.selectThis(this);
+    }
+
     public void onDeparture()
     {
         print("Book, onDeparture");
@@ -82,6 +89,8 @@ public class Book : MonoBehaviour, IScrollable, IClickable
     public void focus()
     {
         print("Book, focus");
+        CameraPath.instance.setTarget(pathNode);
+        CameraPath.instance.gotoTarget();
     }
 
     public void unfocus()

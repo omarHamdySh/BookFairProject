@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floorScrollSpeed: 0.91
   bookcaseScrollSpeed: 3
-  shelfScrollSpeed: 5
-  bookScrollSpeed: 2
+  shelfScrollSpeed: 0
+  bookScrollSpeed: 0.1
   MovementEase: 0

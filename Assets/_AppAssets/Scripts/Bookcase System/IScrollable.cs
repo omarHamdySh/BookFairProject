@@ -1,4 +1,6 @@
-﻿public interface IScrollable: ITraverseable
+﻿using UnityEngine;
+
+public interface IScrollable: ITraverseable
 {
     int getObjectIndex();
 
@@ -7,4 +9,7 @@
     float getScrollSpeed();
 
     bool getLandStatus();
+    void move(Vector3 destination, float duration);
+    void move(Vector3 destination, float duration, bool visibilty);
+
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PathCreation.Examples;
 
-[RequireComponent(typeof(BookcaseObjectAlignerOverPath))]
+[RequireComponent(typeof(ObjectAlignerOverPath))]
 public class Floor : MonoBehaviour, IScrollable
 {
     public BookFair fair;
@@ -59,6 +59,11 @@ public class Floor : MonoBehaviour, IScrollable
     }
 
     public bool getLandStatus()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void move(Vector3 destination, float duration, bool visibilty)
     {
         throw new System.NotImplementedException();
     }
