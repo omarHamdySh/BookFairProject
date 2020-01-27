@@ -25,6 +25,7 @@ public class ObjectAlignerOverPathv2 : MonoBehaviour
     {
         currentScrollSpeed = scrollable.getScrollSpeed();
 
+        print(currentScrollSpeed);
         if (motionStarted && currentScrollSpeed == 0) // If the object is not moving, declare land State and fire land event
         {
             motionStarted = false;
