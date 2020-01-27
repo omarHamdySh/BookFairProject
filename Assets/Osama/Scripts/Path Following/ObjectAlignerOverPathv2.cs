@@ -9,44 +9,44 @@ public class ObjectAlignerOverPathv2 : MonoBehaviour
 
     [SerializeField] private PathHandlerv2 pathHandler;
 
-    private IScrollable scrollable;
+    private Bookcase scrollable;
     private float currentScrollSpeed;
     private bool motionStarted = false;
 
     private void Start()
     {
+        scrollable = GetComponent<Bookcase>();
         pathpointIndex = transform.GetSiblingIndex();
+        scrollable.setObjectIndex(pathpointIndex);
         transform.position = pathHandler.GetPosOverPath(pathpointIndex);
-        scrollable = GetComponent<IScrollable>();
-
     }
 
     private void Update()
     {
-        currentScrollSpeed = scrollable.getScrollSpeed();
+        //currentScrollSpeed = scrollable.getScrollSpeed();
 
-        print(currentScrollSpeed);
-        if (motionStarted && currentScrollSpeed == 0) // If the object is not moving, declare land State and fire land event
-        {
-            motionStarted = false;
-            scrollable.onLand();
-            return;
-        }
-        else if (currentScrollSpeed == 0)
-        {
-            return;
-        }
+        //print(currentScrollSpeed);
+        //if (motionStarted && currentScrollSpeed == 0) // If the object is not moving, declare land State and fire land event
+        //{
+        //    motionStarted = false;
+        //    scrollable.onLand();
+        //    return;
+        //}
+        //else if (currentScrollSpeed == 0)
+        //{
+        //    return;
+        //}
 
-        if (currentScrollSpeed > 0)
-        {
-            if (!motionStarted)
-            {
-                motionStarted = true;
-                scrollable.onDeparture();
-            }
+        //if (currentScrollSpeed > 0)
+        //{
+        //    if (!motionStarted)
+        //    {
+        //        motionStarted = true;
+        //        scrollable.onDeparture();
+        //    }
 
-            scrollable.onMoving();
-        }
+        //    scrollable.onMoving();
+        //}
     }
 
     //#region Private Varibales

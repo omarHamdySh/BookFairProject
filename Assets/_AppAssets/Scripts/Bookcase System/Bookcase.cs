@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using PathCreation.Examples;
 using Lean.Touch;
+using DG.Tweening;
+
+[RequireComponent(typeof(ObjectAlignerOverPathv2))]
 
 public class Bookcase : MonoBehaviour, IScrollable, IClickable
 {
@@ -10,6 +13,10 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
     List<Shelf> shelves;
     public CameraPathNode pathNode;
     LeanSelectable leanSelectable;
+
+    private int objectIndex;
+
+    private bool isLanded;
 
     public float getScrollSpeed()
     {
@@ -40,32 +47,37 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
 
     public void move(Vector3 destination, float duration)
     {
-        //throw new System.NotImplementedException();
+        print("move");
+        isLanded = false;
+
+        transform.DOMove(destination, duration).OnComplete(onLand);
+
     }
 
     public void onMoving()
     {
-        
+        print("Moving");
+
     }
 
     public void onLand()
     {
-        
+        print("OnLand");
     }
 
     public void onDeparture()
     {
-
+        print("OnDeparture");
     }
 
     public int getObjectIndex()
     {
-        return 0;
+        return objectIndex;
     }
 
     public void setObjectIndex(int objectIndex)
     {
-        ////throw new System.NotImplementedException();
+        this.objectIndex = objectIndex;
     }
 
     public bool getLandStatus()

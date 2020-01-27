@@ -9,7 +9,7 @@ public class PathHandlerv2 : MonoBehaviour
 
     #region Private Varibales
 
-    private IScrollable[] scrollables;
+    private Bookcase[] scrollables;
 
     private float currentScrollSpeed;
 
@@ -29,7 +29,7 @@ public class PathHandlerv2 : MonoBehaviour
 
     private void Awake()
     {
-        scrollables = GetComponentsInChildren<IScrollable>();
+        scrollables = GetComponentsInChildren<Bookcase>();
 
         bookcaseOverPath = GetComponentsInChildren<ObjectAlignerOverPathv2>();
         bookCasePathTransforms = GetComponentsInChildren<ShelfPathTransforms>();
@@ -78,10 +78,11 @@ public class PathHandlerv2 : MonoBehaviour
 
             if (currentScrollSpeed != 0)
             {
-                foreach (var scrollable in scrollables)
+                if (x)
                 {
-                    if (x)
+                    foreach (var scrollable in scrollables)
                     {
+
                         if (currentScrollSpeed > 0)
                         {
 
@@ -103,7 +104,7 @@ public class PathHandlerv2 : MonoBehaviour
                         {
                             Debug.Log("else if (currentScrollSpeed < 0)");
 
-                            var nextTransformIndex = ((bookCasePathTransforms.Length - 1) + scrollable.getObjectIndex()) % bookCasePathTransforms.Length;
+                            var nextTransformIndex = (scrollable.getObjectIndex() - 1 < 0) ? bookCasePathTransforms.Length - 1 : scrollable.getObjectIndex() - 1;
 
                             Vector3 newDestination = bookCasePathTransforms[nextTransformIndex].transform.position;
 
@@ -118,8 +119,8 @@ public class PathHandlerv2 : MonoBehaviour
                         }
 
                     }
+                    x = false;
                 }
-                x = false;
             }
         }
     }
