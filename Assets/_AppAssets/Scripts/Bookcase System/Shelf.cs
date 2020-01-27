@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-[RequireComponent(typeof(ObjectAlignerOverPathv2))]
+[RequireComponent(typeof(BookcaseObjectAlignerOverPath))]
 public class Shelf : MonoBehaviour, IScrollable, IClickable
 {
     BookFair fair;

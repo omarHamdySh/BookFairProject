@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class ObjectAlignerOverPathv2 : MonoBehaviour
+public class BookcaseObjectAlignerOverPath : MonoBehaviour
 {
-    [SerializeField] private PathHandlerv2 pathHandler;
+    [SerializeField] private BookcasePathHandler pathHandler;
 
     private Bookcase scrollable;
     private float currentScrollSpeed;

@@ -2,6 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShelfPathTransforms : MonoBehaviour
+public class BookcasePathTransforms : MonoBehaviour
 {
 }

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathHandlerv2 : MonoBehaviour
+public class BookcasePathHandler : MonoBehaviour
 {
-    [SerializeField] private ObjectAlignerOverPathv2[] bookcaseOverPath;
-    [SerializeField] private ShelfPathTransforms[] bookCasePathTransforms;
+    [SerializeField] private BookcaseObjectAlignerOverPath[] bookcaseOverPath;
+    [SerializeField] private BookcasePathTransforms[] bookCasePathTransforms;
 
     #region Private Varibales
 
@@ -31,8 +31,8 @@ public class PathHandlerv2 : MonoBehaviour
     {
         scrollables = GetComponentsInChildren<Bookcase>();
 
-        bookcaseOverPath = GetComponentsInChildren<ObjectAlignerOverPathv2>();
-        bookCasePathTransforms = GetComponentsInChildren<ShelfPathTransforms>();
+        bookcaseOverPath = GetComponentsInChildren<BookcaseObjectAlignerOverPath>();
+        bookCasePathTransforms = GetComponentsInChildren<BookcasePathTransforms>();
     }
 
     public Vector3 GetPosOverPath(int pathPointIndex)

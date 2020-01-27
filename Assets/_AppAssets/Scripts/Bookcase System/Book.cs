@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using PathCreation.Examples;
 
-[RequireComponent(typeof(ObjectAlignerOverPathv2), typeof(Lean.Touch.LeanSelectable))]
+[RequireComponent(typeof(BookcaseObjectAlignerOverPath), typeof(Lean.Touch.LeanSelectable))]
 public class Book : MonoBehaviour, IScrollable, IClickable
 {
     public string title;

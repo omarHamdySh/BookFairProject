@@ -5,7 +5,7 @@ using PathCreation.Examples;
 using Lean.Touch;
 using DG.Tweening;
 
-[RequireComponent(typeof(ObjectAlignerOverPathv2))]
+[RequireComponent(typeof(BookcaseObjectAlignerOverPath))]
 
 public class Bookcase : MonoBehaviour, IScrollable, IClickable
 {
