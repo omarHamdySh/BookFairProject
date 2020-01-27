@@ -21,7 +21,10 @@ public class BookcasePathHandler : MonoBehaviour
 
     #region Getters/Setters
 
-
+    public NodeRank GetRank(int index)
+    {
+        return bookCasePathTransforms[index].GetComponent<NodeRank>();
+    }
 
     #endregion
 

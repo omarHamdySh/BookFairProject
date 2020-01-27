@@ -51,7 +51,18 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
         {
             isLanded = false;
             transform.DOMove(destination, duration).OnComplete(onLand);
+
+            transform.DORotate(new Vector3(0, GetRotRank(getObjectIndex()), 0), duration);
+            if (getObjectIndex() != 0)
+            {
+                transform.DOLookAt(transform.parent.position, duration);
+            }
         }
+    }
+
+    public float GetRotRank(int index)
+    {
+        return GetComponent<BookcaseObjectAlignerOverPath>().pathHandler.GetRank(index).rankRotation;
     }
 
     public void onMoving()

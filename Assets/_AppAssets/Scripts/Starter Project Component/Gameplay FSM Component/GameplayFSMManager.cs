@@ -16,7 +16,7 @@ public enum GameplayState
     BookCase,
     Shelf,
     Book,
-    BookPage, 
+    BookPage,
     Pause
 }
 
@@ -67,7 +67,7 @@ public class GameplayFSMManager : MonoBehaviour
 
     [HideInInspector]
     public IGameplayState tempTransitionFrom;
-    
+
 
     /// <summary>
     /// Declaration of references will be used for the states logic goes here
@@ -125,12 +125,13 @@ public class GameplayFSMManager : MonoBehaviour
         };
 
         //push the first state for the player
-        PushState(floorState) ;
+        PushState(floorState);
+        PushState(bookCaseState);
         if (hintTxt)
         {
             hintTxt.enabled = false;
         }
-        
+
     }
 
     // Update is called once per frame
@@ -287,7 +288,8 @@ public class GameplayFSMManager : MonoBehaviour
         PopState();
         PushState(floorState);
     }
-    public void toBookCaseState() {
+    public void toBookCaseState()
+    {
 
         PopState();
         PushState(bookCaseState);

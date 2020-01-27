@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class BookcaseObjectAlignerOverPath : MonoBehaviour
 {
-    [SerializeField] private BookcasePathHandler pathHandler;
+    public BookcasePathHandler pathHandler;
 
     private Bookcase scrollable;
     private float currentScrollSpeed;
@@ -15,7 +15,13 @@ public class BookcaseObjectAlignerOverPath : MonoBehaviour
     {
         scrollable = GetComponent<Bookcase>();
         scrollable.setObjectIndex(transform.GetSiblingIndex());
-        transform.position = pathHandler.GetPosOverPath(transform.GetSiblingIndex());
+        transform.position = pathHandler.GetPosOverPath(scrollable.getObjectIndex());
+
+        transform.DORotate(new Vector3(0, scrollable.GetRotRank(scrollable.getObjectIndex()), 0), 0);
+        if (scrollable.getObjectIndex() != 0)
+        {
+            transform.DOLookAt(transform.parent.position, 0);
+        }
     }
 
     private void Update()
