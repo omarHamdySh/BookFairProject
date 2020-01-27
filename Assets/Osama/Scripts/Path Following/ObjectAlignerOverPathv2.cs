@@ -5,8 +5,6 @@ using DG.Tweening;
 
 public class ObjectAlignerOverPathv2 : MonoBehaviour
 {
-    public int pathpointIndex;
-
     [SerializeField] private PathHandlerv2 pathHandler;
 
     private Bookcase scrollable;
@@ -16,9 +14,8 @@ public class ObjectAlignerOverPathv2 : MonoBehaviour
     private void Start()
     {
         scrollable = GetComponent<Bookcase>();
-        pathpointIndex = transform.GetSiblingIndex();
-        scrollable.setObjectIndex(pathpointIndex);
-        transform.position = pathHandler.GetPosOverPath(pathpointIndex);
+        scrollable.setObjectIndex(transform.GetSiblingIndex());
+        transform.position = pathHandler.GetPosOverPath(transform.GetSiblingIndex());
     }
 
     private void Update()

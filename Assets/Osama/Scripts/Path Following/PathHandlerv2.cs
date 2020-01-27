@@ -76,51 +76,49 @@ public class PathHandlerv2 : MonoBehaviour
                 scrollable.onMoving();// // Change each scrollable State to --> onMoving()
             }
 
-            if (currentScrollSpeed != 0)
+
+            if (x)
             {
-                if (x)
+                foreach (var scrollable in scrollables)
                 {
-                    foreach (var scrollable in scrollables)
+
+                    if (currentScrollSpeed > 0)
                     {
 
-                        if (currentScrollSpeed > 0)
+                        var nextTransformIndex = (scrollable.getObjectIndex() + 1) % bookCasePathTransforms.Length;
+
+                        Vector3 newDestination = bookCasePathTransforms[nextTransformIndex].transform.position;
+
+                        Debug.Log("newDestination: " + newDestination);
+
+                        if (scrollable.getLandStatus())
                         {
-
-                            var nextTransformIndex = (scrollable.getObjectIndex() + 1) % bookCasePathTransforms.Length;
-
-                            Vector3 newDestination = bookCasePathTransforms[nextTransformIndex].transform.position;
-
-                            Debug.Log("newDestination: " + newDestination);
-
-                            if (scrollable.getLandStatus())
-                            {
-                                scrollable.setObjectIndex(nextTransformIndex);
-                            }
-
-                            scrollable.move(newDestination, currentScrollSpeed);
+                            scrollable.setObjectIndex(nextTransformIndex);
                         }
 
-                        else if (currentScrollSpeed < 0)
-                        {
-                            Debug.Log("else if (currentScrollSpeed < 0)");
-
-                            var nextTransformIndex = (scrollable.getObjectIndex() - 1 < 0) ? bookCasePathTransforms.Length - 1 : scrollable.getObjectIndex() - 1;
-
-                            Vector3 newDestination = bookCasePathTransforms[nextTransformIndex].transform.position;
-
-                            Debug.Log("newDestination: " + newDestination);
-
-                            if (scrollable.getLandStatus())
-                            {
-                                scrollable.setObjectIndex(nextTransformIndex);
-                            }
-
-                            scrollable.move(newDestination, -currentScrollSpeed);
-                        }
-
+                        scrollable.move(newDestination, currentScrollSpeed);
                     }
-                    x = false;
+
+                    else if (currentScrollSpeed < 0)
+                    {
+                        Debug.Log("else if (currentScrollSpeed < 0)");
+
+                        var nextTransformIndex = (scrollable.getObjectIndex() - 1 < 0) ? bookCasePathTransforms.Length - 1 : scrollable.getObjectIndex() - 1;
+
+                        Vector3 newDestination = bookCasePathTransforms[nextTransformIndex].transform.position;
+
+                        Debug.Log("newDestination: " + newDestination);
+
+                        if (scrollable.getLandStatus())
+                        {
+                            scrollable.setObjectIndex(nextTransformIndex);
+                        }
+
+                        scrollable.move(newDestination, -currentScrollSpeed);
+                    }
+
                 }
+                x = false;
             }
         }
     }
