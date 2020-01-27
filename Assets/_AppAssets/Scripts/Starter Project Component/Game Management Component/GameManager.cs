@@ -43,7 +43,7 @@ public delegate void TimeEvents(float timeUnitValue);
 public delegate bool GamePlayStatesEvents(IGameplayState otherState);
 
 [RequireComponent(typeof(GameplayFSMManager), typeof(TimeManager), typeof(SceneMappingManager))]
-[RequireComponent(typeof(SwipeSpeed))]
+
 public class GameManager : MonoBehaviour
 {
 

@@ -126,9 +126,9 @@ public class SwipeSpeed : MonoBehaviour
     public void decay()
     {
         float hSpeed = Mathf.Abs(horizontalScrollSpeed);
-        float vSpeed = Mathf.Abs(horizontalScrollSpeed);
+        float vSpeed = Mathf.Abs(verticalScrollSpeed);
         if (hSpeed < 0.7f) horizontalScrollSpeed = 0;
-        if (vSpeed < 0.7f) horizontalScrollSpeed = 0;
+        if (vSpeed < 0.7f) verticalScrollSpeed = 0;
         horizontalScrollSpeed *= scrollDecay;
         verticalScrollSpeed *= scrollDecay;
     }

@@ -16,7 +16,7 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
 
     private int objectIndex;
 
-    private bool isLanded;
+    private bool isLanded = true;
 
     public float getScrollSpeed()
     {
@@ -47,11 +47,11 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
 
     public void move(Vector3 destination, float duration)
     {
-        print("move");
-        isLanded = false;
-
-        transform.DOMove(destination, duration).OnComplete(onLand);
-
+        if (isLanded)
+        {
+            isLanded = false;
+            transform.DOMove(destination, duration).OnComplete(onLand);
+        }
     }
 
     public void onMoving()
@@ -60,8 +60,14 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
 
     }
 
+    public bool IsLanded()
+    {
+        return isLanded;
+    }
     public void onLand()
     {
+        isLanded = true;
+        GameManager.Instance.pathData.BookcaseScrollSpeed = 0;
         print("OnLand");
     }
 
@@ -83,6 +89,6 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
     public bool getLandStatus()
     {
         // throw new System.NotImplementedException();
-        return true;
+        return isLanded;
     }
 }

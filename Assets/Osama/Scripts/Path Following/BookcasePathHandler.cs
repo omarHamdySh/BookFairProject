@@ -42,8 +42,7 @@ public class BookcasePathHandler : MonoBehaviour
 
     private void Update()
     {
-        currentScrollSpeed = scrollables[1].getScrollSpeed();// Getting the updating scrolling speed;
-
+        currentScrollSpeed = GameManager.Instance.pathData.BookcaseScrollSpeed;// Getting the updating scrolling speed;
         if (motionStarted && currentScrollSpeed == 0)// if the objects is not moving, declare land State and fire land event
         {
             motionStarted = false;
@@ -76,50 +75,8 @@ public class BookcasePathHandler : MonoBehaviour
                 scrollable.onMoving();// // Change each scrollable State to --> onMoving()
             }
 
+            moveAccordingToScrollSpeed();
 
-            if (x)
-            {
-                foreach (var scrollable in scrollables)
-                {
-
-                    if (currentScrollSpeed > 0)
-                    {
-
-                        var nextTransformIndex = (scrollable.getObjectIndex() + 1) % bookCasePathTransforms.Length;
-
-                        Vector3 newDestination = bookCasePathTransforms[nextTransformIndex].transform.position;
-
-                        Debug.Log("newDestination: " + newDestination);
-
-                        if (scrollable.getLandStatus())
-                        {
-                            scrollable.setObjectIndex(nextTransformIndex);
-                        }
-
-                        scrollable.move(newDestination, currentScrollSpeed);
-                    }
-
-                    else if (currentScrollSpeed < 0)
-                    {
-                        Debug.Log("else if (currentScrollSpeed < 0)");
-
-                        var nextTransformIndex = (scrollable.getObjectIndex() - 1 < 0) ? bookCasePathTransforms.Length - 1 : scrollable.getObjectIndex() - 1;
-
-                        Vector3 newDestination = bookCasePathTransforms[nextTransformIndex].transform.position;
-
-                        Debug.Log("newDestination: " + newDestination);
-
-                        if (scrollable.getLandStatus())
-                        {
-                            scrollable.setObjectIndex(nextTransformIndex);
-                        }
-
-                        scrollable.move(newDestination, -currentScrollSpeed);
-                    }
-
-                }
-                x = false;
-            }
         }
     }
 
@@ -153,6 +110,50 @@ public class BookcasePathHandler : MonoBehaviour
     }
     #endregion
 
+    private void moveAccordingToScrollSpeed()
+    {
+        foreach (var scrollable in scrollables)
+        {
+
+                if (currentScrollSpeed > 0)
+                {
+
+                    var nextTransformIndex = (scrollable.getObjectIndex() + 1) % bookCasePathTransforms.Length;
+
+                    Vector3 newDestination = bookCasePathTransforms[nextTransformIndex].transform.position;
+
+                    //Debug.Log("newDestination: " + newDestination);
+
+                    if (scrollable.getLandStatus())
+                    {
+                        scrollable.setObjectIndex(nextTransformIndex);
+                        scrollable.move(newDestination, 0.5f);
+                    }
+
+                    
+                }
+
+                if (currentScrollSpeed < 0)
+                {
+                    Debug.Log("else if (currentScrollSpeed < 0)");
+
+                    var nextTransformIndex = (scrollable.getObjectIndex() == 0) ? bookCasePathTransforms.Length - 1 : scrollable.getObjectIndex() - 1;
+
+                    Vector3 newDestination = bookCasePathTransforms[nextTransformIndex].transform.position;
+
+                    //Debug.Log("newDestination: " + newDestination);
+
+                    if (scrollable.getLandStatus())
+                    {
+                        scrollable.setObjectIndex(nextTransformIndex);
+                        scrollable.move(newDestination, 0.5f);
+                    }
+
+                    
+                }
+            }
+        
+    }
     //[ContextMenu("Another cycle of replacing the objects")]
     //private void alignShelvesOverPath()
     //{
