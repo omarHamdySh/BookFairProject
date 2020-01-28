@@ -121,7 +121,7 @@ public class CameraPath : MonoBehaviour, ITraverseable
 
     public void reset()
     {
-        setTarget(defaultNode);
+        setTarget(levels[currentNode.nodeYIndex]);
         gotoTarget();
     }
     /// <summary>

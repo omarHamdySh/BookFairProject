@@ -14,6 +14,8 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
     private int objectIndex;
     LeanSelectable leanSelectable;
 
+    public CameraPathNode pathNode;
+    
     private bool isLanded = true;
     public bool IsLooping;
 
@@ -120,9 +122,16 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
         //print("Shelf, onMoving");
     }
 
+    public void select()
+    {
+        SelectionManager.instance.selectThis(this);
+    }
+
     public void focus()
     {
         print("Shelf, focus");
+        CameraPath.instance.setTarget(pathNode);
+        CameraPath.instance.gotoTarget();
     }
 
     public void unfocus()

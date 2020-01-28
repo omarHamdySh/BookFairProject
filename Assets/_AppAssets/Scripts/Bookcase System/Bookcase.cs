@@ -35,9 +35,17 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
         leanSelectable = GetComponent<LeanSelectable>();
     }
 
+    public void select()
+    {
+        SelectionManager.instance.selectThis(this);
+    }
+
     public void focus()
     {
         print("focus");
+        CameraPath.instance.setTarget(pathNode);
+        CameraPath.instance.gotoTarget();
+
     }
 
     public void unfocus()
