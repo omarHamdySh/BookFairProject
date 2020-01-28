@@ -39,33 +39,34 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
         {
             isLanded = false;
 
-            if (getObjectIndex() == 1)
+
+
+            if (getObjectIndex() == 4 || getObjectIndex() == 5)
             {
-                for (int i = 0; i < bookPathHandler.booksOverPath.Length; i++)
-                {
-                    bookPathHandler.booksOverPath[i].transform.Rotate(new Vector3(
-                        0,
-                        bookPathHandler.bookPathTransforms[i].GetComponent<NodeRank>().rankRotation,
-                        0));
-                }
+                transform.position = destination;
+                onLand();
             }
             else
             {
-                if (getObjectIndex() == 4 || getObjectIndex() == 5)
+                if (getObjectIndex() == 1)
                 {
-                    transform.position = destination;
-                    onLand();
+                    for (int i = 0; i < bookPathHandler.booksOverPath.Length; i++)
+                    {
+                        bookPathHandler.booksOverPath[i].transform.Rotate(new Vector3(
+                            0,
+                            bookPathHandler.bookPathTransforms[i].GetComponent<NodeRank>().rankRotation,
+                            0));
+                    }
                 }
                 else
                 {
-                    SetShelfVisibility(true);
-                    transform.DOMove(destination, duration).OnComplete(onLand);
+                    for (int i = 0; i < bookPathHandler.booksOverPath.Length; i++)
+                    {
+                        bookPathHandler.booksOverPath[i].transform.localRotation = Quaternion.Euler(0, 0, 0);
+                    }
                 }
-
-                for (int i = 0; i < bookPathHandler.booksOverPath.Length; i++)
-                {
-                    bookPathHandler.booksOverPath[i].transform.rotation = Quaternion.identity;
-                }
+                SetShelfVisibility(true);
+                transform.DOMove(destination, duration).OnComplete(onLand);
             }
         }
     }
