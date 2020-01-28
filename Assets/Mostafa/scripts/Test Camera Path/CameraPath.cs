@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class CameraPath : MonoBehaviour,ITraverseable
+public class CameraPath : MonoBehaviour, ITraverseable
 {
-    public CameraPathNode currentNode, endNode;
+    public CameraPathNode currentNode, endNode, defaultNode;
     private int currentLevel;
 
     public List<CameraPathNode> levels;
@@ -13,7 +13,7 @@ public class CameraPath : MonoBehaviour,ITraverseable
     public Transform cameraTransform;
 
 
-  
+
     public enum CameraMoveState
     {
         NotMoving,
@@ -44,6 +44,7 @@ public class CameraPath : MonoBehaviour,ITraverseable
             levels[i].nodeYIndex = i;
         }
 
+        defaultNode = levels[0];
     }
     #endregion
 
@@ -56,12 +57,30 @@ public class CameraPath : MonoBehaviour,ITraverseable
     // Update is called once per frame
     void FixedUpdate()
     {
-        
-        
-        
+
+        if (GameManager.Instance.pathData.FloorScrollSpeed != 0)
+        {
+            if (areX_AtRoot(currentNode))
+            {
+                int tmpLevel = currentNode.nodeYIndex;
+
+                if (GameManager.Instance.pathData.FloorScrollSpeed < 0)
+                {
+                    if(tmpLevel > 0)setTarget(levels[tmpLevel - 1]);
+                }
+                else 
+                if (GameManager.Instance.pathData.FloorScrollSpeed > 0)
+                {
+                    if (tmpLevel < levels.Count - 1) setTarget(levels[tmpLevel + 1]);
+                }
+                gotoTarget();
+
+
+            }
+        }
     }
 
-    
+
     /// <summary>
     /// To Check whether y-axis of the currentNode and the target node are equal or not.
     /// It will be used 2 times in the path finding algorithms
@@ -100,6 +119,11 @@ public class CameraPath : MonoBehaviour,ITraverseable
         }
     }
 
+    public void reset()
+    {
+        setTarget(defaultNode);
+        gotoTarget();
+    }
     /// <summary>
     /// To Check whether x-axis of the currentNode reached the root or not yet.
     /// </summary>
@@ -107,7 +131,7 @@ public class CameraPath : MonoBehaviour,ITraverseable
     /// <returns></returns>
     public bool areX_AtRoot(CameraPathNode currentNode)
     {
-        
+
         if (currentNode.nodeXIndex == 0)
         {
             return true;
@@ -120,31 +144,34 @@ public class CameraPath : MonoBehaviour,ITraverseable
 
     public bool areNodesEqual(CameraPathNode currentNode, CameraPathNode targetNode)
     {
-        if(currentNode.nodeXIndex == targetNode.nodeXIndex && currentNode.nodeYIndex == targetNode.nodeYIndex)
+        if (currentNode.nodeXIndex == targetNode.nodeXIndex && currentNode.nodeYIndex == targetNode.nodeYIndex)
         {
             return true;
         }
 
         return false;
     }
-   
+
     public void move()
     {
-        if(!areNodesEqual(currentNode, endNode)){
-        
+        if (!areNodesEqual(currentNode, endNode))
+        {
+
             step();
-            cameraTransform.DOMove(currentNode.transform.position, .1f).OnComplete(move).OnUpdate(onMoving);
-        
-        }else{
+            cameraTransform.DOMove(currentNode.transform.position, .2f).OnComplete(move).OnUpdate(onMoving);
+
+        }
+        else
+        {
 
             onLand();
-        
+
         }
     }
 
     public void step()
     {
-        
+
 
         if (cameraState != CameraMoveState.NotMoving)
         {
@@ -152,41 +179,43 @@ public class CameraPath : MonoBehaviour,ITraverseable
             switch (cameraState)
             {
                 case CameraMoveState.MoveOut:
-                    if(currentNode.previous != null) currentNode = currentNode.previous;
-                    if (areX_AtRoot(currentNode)) {
+                    if (currentNode.previous != null) currentNode = currentNode.previous;
+                    if (areX_AtRoot(currentNode))
+                    {
                         cameraState = CameraMoveState.MoveVertically;
                     }
                     break;
 
                 case CameraMoveState.MoveVertically:
 
-                        if (currentNode.nodeYIndex > endNode.nodeYIndex) currentNode = levels[currentNode.nodeYIndex - 1];
-                        else if (currentNode.nodeYIndex < endNode.nodeYIndex) currentNode = levels[currentNode.nodeYIndex + 1];
-                       
-                        if (areYsEqual(currentNode, endNode))
-                        {
-                            cameraState = CameraMoveState.MoveIn;
-                        }
-                        
-                        
+                    if (currentNode.nodeYIndex > endNode.nodeYIndex) currentNode = levels[currentNode.nodeYIndex - 1];
+                    else if (currentNode.nodeYIndex < endNode.nodeYIndex) currentNode = levels[currentNode.nodeYIndex + 1];
+
+                    if (areYsEqual(currentNode, endNode))
+                    {
+                        cameraState = CameraMoveState.MoveIn;
+                    }
+
+
                     break;
                 case CameraMoveState.MoveIn:
-                        
-                        if(currentNode.next != null) currentNode = currentNode.next;
-                        
-                        if (areXsEquals(currentNode, endNode))
-                        {
-                            cameraState = CameraMoveState.NotMoving;
-                        }
-                            
-                        
+
+                    if (currentNode.next != null) currentNode = currentNode.next;
+
+                    if (areXsEquals(currentNode, endNode))
+                    {
+                        cameraState = CameraMoveState.NotMoving;
+                    }
+
+
                     break;
 
 
             }
 
 
-            if (areNodesEqual(currentNode, endNode)){
+            if (areNodesEqual(currentNode, endNode))
+            {
                 cameraState = CameraMoveState.NotMoving;
             }
         }
@@ -218,7 +247,7 @@ public class CameraPath : MonoBehaviour,ITraverseable
 
     public void onDeparture()
     {
-        print("depart");   
+        print("depart");
     }
 
     public void onMoving()
