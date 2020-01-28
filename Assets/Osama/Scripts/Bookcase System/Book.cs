@@ -2,7 +2,8 @@
 using UnityEngine;
 using DG.Tweening;
 
-[RequireComponent(typeof(Lean.Touch.LeanSelectable))]
+//[RequireComponent(typeof(Lean.Touch.LeanSelectable))]
+[RequireComponent(typeof(BookObjectAlignerOverPath))]
 public class Book : MonoBehaviour, IScrollable, IClickable
 {
     public string title;
@@ -97,7 +98,7 @@ public class Book : MonoBehaviour, IScrollable, IClickable
     {
         print("Book, unfocus");
     }
-    
+
     public int getObjectIndex()
     {
         Debug.Log("Book, getObjectIndex");
