@@ -7,6 +7,7 @@ using Lean.Touch;
 public class Shelf : MonoBehaviour, IScrollable, IClickable
 {
     BookFair fair;
+    public BookPathHandler bookPathHandler;
     public List<Book> bookList = new List<Book>();
 
     [Space, SerializeField, Tooltip("This identifies the object index in the array")]
@@ -38,24 +39,42 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
         {
             isLanded = false;
 
-            if (getObjectIndex() == 4 || getObjectIndex() == 5)
+            if (getObjectIndex() == 1)
             {
-                SetShelfVisibility(true);
-                transform.DOMove(destination, duration).OnComplete(onLand);
+                for (int i = 0; i < bookPathHandler.booksOverPath.Length; i++)
+                {
+                    bookPathHandler.booksOverPath[i].transform.Rotate(new Vector3(
+                        0,
+                        bookPathHandler.bookPathTransforms[i].GetComponent<NodeRank>().rankRotation,
+                        0));
+                }
             }
             else
             {
-                transform.position = destination;
-                onLand();
+                if (getObjectIndex() == 4 || getObjectIndex() == 5)
+                {
+                    transform.position = destination;
+                    onLand();
+                }
+                else
+                {
+                    SetShelfVisibility(true);
+                    transform.DOMove(destination, duration).OnComplete(onLand);
+                }
+
+                for (int i = 0; i < bookPathHandler.booksOverPath.Length; i++)
+                {
+                    bookPathHandler.booksOverPath[i].transform.rotation = Quaternion.identity;
+                }
             }
         }
     }
 
-    private void SetShelfVisibility(bool visibility)
+    public void SetShelfVisibility(bool visibility)
     {
-        foreach (Transform i in transform)
+        foreach (MeshRenderer i in GetComponentsInChildren<MeshRenderer>())
         {
-            i.gameObject.SetActive(visibility);
+            i.enabled = visibility;
         }
     }
 

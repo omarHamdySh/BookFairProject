@@ -7,21 +7,21 @@ public class BookObjectAlignerOverPath : MonoBehaviour
 {
     public BookPathHandler bookPathHandler;
 
-    private Bookcase scrollable;
+    private Book scrollable;
     private float currentScrollSpeed;
     private bool motionStarted = false;
 
     private void Start()
     {
-        scrollable = GetComponent<Bookcase>();
+        scrollable = GetComponent<Book>();
         scrollable.setObjectIndex(transform.GetSiblingIndex());
         transform.position = bookPathHandler.GetPosOverPath(scrollable.getObjectIndex());
 
-        transform.DORotate(new Vector3(0, scrollable.GetRotRank(scrollable.getObjectIndex()), 0), 0);
-        if (scrollable.getObjectIndex() != 0)
-        {
-            transform.DOLookAt(transform.parent.position, 0);
-        }
+        //transform.DORotate(new Vector3(0, scrollable.GetRotRank(scrollable.getObjectIndex()), 0), 0);
+        //if (scrollable.getObjectIndex() != 0)
+        //{
+        //    transform.DOLookAt(transform.parent.position, 0);
+        //}
     }
 
     private void Update()

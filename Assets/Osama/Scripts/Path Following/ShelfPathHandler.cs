@@ -146,8 +146,8 @@ public class ShelfPathHandler : MonoBehaviour
 
             if (scrollable.getLandStatus())
             {
-                scrollable.move(newDestination, .2f);
                 scrollable.setObjectIndex(nextTransformIndex);
+                scrollable.move(newDestination, .2f);
             }
         }
 

@@ -10,12 +10,31 @@ public class ShelfObjectAlignerOverPath : MonoBehaviour
     private Shelf scrollable;
     private float currentScrollSpeed;
     private bool motionStarted = false;
+    private BookPathHandler bookPathHandler;
 
     private void Start()
     {
         scrollable = GetComponent<Shelf>();
         scrollable.setObjectIndex(transform.GetSiblingIndex());
         transform.position = shelfPathHandler.GetPosOverPath(scrollable.getObjectIndex());
+
+        bookPathHandler = GetComponent<BookPathHandler>();
+        scrollable.bookPathHandler = bookPathHandler;
+
+        if (scrollable.getObjectIndex() == 1)
+        {
+            for (int i = 0; i < bookPathHandler.booksOverPath.Length; i++)
+            {
+                bookPathHandler.booksOverPath[i].transform.Rotate(new Vector3(
+                    0,
+                    bookPathHandler.bookPathTransforms[i].GetComponent<NodeRank>().rankRotation,
+                    0));
+            }
+        }
+        else if (scrollable.getObjectIndex() == 4 || scrollable.getObjectIndex() == 5)
+        {
+            scrollable.SetShelfVisibility(false);
+        }
     }
 
     private void Update()

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BookPathHandler : MonoBehaviour
 {
-    [SerializeField] private BookObjectAlignerOverPath[] booksOverPath;
-    [SerializeField] private BookPathTransforms[] bookPathTransforms;
+    public BookObjectAlignerOverPath[] booksOverPath;
+    public BookPathTransforms[] bookPathTransforms;
 
     #region Private Varibales
 
