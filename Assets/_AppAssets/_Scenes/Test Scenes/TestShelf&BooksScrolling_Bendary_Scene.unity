@@ -204,13 +204,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 220725219}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.9495819, y: -0.047410313, z: 0.25443968, w: 0.17693773}
   m_LocalPosition: {x: 1.5023553, y: 7.8669405, z: 18.83936}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 158.89, y: -30, z: 0}
 --- !u!1 &286727033
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,9 +885,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1541845791}
-  m_LocalRotation: {x: 0.000000052154064, y: 0.00000011920929, z: -0.000000029802322,
-    w: 1}
-  m_LocalPosition: {x: -0.03000021, y: 2.1780097, z: -4.851968}
+  m_LocalRotation: {x: 0.00020996382, y: -0.9996619, z: 0.008397426, w: 0.024606096}
+  m_LocalPosition: {x: -0.1565825, y: 2.0867093, z: 5.139851}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1279,6 +1278,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4351048676659339287, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4353452575756660577, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
       propertyPath: m_Enabled
@@ -1312,6 +1316,11 @@ PrefabInstance:
     - target: {fileID: 4858470699391652679, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883324959358407728, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4939410857688467974, guid: 416832814643bab4babfc5f81d225b0d,
@@ -1419,6 +1428,11 @@ PrefabInstance:
       propertyPath: bookPathHandler
       value: 
       objectReference: {fileID: 1177077355}
+    - target: {fileID: 6622668454875672591, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6726848214284227537, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
       propertyPath: m_Enabled

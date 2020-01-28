@@ -146,6 +146,12 @@ public class ShelfPathHandler : MonoBehaviour
 
             if (scrollable.getLandStatus())
             {
+                if ((nextTransformIndex == shelfPathTransforms.Length - 2 && scrollable.getObjectIndex() == shelfPathTransforms.Length - 1) ||
+                    (nextTransformIndex == shelfPathTransforms.Length - 1 && scrollable.getObjectIndex() == shelfPathTransforms.Length - 2))
+                {
+                    scrollable.IsLooping = true;
+                }
+
                 scrollable.setObjectIndex(nextTransformIndex);
                 scrollable.move(newDestination, .2f);
             }

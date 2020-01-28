@@ -15,6 +15,7 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
     LeanSelectable leanSelectable;
 
     private bool isLanded = true;
+    public bool IsLooping;
 
     private void Awake()
     {
@@ -39,9 +40,7 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
         {
             isLanded = false;
 
-
-
-            if (getObjectIndex() == 4 || getObjectIndex() == 5)
+            if (IsLooping)
             {
                 transform.position = destination;
                 onLand();
@@ -81,14 +80,14 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
 
     public void move(Vector3 destination, float duration, bool visibility)
     {
-        print("Shelf, move, 2");
-        isLanded = false;
+        //print("Shelf, move, 2");
+        //isLanded = false;
 
-        transform.DOMove(destination, duration)
-            .SetEase(GameManager.Instance.pathData.MovementEase)
-            .OnComplete(onLand);
+        //transform.DOMove(destination, duration)
+        //    .SetEase(GameManager.Instance.pathData.MovementEase)
+        //    .OnComplete(onLand);
 
-        gameObject.SetActive(visibility);
+        //gameObject.SetActive(visibility);
     }
 
     public void onDeparture()
@@ -101,11 +100,15 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
     {
         //print("Shelf, onLand");
 
-        if (getObjectIndex() == 4 || getObjectIndex() == 5)
+        if (IsLooping)
+        {
+            IsLooping = false;
+            SetShelfVisibility(false);
+        }
+        else if (getObjectIndex() == 4 || getObjectIndex() == 5)
         {
             SetShelfVisibility(false);
         }
-
 
         isLanded = true;
 

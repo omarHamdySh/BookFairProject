@@ -35,6 +35,7 @@ public class ShelfObjectAlignerOverPath : MonoBehaviour
         {
             scrollable.SetShelfVisibility(false);
         }
+
     }
 
     private void Update()

@@ -48,12 +48,20 @@ public class BookPathHandler : MonoBehaviour
         currentScrollSpeed = GameManager.Instance.pathData.BookcaseScrollSpeed;// Getting the updating scrolling speed;
         if (motionStarted && currentScrollSpeed == 0)// if the objects is not moving, declare land State and fire land event
         {
+            foreach (var scrollable in scrollables)
+            {
+                if (!scrollable.getLandStatus())
+                {
+                    motionStarted = true;
+                    return;
+                }
+            }
             motionStarted = false;
 
-            foreach (var scrollable in scrollables)// Change each scrollable State to --> onLand()
-            {
-                scrollable.onLand();
-            }
+            //foreach (var scrollable in scrollables)// Change each scrollable State to --> onLand()
+            //{
+            //    scrollable.onLand();
+            //}
             return;
         }
         else if (currentScrollSpeed == 0)// If scrolling speed reaches 0, return to skip frame
@@ -79,7 +87,7 @@ public class BookPathHandler : MonoBehaviour
                 scrollable.onMoving();// // Change each scrollable State to --> onMoving()
             }
 
-            //moveAccordingToScrollSpeed();
+            moveAccordingToScrollSpeed();
 
         }
     }
@@ -116,6 +124,15 @@ public class BookPathHandler : MonoBehaviour
 
     private void moveAccordingToScrollSpeed()
     {
+        foreach (var scrollable in scrollables)
+        {
+            if (!scrollable.getLandStatus())
+            {
+                motionStarted = true;
+                return;
+            }
+        }
+
         foreach (var scrollable in scrollables)
         {
             int nextTransformIndex = 0;
