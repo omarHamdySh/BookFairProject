@@ -45,15 +45,23 @@ public class ShelfPathHandler : MonoBehaviour
 
     private void Update()
     {
-        currentScrollSpeed = GameManager.Instance.pathData.BookcaseScrollSpeed;// Getting the updating scrolling speed;
+        currentScrollSpeed = GameManager.Instance.pathData.ShelfScrollSpeed;// Getting the updating scrolling speed;
         if (motionStarted && currentScrollSpeed == 0)// if the objects is not moving, declare land State and fire land event
         {
+            foreach (var scrollable in scrollables)
+            {
+                if (!scrollable.getLandStatus())
+                {
+                    motionStarted = true;
+                    return;
+                }
+            }
             motionStarted = false;
 
-            foreach (var scrollable in scrollables)// Change each scrollable State to --> onLand()
-            {
-                scrollable.onLand();
-            }
+            //foreach (var scrollable in scrollables)// Change each scrollable State to --> onLand()
+            //{
+            //    scrollable.onLand();
+            //}
             return;
         }
         else if (currentScrollSpeed == 0)// If scrolling speed reaches 0, return to skip frame
@@ -78,8 +86,7 @@ public class ShelfPathHandler : MonoBehaviour
             {
                 scrollable.onMoving();// // Change each scrollable State to --> onMoving()
             }
-
-            //moveAccordingToScrollSpeed();
+            moveAccordingToScrollSpeed();
 
         }
     }
@@ -118,6 +125,14 @@ public class ShelfPathHandler : MonoBehaviour
     {
         foreach (var scrollable in scrollables)
         {
+            if (!scrollable.getLandStatus())
+            {
+                motionStarted = true;
+                return;
+            }
+        }
+        foreach (var scrollable in scrollables)
+        {
             int nextTransformIndex = 0;
 
             if (currentScrollSpeed > 0)
@@ -131,8 +146,8 @@ public class ShelfPathHandler : MonoBehaviour
 
             if (scrollable.getLandStatus())
             {
+                scrollable.move(newDestination, .2f);
                 scrollable.setObjectIndex(nextTransformIndex);
-                scrollable.move(newDestination, 0.5f);
             }
         }
 

@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Lean.Touch;
 
+[RequireComponent(typeof(BookcaseObjectAlignerOverPath))]
 public class Shelf : MonoBehaviour, IScrollable, IClickable
 {
     BookFair fair;
@@ -9,17 +11,13 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
 
     [Space, SerializeField, Tooltip("This identifies the object index in the array")]
     private int objectIndex;
+    LeanSelectable leanSelectable;
 
     private bool isLanded = true;
 
     private void Awake()
     {
-        objectIndex = transform.GetSiblingIndex();
-    }
-
-    public int ObjectIndex {
-        get => objectIndex; 
-        set => objectIndex = value;
+        leanSelectable = GetComponent<LeanSelectable>();
     }
 
     public float getScrollSpeed()
@@ -36,12 +34,29 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
 
     public void move(Vector3 destination, float duration)
     {
-        print("Shelf, move");
-        isLanded = false;
+        if (isLanded)
+        {
+            isLanded = false;
 
-        transform.DOMove(destination, duration)
-            .SetEase(GameManager.Instance.pathData.MovementEase)
-            .OnComplete(onLand);
+            if (getObjectIndex() == 4 || getObjectIndex() == 5)
+            {
+                SetShelfVisibility(true);
+                transform.DOMove(destination, duration).OnComplete(onLand);
+            }
+            else
+            {
+                transform.position = destination;
+                onLand();
+            }
+        }
+    }
+
+    private void SetShelfVisibility(bool visibility)
+    {
+        foreach (Transform i in transform)
+        {
+            i.gameObject.SetActive(visibility);
+        }
     }
 
     public void move(Vector3 destination, float duration, bool visibility)
@@ -58,24 +73,28 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
 
     public void onDeparture()
     {
-        print("Shelf, onDeparture");
+        //print("Shelf, onDeparture");
         //isLanded = false;
     }
 
     public void onLand()
     {
-        print("Shelf, onLand");
+        //print("Shelf, onLand");
 
-        gameObject.SetActive(true);
+        if (getObjectIndex() == 4 || getObjectIndex() == 5)
+        {
+            SetShelfVisibility(false);
+        }
+
 
         isLanded = true;
 
-        Debug.Log("onLand(), isLanded: " + isLanded);
+        //Debug.Log("onLand(), isLanded: " + isLanded);
     }
 
     public void onMoving()
     {
-        print("Shelf, onMoving");
+        //print("Shelf, onMoving");
     }
 
     public void focus()
@@ -90,19 +109,19 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
 
     public int getObjectIndex()
     {
-        Debug.Log("Shelf, getObjectIndex");
+        //Debug.Log("Shelf, getObjectIndex");
         return objectIndex;
     }
 
     public void setObjectIndex(int _objectIndex)
     {
-        Debug.Log("Shelf, setObjectIndex");
+        //Debug.Log("Shelf, setObjectIndex");
         objectIndex = _objectIndex;
     }
 
     public bool getLandStatus()
     {
-        Debug.Log("Shelf, getLandStatus, isLanded : " + isLanded);
+        //Debug.Log("Shelf, getLandStatus, isLanded : " + isLanded);
         return isLanded;
     }
 }
