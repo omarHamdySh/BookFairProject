@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PathDataSO
   m_EditorClassIdentifier: 
   floorScrollSpeed: 0.91
-  bookcaseScrollSpeed: 3
-  shelfScrollSpeed: 0
-  bookScrollSpeed: 0.1
+  bookcaseScrollSpeed: 0
+  shelfScrollSpeed: 0.5
+  bookScrollSpeed: 0
   MovementEase: 0
