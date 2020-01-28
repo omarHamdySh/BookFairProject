@@ -127,6 +127,7 @@ public class GameplayFSMManager : MonoBehaviour
         //push the first state for the player
         PushState(floorState);
         PushState(bookCaseState);
+        PushState(shelfState);
         if (hintTxt)
         {
             hintTxt.enabled = false;

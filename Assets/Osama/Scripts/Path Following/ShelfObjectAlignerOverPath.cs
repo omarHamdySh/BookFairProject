@@ -7,21 +7,35 @@ public class ShelfObjectAlignerOverPath : MonoBehaviour
 {
     public ShelfPathHandler shelfPathHandler;
 
-    private Bookcase scrollable;
+    private Shelf scrollable;
     private float currentScrollSpeed;
     private bool motionStarted = false;
+    private BookPathHandler bookPathHandler;
 
     private void Start()
     {
-        scrollable = GetComponent<Bookcase>();
+        scrollable = GetComponent<Shelf>();
         scrollable.setObjectIndex(transform.GetSiblingIndex());
         transform.position = shelfPathHandler.GetPosOverPath(scrollable.getObjectIndex());
 
-        transform.DORotate(new Vector3(0, scrollable.GetRotRank(scrollable.getObjectIndex()), 0), 0);
-        if (scrollable.getObjectIndex() != 0)
+        bookPathHandler = GetComponent<BookPathHandler>();
+        scrollable.bookPathHandler = bookPathHandler;
+
+        if (scrollable.getObjectIndex() == 1)
         {
-            transform.DOLookAt(transform.parent.position, 0);
+            for (int i = 0; i < bookPathHandler.booksOverPath.Length; i++)
+            {
+                bookPathHandler.booksOverPath[i].transform.Rotate(new Vector3(
+                    0,
+                    bookPathHandler.bookPathTransforms[i].GetComponent<NodeRank>().rankRotation,
+                    0));
+            }
         }
+        else if (scrollable.getObjectIndex() == 4 || scrollable.getObjectIndex() == 5)
+        {
+            scrollable.SetShelfVisibility(false);
+        }
+
     }
 
     private void Update()
