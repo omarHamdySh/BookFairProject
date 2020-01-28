@@ -127,7 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8268335354595290521}
   - component: {fileID: 4090833918153914636}
-  - component: {fileID: 5497920302302338792}
+  - component: {fileID: 8458721270599036909}
   m_Layer: 0
   m_Name: BookPathPoint (1)
   m_TagString: Untagged
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rank: 0
   rankRotation: 60
---- !u!114 &5497920302302338792
+--- !u!114 &8458721270599036909
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2801833414734081230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 991b753af0cf86944b7cf889727ec35d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ec8e87a09b431d49bdb8eaa519c8df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2959703567811228021
@@ -185,7 +185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8025986608279791448}
   - component: {fileID: 5257588030659852167}
-  - component: {fileID: 6076220162543768759}
+  - component: {fileID: 1759830569121669405}
   m_Layer: 0
   m_Name: BookPathPoint (6)
   m_TagString: Untagged
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rank: 0
   rankRotation: 0
---- !u!114 &6076220162543768759
+--- !u!114 &1759830569121669405
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2959703567811228021}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 991b753af0cf86944b7cf889727ec35d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ec8e87a09b431d49bdb8eaa519c8df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3087090112645603541
@@ -243,7 +243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8871393637039992333}
   - component: {fileID: 633897717642480985}
-  - component: {fileID: 8620095738728266476}
+  - component: {fileID: 4694519609030724929}
   m_Layer: 0
   m_Name: BookPathPoint (4)
   m_TagString: Untagged
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rank: 0
   rankRotation: 0
---- !u!114 &8620095738728266476
+--- !u!114 &4694519609030724929
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -288,7 +288,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3087090112645603541}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 991b753af0cf86944b7cf889727ec35d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ec8e87a09b431d49bdb8eaa519c8df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3367080371265773266
@@ -340,7 +340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8459903057945248991}
   - component: {fileID: 1398937486835622970}
-  - component: {fileID: 3343680212491648138}
+  - component: {fileID: 1067045532561590705}
   m_Layer: 0
   m_Name: BookPathPoint (3)
   m_TagString: Untagged
@@ -376,7 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rank: 0
   rankRotation: 0
---- !u!114 &3343680212491648138
+--- !u!114 &1067045532561590705
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -385,7 +385,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3486654796292727944}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 991b753af0cf86944b7cf889727ec35d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ec8e87a09b431d49bdb8eaa519c8df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4964267080575065890
@@ -434,8 +434,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9168e4985bb944741988c6b837590638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bookcaseOverPath: []
-  bookCasePathTransforms: []
+  booksOverPath: []
+  bookPathTransforms: []
   x: 0
 --- !u!1 &5212939110803271718
 GameObject:
@@ -447,7 +447,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3535964642594726205}
   - component: {fileID: 2614300203146621633}
-  - component: {fileID: 2337024558407378594}
+  - component: {fileID: 4435940483219323128}
   m_Layer: 0
   m_Name: BookPathPoint (8)
   m_TagString: Untagged
@@ -483,7 +483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rank: 0
   rankRotation: -60
---- !u!114 &2337024558407378594
+--- !u!114 &4435940483219323128
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -492,7 +492,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5212939110803271718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 991b753af0cf86944b7cf889727ec35d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ec8e87a09b431d49bdb8eaa519c8df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5859204769629988531
@@ -505,7 +505,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5969963112394886837}
   - component: {fileID: 6766615627933976673}
-  - component: {fileID: 2142506040420287417}
+  - component: {fileID: 5393498323770289370}
   m_Layer: 0
   m_Name: BookPathPoint (7)
   m_TagString: Untagged
@@ -541,7 +541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rank: 0
   rankRotation: -30
---- !u!114 &2142506040420287417
+--- !u!114 &5393498323770289370
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -550,7 +550,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5859204769629988531}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 991b753af0cf86944b7cf889727ec35d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ec8e87a09b431d49bdb8eaa519c8df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6529388198260812967
@@ -563,7 +563,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7049053428688383673}
   - component: {fileID: 1320991195489071976}
-  - component: {fileID: 2794239499910889781}
+  - component: {fileID: 1548105376592042456}
   m_Layer: 0
   m_Name: BookPathPoint
   m_TagString: Untagged
@@ -599,7 +599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rank: 0
   rankRotation: -90
---- !u!114 &2794239499910889781
+--- !u!114 &1548105376592042456
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -608,7 +608,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6529388198260812967}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 991b753af0cf86944b7cf889727ec35d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ec8e87a09b431d49bdb8eaa519c8df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6997897988951443049
@@ -621,7 +621,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8469690243495569085}
   - component: {fileID: 8974753879822767788}
-  - component: {fileID: 2408110935174069586}
+  - component: {fileID: 3200182687219500143}
   m_Layer: 0
   m_Name: BookPathPoint (2)
   m_TagString: Untagged
@@ -657,7 +657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rank: 0
   rankRotation: 30
---- !u!114 &2408110935174069586
+--- !u!114 &3200182687219500143
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -666,7 +666,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6997897988951443049}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 991b753af0cf86944b7cf889727ec35d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ec8e87a09b431d49bdb8eaa519c8df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &9035138051882905357
@@ -679,7 +679,7 @@ GameObject:
   m_Component:
   - component: {fileID: 859732405132131098}
   - component: {fileID: 2801032062375763968}
-  - component: {fileID: 2533947309903506980}
+  - component: {fileID: 5662360738820045493}
   m_Layer: 0
   m_Name: BookPathPoint (5)
   m_TagString: Untagged
@@ -715,7 +715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rank: 0
   rankRotation: 0
---- !u!114 &2533947309903506980
+--- !u!114 &5662360738820045493
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -724,7 +724,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9035138051882905357}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 991b753af0cf86944b7cf889727ec35d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ec8e87a09b431d49bdb8eaa519c8df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2849660699649068418

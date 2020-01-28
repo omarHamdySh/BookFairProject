@@ -60,7 +60,7 @@ public class BookcasePathHandler : MonoBehaviour
         {
             return;
         }
-        
+
 
         if (currentScrollSpeed != 0)
         {

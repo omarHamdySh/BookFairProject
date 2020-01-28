@@ -79,7 +79,7 @@ public class BookPathHandler : MonoBehaviour
                 scrollable.onMoving();// // Change each scrollable State to --> onMoving()
             }
 
-            moveAccordingToScrollSpeed();
+            //moveAccordingToScrollSpeed();
 
         }
     }

@@ -56,6 +56,11 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
             if (getObjectIndex() != 0)
             {
                 transform.DOLookAt(transform.parent.position, duration);
+                GetComponent<ShelfPathHandler>().enabled = false;
+            }
+            else
+            {
+                GetComponent<ShelfPathHandler>().enabled = true;
             }
         }
     }
