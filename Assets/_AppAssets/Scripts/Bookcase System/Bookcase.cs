@@ -44,6 +44,7 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
 
     public void focus()
     {
+        GameManager.Instance.gameplayFSMManager.toShelfState();
         print("focus");
         CameraPath.instance.setTarget(pathNode);
         CameraPath.instance.gotoTarget();
