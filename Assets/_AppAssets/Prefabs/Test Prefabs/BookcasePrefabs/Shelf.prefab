@@ -398,6 +398,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3461379210547023925}
   - component: {fileID: 777856302499651821}
+  - component: {fileID: 6903644517364639190}
+  - component: {fileID: 8290894682093598579}
   m_Layer: 0
   m_Name: Shelf
   m_TagString: Untagged
@@ -437,6 +439,36 @@ MonoBehaviour:
   booksOverPath: []
   bookPathTransforms: []
   x: 0
+--- !u!114 &6903644517364639190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4964267080575065890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f924f52432ca7478777f4502b8f45c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shelfPathHandler: {fileID: 0}
+--- !u!114 &8290894682093598579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4964267080575065890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc56606403ee02e48abe652b70f6696d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bookPathHandler: {fileID: 0}
+  bookList: []
+  objectIndex: 0
+  pathNode: {fileID: 0}
+  IsLooping: 0
 --- !u!1 &5212939110803271718
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,6 +766,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7736692545550910037}
     m_Modifications:
+    - target: {fileID: 546084094981052497, guid: 36e400c9fa7239c4fb65c99670040cc9,
+        type: 3}
+      propertyPath: bookPathHandler
+      value: 
+      objectReference: {fileID: 777856302499651821}
     - target: {fileID: 1532469795387339886, guid: 36e400c9fa7239c4fb65c99670040cc9,
         type: 3}
       propertyPath: m_Name
@@ -809,6 +846,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7736692545550910037}
     m_Modifications:
+    - target: {fileID: 546084094981052497, guid: 36e400c9fa7239c4fb65c99670040cc9,
+        type: 3}
+      propertyPath: bookPathHandler
+      value: 
+      objectReference: {fileID: 777856302499651821}
     - target: {fileID: 1532469795387339886, guid: 36e400c9fa7239c4fb65c99670040cc9,
         type: 3}
       propertyPath: m_Name
@@ -884,6 +926,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7736692545550910037}
     m_Modifications:
+    - target: {fileID: 546084094981052497, guid: 36e400c9fa7239c4fb65c99670040cc9,
+        type: 3}
+      propertyPath: bookPathHandler
+      value: 
+      objectReference: {fileID: 777856302499651821}
     - target: {fileID: 1532469795387339886, guid: 36e400c9fa7239c4fb65c99670040cc9,
         type: 3}
       propertyPath: m_Name
@@ -959,6 +1006,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7736692545550910037}
     m_Modifications:
+    - target: {fileID: 546084094981052497, guid: 36e400c9fa7239c4fb65c99670040cc9,
+        type: 3}
+      propertyPath: bookPathHandler
+      value: 
+      objectReference: {fileID: 777856302499651821}
     - target: {fileID: 1532469795387339886, guid: 36e400c9fa7239c4fb65c99670040cc9,
         type: 3}
       propertyPath: m_Name
@@ -1034,6 +1086,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7736692545550910037}
     m_Modifications:
+    - target: {fileID: 546084094981052497, guid: 36e400c9fa7239c4fb65c99670040cc9,
+        type: 3}
+      propertyPath: bookPathHandler
+      value: 
+      objectReference: {fileID: 777856302499651821}
     - target: {fileID: 1532469795387339886, guid: 36e400c9fa7239c4fb65c99670040cc9,
         type: 3}
       propertyPath: m_Name
@@ -1109,6 +1166,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7736692545550910037}
     m_Modifications:
+    - target: {fileID: 546084094981052497, guid: 36e400c9fa7239c4fb65c99670040cc9,
+        type: 3}
+      propertyPath: bookPathHandler
+      value: 
+      objectReference: {fileID: 777856302499651821}
     - target: {fileID: 1532469795387339886, guid: 36e400c9fa7239c4fb65c99670040cc9,
         type: 3}
       propertyPath: m_Name
@@ -1184,6 +1246,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7736692545550910037}
     m_Modifications:
+    - target: {fileID: 546084094981052497, guid: 36e400c9fa7239c4fb65c99670040cc9,
+        type: 3}
+      propertyPath: bookPathHandler
+      value: 
+      objectReference: {fileID: 777856302499651821}
     - target: {fileID: 1532469795387339886, guid: 36e400c9fa7239c4fb65c99670040cc9,
         type: 3}
       propertyPath: m_Name
@@ -1259,6 +1326,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7736692545550910037}
     m_Modifications:
+    - target: {fileID: 546084094981052497, guid: 36e400c9fa7239c4fb65c99670040cc9,
+        type: 3}
+      propertyPath: bookPathHandler
+      value: 
+      objectReference: {fileID: 777856302499651821}
     - target: {fileID: 1532469795387339886, guid: 36e400c9fa7239c4fb65c99670040cc9,
         type: 3}
       propertyPath: m_Name
@@ -1334,6 +1406,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7736692545550910037}
     m_Modifications:
+    - target: {fileID: 546084094981052497, guid: 36e400c9fa7239c4fb65c99670040cc9,
+        type: 3}
+      propertyPath: bookPathHandler
+      value: 
+      objectReference: {fileID: 777856302499651821}
     - target: {fileID: 1532469795387339886, guid: 36e400c9fa7239c4fb65c99670040cc9,
         type: 3}
       propertyPath: m_Name

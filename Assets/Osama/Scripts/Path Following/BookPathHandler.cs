@@ -45,7 +45,8 @@ public class BookPathHandler : MonoBehaviour
 
     private void Update()
     {
-        currentScrollSpeed = GameManager.Instance.pathData.BookcaseScrollSpeed;// Getting the updating scrolling speed;
+        currentScrollSpeed = GameManager.Instance.pathData.BookScrollSpeed;// Getting the updating scrolling speed;
+        print(currentScrollSpeed);
         if (motionStarted && currentScrollSpeed == 0)// if the objects is not moving, declare land State and fire land event
         {
             foreach (var scrollable in scrollables)

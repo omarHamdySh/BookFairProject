@@ -18,13 +18,7 @@ public class Book : MonoBehaviour, IScrollable, IClickable
 
     private void Awake()
     {
-        objectIndex = transform.GetSiblingIndex();
-    }
-
-    public int ObjectIndex
-    {
-        get => objectIndex;
-        set => objectIndex = value;
+        //objectIndex = transform.GetSiblingIndex();
     }
 
     public float getScrollSpeed()
@@ -73,18 +67,18 @@ public class Book : MonoBehaviour, IScrollable, IClickable
 
     public void onLand()
     {
-        print("Book, onLand");
+        //print("Book, onLand");
 
         gameObject.SetActive(true);
 
         isLanded = true;
 
-        Debug.Log("onLand(), isLanded: " + isLanded);
+        //Debug.Log("onLand(), isLanded: " + isLanded);
     }
 
     public void onMoving()
     {
-        print("Book, onMoving");
+        //print("Book, onMoving");
     }
 
     public void focus()
@@ -101,19 +95,19 @@ public class Book : MonoBehaviour, IScrollable, IClickable
 
     public int getObjectIndex()
     {
-        Debug.Log("Book, getObjectIndex");
+        //Debug.Log("Book, getObjectIndex");
         return objectIndex;
     }
 
     public void setObjectIndex(int _objectIndex)
     {
-        Debug.Log("Book, setObjectIndex");
+        //Debug.Log("Book, setObjectIndex");
         objectIndex = _objectIndex;
     }
 
     public bool getLandStatus()
     {
-        Debug.Log("Book, getLandStatus, isLanded : " + isLanded);
+        //Debug.Log("Book, getLandStatus, isLanded : " + isLanded);
         return isLanded;
     }
 }

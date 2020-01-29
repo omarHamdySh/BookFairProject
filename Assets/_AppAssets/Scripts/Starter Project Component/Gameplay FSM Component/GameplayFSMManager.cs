@@ -128,6 +128,7 @@ public class GameplayFSMManager : MonoBehaviour
         PushState(floorState);
         PushState(bookCaseState);
         PushState(shelfState);
+        PushState(bookState);
         if (hintTxt)
         {
             hintTxt.enabled = false;
