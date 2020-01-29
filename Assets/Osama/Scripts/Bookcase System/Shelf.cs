@@ -131,6 +131,8 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
     public void focus()
     {
         print("Shelf, focus");
+        GetComponent<BoxCollider>().enabled = false;
+        GameManager.Instance.gameplayFSMManager.toBookStae();
         CameraPath.instance.setTarget(pathNode);
         CameraPath.instance.gotoTarget();
     }

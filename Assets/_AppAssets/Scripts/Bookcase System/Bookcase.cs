@@ -44,8 +44,8 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
 
     public void focus()
     {
+        GetComponent<BoxCollider>().enabled = false;
         GameManager.Instance.gameplayFSMManager.toShelfState();
-        print("focus");
         CameraPath.instance.setTarget(pathNode);
         CameraPath.instance.gotoTarget();
 
@@ -53,6 +53,8 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
 
     public void unfocus()
     {
+        GameManager.Instance.gameplayFSMManager.toFloorState();
+        GetComponent<BoxCollider>().enabled = true;
         print("focus");
     }
 

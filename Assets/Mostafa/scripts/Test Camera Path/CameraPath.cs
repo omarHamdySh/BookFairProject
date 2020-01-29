@@ -13,7 +13,11 @@ public class CameraPath : MonoBehaviour, ITraverseable
 
     public Transform cameraTransform;
 
-
+    public CameraPathNode floorNode;
+    public CameraPathNode bookcaseNode;
+    public CameraPathNode shelfNode;
+    public CameraPathNode bookNode;
+    public CameraPathNode pageNode;
 
     public enum CameraMoveState
     {

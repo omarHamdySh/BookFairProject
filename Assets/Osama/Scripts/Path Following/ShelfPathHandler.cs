@@ -7,6 +7,8 @@ public class ShelfPathHandler : MonoBehaviour
     [SerializeField] private ShelfObjectAlignerOverPath[] shelvesOverPath;
     [SerializeField] private ShelfPathTransforms[] shelfPathTransforms;
 
+    public CameraPathNode shelfPathNode;
+
     #region Private Varibales
 
     private Shelf[] scrollables;
@@ -44,6 +46,10 @@ public class ShelfPathHandler : MonoBehaviour
         return shelfPathTransforms[pathPointIndex].transform.position;
     }
 
+    private void Start()
+    {
+        shelfPathNode = CameraPath.instance.shelfNode;
+    }
     private void Update()
     {
         if (GetComponent<Bookcase>().IsCurrent)
@@ -147,6 +153,7 @@ public class ShelfPathHandler : MonoBehaviour
                 scrollable.IsCurrent = false;
                 scrollable.GetComponent<BoxCollider>().enabled = false;
                 scrollable.GetComponent<BookPathHandler>().SetCurrentBookOff();
+                scrollable.pathNode = shelfPathNode;
             }
         }
     }
@@ -174,7 +181,7 @@ public class ShelfPathHandler : MonoBehaviour
             Vector3 newDestination = shelfPathTransforms[nextTransformIndex].transform.position;
             //Debug.Log("newDestination: " + newDestination);
 
-            if (nextTransformIndex == 0)
+            if (nextTransformIndex == 1)
             {
                 scrollable.IsCurrent = true;
                 scrollable.GetComponent<BoxCollider>().enabled = true;

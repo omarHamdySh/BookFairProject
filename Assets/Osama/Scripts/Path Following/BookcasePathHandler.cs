@@ -39,6 +39,10 @@ public class BookcasePathHandler : MonoBehaviour
         bookCasePathTransforms = GetComponentsInChildren<BookcasePathTransforms>();
     }
 
+    private void Start()
+    {
+        bookcasePathNode = CameraPath.instance.bookcaseNode;
+    }
     public Vector3 GetPosOverPath(int pathPointIndex)
     {
         return bookCasePathTransforms[pathPointIndex].transform.position;
