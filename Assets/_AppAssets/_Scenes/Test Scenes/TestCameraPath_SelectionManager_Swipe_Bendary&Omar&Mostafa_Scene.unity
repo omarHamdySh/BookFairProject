@@ -269,9 +269,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83dcd8dace8b7fe449d796b980cb121d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeselectOnUp: 0
+  DeselectOnUp: 1
   HideWithFinger: 0
-  IsolateSelectingFingers: 0
+  IsolateSelectingFingers: 1
   onSelect:
     m_PersistentCalls:
       m_Calls:
@@ -452,9 +452,11 @@ GameObject:
   - component: {fileID: 116936175}
   - component: {fileID: 116936174}
   - component: {fileID: 116936173}
-  - component: {fileID: 116936170}
   - component: {fileID: 116936177}
   - component: {fileID: 116936172}
+  - component: {fileID: 116936178}
+  - component: {fileID: 116936176}
+  - component: {fileID: 116936171}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -462,21 +464,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &116936169
-Transform:
+--- !u!224 &116936169
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116936168}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.050520897, y: -2.5018406, z: 2.1930442}
+  m_LocalPosition: {x: 0, y: 0, z: 2.1930442}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 563268586}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &116936170
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.050520897, y: -2.5018406}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &116936171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -485,10 +492,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 116936168}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38c5f1914cbac484e92c3a6230dcdab9, type: 3}
+  m_Script: {fileID: 11500000, guid: cc56606403ee02e48abe652b70f6696d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myTestCameraPath: {fileID: 0}
+  bookPathHandler: {fileID: 0}
+  bookList: []
+  objectIndex: 0
+  pathNode: {fileID: 532641946}
+  IsLooping: 0
 --- !u!114 &116936172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,6 +575,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116936168}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &116936176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116936168}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7874ca2af957c8746aaac3ca74cc28a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathHandler: {fileID: 0}
 --- !u!114 &116936177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -576,18 +600,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83dcd8dace8b7fe449d796b980cb121d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeselectOnUp: 0
+  DeselectOnUp: 1
   HideWithFinger: 0
-  IsolateSelectingFingers: 0
+  IsolateSelectingFingers: 1
   onSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 730277473}
-        m_MethodName: selectThis
-        m_Mode: 2
+      - m_Target: {fileID: 116936171}
+        m_MethodName: select
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 116936168}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -601,19 +625,59 @@ MonoBehaviour:
       m_Calls: []
   onDeselect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 730277473}
-        m_MethodName: deselectThis
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 116936168}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   isSelected: 0
+--- !u!114 &116936178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116936168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_Template: {fileID: 0}
+  m_CaptionText: {fileID: 0}
+  m_CaptionImage: {fileID: 0}
+  m_ItemText: {fileID: 0}
+  m_ItemImage: {fileID: 0}
+  m_Value: 0
+  m_Options:
+    m_Options: []
+  m_OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &222492068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1516,9 +1580,6 @@ GameObject:
   m_Component:
   - component: {fileID: 532641947}
   - component: {fileID: 532641946}
-  - component: {fileID: 532641949}
-  - component: {fileID: 532641950}
-  - component: {fileID: 532641948}
   m_Layer: 0
   m_Name: PathNode (2)
   m_TagString: Untagged
@@ -1556,62 +1617,6 @@ Transform:
   m_Father: {fileID: 1286639749}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &532641948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532641945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17e7312a558949a4582bc71110d2590b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: 
-  image: {fileID: 0}
-  pathNode: {fileID: 0}
-  objectIndex: 0
---- !u!114 &532641949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532641945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83dcd8dace8b7fe449d796b980cb121d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeselectOnUp: 0
-  HideWithFinger: 0
-  IsolateSelectingFingers: 0
-  onSelect:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelectSet:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelectUp:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls: []
-  isSelected: 0
---- !u!114 &532641950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532641945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4531ac2369592c479959ed125bdfe59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &547035834
 GameObject:
   m_ObjectHideFlags: 0

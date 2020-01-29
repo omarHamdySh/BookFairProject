@@ -5,7 +5,8 @@ using DG.Tweening;
 
 public class CameraPath : MonoBehaviour, ITraverseable
 {
-    public CameraPathNode currentNode, endNode, defaultNode;
+    public CameraPathNode currentNode, endNode;
+    private CameraPathNode defaultNode;
     private int currentLevel;
 
     public List<CameraPathNode> levels;
@@ -52,12 +53,13 @@ public class CameraPath : MonoBehaviour, ITraverseable
     void Start()
     {
         //endNode = currentNode;
+        GameManager.Instance.pathData.FloorScrollSpeed = 0;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-
+        
         if (GameManager.Instance.pathData.FloorScrollSpeed != 0)
         {
             if (areX_AtRoot(currentNode))
@@ -175,7 +177,7 @@ public class CameraPath : MonoBehaviour, ITraverseable
 
         if (cameraState != CameraMoveState.NotMoving)
         {
-
+            
             switch (cameraState)
             {
                 case CameraMoveState.MoveOut:
@@ -235,7 +237,17 @@ public class CameraPath : MonoBehaviour, ITraverseable
     public void gotoTarget()
     {
         onDeparture();
-        cameraState = CameraMoveState.MoveOut;
+        
+            if (areYsEqual(currentNode, endNode) && currentNode.nodeXIndex < endNode.nodeXIndex)
+            {
+                cameraState = CameraMoveState.MoveIn;
+            }
+            else
+            {
+                cameraState = CameraMoveState.MoveOut;
+            }
+        
+
         move();
     }
 
