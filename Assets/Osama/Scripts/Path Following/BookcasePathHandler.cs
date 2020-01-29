@@ -48,12 +48,21 @@ public class BookcasePathHandler : MonoBehaviour
         currentScrollSpeed = GameManager.Instance.pathData.BookcaseScrollSpeed;// Getting the updating scrolling speed;
         if (motionStarted && currentScrollSpeed == 0)// if the objects is not moving, declare land State and fire land event
         {
+            foreach (var scrollable in scrollables)
+            {
+                if (!scrollable.getLandStatus())
+                {
+                    motionStarted = true;
+                    return;
+                }
+            }
+
             motionStarted = false;
 
-            foreach (var scrollable in scrollables)// Change each scrollable State to --> onLand()
-            {
-                scrollable.onLand();
-            }
+            //foreach (var scrollable in scrollables)// Change each scrollable State to --> onLand()
+            //{
+            //    scrollable.onLand();
+            //}
             return;
         }
         else if (currentScrollSpeed == 0)// If scrolling speed reaches 0, return to skip frame
@@ -118,6 +127,15 @@ public class BookcasePathHandler : MonoBehaviour
     {
         foreach (var scrollable in scrollables)
         {
+            if (!scrollable.getLandStatus())
+            {
+                motionStarted = true;
+                return;
+            }
+        }
+
+        foreach (var scrollable in scrollables)
+        {
             int nextTransformIndex = 0;
 
             if (currentScrollSpeed > 0)
@@ -128,6 +146,21 @@ public class BookcasePathHandler : MonoBehaviour
 
             Vector3 newDestination = bookCasePathTransforms[nextTransformIndex].transform.position;
             //Debug.Log("newDestination: " + newDestination);
+
+
+
+            if (nextTransformIndex == 0)
+            {
+                scrollable.IsCurrent = true;
+                scrollable.GetComponent<BoxCollider>().enabled = true;
+                scrollable.GetComponent<ShelfPathHandler>().SetCurrentShelfOn();
+            }
+            else
+            {
+                scrollable.IsCurrent = false;
+                scrollable.GetComponent<BoxCollider>().enabled = false;
+                scrollable.GetComponent<ShelfPathHandler>().SetCurrentShelfOff();
+            }
 
             if (scrollable.getLandStatus())
             {

@@ -205,7 +205,7 @@ BoxCollider:
   m_GameObject: {fileID: 3424230457098841483}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 2.9632318, z: 2.4068666}
   m_Center: {x: 0, y: 1.704362, z: -0.025124252}
@@ -222,6 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathNode: {fileID: 0}
+  IsCurrent: 0
 --- !u!114 &1755875500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1094,16 +1095,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7189940257270847545}
     m_Modifications:
-    - target: {fileID: 2312620234440136147, guid: 94000e421f8f4024e957d4f4ff108ba2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3336655084014650495, guid: 94000e421f8f4024e957d4f4ff108ba2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3461379210547023925, guid: 94000e421f8f4024e957d4f4ff108ba2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1159,46 +1150,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4523738986583430898, guid: 94000e421f8f4024e957d4f4ff108ba2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4964267080575065890, guid: 94000e421f8f4024e957d4f4ff108ba2,
         type: 3}
       propertyPath: m_Name
       value: Shelf
-      objectReference: {fileID: 0}
-    - target: {fileID: 5728065103604758735, guid: 94000e421f8f4024e957d4f4ff108ba2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5901299032569175196, guid: 94000e421f8f4024e957d4f4ff108ba2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6903644517364639190, guid: 94000e421f8f4024e957d4f4ff108ba2,
         type: 3}
       propertyPath: shelfPathHandler
       value: 
       objectReference: {fileID: 8858624543300093398}
-    - target: {fileID: 7502922359407988721, guid: 94000e421f8f4024e957d4f4ff108ba2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8442569367377745158, guid: 94000e421f8f4024e957d4f4ff108ba2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8694246156307053788, guid: 94000e421f8f4024e957d4f4ff108ba2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94000e421f8f4024e957d4f4ff108ba2, type: 3}
 --- !u!4 &4836290801254516635 stripped

@@ -21,7 +21,7 @@ public class BookState : IGameplayState
 
     public void OnStateUpdate()
     {
-
+        GameManager.Instance.pathData.BookScrollSpeed = SwipeSpeed.instance.horizontalScrollSpeed;
     }
     string ToString()
     {

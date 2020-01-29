@@ -30,6 +30,11 @@ public class ShelfObjectAlignerOverPath : MonoBehaviour
                     bookPathHandler.bookPathTransforms[i].GetComponent<NodeRank>().rankRotation,
                     0));
             }
+            if (shelfPathHandler.GetComponent<Bookcase>().IsCurrent)
+            {
+                scrollable.IsCurrent = true;
+                scrollable.GetComponent<BoxCollider>().enabled = true;
+            }
         }
         else if (scrollable.getObjectIndex() == 4 || scrollable.getObjectIndex() == 5)
         {

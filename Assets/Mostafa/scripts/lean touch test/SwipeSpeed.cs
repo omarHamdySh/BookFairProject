@@ -54,8 +54,8 @@ public class SwipeSpeed : MonoBehaviour
     {
         pathData = GameManager.Instance.pathData;
         reset();
-        horizontalScrollSpeed = 0.1f;
-        verticalScrollSpeed = 0.1f;
+        horizontalScrollSpeed = 0f;
+        verticalScrollSpeed = 0f;
         drag = false;
     }
 
