@@ -15,9 +15,10 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
     LeanSelectable leanSelectable;
 
     public CameraPathNode pathNode;
-    
+
     private bool isLanded = true;
     public bool IsLooping;
+    public bool IsCurrent = false;
 
     private void Awake()
     {

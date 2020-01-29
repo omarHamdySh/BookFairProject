@@ -15,6 +15,8 @@ public class Book : MonoBehaviour, IScrollable, IClickable
     private int objectIndex;
 
     private bool isLanded = true;
+    public bool IsLooping;
+    public bool IsCurrent = false;
 
     private void Awake()
     {
@@ -35,12 +37,37 @@ public class Book : MonoBehaviour, IScrollable, IClickable
 
     public void move(Vector3 destination, float duration)
     {
-        print("Book, move");
-        isLanded = false;
+        if (isLanded)
+        {
+            isLanded = false;
 
-        transform.DOMove(destination, duration)
-            .SetEase(GameManager.Instance.pathData.MovementEase)
-            .OnComplete(onLand);
+            if (IsLooping)
+            {
+                IsLooping = false;
+                transform.position = destination;
+                onLand();
+            }
+            else
+            {
+                var rotate = GetRotRank(getObjectIndex());
+                if (rotate != 0)
+                {
+                    rotate = (rotate - transform.localRotation.eulerAngles.y);
+                    //print(name + "  " + GetRotRank(getObjectIndex()) + "  " + rotate + "  " + transform.localRotation.eulerAngles.y);
+                    transform.DORotate(new Vector3(0, rotate, 0), duration, RotateMode.LocalAxisAdd);
+                }
+                else
+                {
+                    transform.localRotation = Quaternion.Euler(0, 0, 0);
+                }
+                transform.DOMove(destination, duration).OnComplete(onLand);
+            }
+        }
+    }
+
+    public float GetRotRank(int index)
+    {
+        return GetComponent<BookObjectAlignerOverPath>().bookPathHandler.GetRank(index).rankRotation;
     }
 
     public void move(Vector3 destination, float duration, bool visibility)
@@ -65,11 +92,14 @@ public class Book : MonoBehaviour, IScrollable, IClickable
         print("Book, onDeparture");
     }
 
+    private void AnotherCheck()
+    {
+    }
     public void onLand()
     {
         //print("Book, onLand");
 
-        gameObject.SetActive(true);
+
 
         isLanded = true;
 

@@ -30,6 +30,7 @@ public class ShelfPathHandler : MonoBehaviour
 
     #region MonoBehaviours
 
+
     private void Awake()
     {
         scrollables = GetComponentsInChildren<Shelf>();
@@ -45,49 +46,52 @@ public class ShelfPathHandler : MonoBehaviour
 
     private void Update()
     {
-        currentScrollSpeed = GameManager.Instance.pathData.ShelfScrollSpeed;// Getting the updating scrolling speed;
-        if (motionStarted && currentScrollSpeed == 0)// if the objects is not moving, declare land State and fire land event
+        if (GetComponent<Bookcase>().IsCurrent)
         {
-            foreach (var scrollable in scrollables)
+            currentScrollSpeed = GameManager.Instance.pathData.ShelfScrollSpeed;// Getting the updating scrolling speed;
+            if (motionStarted && currentScrollSpeed == 0)// if the objects is not moving, declare land State and fire land event
             {
-                if (!scrollable.getLandStatus())
+                foreach (var scrollable in scrollables)
+                {
+                    if (!scrollable.getLandStatus())
+                    {
+                        motionStarted = true;
+                        return;
+                    }
+                }
+                motionStarted = false;
+
+                //foreach (var scrollable in scrollables)// Change each scrollable State to --> onLand()
+                //{
+                //    scrollable.onLand();
+                //}
+                return;
+            }
+            else if (currentScrollSpeed == 0)// If scrolling speed reaches 0, return to skip frame
+            {
+                return;
+            }
+
+
+            if (currentScrollSpeed != 0)
+            {
+                if (!motionStarted)
                 {
                     motionStarted = true;
-                    return;
+
+                    foreach (var scrollable in scrollables)// Change each scrollable State to --> onDeparture()
+                    {
+                        scrollable.onDeparture();
+                    }
                 }
-            }
-            motionStarted = false;
 
-            //foreach (var scrollable in scrollables)// Change each scrollable State to --> onLand()
-            //{
-            //    scrollable.onLand();
-            //}
-            return;
-        }
-        else if (currentScrollSpeed == 0)// If scrolling speed reaches 0, return to skip frame
-        {
-            return;
-        }
-
-
-        if (currentScrollSpeed != 0)
-        {
-            if (!motionStarted)
-            {
-                motionStarted = true;
-
-                foreach (var scrollable in scrollables)// Change each scrollable State to --> onDeparture()
+                foreach (var scrollable in scrollables)
                 {
-                    scrollable.onDeparture();
+                    scrollable.onMoving();// // Change each scrollable State to --> onMoving()
                 }
-            }
+                moveAccordingToScrollSpeed();
 
-            foreach (var scrollable in scrollables)
-            {
-                scrollable.onMoving();// // Change each scrollable State to --> onMoving()
             }
-            moveAccordingToScrollSpeed();
-
         }
     }
 
@@ -121,6 +125,32 @@ public class ShelfPathHandler : MonoBehaviour
     }
     #endregion
 
+    public void SetCurrentShelfOn()
+    {
+        foreach (var scrollable in scrollables)
+        {
+            if (scrollable.getObjectIndex() == 1)
+            {
+                scrollable.IsCurrent = true;
+                scrollable.GetComponent<BoxCollider>().enabled = true;
+                scrollable.GetComponent<BookPathHandler>().SetCurrentBookOn();
+            }
+        }
+    }
+
+    public void SetCurrentShelfOff()
+    {
+        foreach (var scrollable in scrollables)
+        {
+            if (scrollable.getObjectIndex() == 1)
+            {
+                scrollable.IsCurrent = false;
+                scrollable.GetComponent<BoxCollider>().enabled = false;
+                scrollable.GetComponent<BookPathHandler>().SetCurrentBookOff();
+            }
+        }
+    }
+
     private void moveAccordingToScrollSpeed()
     {
         foreach (var scrollable in scrollables)
@@ -143,6 +173,17 @@ public class ShelfPathHandler : MonoBehaviour
 
             Vector3 newDestination = shelfPathTransforms[nextTransformIndex].transform.position;
             //Debug.Log("newDestination: " + newDestination);
+
+            if (nextTransformIndex == 0)
+            {
+                scrollable.IsCurrent = true;
+                scrollable.GetComponent<BoxCollider>().enabled = true;
+            }
+            else
+            {
+                scrollable.IsCurrent = false;
+                scrollable.GetComponent<BoxCollider>().enabled = false;
+            }
 
             if (scrollable.getLandStatus())
             {

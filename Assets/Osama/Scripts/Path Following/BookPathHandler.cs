@@ -45,51 +45,53 @@ public class BookPathHandler : MonoBehaviour
 
     private void Update()
     {
-        currentScrollSpeed = GameManager.Instance.pathData.BookScrollSpeed;// Getting the updating scrolling speed;
-        print(currentScrollSpeed);
-        if (motionStarted && currentScrollSpeed == 0)// if the objects is not moving, declare land State and fire land event
+        if (GetComponent<Shelf>().IsCurrent)
         {
-            foreach (var scrollable in scrollables)
+            currentScrollSpeed = GameManager.Instance.pathData.BookScrollSpeed;// Getting the updating scrolling speed;
+            if (motionStarted && currentScrollSpeed == 0)// if the objects is not moving, declare land State and fire land event
             {
-                if (!scrollable.getLandStatus())
+                foreach (var scrollable in scrollables)
+                {
+                    if (!scrollable.getLandStatus())
+                    {
+                        motionStarted = true;
+                        return;
+                    }
+                }
+                motionStarted = false;
+
+                //foreach (var scrollable in scrollables)// Change each scrollable State to --> onLand()
+                //{
+                //    scrollable.onLand();
+                //}
+                return;
+            }
+            else if (currentScrollSpeed == 0)// If scrolling speed reaches 0, return to skip frame
+            {
+                return;
+            }
+
+
+            if (currentScrollSpeed != 0)
+            {
+                if (!motionStarted)
                 {
                     motionStarted = true;
-                    return;
+
+                    foreach (var scrollable in scrollables)// Change each scrollable State to --> onDeparture()
+                    {
+                        scrollable.onDeparture();
+                    }
                 }
-            }
-            motionStarted = false;
 
-            //foreach (var scrollable in scrollables)// Change each scrollable State to --> onLand()
-            //{
-            //    scrollable.onLand();
-            //}
-            return;
-        }
-        else if (currentScrollSpeed == 0)// If scrolling speed reaches 0, return to skip frame
-        {
-            return;
-        }
-
-
-        if (currentScrollSpeed != 0)
-        {
-            if (!motionStarted)
-            {
-                motionStarted = true;
-
-                foreach (var scrollable in scrollables)// Change each scrollable State to --> onDeparture()
+                foreach (var scrollable in scrollables)
                 {
-                    scrollable.onDeparture();
+                    scrollable.onMoving();// // Change each scrollable State to --> onMoving()
                 }
+
+                moveAccordingToScrollSpeed();
+
             }
-
-            foreach (var scrollable in scrollables)
-            {
-                scrollable.onMoving();// // Change each scrollable State to --> onMoving()
-            }
-
-            moveAccordingToScrollSpeed();
-
         }
     }
 
@@ -123,6 +125,32 @@ public class BookPathHandler : MonoBehaviour
     }
     #endregion
 
+    public void SetCurrentBookOn()
+    {
+        foreach (var scrollable in scrollables)
+        {
+            if (scrollable.getObjectIndex() == 0)
+            {
+                scrollable.IsCurrent = true;
+                scrollable.GetComponent<BoxCollider>().enabled = true;
+                //scrollable.GetComponent<BookPathHandler>().SetCurrentBookOn();
+            }
+        }
+    }
+
+    public void SetCurrentBookOff()
+    {
+        foreach (var scrollable in scrollables)
+        {
+            if (scrollable.getObjectIndex() == 0)
+            {
+                scrollable.IsCurrent = false;
+                scrollable.GetComponent<BoxCollider>().enabled = false;
+                //scrollable.GetComponent<BookPathHandler>().SetCurrentBookOff();
+            }
+        }
+    }
+
     private void moveAccordingToScrollSpeed()
     {
         foreach (var scrollable in scrollables)
@@ -147,8 +175,24 @@ public class BookPathHandler : MonoBehaviour
             Vector3 newDestination = bookPathTransforms[nextTransformIndex].transform.position;
             //Debug.Log("newDestination: " + newDestination);
 
+            if (nextTransformIndex == 0)
+            {
+                scrollable.IsCurrent = true;
+                scrollable.GetComponent<BoxCollider>().enabled = true;
+            }
+            else
+            {
+                scrollable.IsCurrent = false;
+                scrollable.GetComponent<BoxCollider>().enabled = false;
+            }
+
             if (scrollable.getLandStatus())
             {
+                if ((nextTransformIndex == 4 && scrollable.getObjectIndex() == 5) ||
+                   (nextTransformIndex == 5 && scrollable.getObjectIndex() == 4))
+                {
+                    scrollable.IsLooping = true;
+                }
                 scrollable.setObjectIndex(nextTransformIndex);
                 scrollable.move(newDestination, 0.5f);
             }

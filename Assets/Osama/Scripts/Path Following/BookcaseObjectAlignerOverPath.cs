@@ -21,11 +21,14 @@ public class BookcaseObjectAlignerOverPath : MonoBehaviour
         if (scrollable.getObjectIndex() != 0)
         {
             transform.DOLookAt(transform.parent.position, 0);
-            GetComponent<ShelfPathHandler>().enabled = false;
+            //GetComponent<ShelfPathHandler>().enabled = false;
         }
         else
         {
             GetComponent<ShelfPathHandler>().enabled = true;
+            scrollable.IsCurrent = true;
+            GetComponent<BoxCollider>().enabled = true;
+            GetComponent<ShelfPathHandler>().SetCurrentShelfOn();
         }
     }
 

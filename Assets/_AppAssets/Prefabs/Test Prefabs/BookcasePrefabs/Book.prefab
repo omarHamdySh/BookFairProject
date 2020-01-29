@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2530799721950545533}
   - component: {fileID: 546084094981052497}
   - component: {fileID: 4722996932836783040}
+  - component: {fileID: 895715874387662903}
   m_Layer: 0
   m_Name: Book
   m_TagString: Untagged
@@ -41,7 +42,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1532469795387339886}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba77a620e6ed9314f9f9080d71628681, type: 3}
   m_Name: 
@@ -56,13 +57,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1532469795387339886}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17e7312a558949a4582bc71110d2590b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9689eb3314174084d99c033234c8aa40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   title: 
   image: {fileID: 0}
   pathNode: {fileID: 0}
   objectIndex: 0
+  IsLooping: 0
+--- !u!65 &895715874387662903
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532469795387339886}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.31018636, y: 0.47368634, z: 0.07284352}
+  m_Center: {x: -0.017369464, y: 0.004666984, z: -0.0026602447}
 --- !u!1 &4433020007774583704
 GameObject:
   m_ObjectHideFlags: 0

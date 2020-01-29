@@ -21,7 +21,7 @@ public class ShelfState : IGameplayState
     public void OnStateUpdate()
     {
         GameManager.Instance.pathData.ShelfScrollSpeed = SwipeSpeed.instance.verticalScrollSpeed;
-        GameManager.Instance.pathData.BookScrollSpeed = SwipeSpeed.instance.horizontalScrollSpeed;
+        //GameManager.Instance.pathData.BookScrollSpeed = SwipeSpeed.instance.horizontalScrollSpeed;
     }
     string ToString()
     {

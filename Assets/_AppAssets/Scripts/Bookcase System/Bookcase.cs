@@ -14,6 +14,8 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
     public CameraPathNode pathNode;
     LeanSelectable leanSelectable;
 
+    public bool IsCurrent =false;
+
     private int objectIndex;
 
     private bool isLanded = true;
