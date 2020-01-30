@@ -171,7 +171,7 @@ public class BookcasePathHandler : MonoBehaviour
             if (scrollable.getLandStatus())
             {
                 scrollable.setObjectIndex(nextTransformIndex);
-                scrollable.move(newDestination, 0.5f);
+                scrollable.move(newDestination, 0.7f);
             }
         }
 
