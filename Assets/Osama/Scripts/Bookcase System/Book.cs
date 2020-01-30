@@ -7,6 +7,7 @@ using DG.Tweening;
 public class Book : MonoBehaviour, IScrollable, IClickable
 {
     public string title;
+    public string url;
     public Texture2D image;
     List<BookPage> pages;
     public CameraPathNode pathNode;
@@ -21,6 +22,7 @@ public class Book : MonoBehaviour, IScrollable, IClickable
     private void Awake()
     {
         //objectIndex = transform.GetSiblingIndex();
+        url = "www.duckduckgo.com";
     }
 
     public float getScrollSpeed()
@@ -114,8 +116,11 @@ public class Book : MonoBehaviour, IScrollable, IClickable
     public void focus()
     {
         print("Book, focus");
-        CameraPath.instance.setTarget(pathNode);
-        CameraPath.instance.gotoTarget();
+
+        //go to url
+        Application.OpenURL(url);
+        //CameraPath.instance.setTarget(pathNode);
+        //CameraPath.instance.gotoTarget();
     }
 
     public void unfocus()
