@@ -4,6 +4,8 @@ using UnityEngine;
 using System.Linq;
 public class SelectionManager : MonoBehaviour
 {
+    public IClickable selectedObject;
+
     #region Singleton
     public static SelectionManager instance { private set; get; }
     private void Awake()
@@ -19,8 +21,7 @@ public class SelectionManager : MonoBehaviour
     }
     #endregion
 
-    [HideInInspector] public IClickable selectedObject;
-
+    
     public void selectThis(IClickable selectedObject)
     {
 
@@ -43,6 +44,18 @@ public class SelectionManager : MonoBehaviour
             this.selectedObject = null;
         }
     }
+
+    public void deselectCurrent()
+    {
+
+
+        if (this.selectedObject != null)
+        {
+            this.selectedObject.unfocus();
+            this.selectedObject = null;
+        }
+    }
+
 
 }
 

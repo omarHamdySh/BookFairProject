@@ -24,9 +24,9 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -1294,6 +1294,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BookcaseLP (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
@@ -4136,6 +4141,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookcaseLP (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
       propertyPath: m_Mesh
@@ -6976,6 +6986,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BookcaseLP (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
@@ -9909,6 +9924,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookcaseLP (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
       propertyPath: m_Mesh
@@ -12750,6 +12770,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookcaseLP (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
       propertyPath: m_Mesh
@@ -15590,6 +15615,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BookcaseLP (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
@@ -18742,6 +18772,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookcaseLP (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
       propertyPath: m_Mesh
@@ -21582,6 +21617,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BookcaseLP (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
@@ -24787,6 +24827,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookcaseLP (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
       propertyPath: m_Mesh
@@ -27646,6 +27691,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookcaseLP (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
       propertyPath: m_Mesh
@@ -30486,6 +30536,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BookcaseLP (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
@@ -33328,6 +33383,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookcaseLP (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
       propertyPath: m_Mesh
@@ -36168,6 +36228,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BookcaseLP (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
@@ -39027,6 +39092,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BookcaseLP (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
@@ -42120,6 +42190,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookcaseLP (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
       propertyPath: m_Mesh
@@ -44960,6 +45035,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BookcaseLP (33)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
@@ -50891,6 +50971,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookcaseLP (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
       propertyPath: m_Mesh
@@ -53973,6 +54058,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookcaseLP (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
       propertyPath: m_Mesh
@@ -56885,6 +56975,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BookcaseLP (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
@@ -59979,6 +60074,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BookcaseLP (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
@@ -63245,6 +63345,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookcaseLP (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
       propertyPath: m_Mesh
@@ -66162,6 +66267,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookcaseLP (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
       propertyPath: m_Mesh
@@ -69002,6 +69112,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BookcaseLP (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
@@ -71844,6 +71959,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookcaseLP (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
       propertyPath: m_Mesh
@@ -74684,6 +74804,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BookcaseLP (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
@@ -77718,6 +77843,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookcaseLP (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
       propertyPath: m_Mesh
@@ -80699,6 +80829,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BookcaseLP (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
@@ -83766,6 +83901,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BookcaseLP (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
@@ -89909,6 +90049,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookcaseLP (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
       propertyPath: m_Mesh
@@ -93027,6 +93172,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BookcaseLP (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
@@ -96404,6 +96554,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookcaseLP (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}
       propertyPath: m_Mesh
@@ -99244,6 +99399,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BookcaseLP (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3424230457098841483, guid: 416832814643bab4babfc5f81d225b0d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3439694842082469380, guid: 416832814643bab4babfc5f81d225b0d,
         type: 3}

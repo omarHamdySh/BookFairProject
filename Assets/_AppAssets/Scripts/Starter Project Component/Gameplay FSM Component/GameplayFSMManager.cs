@@ -140,6 +140,8 @@ public class GameplayFSMManager : MonoBehaviour
     void Update()
     {
         stateStack.Peek().OnStateUpdate();
+
+        if (Input.GetKeyDown(KeyCode.Escape))SelectionManager.instance.deselectCurrent();
     }
     /// <summary>
     /// functions to define the stak functionality

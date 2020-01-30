@@ -45,16 +45,20 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
     public void focus()
     {
         GetComponent<BoxCollider>().enabled = false;
-        GameManager.Instance.gameplayFSMManager.toShelfState();
-        CameraPath.instance.setTarget(pathNode);
+        CameraPath.instance.setTarget(CameraPath.instance.bookcaseNode);
         CameraPath.instance.gotoTarget();
+        GameManager.Instance.gameplayFSMManager.toShelfState();
 
     }
 
     public void unfocus()
     {
-        GameManager.Instance.gameplayFSMManager.toFloorState();
+        
         GetComponent<BoxCollider>().enabled = true;
+        //SelectionManager.instance.selectThis(GetComponentInParent<IClickable>());
+        CameraPath.instance.setTarget(CameraPath.instance.floorNode);
+        CameraPath.instance.gotoTarget();
+        GameManager.Instance.gameplayFSMManager.toFloorState();
         print("focus");
     }
 
