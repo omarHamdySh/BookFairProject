@@ -89,6 +89,10 @@ public class Book : MonoBehaviour, IScrollable, IClickable
         SelectionManager.instance.selectThis(this);
     }
 
+    public void gotoUrl()
+    {
+        Application.OpenURL(url);
+    }
     public void onDeparture()
     {
         print("Book, onDeparture");
@@ -118,7 +122,6 @@ public class Book : MonoBehaviour, IScrollable, IClickable
         print("Book, focus");
 
         //go to url
-        Application.OpenURL(url);
         //CameraPath.instance.setTarget(pathNode);
         //CameraPath.instance.gotoTarget();
     }
