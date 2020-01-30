@@ -19,6 +19,8 @@ public class CameraPath : MonoBehaviour, ITraverseable
     public CameraPathNode bookNode;
     public CameraPathNode pageNode;
 
+    public float cameraSpeed;
+
     public enum CameraMoveState
     {
         NotMoving,
@@ -164,7 +166,7 @@ public class CameraPath : MonoBehaviour, ITraverseable
         {
 
             step();
-            cameraTransform.DOMove(currentNode.transform.position, .2f).OnComplete(move).OnUpdate(onMoving);
+            cameraTransform.DOMove(currentNode.transform.position, cameraSpeed).OnComplete(move).OnUpdate(onMoving);
 
         }
         else

@@ -6,8 +6,7 @@ public class BookcasePathHandler : MonoBehaviour
 {
     [SerializeField] private BookcaseObjectAlignerOverPath[] bookcaseOverPath;
     [SerializeField] private BookcasePathTransforms[] bookCasePathTransforms;
-
-    public CameraPathNode bookcasePathNode;
+    [SerializeField] private float scrollSpeed;
     #region Private Varibales
 
     private Bookcase[] scrollables;
@@ -41,7 +40,7 @@ public class BookcasePathHandler : MonoBehaviour
 
     private void Start()
     {
-        bookcasePathNode = CameraPath.instance.bookcaseNode;
+        
     }
     public Vector3 GetPosOverPath(int pathPointIndex)
     {
@@ -159,7 +158,6 @@ public class BookcasePathHandler : MonoBehaviour
                 scrollable.IsCurrent = true;
                 scrollable.GetComponent<BoxCollider>().enabled = true;
                 scrollable.GetComponent<ShelfPathHandler>().SetCurrentShelfOn();
-                scrollable.pathNode = bookcasePathNode;
             }
             else
             {
@@ -171,7 +169,7 @@ public class BookcasePathHandler : MonoBehaviour
             if (scrollable.getLandStatus())
             {
                 scrollable.setObjectIndex(nextTransformIndex);
-                scrollable.move(newDestination, 0.7f);
+                scrollable.move(newDestination, scrollSpeed);
             }
         }
 

@@ -48,11 +48,11 @@ public class SelectionManager : MonoBehaviour
     public void deselectCurrent()
     {
 
-
         if (this.selectedObject != null)
         {
+
             this.selectedObject.unfocus();
-            this.selectedObject = null;
+            
         }
     }
 
