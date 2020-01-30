@@ -251,6 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shelvesOverPath: []
   shelfPathTransforms: []
+  shelfPathNode: {fileID: 0}
   x: 1
 --- !u!114 &4650008938246979331
 MonoBehaviour:
@@ -833,7 +834,7 @@ PrefabInstance:
     - target: {fileID: 3461379210547023925, guid: 94000e421f8f4024e957d4f4ff108ba2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.387
+      value: 1.185
       objectReference: {fileID: 0}
     - target: {fileID: 3461379210547023925, guid: 94000e421f8f4024e957d4f4ff108ba2,
         type: 3}
@@ -1225,7 +1226,7 @@ PrefabInstance:
     - target: {fileID: 3461379210547023925, guid: 94000e421f8f4024e957d4f4ff108ba2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.387
+      value: 3.14
       objectReference: {fileID: 0}
     - target: {fileID: 3461379210547023925, guid: 94000e421f8f4024e957d4f4ff108ba2,
         type: 3}
@@ -1617,7 +1618,7 @@ PrefabInstance:
     - target: {fileID: 3461379210547023925, guid: 94000e421f8f4024e957d4f4ff108ba2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.387
+      value: 0.584
       objectReference: {fileID: 0}
     - target: {fileID: 3461379210547023925, guid: 94000e421f8f4024e957d4f4ff108ba2,
         type: 3}
@@ -2009,7 +2010,7 @@ PrefabInstance:
     - target: {fileID: 3461379210547023925, guid: 94000e421f8f4024e957d4f4ff108ba2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.387
+      value: 0.268
       objectReference: {fileID: 0}
     - target: {fileID: 3461379210547023925, guid: 94000e421f8f4024e957d4f4ff108ba2,
         type: 3}
@@ -2568,7 +2569,7 @@ PrefabInstance:
     - target: {fileID: 3461379210547023925, guid: 94000e421f8f4024e957d4f4ff108ba2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.387
+      value: 1.786
       objectReference: {fileID: 0}
     - target: {fileID: 3461379210547023925, guid: 94000e421f8f4024e957d4f4ff108ba2,
         type: 3}

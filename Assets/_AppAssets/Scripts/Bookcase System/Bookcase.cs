@@ -14,7 +14,7 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
     public CameraPathNode pathNode;
     LeanSelectable leanSelectable;
 
-    public bool IsCurrent =false;
+    public bool IsCurrent = false;
 
     private int objectIndex;
 
@@ -65,15 +65,16 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
             isLanded = false;
             transform.DOMove(destination, duration).OnComplete(onLand);
 
-            transform.DORotate(new Vector3(0, GetRotRank(getObjectIndex()), 0), duration);
+
             if (getObjectIndex() != 0)
             {
-                transform.DOLookAt(transform.parent.position, duration);
-                GetComponent<ShelfPathHandler>().enabled = false;
+                transform.DORotate(new Vector3(0, GetRotRank(getObjectIndex()) - transform.localRotation.eulerAngles.y, 0), duration, RotateMode.LocalAxisAdd);
+                //GetComponent<ShelfPathHandler>().enabled = false;
             }
             else
             {
-                GetComponent<ShelfPathHandler>().enabled = true;
+                transform.DORotate(new Vector3(0, GetRotRank(getObjectIndex()), 0), duration);
+                //GetComponent<ShelfPathHandler>().enabled = true;
             }
         }
     }

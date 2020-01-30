@@ -17,15 +17,16 @@ public class BookcaseObjectAlignerOverPath : MonoBehaviour
         scrollable.setObjectIndex(transform.GetSiblingIndex());
         transform.position = pathHandler.GetPosOverPath(scrollable.getObjectIndex());
 
-        transform.DORotate(new Vector3(0, scrollable.GetRotRank(scrollable.getObjectIndex()), 0), 0);
+
         if (scrollable.getObjectIndex() != 0)
         {
-            transform.DOLookAt(transform.parent.position, 0);
-            //GetComponent<ShelfPathHandler>().enabled = false;
+            print("sadfsdf");
+            transform.DORotate(new Vector3(0, scrollable.GetRotRank(scrollable.getObjectIndex()) - transform.localRotation.eulerAngles.y, 0), 0.1f, RotateMode.LocalAxisAdd);
         }
         else
         {
-            GetComponent<ShelfPathHandler>().enabled = true;
+            transform.DORotate(new Vector3(0, scrollable.GetRotRank(scrollable.getObjectIndex()), 0), 0);
+            //GetComponent<ShelfPathHandler>().enabled = true;
             scrollable.IsCurrent = true;
             GetComponent<BoxCollider>().enabled = true;
             GetComponent<ShelfPathHandler>().SetCurrentShelfOn();
