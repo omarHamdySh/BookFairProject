@@ -101,7 +101,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4722996932836783040}
-        m_MethodName: gotoUrl
+        m_MethodName: select
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

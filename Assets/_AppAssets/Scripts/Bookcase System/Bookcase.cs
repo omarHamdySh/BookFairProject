@@ -53,12 +53,12 @@ public class Bookcase : MonoBehaviour, IScrollable, IClickable
 
     public void unfocus()
     {
+        
         GetComponent<BoxCollider>().enabled = true;
         //SelectionManager.instance.selectThis(GetComponentInParent<IClickable>());
         CameraPath.instance.setTarget(CameraPath.instance.floorNode);
         CameraPath.instance.gotoTarget();
         GameManager.Instance.gameplayFSMManager.toBookCaseState();
-
     }
 
     public void move(Vector3 destination, float duration)
