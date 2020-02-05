@@ -29,7 +29,7 @@ public class TestRandomBookCaver : MonoBehaviour
             randomIndexesList.Add(i);
         }
 
-        // Assaign random sprite and remove it's index from the random index list
+        // Assaign random texture to the books' materials and remove it's index from the random index list
         foreach (Material i in coverMaterials)
         {
             int index = Random.Range(0, randomIndexesList.Count);
