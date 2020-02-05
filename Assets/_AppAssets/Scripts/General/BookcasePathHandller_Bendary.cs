@@ -6,13 +6,10 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
 {
     [SerializeField] private float objectScrollDuration = 0.7f;
     [HideInInspector] public int currentBookcaseIndex;
-    [HideInInspector] public int currentRealBookcaseInUse = 0;
 
     public int IndexOfCurrent;
     public Transform[] bookCasePathPoints;
     public Bookcase_Bendary[] bookcases;
-    public Transform[] realBookcases;
-
 
     private float currentScrollSpeed;
     private bool isObjMoving = false;
@@ -59,17 +56,11 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     {
         foreach (var bookcase in bookcases)
         {
-            int nextPosIndex = 0, indexInUse = currentRealBookcaseInUse;
+            int nextPosIndex = 0;
             if (currentScrollSpeed < 0)
-            {
                 nextPosIndex = (bookcase.getObjectIndex() + 1) % bookCasePathPoints.Length;
-                indexInUse = (indexInUse + 1) % realBookcases.Length;
-            }
             else
-            {
                 nextPosIndex = (bookcase.getObjectIndex() == 0) ? bookCasePathPoints.Length - 1 : bookcase.getObjectIndex() - 1;
-                indexInUse = (indexInUse == 0) ? realBookcases.Length - 1 : indexInUse - 1;
-            }
 
             Vector3 newDestination = bookCasePathPoints[nextPosIndex].transform.position;
 
@@ -77,18 +68,11 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
             {
                 bookcase.ToggleAsCurrent(true);
                 currentBookcaseIndex = bookcase.transform.GetSiblingIndex();
-                bookcase.ToggleMeshRenderer(false);
-                realBookcases[currentRealBookcaseInUse].gameObject.SetActive(false);
-                currentRealBookcaseInUse = indexInUse;
             }
             else
             {
                 bookcase.ToggleAsCurrent(false);
-                bookcase.ToggleMeshRenderer(true);
             }
-
-            //int index = realBookcasesPosIndex.FindIndex(x => x == bookcase.getObjectIndex());
-
 
             bookcase.setObjectIndex(nextPosIndex);
             bookcase.move(newDestination, objectScrollDuration);
