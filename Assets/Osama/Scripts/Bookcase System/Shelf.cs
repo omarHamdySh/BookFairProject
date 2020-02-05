@@ -3,7 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 using Lean.Touch;
 
-[RequireComponent(typeof(BookcaseObjectAlignerOverPath))]
+//[RequireComponent(typeof(BookcaseObjectAlignerOverPath))]
 public class Shelf : MonoBehaviour, IScrollable, IClickable
 {
     BookFair fair;
