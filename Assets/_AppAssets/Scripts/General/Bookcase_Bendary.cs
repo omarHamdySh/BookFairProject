@@ -28,6 +28,23 @@ public class Bookcase_Bendary : MonoBehaviour, IScrollable
 
         // Set path rotation by object path index
         SetBookcaseRotation(bookcasePathHandller.bookCasePathPoints[ObjPathIndex].GetComponent<NodeRank>().rankRotation);
+
+        if (IsCurrent)
+        {
+            ToggleMeshRenderer(false);
+            bookcasePathHandller.realBookcases[bookcasePathHandller.currentRealBookcaseInUse].position = transform.position;
+            bookcasePathHandller.realBookcases[bookcasePathHandller.currentRealBookcaseInUse].localRotation = transform.localRotation;
+            bookcasePathHandller.realBookcases[bookcasePathHandller.currentRealBookcaseInUse].gameObject.SetActive(true);
+        }
+
+    }
+
+    public void ToggleMeshRenderer(bool enabled)
+    {
+        foreach (MeshRenderer i in GetComponentsInChildren<MeshRenderer>())
+        {
+            i.enabled = enabled;
+        }
     }
 
     /// <summary>
@@ -77,6 +94,29 @@ public class Bookcase_Bendary : MonoBehaviour, IScrollable
         if (isLanded)
         {
             isLanded = false;
+
+            ////int index = bookcasePathHandller.realBookcasesPosIndex.FindIndex(x => x == ObjPathIndex);
+            //if (index != -1)
+            //{
+            //    ToggleMeshRenderer(false);
+            //    //bookcasePathHandller.realBookcases[index].transform.DOMove(destination, duration);
+            //    //bookcasePathHandller.realBookcases[index].transform.localRotation = transform.localRotation;
+            //    //bookcasePathHandller.realBookcases[index].gameObject.SetActive(true);
+            //}
+            //else
+            //{
+            //    ToggleMeshRenderer(true);
+            //}
+
+            if (getObjectIndex() == bookcasePathHandller.IndexOfCurrent)
+            {
+                bookcasePathHandller.realBookcases[bookcasePathHandller.currentRealBookcaseInUse].gameObject.SetActive(true);
+                bookcasePathHandller.realBookcases[bookcasePathHandller.currentRealBookcaseInUse].position = transform.position;
+                bookcasePathHandller.realBookcases[bookcasePathHandller.currentRealBookcaseInUse].localRotation = transform.localRotation;
+                bookcasePathHandller.realBookcases[bookcasePathHandller.currentRealBookcaseInUse].DOMove(destination, duration);
+                int rot = bookcasePathHandller.bookCasePathPoints[ObjPathIndex].GetComponent<NodeRank>().rankRotation;
+                bookcasePathHandller.realBookcases[bookcasePathHandller.currentRealBookcaseInUse].DORotate(new Vector3(0, rot - transform.localRotation.eulerAngles.y, 0), duration, RotateMode.LocalAxisAdd);
+            }
 
             transform.DOMove(destination, duration).OnUpdate(onMoving).OnComplete(onLand);
 
