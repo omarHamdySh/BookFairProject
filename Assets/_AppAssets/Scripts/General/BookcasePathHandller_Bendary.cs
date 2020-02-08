@@ -47,6 +47,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
 
 
     #region Helper
+    [ContextMenu("Set Bookcases on the path")]
     public void Init()
     {
         foreach (Bookcase_Bendary bookcase in bookcases)

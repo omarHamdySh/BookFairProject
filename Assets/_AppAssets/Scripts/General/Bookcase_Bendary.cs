@@ -36,7 +36,6 @@ public class Bookcase_Bendary : MonoBehaviour, IScrollable
             bookcasePathHandller.realBookcases[bookcasePathHandller.currentRealBookcaseInUse].localRotation = transform.localRotation;
             bookcasePathHandller.realBookcases[bookcasePathHandller.currentRealBookcaseInUse].gameObject.SetActive(true);
         }
-
     }
 
     public void ToggleMeshRenderer(bool enabled)
