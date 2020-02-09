@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BookcasePathHandller_Bendary : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     private float currentScrollSpeed;
     private bool isObjMoving = false;
 
-    private void Start()
+    private void Awake()
     {
         Init();
     }
@@ -54,6 +55,14 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         {
             bookcase.Init(this);
         }
+
+        for (int i = 0; i < realBookcases.Length; i++)
+        {
+            if (i != currentRealBookcaseInUse)
+            {
+                ToggleTexts(false, i);
+            }
+        }
     }
 
     private void MoveAccordingToScrollSpeed()
@@ -79,17 +88,22 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
                 bookcase.ToggleAsCurrent(true);
                 currentBookcaseIndex = bookcase.transform.GetSiblingIndex();
                 bookcase.ToggleMeshRenderer(false);
-                realBookcases[currentRealBookcaseInUse].gameObject.SetActive(false);
+                ToggleCurrentRealBookcaseMeshRenderer(false);
                 currentRealBookcaseInUse = indexInUse;
+
+                realBookcases[currentBookcaseIndex].GetComponent<ShelfPathHandller_Bendary>().isCurrentBookcase = true;
+                ToggleTexts(true);
             }
             else
             {
                 bookcase.ToggleAsCurrent(false);
                 bookcase.ToggleMeshRenderer(true);
+
+                realBookcases[currentBookcaseIndex].GetComponent<ShelfPathHandller_Bendary>().isCurrentBookcase = false;
+                ToggleTexts(false);
             }
 
             //int index = realBookcasesPosIndex.FindIndex(x => x == bookcase.getObjectIndex());
-
 
             bookcase.setObjectIndex(nextPosIndex);
             bookcase.move(newDestination, objectScrollDuration);
@@ -113,6 +127,40 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         foreach (var scrollable in bookcases)// Change each scrollable State to --> onDeparture()
         {
             scrollable.onDeparture();
+        }
+    }
+
+    public void ToggleCurrentRealBookcaseMeshRenderer(bool enabled)
+    {
+        foreach (MeshRenderer i in realBookcases[currentRealBookcaseInUse].GetComponentsInChildren<MeshRenderer>())
+        {
+            i.enabled = enabled;
+        }
+    }
+
+    public void ToggleTexts(bool enabled)
+    {
+        foreach (TMP_Text i in realBookcases[currentRealBookcaseInUse].GetComponentsInChildren<TMP_Text>())
+        {
+            i.enabled = enabled;
+        }
+
+        foreach (Canvas i in realBookcases[currentRealBookcaseInUse].GetComponentsInChildren<Canvas>())
+        {
+            i.enabled = enabled;
+        }
+    }
+
+    public void ToggleTexts(bool enabled, int index)
+    {
+        foreach (TMP_Text i in realBookcases[index].GetComponentsInChildren<TMP_Text>())
+        {
+            i.enabled = enabled;
+        }
+
+        foreach (Canvas i in realBookcases[index].GetComponentsInChildren<Canvas>())
+        {
+            i.enabled = enabled;
         }
     }
     #endregion
