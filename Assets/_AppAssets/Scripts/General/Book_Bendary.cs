@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Book_Bendary : MonoBehaviour, IScrollable
+public class Book_Bendary : MonoBehaviour, IScrollable,IClickable
 {
     public BookPathHandller_Bendary bookPathHandller;
 
@@ -110,6 +110,18 @@ public class Book_Bendary : MonoBehaviour, IScrollable
     public void setObjectIndex(int _objectIndex)
     {
         objPathIndex = _objectIndex;
+    }
+    #endregion
+
+    #region Iclickable
+    public void focus()
+    {
+
+    }
+
+    public void unfocus()
+    {
+
     }
     #endregion
 }

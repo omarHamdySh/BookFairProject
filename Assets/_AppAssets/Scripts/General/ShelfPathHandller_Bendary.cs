@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShelfPathHandller_Bendary : MonoBehaviour
+public class ShelfPathHandller_Bendary : MonoBehaviour, IClickable
 {
     [SerializeField] private float objectScrollDuration = 0.7f;
     [HideInInspector] public int currentShelfIndex;
@@ -112,6 +112,23 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
                 i.Init();
             }
         }
+    }
+
+    public void SelectThisBookCase()
+    {
+        SelectionManager.instance.selectThis(this);
+    }
+    #endregion
+
+    #region Iclickable
+    public void focus()
+    {
+        
+    }
+
+    public void unfocus()
+    {
+        
     }
     #endregion
 }

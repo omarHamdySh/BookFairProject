@@ -494,6 +494,7 @@ GameObject:
   - component: {fileID: 6058364998891801889}
   - component: {fileID: 8380689207118025275}
   - component: {fileID: 8380689207118025278}
+  - component: {fileID: 4377400867218010957}
   m_Layer: 0
   m_Name: BookcaseLPv3
   m_TagString: Untagged
@@ -563,6 +564,45 @@ MonoBehaviour:
   - {fileID: 6262835689177841171}
   - {fileID: 4592626727378122926}
   - {fileID: 1588028618615309497}
+--- !u!114 &4377400867218010957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380689207118025279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83dcd8dace8b7fe449d796b980cb121d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeselectOnUp: 1
+  HideWithFinger: 0
+  IsolateSelectingFingers: 1
+  onSelect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: select
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSelectSet:
+    m_PersistentCalls:
+      m_Calls: []
+  onSelectUp:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeselect:
+    m_PersistentCalls:
+      m_Calls: []
+  isSelected: 0
 --- !u!1 &8380689207131759565
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,6 +1278,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcff9518428d00648a9e8844edbe2380, type: 3}
+--- !u!4 &8380689207279726388 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8006585386575969591, guid: bcff9518428d00648a9e8844edbe2380,
+    type: 3}
+  m_PrefabInstance: {fileID: 1968964274590716419}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8035192340712838783 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8417674448610182268, guid: bcff9518428d00648a9e8844edbe2380,
@@ -1250,12 +1296,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5070bab4ba4d7d8429d4397f32702a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &8380689207279726388 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8006585386575969591, guid: bcff9518428d00648a9e8844edbe2380,
-    type: 3}
-  m_PrefabInstance: {fileID: 1968964274590716419}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2466734199632018031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2846,6 +2886,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcff9518428d00648a9e8844edbe2380, type: 3}
+--- !u!4 &992273164719570418 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8006585386575969591, guid: bcff9518428d00648a9e8844edbe2380,
+    type: 3}
+  m_PrefabInstance: {fileID: 7122541571747250373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1588028618615309497 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8417674448610182268, guid: bcff9518428d00648a9e8844edbe2380,
@@ -2858,9 +2904,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5070bab4ba4d7d8429d4397f32702a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &992273164719570418 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8006585386575969591, guid: bcff9518428d00648a9e8844edbe2380,
-    type: 3}
-  m_PrefabInstance: {fileID: 7122541571747250373}
-  m_PrefabAsset: {fileID: 0}

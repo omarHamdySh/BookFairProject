@@ -21,13 +21,13 @@ public class SelectionManager : MonoBehaviour
     }
     #endregion
 
-    
+
     public void selectThis(IClickable selectedObject)
     {
 
         if (this.selectedObject != selectedObject)
         {
-            deselectThis(selectedObject);
+            deselectThis(this.selectedObject);
             this.selectedObject = selectedObject;
             this.selectedObject.focus();
         }
@@ -36,8 +36,6 @@ public class SelectionManager : MonoBehaviour
 
     public void deselectThis(IClickable selectedObject)
     {
-
-
         if (this.selectedObject == selectedObject)
         {
             this.selectedObject.unfocus();
@@ -52,7 +50,7 @@ public class SelectionManager : MonoBehaviour
         {
 
             this.selectedObject.unfocus();
-            
+
         }
     }
 

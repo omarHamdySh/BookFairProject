@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Shelf_Bendary : MonoBehaviour, IScrollable
+public class Shelf_Bendary : MonoBehaviour, IScrollable,IClickable
 {
     public ShelfPathHandller_Bendary shelfPathHandller;
 
@@ -160,4 +160,15 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
     }
     #endregion
 
+    #region Iclickable
+    public void focus()
+    {
+
+    }
+
+    public void unfocus()
+    {
+
+    }
+    #endregion
 }
