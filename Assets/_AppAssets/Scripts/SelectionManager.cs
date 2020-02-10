@@ -24,14 +24,12 @@ public class SelectionManager : MonoBehaviour
 
     public void selectThis(IClickable selectedObject)
     {
-
         if (this.selectedObject != selectedObject)
         {
             deselectThis(this.selectedObject);
             this.selectedObject = selectedObject;
             this.selectedObject.focus();
         }
-
     }
 
     public void deselectThis(IClickable selectedObject)

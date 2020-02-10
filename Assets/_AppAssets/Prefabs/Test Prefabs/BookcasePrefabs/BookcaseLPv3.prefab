@@ -576,14 +576,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83dcd8dace8b7fe449d796b980cb121d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeselectOnUp: 1
+  DeselectOnUp: 0
   HideWithFinger: 0
   IsolateSelectingFingers: 1
   onSelect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: select
+      - m_Target: {fileID: 8380689207118025278}
+        m_MethodName: SelectThisBookCase
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

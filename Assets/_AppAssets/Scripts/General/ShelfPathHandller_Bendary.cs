@@ -123,12 +123,21 @@ public class ShelfPathHandller_Bendary : MonoBehaviour, IClickable
     #region Iclickable
     public void focus()
     {
-        
+        GetComponent<BoxCollider>().enabled = false;
+        CameraPath.instance.setTarget(CameraPath.instance.bookcaseNode);
+        CameraPath.instance.gotoTarget();
+        GameManager.Instance.gameplayFSMManager.toShelfState();
+
     }
 
     public void unfocus()
     {
-        
+
+        GetComponent<BoxCollider>().enabled = true;
+        //SelectionManager.instance.selectThis(GetComponentInParent<IClickable>());
+        CameraPath.instance.setTarget(CameraPath.instance.floorNode);
+        CameraPath.instance.gotoTarget();
+        GameManager.Instance.gameplayFSMManager.toBookCaseState();
     }
     #endregion
 }
