@@ -35,8 +35,8 @@ public class Bookcase_Bendary : MonoBehaviour, IScrollable
             bookcasePathHandller.realBookcases[bookcasePathHandller.currentRealBookcaseInUse].position = transform.position;
             bookcasePathHandller.realBookcases[bookcasePathHandller.currentRealBookcaseInUse].localRotation = transform.localRotation;
             bookcasePathHandller.ToggleCurrentRealBookcaseMeshRenderer(true);
+            bookcasePathHandller.ToggleCurrentRealBookcase(true);
             bookcasePathHandller.ToggleTexts(true);
-            bookcasePathHandller.realBookcases[bookcasePathHandller.currentBookcaseIndex].GetComponent<ShelfPathHandller_Bendary>().isCurrentBookcase = true;
         }
     }
 
@@ -98,7 +98,6 @@ public class Bookcase_Bendary : MonoBehaviour, IScrollable
 
             if (getObjectIndex() == bookcasePathHandller.IndexOfCurrent)
             {
-                bookcasePathHandller.ToggleCurrentRealBookcaseMeshRenderer(true);
                 bookcasePathHandller.realBookcases[bookcasePathHandller.currentRealBookcaseInUse].position = transform.position;
                 bookcasePathHandller.realBookcases[bookcasePathHandller.currentRealBookcaseInUse].localRotation = transform.localRotation;
                 bookcasePathHandller.realBookcases[bookcasePathHandller.currentRealBookcaseInUse].DOMove(destination, duration);

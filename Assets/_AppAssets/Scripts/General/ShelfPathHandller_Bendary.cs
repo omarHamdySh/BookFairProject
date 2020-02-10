@@ -17,13 +17,7 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
 
     private void Start()
     {
-        if (isCurrentBookcase)
-        {
-            foreach (Shelf_Bendary i in shelves)
-            {
-                i.Init();
-            }
-        }
+        //AwakeCurrent()
     }
 
     private void Update()
@@ -106,6 +100,17 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
         foreach (var scrollable in shelves)// Change each scrollable State to --> onDeparture()
         {
             scrollable.onDeparture();
+        }
+    }
+
+    public void AwakeCurrent()
+    {
+        if (isCurrentBookcase)
+        {
+            foreach (Shelf_Bendary i in shelves)
+            {
+                i.Init();
+            }
         }
     }
     #endregion

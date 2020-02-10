@@ -67,40 +67,48 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
 
     private void MoveAccordingToScrollSpeed()
     {
+        int newIndexInUse = currentRealBookcaseInUse;
+        newIndexInUse = (newIndexInUse + 1) % realBookcases.Length;
+
         foreach (var bookcase in bookcases)
         {
-            int nextPosIndex = 0, indexInUse = currentRealBookcaseInUse;
+            int nextPosIndex = 0;
             if (currentScrollSpeed < 0)
             {
                 nextPosIndex = (bookcase.getObjectIndex() + 1) % bookCasePathPoints.Length;
-                indexInUse = (indexInUse + 1) % realBookcases.Length;
             }
             else
             {
                 nextPosIndex = (bookcase.getObjectIndex() == 0) ? bookCasePathPoints.Length - 1 : bookcase.getObjectIndex() - 1;
-                indexInUse = (indexInUse == 0) ? realBookcases.Length - 1 : indexInUse - 1;
             }
 
             Vector3 newDestination = bookCasePathPoints[nextPosIndex].transform.position;
 
             if (nextPosIndex == IndexOfCurrent)
             {
+                // Domy Bookcase Logic
                 bookcase.ToggleAsCurrent(true);
                 currentBookcaseIndex = bookcase.transform.GetSiblingIndex();
                 bookcase.ToggleMeshRenderer(false);
-                ToggleCurrentRealBookcaseMeshRenderer(false);
-                currentRealBookcaseInUse = indexInUse;
 
-                realBookcases[currentBookcaseIndex].GetComponent<ShelfPathHandller_Bendary>().isCurrentBookcase = true;
+                // Real Bookcase Logic
+                // Close the old current
+                ToggleCurrentRealBookcaseMeshRenderer(false);
+                ToggleCurrentRealBookcase(false);
+                ToggleTexts(false);
+
+                // Place the new real Bookcase current
+                currentRealBookcaseInUse = newIndexInUse;
+
+                //open the new current
+                ToggleCurrentRealBookcaseMeshRenderer(true);
+                ToggleCurrentRealBookcase(true);
                 ToggleTexts(true);
             }
             else
             {
                 bookcase.ToggleAsCurrent(false);
                 bookcase.ToggleMeshRenderer(true);
-
-                realBookcases[currentBookcaseIndex].GetComponent<ShelfPathHandller_Bendary>().isCurrentBookcase = false;
-                ToggleTexts(false);
             }
 
             //int index = realBookcasesPosIndex.FindIndex(x => x == bookcase.getObjectIndex());
@@ -150,6 +158,13 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
             i.enabled = enabled;
         }
     }
+
+    public void ToggleCurrentRealBookcase(bool enabled)
+    {
+        realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().isCurrentBookcase = enabled;
+        realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().AwakeCurrent();
+    }
+
 
     public void ToggleTexts(bool enabled, int index)
     {

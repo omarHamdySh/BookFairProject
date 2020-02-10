@@ -42,8 +42,13 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
 
         if (isCurrent)
         {
-
+            GetComponent<BookPathHandller_Bendary>().isCurrentShelf = true;
         }
+        else
+        {
+            GetComponent<BookPathHandller_Bendary>().isCurrentShelf = false;
+        }
+        GetComponent<BookPathHandller_Bendary>().AwakeCurrent();
     }
 
     public void ToggleAsCurrent(bool isCurrent)
@@ -95,13 +100,22 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
             }
             else
             {
-                if (getObjectIndex() == shelfPathHandller.IndexOfCurrent)
+                if (isCurrent)
                 {
-
+                    for (int i = 0; i < GetComponent<BookPathHandller_Bendary>().books.Length; i++)
+                    {
+                        GetComponent<BookPathHandller_Bendary>().books[i].transform.DORotate(new Vector3(
+                            0,
+                            GetComponent<BookPathHandller_Bendary>().bookPathPoints[i].GetComponent<NodeRank>().rankRotation,
+                            0), duration, RotateMode.LocalAxisAdd);
+                    }
                 }
                 else
                 {
-
+                    foreach (Book_Bendary i in GetComponent<BookPathHandller_Bendary>().books)
+                    {
+                        i.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                    }
                 }
 
                 ToggleRenderer(true);
