@@ -126,7 +126,6 @@ public class GameplayFSMManager : MonoBehaviour
 
         //push the first state for the player
         PushState(floorState);
-        PushState(bookCaseState);
         //PushState(shelfState);
         //PushState(bookState);
         if (hintTxt)
@@ -303,7 +302,7 @@ public class GameplayFSMManager : MonoBehaviour
         PopState();
         PushState(shelfState);
     }
-    public void toBookStae()
+    public void toBookState()
     {
         PopState();
         PushState(bookState);

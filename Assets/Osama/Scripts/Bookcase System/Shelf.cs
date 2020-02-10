@@ -133,7 +133,7 @@ public class Shelf : MonoBehaviour, IScrollable, IClickable
         GetComponent<BoxCollider>().enabled = false;
         CameraPath.instance.setTarget(CameraPath.instance.shelfNode);
         CameraPath.instance.gotoTarget();
-        GameManager.Instance.gameplayFSMManager.toBookStae();
+        GameManager.Instance.gameplayFSMManager.toBookState();
     }
 
     public void unfocus()

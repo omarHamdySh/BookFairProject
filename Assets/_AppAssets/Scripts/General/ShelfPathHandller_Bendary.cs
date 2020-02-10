@@ -22,9 +22,9 @@ public class ShelfPathHandller_Bendary : MonoBehaviour, IClickable
 
     private void Update()
     {
-        if (GameManager.Instance.gameplayFSMManager.getCurrentState() == GameplayState.Shelf && isCurrentBookcase)
+        if (GameManager.Instance.gameplayFSMManager.getCurrentState() == GameplayState.BookCase && isCurrentBookcase)
         {
-            currentScrollSpeed = GameManager.Instance.pathData.ShelfScrollSpeed;
+            currentScrollSpeed = GameManager.Instance.pathData.BookcaseScrollSpeed;
             if (isObjMoving && currentScrollSpeed == 0)
             {
                 isObjMoving = !CheckAllObjectsLanded();
@@ -123,21 +123,21 @@ public class ShelfPathHandller_Bendary : MonoBehaviour, IClickable
     #region Iclickable
     public void focus()
     {
-        GetComponent<BoxCollider>().enabled = false;
-        CameraPath.instance.setTarget(CameraPath.instance.bookcaseNode);
-        CameraPath.instance.gotoTarget();
-        GameManager.Instance.gameplayFSMManager.toShelfState();
+        //GetComponent<BoxCollider>().enabled = false;
+        //CameraPath.instance.setTarget(CameraPath.instance.bookcaseNode);
+        //CameraPath.instance.gotoTarget();
+        //GameManager.Instance.gameplayFSMManager.toShelfState();
 
     }
 
     public void unfocus()
     {
 
-        GetComponent<BoxCollider>().enabled = true;
+        //GetComponent<BoxCollider>().enabled = true;
         //SelectionManager.instance.selectThis(GetComponentInParent<IClickable>());
-        CameraPath.instance.setTarget(CameraPath.instance.floorNode);
-        CameraPath.instance.gotoTarget();
-        GameManager.Instance.gameplayFSMManager.toBookCaseState();
+        //CameraPath.instance.setTarget(CameraPath.instance.floorNode);
+        //CameraPath.instance.gotoTarget();
+        //GameManager.Instance.gameplayFSMManager.toBookCaseState();
     }
     #endregion
 }

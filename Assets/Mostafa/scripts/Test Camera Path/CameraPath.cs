@@ -150,6 +150,15 @@ public class CameraPath : MonoBehaviour, ITraverseable
         }
     }
 
+    private CameraPathNode getNodeInLevel(int n)
+    {
+
+        CameraPathNode tmpNode = levels[currentNode.nodeYIndex];
+
+        for (int i = 0; i < n && tmpNode.next != null; i++) tmpNode = tmpNode.next;
+
+        return tmpNode;
+    }
     public bool areNodesEqual(CameraPathNode currentNode, CameraPathNode targetNode)
     {
         if (currentNode.nodeXIndex == targetNode.nodeXIndex && currentNode.nodeYIndex == targetNode.nodeYIndex)
@@ -259,7 +268,10 @@ public class CameraPath : MonoBehaviour, ITraverseable
 
     public void onLand()
     {
-        print("done");
+        floorNode = getNodeInLevel(0);
+        bookcaseNode = getNodeInLevel(1);
+        shelfNode = getNodeInLevel(2);
+        bookNode = getNodeInLevel(4);
     }
 
 

@@ -17,9 +17,9 @@ public class BookPathHandller_Bendary : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.gameplayFSMManager.getCurrentState() == GameplayState.Book && isCurrentShelf)
+        if (GameManager.Instance.gameplayFSMManager.getCurrentState() == GameplayState.Shelf && isCurrentShelf)
         {
-            currentScrollSpeed = GameManager.Instance.pathData.BookScrollSpeed;
+            currentScrollSpeed = GameManager.Instance.pathData.ShelfScrollSpeed;
             if (isObjMoving && currentScrollSpeed == 0)
             {
                 isObjMoving = !CheckAllObjectsLanded();
