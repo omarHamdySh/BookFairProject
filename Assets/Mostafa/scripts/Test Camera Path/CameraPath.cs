@@ -273,7 +273,7 @@ public class CameraPath : MonoBehaviour, ITraverseable
         floorNode = getNodeInLevel(0);
         bookcaseNode = getNodeInLevel(1);
         shelfNode = getNodeInLevel(2);
-        bookNode = getNodeInLevel(4);
+        bookNode = getNodeInLevel(3);
     }
 
 
