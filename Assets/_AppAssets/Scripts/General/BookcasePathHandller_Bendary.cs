@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class BookcasePathHandller_Bendary : MonoBehaviour
 {
     [SerializeField] private float objectScrollDuration = 0.7f;
     [HideInInspector] public int currentBookcaseIndex;
     [HideInInspector] public int currentRealBookcaseInUse = 0;
+    [SerializeField] private Transform realBookCaseForwordPos;
 
     public int IndexOfCurrent;
     public Transform[] bookCasePathPoints;
     public Bookcase_Bendary[] bookcases;
     public Transform[] realBookcases;
-
 
     private float currentScrollSpeed;
     private bool isObjMoving = false;
@@ -177,6 +178,16 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         {
             i.enabled = enabled;
         }
+    }
+
+    public void MoveRealBookcaseForward(float delay)
+    {
+        realBookcases[currentRealBookcaseInUse].DOMove(realBookCaseForwordPos.position, delay);
+    }
+
+    public void MoveRealBookcaseBackword(float delay)
+    {
+        realBookcases[currentRealBookcaseInUse].DOMove(bookCasePathPoints[IndexOfCurrent].position, delay);
     }
     #endregion
 }

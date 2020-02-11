@@ -5,7 +5,7 @@ using Lean.Touch;
 
 public class BookcaseStateTransition : MonoBehaviour, IClickable
 {
-
+    [SerializeField] private BookcasePathHandller_Bendary bookcasePathHandler;
     LeanSelectable leanSelectable;
     void Start()
     {
@@ -24,6 +24,8 @@ public class BookcaseStateTransition : MonoBehaviour, IClickable
         CameraPath.instance.gotoTarget();
         GameManager.Instance.gameplayFSMManager.toBookCaseState();
 
+        // Bendary modify
+        bookcasePathHandler.MoveRealBookcaseForward(CameraPath.instance.cameraSpeed);
     }
 
     public void unfocus()
@@ -34,6 +36,9 @@ public class BookcaseStateTransition : MonoBehaviour, IClickable
         CameraPath.instance.gotoTarget();
 
         GameManager.Instance.gameplayFSMManager.toFloorState();
+
+        // Bendary modify
+        bookcasePathHandler.MoveRealBookcaseBackword(CameraPath.instance.cameraSpeed);
     }
 
 }

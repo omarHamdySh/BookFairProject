@@ -34,7 +34,6 @@ public class Book_Bendary : MonoBehaviour, IScrollable, IClickable
     public void ToggleAsCurrent(bool isCurrent)
     {
         this.isCurrent = isCurrent;
-        GetComponent<BoxCollider>().enabled = isCurrent;
     }
 
     public float GetRotRank(int index)

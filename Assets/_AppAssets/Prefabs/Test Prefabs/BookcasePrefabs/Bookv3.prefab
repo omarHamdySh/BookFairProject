@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1817617497294877630}
-  - component: {fileID: 1817617497294877624}
   - component: {fileID: 3223192811296444063}
   m_Layer: 0
   m_Name: Bookv3
@@ -33,19 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1817617497294877624
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1817617497294877629}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.31018636, y: 0.47368634, z: 0.07284352}
-  m_Center: {x: -0.017369464, y: 0.004666984, z: -0.0026602447}
 --- !u!114 &3223192811296444063
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -60,6 +60,8 @@ public class CameraPath : MonoBehaviour, ITraverseable
     {
         //endNode = currentNode;
         GameManager.Instance.pathData.FloorScrollSpeed = 0;
+        gotoTarget();
+
     }
 
     // Update is called once per frame
