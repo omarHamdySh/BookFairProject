@@ -6,7 +6,6 @@ public class BookPathHandller_Bendary : MonoBehaviour
 {
     [SerializeField] private float objectScrollDuration = 0.7f;
     [HideInInspector] public int currentBookIndex;
-    public bool isCurrentShelf = false;
 
     public int IndexOfCurrent, rightDomyIndex, leftDomyIndex;
     public Transform[] bookPathPoints;
@@ -17,7 +16,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.gameplayFSMManager.getCurrentState() == GameplayState.Shelf && isCurrentShelf)
+        if (GameManager.Instance.gameplayFSMManager.getCurrentState() == GameplayState.Shelf && GetComponent<Shelf_Bendary>().GetIsCurretn())
         {
             currentScrollSpeed = GameManager.Instance.pathData.ShelfScrollSpeed;
             if (isObjMoving && currentScrollSpeed == 0)
@@ -104,7 +103,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
             book.Init();
         }
 
-        if (isCurrentShelf)
+        if (GetComponent<Shelf_Bendary>().GetIsCurretn())
         {
             for (int i = 0; i < books.Length; i++)
             {

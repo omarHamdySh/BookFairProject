@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Book_Bendary : MonoBehaviour, IScrollable,IClickable
+public class Book_Bendary : MonoBehaviour, IScrollable, IClickable
 {
     public BookPathHandller_Bendary bookPathHandller;
+    public MeshRenderer bookBodyMeshRenderer;
 
     private int objPathIndex = 0;
     private bool isLanded = true;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Shelf_Bendary : MonoBehaviour, IScrollable,IClickable
+public class Shelf_Bendary : MonoBehaviour, IScrollable
 {
     public ShelfPathHandller_Bendary shelfPathHandller;
 
@@ -39,22 +39,17 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable,IClickable
             ToggleRenderer(true);
         }
 
-
-        if (isCurrent)
-        {
-            GetComponent<BookPathHandller_Bendary>().isCurrentShelf = true;
-        }
-        else
-        {
-            GetComponent<BookPathHandller_Bendary>().isCurrentShelf = false;
-        }
         GetComponent<BookPathHandller_Bendary>().AwakeCurrent();
     }
 
     public void ToggleAsCurrent(bool isCurrent)
     {
         this.isCurrent = isCurrent;
-        GetComponent<BoxCollider>().enabled = isCurrent;
+    }
+
+    public bool GetIsCurretn()
+    {
+        return isCurrent;
     }
 
     public void ToggleLoopingDomy(bool isLoopingDomy)
@@ -160,15 +155,4 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable,IClickable
     }
     #endregion
 
-    #region Iclickable
-    public void focus()
-    {
-
-    }
-
-    public void unfocus()
-    {
-
-    }
-    #endregion
 }

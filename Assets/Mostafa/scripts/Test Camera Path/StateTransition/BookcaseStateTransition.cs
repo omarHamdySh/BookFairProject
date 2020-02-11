@@ -5,7 +5,7 @@ using Lean.Touch;
 
 public class BookcaseStateTransition : MonoBehaviour, IClickable
 {
-    
+
     LeanSelectable leanSelectable;
     void Start()
     {
@@ -28,9 +28,8 @@ public class BookcaseStateTransition : MonoBehaviour, IClickable
 
     public void unfocus()
     {
-        print("zebby");
         GetComponent<BoxCollider>().enabled = true;
-        
+
         CameraPath.instance.setTarget(CameraPath.instance.floorNode);
         CameraPath.instance.gotoTarget();
 

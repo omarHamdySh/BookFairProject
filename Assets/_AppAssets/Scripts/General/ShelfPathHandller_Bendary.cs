@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShelfPathHandller_Bendary : MonoBehaviour, IClickable
 {
     [SerializeField] private float objectScrollDuration = 0.7f;
-    [HideInInspector] public int currentShelfIndex;
+    public int currentShelfIndex;
     public bool isCurrentBookcase = false;
 
     public int IndexOfCurrent, upperDomyIndex, lowerDomyIndex;
@@ -17,7 +17,7 @@ public class ShelfPathHandller_Bendary : MonoBehaviour, IClickable
 
     private void Start()
     {
-        //AwakeCurrent()
+        currentShelfIndex = IndexOfCurrent;
     }
 
     private void Update()

@@ -11,7 +11,7 @@ public class FloorState : IGameplayState
 
     public void OnStateEnter()
     {
-        
+
     }
 
     public void OnStateExit()
@@ -21,7 +21,7 @@ public class FloorState : IGameplayState
 
     public void OnStateUpdate()
     {
-        GameManager.Instance.pathData.FloorScrollSpeed = SwipeSpeed.instance.verticalScrollSpeed;
+        GameManager.Instance.pathData.FloorScrollSpeed = SwipeSpeed.instance.horizontalScrollSpeed;
     }
     string ToString()
     {
