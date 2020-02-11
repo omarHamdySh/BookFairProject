@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -117,6 +118,11 @@ public class ShelfPathHandller_Bendary : MonoBehaviour, IClickable
     public void SelectThisBookCase()
     {
         SelectionManager.instance.selectThis(this);
+    }
+
+    public Transform GetCurrentBook()
+    {
+        return shelves[currentShelfIndex].GetComponent<BookPathHandller_Bendary>().GetCurrentBook().transform;
     }
     #endregion
 

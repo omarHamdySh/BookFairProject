@@ -5,8 +5,8 @@ using Lean.Touch;
 
 public class PageStateTransition : MonoBehaviour, IClickable
 {
-
     public BookStateTransition previous;
+    [SerializeField] private BookcasePathHandller_Bendary bookcasePathHandler;
 
     LeanSelectable leanSelectable;
     void Start()
@@ -26,17 +26,22 @@ public class PageStateTransition : MonoBehaviour, IClickable
         CameraPath.instance.gotoTarget();
         GameManager.Instance.gameplayFSMManager.toBookPageState();
 
+        // Bendary modify
+        bookcasePathHandler.MoveRealBookForward(CameraPath.instance.cameraSpeed);
     }
 
     public void unfocus()
     {
-        
+
         GetComponent<BoxCollider>().enabled = true;
         SelectionManager.instance.selectThis(previous);
         CameraPath.instance.setTarget(CameraPath.instance.bookNode);
         CameraPath.instance.gotoTarget();
 
         GameManager.Instance.gameplayFSMManager.toBookState();
+
+        // Bendary modify
+        bookcasePathHandler.MoveRealBookBackword(CameraPath.instance.cameraSpeed);
     }
 
 }

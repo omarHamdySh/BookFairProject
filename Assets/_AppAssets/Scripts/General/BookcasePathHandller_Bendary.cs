@@ -10,6 +10,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     [HideInInspector] public int currentBookcaseIndex;
     [HideInInspector] public int currentRealBookcaseInUse = 0;
     [SerializeField] private Transform realBookCaseForwordPos;
+    [SerializeField] private Transform BookFowordPos;
 
     public int IndexOfCurrent;
     public Transform[] bookCasePathPoints;
@@ -18,6 +19,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
 
     private float currentScrollSpeed;
     private bool isObjMoving = false;
+    private Vector3 bookBackwordPos;
 
     private void Awake()
     {
@@ -188,6 +190,19 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     public void MoveRealBookcaseBackword(float delay)
     {
         realBookcases[currentRealBookcaseInUse].DOMove(bookCasePathPoints[IndexOfCurrent].position, delay);
+    }
+
+    public void MoveRealBookForward(float delay)
+    {
+        Transform bookTransform = realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().GetCurrentBook();
+        bookBackwordPos = bookTransform.position;
+        bookTransform.DOMove(BookFowordPos.position, delay);
+    }
+
+    public void MoveRealBookBackword(float delay)
+    {
+        Transform bookTransform = realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().GetCurrentBook();
+        bookTransform.DOMove(bookBackwordPos, delay);
     }
     #endregion
 }

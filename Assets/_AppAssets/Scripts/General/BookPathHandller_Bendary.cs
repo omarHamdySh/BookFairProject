@@ -128,5 +128,10 @@ public class BookPathHandller_Bendary : MonoBehaviour
     {
         return bookPathPoints[index].GetComponent<NodeRank>();
     }
+
+    public Book_Bendary GetCurrentBook()
+    {
+        return books[currentBookIndex];
+    }
     #endregion
 }
