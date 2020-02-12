@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShelfPathHandller_Bendary : MonoBehaviour, IClickable
+public class ShelfPathHandller_Bendary : MonoBehaviour
 {
     [SerializeField] private float objectScrollDuration = 0.7f;
     public int currentShelfIndex;
@@ -115,35 +115,9 @@ public class ShelfPathHandller_Bendary : MonoBehaviour, IClickable
         }
     }
 
-    public void SelectThisBookCase()
-    {
-        SelectionManager.instance.selectThis(this);
-    }
-
     public Book_Bendary GetCurrentBook()
     {
         return shelves[currentShelfIndex].GetComponent<BookPathHandller_Bendary>().GetCurrentBook();
-    }
-    #endregion
-
-    #region Iclickable
-    public void focus()
-    {
-        //GetComponent<BoxCollider>().enabled = false;
-        //CameraPath.instance.setTarget(CameraPath.instance.bookcaseNode);
-        //CameraPath.instance.gotoTarget();
-        //GameManager.Instance.gameplayFSMManager.toShelfState();
-
-    }
-
-    public void unfocus()
-    {
-
-        //GetComponent<BoxCollider>().enabled = true;
-        //SelectionManager.instance.selectThis(GetComponentInParent<IClickable>());
-        //CameraPath.instance.setTarget(CameraPath.instance.floorNode);
-        //CameraPath.instance.gotoTarget();
-        //GameManager.Instance.gameplayFSMManager.toBookCaseState();
     }
     #endregion
 }

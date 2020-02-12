@@ -21,7 +21,7 @@ public class TestBookRotation_Bendary : MonoBehaviour
     private void Start()
     {
         myAnim = GetComponent<Animator>();
-        OrignalRot = transform.rotation.eulerAngles;
+        OrignalRot = transform.localEulerAngles;
     }
 
     private void Update()
@@ -96,7 +96,7 @@ public class TestBookRotation_Bendary : MonoBehaviour
 
     public void RotateToOrign(float delay)
     {
-        transform.DORotate((OrignalRot - transform.rotation.eulerAngles), delay, RotateMode.LocalAxisAdd);
+        transform.DORotate(OrignalRot, delay, RotateMode.Fast);
     }
     #endregion
 }

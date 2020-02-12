@@ -101,7 +101,7 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
                     {
                         GetComponent<BookPathHandller_Bendary>().books[i].transform.DORotate(new Vector3(
                             0,
-                            GetComponent<BookPathHandller_Bendary>().bookPathPoints[i].GetComponent<NodeRank>().rankRotation,
+                            GetComponent<BookPathHandller_Bendary>().bookPathPoints[i].GetComponent<NodeRank>().rankRotation - GetComponent<BookPathHandller_Bendary>().books[i].transform.localEulerAngles.y,
                             0), duration, RotateMode.LocalAxisAdd);
                     }
                 }
