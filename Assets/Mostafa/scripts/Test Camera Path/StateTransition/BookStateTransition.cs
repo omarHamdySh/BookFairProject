@@ -33,8 +33,8 @@ public class BookStateTransition : MonoBehaviour, IClickable
         
         GetComponent<BoxCollider>().enabled = true;
         SelectionManager.instance.selectThis(previous);
-        CameraPath.instance.setTarget(CameraPath.instance.shelfNode);
-        CameraPath.instance.gotoTarget();
+        //CameraPath.instance.setTarget(CameraPath.instance.shelfNode);
+        //CameraPath.instance.gotoTarget();
 
         GameManager.Instance.gameplayFSMManager.toShelfState();
     }

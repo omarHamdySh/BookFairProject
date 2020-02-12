@@ -5,7 +5,7 @@ using Lean.Touch;
 
 public class PageStateTransition : MonoBehaviour, IClickable
 {
-    public BookStateTransition previous;
+    public ShelfStateTransition previous;
     [SerializeField] private BookcasePathHandller_Bendary bookcasePathHandler;
     [SerializeField] private TestBookRotation_Bendary animatedBook;
     [SerializeField] private float closeBookAnimationDelay;
@@ -23,7 +23,6 @@ public class PageStateTransition : MonoBehaviour, IClickable
 
     public void focus()
     {
-        GetComponent<BoxCollider>().enabled = false;
         CameraPath.instance.setTarget(CameraPath.instance.pageNode);
         CameraPath.instance.gotoTarget();
         GameManager.Instance.gameplayFSMManager.toBookPageState();
@@ -35,23 +34,17 @@ public class PageStateTransition : MonoBehaviour, IClickable
     public void unfocus()
     {
         // Bendary modify
-        StartCoroutine(WaiteUntilAnimationEnd());
+        animatedBook.CloseBook();
+        animatedBook.RotateToOrign(closeBookAnimationDelay, unfocusCallback);
     }
 
-    IEnumerator WaiteUntilAnimationEnd()
+    void unfocusCallback()
     {
-        animatedBook.CloseBook();
-        animatedBook.RotateToOrign(closeBookAnimationDelay);
-        yield return new WaitForSeconds(closeBookAnimationDelay);
-
         GetComponent<BoxCollider>().enabled = true;
         SelectionManager.instance.selectThis(previous);
-        CameraPath.instance.setTarget(CameraPath.instance.bookNode);
-        CameraPath.instance.gotoTarget();
-
+        //CameraPath.instance.setTarget(CameraPath.instance.bookNode);
+        //CameraPath.instance.gotoTarget();
         GameManager.Instance.gameplayFSMManager.toBookState();
-
         bookcasePathHandler.MoveRealBookBackword(CameraPath.instance.cameraSpeed, animatedBook);
     }
-
 }

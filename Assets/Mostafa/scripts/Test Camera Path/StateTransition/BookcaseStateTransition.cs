@@ -19,7 +19,6 @@ public class BookcaseStateTransition : MonoBehaviour, IClickable
 
     public void focus()
     {
-        GetComponent<BoxCollider>().enabled = false;
         CameraPath.instance.setTarget(CameraPath.instance.bookcaseNode);
         CameraPath.instance.gotoTarget();
         GameManager.Instance.gameplayFSMManager.toBookCaseState();
@@ -31,10 +30,8 @@ public class BookcaseStateTransition : MonoBehaviour, IClickable
     public void unfocus()
     {
         GetComponent<BoxCollider>().enabled = true;
-
         CameraPath.instance.setTarget(CameraPath.instance.floorNode);
         CameraPath.instance.gotoTarget();
-
         GameManager.Instance.gameplayFSMManager.toFloorState();
 
         // Bendary modify

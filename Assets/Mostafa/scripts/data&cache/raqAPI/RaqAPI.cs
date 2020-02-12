@@ -117,6 +117,7 @@ public class RaqAPI : MonoBehaviour
 
         yield return www.SendWebRequest();
 
+        print("data recieved");
         res = JsonUtility.FromJson<ProductResult>(www.downloadHandler.text);
         
         Cache.Instance.cacheResult(res, publisherId);

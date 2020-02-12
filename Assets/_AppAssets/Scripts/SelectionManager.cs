@@ -24,9 +24,9 @@ public class SelectionManager : MonoBehaviour
 
     public void selectThis(IClickable selectedObject)
     {
-            deselectThis(this.selectedObject);
-            this.selectedObject = selectedObject;
-            this.selectedObject.focus();
+        deselectThis(this.selectedObject);
+        this.selectedObject = selectedObject;
+        this.selectedObject.focus();
     }
 
     public void deselectThis(IClickable selectedObject)
@@ -40,8 +40,11 @@ public class SelectionManager : MonoBehaviour
 
         if (this.selectedObject != null)
         {
-
-            this.selectedObject.unfocus();
+            if (CameraPath.instance.cameraMoving == false)
+            {
+                CameraPath.instance.cameraMoving = true;
+                this.selectedObject.unfocus();
+            }
 
         }
     }

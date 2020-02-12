@@ -21,6 +21,8 @@ public class CameraPath : MonoBehaviour, ITraverseable
 
     public float cameraSpeed;
 
+    public bool cameraMoving;
+
     public enum CameraMoveState
     {
         NotMoving,
@@ -59,9 +61,10 @@ public class CameraPath : MonoBehaviour, ITraverseable
     void Start()
     {
         //endNode = currentNode;
+        cameraMoving = false;
         GameManager.Instance.pathData.FloorScrollSpeed = 0;
         gotoTarget();
-
+        
     }
 
     // Update is called once per frame
@@ -171,18 +174,19 @@ public class CameraPath : MonoBehaviour, ITraverseable
         return false;
     }
 
+    
     public void move()
     {
+        
         if (!areNodesEqual(currentNode, endNode))
         {
-
             step();
             cameraTransform.DOMove(currentNode.transform.position, cameraSpeed).OnComplete(move).OnUpdate(onMoving);
 
         }
         else
         {
-
+            cameraMoving = false;
             onLand();
 
         }
@@ -190,11 +194,8 @@ public class CameraPath : MonoBehaviour, ITraverseable
 
     public void step()
     {
-
-
-        if (cameraState != CameraMoveState.NotMoving)
-        {
-            
+        if (cameraState != CameraMoveState.NotMoving){
+            cameraMoving = true;
             switch (cameraState)
             {
                 case CameraMoveState.MoveOut:

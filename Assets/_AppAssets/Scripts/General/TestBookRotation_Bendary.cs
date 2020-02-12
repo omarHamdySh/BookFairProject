@@ -94,9 +94,11 @@ public class TestBookRotation_Bendary : MonoBehaviour
         }
     }
 
-    public void RotateToOrign(float delay)
+
+
+    public void RotateToOrign(float delay, TweenCallback tw)
     {
-        transform.DORotate(OrignalRot, delay, RotateMode.Fast);
+        transform.DORotate(OrignalRot, delay, RotateMode.Fast).OnComplete(tw);
     }
     #endregion
 }

@@ -28,7 +28,9 @@ public class Cache : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         bookcasesData = new Dictionary<int, BookcaseData>();
+        
     }
 
     [ContextMenu("foo")]
@@ -46,7 +48,7 @@ public class Cache : MonoBehaviour
     [ContextMenu("listdic")]
     void listdic()
     {
-        foreach(BookData bc in bookcasesData[1].booksData)
+        foreach(BookData bc in bookcasesData[4].booksData)
         {
             Debug.Log(bc.name);
         }

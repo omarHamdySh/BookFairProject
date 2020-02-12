@@ -2455,7 +2455,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 195042410}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &46535393
 GameObject:
@@ -3109,7 +3109,6 @@ Transform:
   - {fileID: 789068446}
   - {fileID: 1138736523}
   - {fileID: 947257886}
-  - {fileID: 2121179851}
   - {fileID: 1708563086}
   - {fileID: 33685984}
   - {fileID: 944459332}
@@ -3261,7 +3260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dde3a276ef2ea0e40bd77b3cc3555400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  previous: {fileID: 1041766134}
+  previous: {fileID: 1687813312}
   next: {fileID: 0}
   nodeXIndex: 0
   nodeYIndex: 0
@@ -4941,7 +4940,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 195042410}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &947257885
 GameObject:
@@ -7619,7 +7618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   previous: {fileID: 190234290}
-  next: {fileID: 1041766134}
+  next: {fileID: 265958937}
   nodeXIndex: 0
   nodeYIndex: 0
 --- !u!1001 &1702609064
@@ -7778,7 +7777,7 @@ Transform:
   m_LocalScale: {x: 0.2954, y: 0.32186288, z: 0.010070801}
   m_Children: []
   m_Father: {fileID: 195042410}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1708563087
 MonoBehaviour:
@@ -7792,7 +7791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a895577751ea5e428370c4ab6e78c24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  previous: {fileID: 2121179855}
+  previous: {fileID: 947257889}
   bookcasePathHandler: {fileID: 195042409}
   animatedBook: {fileID: 1527662588}
   closeBookAnimationDelay: 1.1
@@ -8390,9 +8389,10 @@ MonoBehaviour:
   floorNode: {fileID: 914040751}
   bookcaseNode: {fileID: 190234290}
   shelfNode: {fileID: 1687813312}
-  bookNode: {fileID: 1041766134}
+  bookNode: {fileID: 0}
   pageNode: {fileID: 265958937}
   cameraSpeed: 0.5
+  cameraMoving: 0
   cameraState: 0
 --- !u!1001 &1930292158
 PrefabInstance:
@@ -9306,104 +9306,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba673ca187a4298448e16938bb0001e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2121179850
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2121179851}
-  - component: {fileID: 2121179854}
-  - component: {fileID: 2121179853}
-  - component: {fileID: 2121179855}
-  m_Layer: 0
-  m_Name: BookStateCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2121179851
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2121179850}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.24, y: 2.52, z: 8.54}
-  m_LocalScale: {x: 0.2954, y: 0.32186288, z: 0.068}
-  m_Children: []
-  m_Father: {fileID: 195042410}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &2121179853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2121179850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83dcd8dace8b7fe449d796b980cb121d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeselectOnUp: 1
-  HideWithFinger: 0
-  IsolateSelectingFingers: 0
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2121179855}
-        m_MethodName: select
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onSelectSet:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelectUp:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls: []
-  isSelected: 0
---- !u!65 &2121179854
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2121179850}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2121179855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2121179850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b582c0be4b7c664584e1797483ee18f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  previous: {fileID: 947257889}
 --- !u!1001 &2138043918
 PrefabInstance:
   m_ObjectHideFlags: 0
