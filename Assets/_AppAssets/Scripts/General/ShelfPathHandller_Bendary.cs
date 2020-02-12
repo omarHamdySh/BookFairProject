@@ -120,9 +120,9 @@ public class ShelfPathHandller_Bendary : MonoBehaviour, IClickable
         SelectionManager.instance.selectThis(this);
     }
 
-    public Transform GetCurrentBook()
+    public Book_Bendary GetCurrentBook()
     {
-        return shelves[currentShelfIndex].GetComponent<BookPathHandller_Bendary>().GetCurrentBook().transform;
+        return shelves[currentShelfIndex].GetComponent<BookPathHandller_Bendary>().GetCurrentBook();
     }
     #endregion
 

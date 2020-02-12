@@ -7,6 +7,8 @@ public class PageStateTransition : MonoBehaviour, IClickable
 {
     public BookStateTransition previous;
     [SerializeField] private BookcasePathHandller_Bendary bookcasePathHandler;
+    [SerializeField] private TestBookRotation_Bendary animatedBook;
+    [SerializeField] private float closeBookAnimationDelay;
 
     LeanSelectable leanSelectable;
     void Start()
@@ -27,11 +29,20 @@ public class PageStateTransition : MonoBehaviour, IClickable
         GameManager.Instance.gameplayFSMManager.toBookPageState();
 
         // Bendary modify
-        bookcasePathHandler.MoveRealBookForward(CameraPath.instance.cameraSpeed);
+        bookcasePathHandler.MoveRealBookForward(CameraPath.instance.cameraSpeed, animatedBook);
     }
 
     public void unfocus()
     {
+        // Bendary modify
+        StartCoroutine(WaiteUntilAnimationEnd());
+    }
+
+    IEnumerator WaiteUntilAnimationEnd()
+    {
+        animatedBook.CloseBook();
+        animatedBook.RotateToOrign(closeBookAnimationDelay);
+        yield return new WaitForSeconds(closeBookAnimationDelay);
 
         GetComponent<BoxCollider>().enabled = true;
         SelectionManager.instance.selectThis(previous);
@@ -40,8 +51,7 @@ public class PageStateTransition : MonoBehaviour, IClickable
 
         GameManager.Instance.gameplayFSMManager.toBookState();
 
-        // Bendary modify
-        bookcasePathHandler.MoveRealBookBackword(CameraPath.instance.cameraSpeed);
+        bookcasePathHandler.MoveRealBookBackword(CameraPath.instance.cameraSpeed, animatedBook);
     }
 
 }

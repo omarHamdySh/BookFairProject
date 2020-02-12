@@ -40,6 +40,14 @@ public class Book_Bendary : MonoBehaviour, IScrollable, IClickable
     {
         return bookPathHandller.GetNodeRank(index).rankRotation;
     }
+
+    public void ToggleRenderers(bool enabled)
+    {
+        foreach (MeshRenderer mesh in GetComponentsInChildren<MeshRenderer>())
+        {
+            mesh.enabled = enabled;
+        }
+    }
     #endregion
 
     #region IScrollable

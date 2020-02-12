@@ -192,17 +192,52 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         realBookcases[currentRealBookcaseInUse].DOMove(bookCasePathPoints[IndexOfCurrent].position, delay);
     }
 
-    public void MoveRealBookForward(float delay)
+    public void MoveRealBookForward(float delay, TestBookRotation_Bendary animatedBook)
     {
-        Transform bookTransform = realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().GetCurrentBook();
-        bookBackwordPos = bookTransform.position;
-        bookTransform.DOMove(BookFowordPos.position, delay);
+        // Get the currentBook 
+        Book_Bendary book = realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().GetCurrentBook();
+
+        // Get Backword Pos
+        bookBackwordPos = book.transform.position;
+
+        // Assign it book backword pos to animated book
+        animatedBook.transform.position = bookBackwordPos;
+
+        // Assign current book cover material to animated book
+        animatedBook.AssignCoverMaterials(book.bookBodyMeshRenderer.material);
+
+        // Close current book renderers
+        book.ToggleRenderers(false);
+
+        // Open Animated book renderers
+        animatedBook.ToggleRenderers(true);
+
+        // Move animated book forword
+        animatedBook.transform.DOMove(BookFowordPos.position, delay).OnComplete(animatedBook.OpenBook);
     }
 
-    public void MoveRealBookBackword(float delay)
+    public void MoveRealBookBackword(float delay, TestBookRotation_Bendary animatedBook)
     {
-        Transform bookTransform = realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().GetCurrentBook();
-        bookTransform.DOMove(bookBackwordPos, delay);
+        // Move Animated book to backword pos
+        animatedBook.transform.DOMove(bookBackwordPos, delay).OnComplete(OnCompleteBookMoveToBackwordPos);
+        StartCoroutine(CloseAnimatedBookRenderers(delay, animatedBook));
+    }
+
+    private void OnCompleteBookMoveToBackwordPos()
+    {
+        // Get the currentBook 
+        Book_Bendary book = realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().GetCurrentBook();
+
+        // Open current book renderers
+        book.ToggleRenderers(true);
+    }
+
+    IEnumerator CloseAnimatedBookRenderers(float delay, TestBookRotation_Bendary animatedBook)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // Close Animated book renderers
+        animatedBook.ToggleRenderers(false);
     }
     #endregion
 }
