@@ -60,7 +60,7 @@ public class Cache : MonoBehaviour
         {
             print("asd");
             bookcasesData[id] = new BookcaseData();
-            StartCoroutine(api.productsByPublisher(id));
+            StartCoroutine(api.productsByPublisher(id, 0, 0, 0));
         }
 
         return bookcasesData[id];
@@ -75,7 +75,7 @@ public class Cache : MonoBehaviour
             bookcasesData[publisherId].booksData = new List<BookData>();
             bookcasesData[publisherId].active = true;
 
-            foreach (ProdcutList productList in res.prodcutList)
+            foreach (Product productList in res.prodcutList)
             {
                 BookData bookData = new BookData();
                 bookData.name = productList.name;

@@ -3,7 +3,9 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System.Net;
 using System.Text;
-using System;
+using System.IO;
+using System.IO.Compression;
+
 public class RaqAPI : MonoBehaviour
 {
 
@@ -26,6 +28,14 @@ public class RaqAPI : MonoBehaviour
     void foo()
     {
         Debug.Log(authInfo.access_token);
+    }
+
+
+    [ContextMenu("foo1")]
+    void foo1()
+    {
+        //StartCoroutine(productIdsByPublisher(4, 0, 2, 1));
+        StartCoroutine(allSponsors());
     }
 
     [ContextMenu("auth")]
@@ -103,9 +113,14 @@ public class RaqAPI : MonoBehaviour
         Debug.Log(www.downloadHandler.text);
     }
 
-    public IEnumerator productsByPublisher(int publisherId)
+    public IEnumerator productsByPublisher(int publisherId, int categoryId, int limit, int page)
     {
-        string uri = baseUrl + "/api/products_sample_data?" + "vendorId=" + publisherId.ToString() + "&bookFairId=";
+        //temporary until badawy gives us another endpoint
+        string uri = baseUrl + "/api/products?" + "vendorId=" + publisherId.ToString();
+
+        if (limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
+        if (categoryId > 0) uri += "&categoryId=" + categoryId.ToString();
+
         ProductResult res = new ProductResult();
 
         UnityWebRequest www = UnityWebRequest.Get(uri);
@@ -132,7 +147,92 @@ public class RaqAPI : MonoBehaviour
         
     }
 
+    public IEnumerator productIdsByPublisher(int publisherId, int categoryId, int limit, int page)
+    {
+        //temporary until badawy gives us another endpoint
+        string uri = baseUrl + "/api/products?" + "vendorId=" + publisherId.ToString();
 
+        if(limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
+        if (categoryId > 0) uri += "&categoryId=" + categoryId.ToString();
+
+        ProducIdstResult res = new ProducIdstResult();
+
+        UnityWebRequest www = UnityWebRequest.Get(uri);
+
+        www.SetRequestHeader("Authorization", authInfo.token_type + " " + authInfo.access_token);
+        www.SetRequestHeader("customerId", "1");
+        www.SetRequestHeader("Content-Type", "application/json");
+        www.SetRequestHeader("LanguageId", "1");
+
+        yield return www.SendWebRequest();
+
+        res = JsonUtility.FromJson<ProducIdstResult>(www.downloadHandler.text);
+
+        
+        Debug.Log(res.prodcutList.Count);
+        foreach(BookId productList in res.prodcutList)
+        {
+            Debug.Log(productList.id);
+        }
+
+
+    }
+
+    public IEnumerator allCategories(int limit, int page)
+    {
+        //temporary until badawy gives us another endpoint
+        string uri = baseUrl + "/api/categories/categories_list";
+
+        if (limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
+        
+        CategoriesResult res = new CategoriesResult();
+
+        UnityWebRequest www = UnityWebRequest.Get(uri);
+
+        www.SetRequestHeader("Authorization", authInfo.token_type + " " + authInfo.access_token);
+        www.SetRequestHeader("customerId", "1");
+        www.SetRequestHeader("Content-Type", "application/json");
+        www.SetRequestHeader("LanguageId", "1");
+
+        yield return www.SendWebRequest();
+
+        res = JsonUtility.FromJson<CategoriesResult>(www.downloadHandler.text);
+
+        
+        foreach (ProductCategory cat in res.categories)
+        {
+            Debug.Log(cat.name);
+        }
+
+
+    }
+
+    public IEnumerator allSponsors()
+    {
+        //temporary until badawy gives us another endpoint
+        string uri = baseUrl + "/api/products/sponsors_list";
+
+        SponsorsResult res = new SponsorsResult();
+
+        UnityWebRequest www = UnityWebRequest.Get(uri);
+
+        www.SetRequestHeader("Authorization", authInfo.token_type + " " + authInfo.access_token);
+        www.SetRequestHeader("customerId", "1");
+        www.SetRequestHeader("Content-Type", "application/json");
+        www.SetRequestHeader("LanguageId", "1");
+
+        yield return www.SendWebRequest();
+
+        res = JsonUtility.FromJson<SponsorsResult>(www.downloadHandler.text);
+
+
+        foreach (Sponsor sponsor in res.sponsorList)
+        {
+            Debug.Log(sponsor.name);
+        }
+
+
+    }
 }
 
 
