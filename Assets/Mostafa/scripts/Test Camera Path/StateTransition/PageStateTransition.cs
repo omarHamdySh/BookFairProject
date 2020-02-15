@@ -44,7 +44,7 @@ public class PageStateTransition : MonoBehaviour, IClickable
         SelectionManager.instance.selectThis(previous);
         //CameraPath.instance.setTarget(CameraPath.instance.bookNode);
         //CameraPath.instance.gotoTarget();
-        GameManager.Instance.gameplayFSMManager.toBookState();
+        GameManager.Instance.gameplayFSMManager.toShelfState();
         bookcasePathHandler.MoveRealBookBackword(CameraPath.instance.cameraSpeed, animatedBook);
     }
 }
