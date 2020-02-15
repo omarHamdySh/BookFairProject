@@ -54,7 +54,7 @@ public class Bookcase_Bendary : MonoBehaviour, IScrollable
     /// <param name="rot">the rotation in degree</param>
     public void SetBookcaseRotation(int rot)
     {
-        transform.Rotate(new Vector3(0, rot - transform.localRotation.eulerAngles.y, 0));
+        transform.DOLocalRotate(new Vector3(0, rot /*- transform.localRotation.eulerAngles.y*/, 0), duration, RotateMode.Fast);
     }
 
     /// <summary>
@@ -102,7 +102,7 @@ public class Bookcase_Bendary : MonoBehaviour, IScrollable
                 bookcasePathHandller.realBookcases[bookcasePathHandller.currentRealBookcaseInUse].localRotation = transform.localRotation;
                 bookcasePathHandller.realBookcases[bookcasePathHandller.currentRealBookcaseInUse].DOMove(destination, duration);
                 int rot = bookcasePathHandller.bookCasePathPoints[objPathIndex].GetComponent<NodeRank>().rankRotation;
-                bookcasePathHandller.realBookcases[bookcasePathHandller.currentRealBookcaseInUse].DORotate(new Vector3(0, rot - transform.localRotation.eulerAngles.y, 0), duration, RotateMode.LocalAxisAdd);
+                bookcasePathHandller.realBookcases[bookcasePathHandller.currentRealBookcaseInUse].DOLocalRotate(new Vector3(0, rot /*- transform.localRotation.eulerAngles.y*/, 0), duration, RotateMode.Fast);
             }
 
             transform.DOMove(destination, duration).OnUpdate(onMoving).OnComplete(onLand);
