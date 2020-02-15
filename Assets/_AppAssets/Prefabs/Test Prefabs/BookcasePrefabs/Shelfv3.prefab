@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97756135331d91241a3a6c0150f2c107, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectScrollDuration: 0.7
+  objectScrollDuration: 0.5
   currentBookIndex: 0
   IndexOfCurrent: 0
   rightDomyIndex: 5
