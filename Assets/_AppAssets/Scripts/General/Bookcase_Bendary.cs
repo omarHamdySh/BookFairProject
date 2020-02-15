@@ -54,7 +54,7 @@ public class Bookcase_Bendary : MonoBehaviour, IScrollable
     /// <param name="rot">the rotation in degree</param>
     public void SetBookcaseRotation(int rot)
     {
-        transform.DOLocalRotate(new Vector3(0, rot /*- transform.localRotation.eulerAngles.y*/, 0), duration, RotateMode.Fast);
+        transform.Rotate(new Vector3(0, rot - transform.localRotation.eulerAngles.y, 0));
     }
 
     /// <summary>
@@ -64,7 +64,7 @@ public class Bookcase_Bendary : MonoBehaviour, IScrollable
     /// <param name="duration">the duration to rech the rotation</param>
     public void SetBookcaseRotation(int rot, float duration)
     {
-        transform.DORotate(new Vector3(0, rot - transform.localRotation.eulerAngles.y, 0), duration, RotateMode.LocalAxisAdd);
+        transform.DOLocalRotate(new Vector3(0, rot /*- transform.localRotation.eulerAngles.y*/, 0), duration, RotateMode.Fast);
     }
 
     public void ToggleAsCurrent(bool isCurrent)
