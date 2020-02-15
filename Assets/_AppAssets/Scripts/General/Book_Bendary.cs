@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Book_Bendary : MonoBehaviour, IScrollable, IClickable
+public class Book_Bendary : MonoBehaviour, IScrollable
 {
     public BookPathHandller_Bendary bookPathHandller;
     public MeshRenderer bookBodyMeshRenderer;
@@ -81,15 +81,16 @@ public class Book_Bendary : MonoBehaviour, IScrollable, IClickable
             else
             {
                 var rotate = GetRotRank(getObjectIndex());
-                if (rotate != 0)
-                {
-                    rotate = (rotate - transform.localRotation.eulerAngles.y);
-                    transform.DORotate(new Vector3(0, rotate, 0), duration, RotateMode.LocalAxisAdd);
-                }
-                else
-                {
-                    transform.localRotation = Quaternion.Euler(0, 0, 0);
-                }
+                transform.DOLocalRotate(new Vector3(0, rotate, 0), duration, RotateMode.Fast);
+                //if (rotate != 0)
+                //{
+                //    rotate = (rotate - transform.localRotation.eulerAngles.y);
+                //    transform.DORotate(new Vector3(0, rotate, 0), duration, RotateMode.LocalAxisAdd);
+                //}
+                //else
+                //{
+                //    transform.localRotation = Quaternion.Euler(0, 0, 0);
+                //}
                 transform.DOMove(destination, duration).OnComplete(onLand);
             }
         }
@@ -118,18 +119,6 @@ public class Book_Bendary : MonoBehaviour, IScrollable, IClickable
     public void setObjectIndex(int _objectIndex)
     {
         objPathIndex = _objectIndex;
-    }
-    #endregion
-
-    #region Iclickable
-    public void focus()
-    {
-
-    }
-
-    public void unfocus()
-    {
-
     }
     #endregion
 }

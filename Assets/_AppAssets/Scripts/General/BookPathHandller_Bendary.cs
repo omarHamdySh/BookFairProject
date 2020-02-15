@@ -107,7 +107,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
         {
             for (int i = 0; i < books.Length; i++)
             {
-                books[i].transform.localRotation = Quaternion.Euler(0, 0, 0); ;
+                books[i].transform.localRotation = Quaternion.Euler(0, 0, 0);
 
                 books[i].transform.Rotate(new Vector3(
                     0,
