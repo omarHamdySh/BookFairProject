@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_AppAssets/_Scenes/Production Scenes/TestIntegerationScene_V3_Omar.unity
+    guid: 95b67bd2c8aae334093a644821678eb4
   m_configObjects: {}
