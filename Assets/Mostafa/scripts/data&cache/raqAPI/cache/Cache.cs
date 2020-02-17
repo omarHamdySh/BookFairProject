@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Cache : MonoBehaviour
 {
-    public Dictionary<int, BookcaseData> bookcasesData;
+    public List<ProductCategory> allCategories;
+    public List<BookcaseData> bookcasesData;
     public RaqAPI api;
 
     #region singleton
@@ -28,67 +29,94 @@ public class Cache : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        bookcasesData = new Dictionary<int, BookcaseData>();
-        
+        bookcasesData = new List<BookcaseData>();
     }
 
     [ContextMenu("foo")]
     void foo()
     {
-        getBookCase(4);
+        retrieveCategories();
     }
     [ContextMenu("foo1")]
     void foo1()
     {
-        getBookCase(1);
+        retrieveCategoryInBookcase(4, 22, 1, 1);
     }
 
 
-    [ContextMenu("listdic")]
-    void listdic()
-    {
-        foreach(BookData bc in bookcasesData[4].booksData)
-        {
-            Debug.Log(bc.name);
-        }
-    }
+
     //purpose: gets book case by publisher id
-    public BookcaseData getBookCase(int id)
+    public void retrieveCategoryInBookcase(int publisherId, int categoryId, int limit, int page)
     {
-        if (!bookcasesData.ContainsKey(id))
-        {
-            print("asd");
-            bookcasesData[id] = new BookcaseData();
-            StartCoroutine(api.productsByPublisher(id, 0, 0, 0));
-        }
-
-        return bookcasesData[id];
+        StartCoroutine(api.productsByPublisher(publisherId, categoryId, limit, page));
     }
-    
-    public void cacheResult(ProductResult res, int publisherId)
+
+    //retrieves every single category
+    public void retrieveCategories()
     {
+         StartCoroutine(api.getAllCategories(0, 0));
+    }
+    public void cacheCategoryInPublisher(ProductResult res, int publisherId, int categoryId)
+    {
+
         if (res != null)
         {
-            
-            bookcasesData[publisherId].id = publisherId;
-            bookcasesData[publisherId].booksData = new List<BookData>();
-            bookcasesData[publisherId].active = true;
-
-            foreach (Product productList in res.prodcutList)
+            BookcaseData tmpBookcase;
+            tmpBookcase = bookcasesData.Find(bd => bd.id == publisherId);
+            if(tmpBookcase == null)
             {
-                BookData bookData = new BookData();
-                bookData.name = productList.name;
-                bookData.id = productList.id;
-                bookData.description = productList.shortDescription;
-                bookData.texture = new Texture2D(1, 1);
-                bookData.texture.LoadImage(Convert.FromBase64String(productList.defaultPicture));
+                tmpBookcase = new BookcaseData();
+                tmpBookcase.id = publisherId;
+                tmpBookcase.categories = new List<CategoryData>();
 
-                bookcasesData[publisherId].booksData.Add(bookData);
+                CategoryData tmpCat = new CategoryData();
+                tmpCat.booksData = new List<BookData>();
+                tmpCat.id = categoryId;
+                tmpCat.total = res.totalRecord;
                 
-
+                foreach(Product book in res.prodcutList)
+                {
+                    BookData tmpBook = new BookData();
+                    tmpBook.id = book.id;
+                    tmpBook.description = book.shortDescription;
+                    tmpBook.name = book.name;
+                    //add picture and url later
+                    tmpCat.booksData.Add(tmpBook);
+                    tmpCat.loadedBooks++;
+                }
+                tmpBookcase.categories.Add(tmpCat);
+                bookcasesData.Add(tmpBookcase);
             }
+            else
+            {
+                CategoryData tmpCat = tmpBookcase.categories.Find(cat => cat.id == categoryId);
+                tmpCat.booksData = new List<BookData>();
+                if (tmpCat == null) {
+                    tmpCat = new CategoryData();
+                    tmpCat.id = categoryId;
+                    tmpCat.total = res.totalRecord;
+                }
+                foreach (Product book in res.prodcutList)
+                {
+                    BookData tmpBook = new BookData();
+                    tmpBook.id = book.id;
+                    tmpBook.description = book.shortDescription;
+                    tmpBook.name = book.name;
+                    //add picture and url later
+                    tmpCat.booksData.Add(tmpBook);
+                    tmpCat.loadedBooks++;
+                }
+            }
+            
+
+
         }
     }
-    
+
+    public void cacheAllCategories(AllCategoriesResult categoriesResult)
+    {
+        allCategories = categoriesResult.categories;
+    }
+
+
 }

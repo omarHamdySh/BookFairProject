@@ -37,7 +37,7 @@ public class BookId
 
 
 [System.Serializable]
-public class CategoriesResult
+public class AllCategoriesResult
 {
     public List<ProductCategory> categories;
     public int totalRecord;
