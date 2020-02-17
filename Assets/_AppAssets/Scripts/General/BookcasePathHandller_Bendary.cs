@@ -216,10 +216,10 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         animatedBook.transform.DOMove(BookFowordPos.position, delay).OnComplete(animatedBook.OpenBook);
     }
 
-    public void MoveRealBookBackword(float delay, TestBookRotation_Bendary animatedBook)
+    public void MoveRealBookBackword(float delay, TestBookRotation_Bendary animatedBook, TweenCallback tw)
     {
         // Move Animated book to backword pos
-        animatedBook.transform.DOMove(bookBackwordPos, delay).OnComplete(OnCompleteBookMoveToBackwordPos);
+        animatedBook.transform.DOMove(bookBackwordPos, delay).OnComplete(OnCompleteBookMoveToBackwordPos + tw);
         StartCoroutine(CloseAnimatedBookRenderers(delay, animatedBook));
     }
 

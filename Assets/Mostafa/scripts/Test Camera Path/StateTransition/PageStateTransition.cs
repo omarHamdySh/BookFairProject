@@ -40,11 +40,18 @@ public class PageStateTransition : MonoBehaviour, IClickable
 
     void unfocusCallback()
     {
+
+        bookcasePathHandler.MoveRealBookBackword(CameraPath.instance.cameraSpeed, animatedBook, OnBookBackToOrign);
+
+    }
+
+    private void OnBookBackToOrign()
+    {
         GetComponent<BoxCollider>().enabled = true;
         SelectionManager.instance.selectThis(previous);
         //CameraPath.instance.setTarget(CameraPath.instance.bookNode);
         //CameraPath.instance.gotoTarget();
         GameManager.Instance.gameplayFSMManager.toShelfState();
-        bookcasePathHandler.MoveRealBookBackword(CameraPath.instance.cameraSpeed, animatedBook);
     }
+
 }
