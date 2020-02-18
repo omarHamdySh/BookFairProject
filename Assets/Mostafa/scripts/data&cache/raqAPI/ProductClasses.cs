@@ -69,4 +69,16 @@ public class Sponsor
     public object form;
 }
 
+[System.Serializable]
+public class Vendor
+{
+    public string name;
+    public string description;
+    public string defualtPicture;
+}
 
+public class AllVendorsResult
+{
+    public List<Vendor> vendorList;
+    public int totalRecord;
+}

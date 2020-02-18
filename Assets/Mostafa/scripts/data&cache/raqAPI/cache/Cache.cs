@@ -7,6 +7,7 @@ public class Cache : MonoBehaviour
 {
     public List<ProductCategory> allCategories;
     public List<BookcaseData> bookcasesData;
+    public List<Vendor> allVendors;
     public RaqAPI api;
 
     #region singleton
@@ -35,7 +36,7 @@ public class Cache : MonoBehaviour
     [ContextMenu("foo")]
     void foo()
     {
-        retrieveCategories();
+        retrieveVendors();
     }
     [ContextMenu("foo1")]
     void foo1()
@@ -54,8 +55,16 @@ public class Cache : MonoBehaviour
     //retrieves every single category
     public void retrieveCategories()
     {
-         StartCoroutine(api.getAllCategories(0, 0));
+        StartCoroutine(api.getAllCategories(0, 0));
     }
+
+    public void retrieveVendors()
+    {
+        StartCoroutine(api.getAllVendors(0, 0));
+    }
+
+    ////////////////////////////////caching functions//////////////////////////////////////////
+
     public void cacheCategoryInPublisher(ProductResult res, int publisherId, int categoryId)
     {
 
@@ -63,7 +72,7 @@ public class Cache : MonoBehaviour
         {
             BookcaseData tmpBookcase;
             tmpBookcase = bookcasesData.Find(bd => bd.id == publisherId);
-            if(tmpBookcase == null)
+            if (tmpBookcase == null)
             {
                 tmpBookcase = new BookcaseData();
                 tmpBookcase.id = publisherId;
@@ -73,8 +82,8 @@ public class Cache : MonoBehaviour
                 tmpCat.booksData = new List<BookData>();
                 tmpCat.id = categoryId;
                 tmpCat.total = res.totalRecord;
-                
-                foreach(Product book in res.prodcutList)
+
+                foreach (Product book in res.prodcutList)
                 {
                     BookData tmpBook = new BookData();
                     tmpBook.id = book.id;
@@ -91,7 +100,8 @@ public class Cache : MonoBehaviour
             {
                 CategoryData tmpCat = tmpBookcase.categories.Find(cat => cat.id == categoryId);
                 tmpCat.booksData = new List<BookData>();
-                if (tmpCat == null) {
+                if (tmpCat == null)
+                {
                     tmpCat = new CategoryData();
                     tmpCat.id = categoryId;
                     tmpCat.total = res.totalRecord;
@@ -107,15 +117,22 @@ public class Cache : MonoBehaviour
                     tmpCat.loadedBooks++;
                 }
             }
-            
-
-
         }
     }
 
     public void cacheAllCategories(AllCategoriesResult categoriesResult)
     {
         allCategories = categoriesResult.categories;
+    }
+
+    public void cacheAllVendors(AllVendorsResult vendorsResult)
+    {
+        allVendors = vendorsResult.vendorList;
+
+        foreach (var vendor in allVendors)
+        {
+            Debug.Log(vendor.name);
+        }
     }
 
 

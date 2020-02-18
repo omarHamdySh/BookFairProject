@@ -17,6 +17,8 @@ public class CategoryData
     public int id;
 
     public int total;//maximum number of books to be loaded
+    
+    public int loadedPages;
     public int loadedBooks;
     
     public List<BookData> booksData;
@@ -26,3 +28,5 @@ public class BookcaseData
     public int id;
     public List<CategoryData> categories;
 }
+
+
