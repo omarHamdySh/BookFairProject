@@ -8661,7 +8661,7 @@ MonoBehaviour:
   durationLink: 1
   ControlledBy: {fileID: 921271269}
   MovementSection:
-    UseSection: 1
+    UseSection: 0
     HideType: 3
     ShowType: 3
     TypeLink: 1
@@ -8844,8 +8844,8 @@ MonoBehaviour:
   ShowingDirection: 0
   HidingDirection: 0
   ScaleSection:
-    UseSection: 0
-    HideType: 3
+    UseSection: 1
+    HideType: 7
     ShowType: 3
     TypeLink: 1
     WantedVectorValue: {x: 0, y: 0, z: 0}
@@ -8893,7 +8893,7 @@ MonoBehaviour:
       EaseOutElastic:
         ElasticityPower: 0.5
       EaseInOutElastic:
-        ElasticityPower: 0.5
+        ElasticityPower: 0.1
     showingEasingParams:
       Custom:
         Curve:
@@ -15571,6 +15571,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1656716987}
+        m_MethodName: ToggleUI
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1167526681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15611,7 +15622,7 @@ MonoBehaviour:
   durationLink: 1
   ControlledBy: {fileID: 921271269}
   MovementSection:
-    UseSection: 1
+    UseSection: 0
     HideType: 3
     ShowType: 3
     TypeLink: 1
@@ -15794,8 +15805,8 @@ MonoBehaviour:
   ShowingDirection: 0
   HidingDirection: 0
   ScaleSection:
-    UseSection: 0
-    HideType: 3
+    UseSection: 1
+    HideType: 7
     ShowType: 3
     TypeLink: 1
     WantedVectorValue: {x: 0, y: 0, z: 0}
@@ -15843,7 +15854,7 @@ MonoBehaviour:
       EaseOutElastic:
         ElasticityPower: 0.5
       EaseInOutElastic:
-        ElasticityPower: 0.5
+        ElasticityPower: 0.1
     showingEasingParams:
       Custom:
         Curve:
@@ -16176,7 +16187,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.88750005, y: 0.8131178}
   m_AnchorMax: {x: 0.95000005, y: 0.924}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.000030517578}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1196297867
@@ -16219,7 +16230,7 @@ MonoBehaviour:
   durationLink: 1
   ControlledBy: {fileID: 190255084}
   MovementSection:
-    UseSection: 1
+    UseSection: 0
     HideType: 3
     ShowType: 3
     TypeLink: 1
@@ -16402,8 +16413,8 @@ MonoBehaviour:
   ShowingDirection: 0
   HidingDirection: 0
   ScaleSection:
-    UseSection: 0
-    HideType: 3
+    UseSection: 1
+    HideType: 7
     ShowType: 3
     TypeLink: 1
     WantedVectorValue: {x: 0, y: 0, z: 0}
@@ -16451,7 +16462,7 @@ MonoBehaviour:
       EaseOutElastic:
         ElasticityPower: 0.5
       EaseInOutElastic:
-        ElasticityPower: 0.5
+        ElasticityPower: 0.1
     showingEasingParams:
       Custom:
         Curve:
@@ -16730,6 +16741,17 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 921271269}
           m_ObjectArgumentAssemblyTypeName: Menu, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1656716987}
+        m_MethodName: ToggleUI
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -25751,6 +25773,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1656716986}
+  - component: {fileID: 1656716987}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -25774,6 +25797,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1656716987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656716985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53178bd12ffc0554ab4186c61821eb95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loading: {fileID: 0}
+  isUIOpen: 0
 --- !u!1 &1668536704
 GameObject:
   m_ObjectHideFlags: 0
@@ -27253,8 +27290,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AutoFindHolders: 1
   AllMenus:
-  - {fileID: 190255084}
   - {fileID: 921271269}
+  - {fileID: 190255084}
   CurActiveMenu: {fileID: 190255084}
   AnimateFirstMenuAtStart: 1
   AllPopups: []
@@ -28969,7 +29006,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -28993,7 +29030,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 1
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_textAlignment: 513
   m_characterSpacing: 0
   m_wordSpacing: 0
