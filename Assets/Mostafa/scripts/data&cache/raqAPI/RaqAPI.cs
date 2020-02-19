@@ -1,10 +1,7 @@
 ﻿using System.Collections;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
-using System.Net;
-using System.Text;
-using System.IO;
-using System.IO.Compression;
 
 public class RaqAPI : MonoBehaviour
 {
@@ -88,9 +85,6 @@ public class RaqAPI : MonoBehaviour
         
         Cache.Instance.cacheCategoryInPublisher(res, publisherId, categoryId);
         
-        
-
-        
     }
 
     public IEnumerator productIdsByPublisher(int publisherId, int categoryId, int limit, int page)
@@ -150,6 +144,30 @@ public class RaqAPI : MonoBehaviour
 
     }
 
+    public IEnumerator getAllVendors(int limit, int page)
+    {
+        //temporary until badawy gives us another endpoint
+        string uri = baseUrl + "/api/products/PublishersHousesListSampleData";
+
+        if (limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
+
+        AllVendorsResult res = new AllVendorsResult();
+
+        UnityWebRequest www = UnityWebRequest.Get(uri);
+
+        www.SetRequestHeader("Authorization", authInfo.token_type + " " + authInfo.access_token);
+        www.SetRequestHeader("customerId", "1");
+        www.SetRequestHeader("Content-Type", "application/json");
+        www.SetRequestHeader("LanguageId", "1");
+
+        yield return www.SendWebRequest();
+
+        res = JsonUtility.FromJson<AllVendorsResult>(www.downloadHandler.text);
+
+        Cache.Instance.cacheAllVendors(res);
+
+
+    }
     public IEnumerator allSponsors()
     {
         //temporary until badawy gives us another endpoint
