@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class Shelf_Bendary : MonoBehaviour, IScrollable
 {
@@ -11,6 +12,8 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
     private bool isLanded = true;
     private bool isCurrent = false;
     private bool isLoopingDomy = false;
+
+    [SerializeField] private Text categoryText;
 
     private void Start()
     {
@@ -63,6 +66,11 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
         {
             i.enabled = enabled;
         }
+    }
+
+    public void SetCategoryText(string categoryText)
+    {
+        this.categoryText.text = categoryText;
     }
     #endregion
 

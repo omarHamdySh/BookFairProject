@@ -239,6 +239,16 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         // Close Animated book renderers
         animatedBook.ToggleRenderers(false);
     }
+
+    public void StartCallData()
+    {
+
+    }
+
+    public void PutDataOnCurrent()
+    {
+        realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>();
+    }
     #endregion
 }
 
