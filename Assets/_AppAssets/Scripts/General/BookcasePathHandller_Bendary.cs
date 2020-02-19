@@ -26,9 +26,14 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         Init();
     }
 
+    private void Start()
+    {
+        PutDataOnCurrent(4);
+    }
+
     private void Update()
     {
-        if (GameManager.Instance.gameplayFSMManager.getCurrentState() == GameplayState.Floor&&!LevelUI.Instance.isUIOpen)
+        if (GameManager.Instance.gameplayFSMManager.getCurrentState() == GameplayState.Floor && !LevelUI.Instance.isUIOpen)
         {
             currentScrollSpeed = GameManager.Instance.pathData.FloorScrollSpeed;
             if (isObjMoving && currentScrollSpeed == 0)
@@ -245,9 +250,14 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
 
     }
 
-    public void PutDataOnCurrent()
+    public void PutDataOnCurrent(int publisherID)
     {
-        realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>();
+        BookcaseData tmpBookcaseData = Cache.Instance.cachedData.bookcasesData.Find(bc => bc.id == publisherID);
+
+        if (tmpBookcaseData != null)
+        {
+            realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().SetAllVisableCategory(tmpBookcaseData.categories);
+        }
     }
     #endregion
 }
