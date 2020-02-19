@@ -23,7 +23,7 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.gameplayFSMManager.getCurrentState() == GameplayState.BookCase && isCurrentBookcase)
+        if (GameManager.Instance.gameplayFSMManager.getCurrentState() == GameplayState.BookCase && isCurrentBookcase && !LevelUI.Instance.isUIOpen)
         {
             currentScrollSpeed = GameManager.Instance.pathData.BookcaseScrollSpeed;
             if (isObjMoving && currentScrollSpeed == 0)

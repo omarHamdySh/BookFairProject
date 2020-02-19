@@ -28,7 +28,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.gameplayFSMManager.getCurrentState() == GameplayState.Floor)
+        if (GameManager.Instance.gameplayFSMManager.getCurrentState() == GameplayState.Floor&&!LevelUI.Instance.isUIOpen)
         {
             currentScrollSpeed = GameManager.Instance.pathData.FloorScrollSpeed;
             if (isObjMoving && currentScrollSpeed == 0)
