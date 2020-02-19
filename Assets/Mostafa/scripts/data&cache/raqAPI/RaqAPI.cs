@@ -64,7 +64,7 @@ public class RaqAPI : MonoBehaviour
     public IEnumerator productsByPublisher(int publisherId, int categoryId, int limit, int page)
     {
         //temporary until badawy gives us another endpoint
-        string uri = baseUrl + "/api/products?" + "vendorId=" + publisherId.ToString();
+        string uri = baseUrl + "/api/products_sample_data?" + "vendorId=" + publisherId.ToString();
 
         if (limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
         if (categoryId > 0) uri += "&categoryId=" + categoryId.ToString();
@@ -80,11 +80,14 @@ public class RaqAPI : MonoBehaviour
 
         yield return www.SendWebRequest();
 
-        print("data recieved");
         res = JsonUtility.FromJson<ProductResult>(www.downloadHandler.text);
-        
-        Cache.Instance.cacheCategoryInPublisher(res, publisherId, categoryId);
-        
+
+        Debug.Log(www.downloadHandler.text);
+
+        if (res != null)
+        {
+            Cache.Instance.cacheCategoryInPublisher(res, publisherId, categoryId);
+        }
     }
 
     public IEnumerator productIdsByPublisher(int publisherId, int categoryId, int limit, int page)
@@ -136,17 +139,16 @@ public class RaqAPI : MonoBehaviour
 
         yield return www.SendWebRequest();
 
-        res = JsonUtility.FromJson<AllCategoriesResult>(www.downloadHandler.text);
-
-        Debug.Log("caching categories");
-        Cache.Instance.cacheAllCategories(res);
-
+        if (res != null)
+        {
+            res = JsonUtility.FromJson<AllCategoriesResult>(www.downloadHandler.text);
+        }
+        
 
     }
 
     public IEnumerator getAllVendors(int limit, int page)
     {
-        //temporary until badawy gives us another endpoint
         string uri = baseUrl + "/api/products/PublishersHousesListSampleData";
 
         if (limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
@@ -164,8 +166,10 @@ public class RaqAPI : MonoBehaviour
 
         res = JsonUtility.FromJson<AllVendorsResult>(www.downloadHandler.text);
 
-        Cache.Instance.cacheAllVendors(res);
-
+        if (res != null)
+        {
+            Cache.Instance.cacheAllVendors(res);
+        }
 
     }
     public IEnumerator allSponsors()
@@ -183,13 +187,10 @@ public class RaqAPI : MonoBehaviour
         www.SetRequestHeader("LanguageId", "1");
 
         yield return www.SendWebRequest();
-
-        res = JsonUtility.FromJson<SponsorsResult>(www.downloadHandler.text);
-
-
-        foreach (Sponsor sponsor in res.sponsorList)
+        
+        if (res != null)
         {
-            Debug.Log(sponsor.name);
+            res = JsonUtility.FromJson<SponsorsResult>(www.downloadHandler.text);
         }
 
 

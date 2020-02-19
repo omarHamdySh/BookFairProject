@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class Cache : MonoBehaviour
 {
-    public List<ProductCategory> allCategories;
-    public List<BookcaseData> bookcasesData;
-    public List<Vendor> allVendors;
+    public CacheSO cachedData;
+
     public RaqAPI api;
+
 
     #region singleton
     private static Cache _instance;
@@ -30,20 +30,27 @@ public class Cache : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bookcasesData = new List<BookcaseData>();
+        //cachedData.bookcasesData = new List<BookcaseData>();
+        
     }
 
     [ContextMenu("foo")]
     void foo()
     {
+        retrieveCategories();
         retrieveVendors();
     }
     [ContextMenu("foo1")]
     void foo1()
     {
-        retrieveCategoryInBookcase(4, 22, 1, 1);
+        retrieveCategoryInBookcase(4, 20, 0, 0);
     }
 
+    [ContextMenu("foo2")]
+    void foo2()
+    {
+        retrieveCategoryInBookcase(4, 23, 10, 1);
+    }
 
 
     //purpose: gets book case by publisher id
@@ -71,65 +78,75 @@ public class Cache : MonoBehaviour
         if (res != null)
         {
             BookcaseData tmpBookcase;
-            tmpBookcase = bookcasesData.Find(bd => bd.id == publisherId);
+            tmpBookcase = cachedData.bookcasesData.Find(bd => bd.id == publisherId);
             if (tmpBookcase == null)
             {
                 tmpBookcase = new BookcaseData();
                 tmpBookcase.id = publisherId;
+                tmpBookcase.name = cachedData.allVendors.Find(x => x.id == publisherId).name;
                 tmpBookcase.categories = new List<CategoryData>();
 
                 CategoryData tmpCat = new CategoryData();
                 tmpCat.booksData = new List<BookData>();
                 tmpCat.id = categoryId;
+                tmpCat.name = cachedData.allCategories.Find(x => x.id == categoryId).name;
                 tmpCat.total = res.totalRecord;
 
                 foreach (Product book in res.prodcutList)
                 {
                     BookData tmpBook = new BookData();
                     tmpBook.id = book.id;
-                    tmpBook.description = book.shortDescription;
+                    //tmpBook.description = book.shortDescription;
                     tmpBook.name = book.name;
                     //add picture and url later
+                    tmpBook.imgString = book.defaultPicture;
                     tmpCat.booksData.Add(tmpBook);
                     tmpCat.loadedBooks++;
                 }
                 tmpBookcase.categories.Add(tmpCat);
-                bookcasesData.Add(tmpBookcase);
+                cachedData.bookcasesData.Add(tmpBookcase);
             }
             else
             {
                 CategoryData tmpCat = tmpBookcase.categories.Find(cat => cat.id == categoryId);
-                tmpCat.booksData = new List<BookData>();
                 if (tmpCat == null)
                 {
                     tmpCat = new CategoryData();
+                    tmpCat.booksData = new List<BookData>();
                     tmpCat.id = categoryId;
+                    tmpCat.name = cachedData.allCategories.Find(x => x.id == categoryId).name;
                     tmpCat.total = res.totalRecord;
+
+                    tmpBookcase.categories.Add(tmpCat);
+
+                    tmpCat = tmpBookcase.categories[tmpBookcase.categories.Count - 1];
                 }
                 foreach (Product book in res.prodcutList)
                 {
                     BookData tmpBook = new BookData();
                     tmpBook.id = book.id;
-                    tmpBook.description = book.shortDescription;
+                    //tmpBook.description = book.shortDescription;
                     tmpBook.name = book.name;
                     //add picture and url later
+                    tmpBook.imgString = book.defaultPicture;
                     tmpCat.booksData.Add(tmpBook);
                     tmpCat.loadedBooks++;
                 }
             }
         }
+        //TODO
     }
 
     public void cacheAllCategories(AllCategoriesResult categoriesResult)
     {
-        allCategories = categoriesResult.categories;
+        cachedData.allCategories = categoriesResult.categories;
     }
 
     public void cacheAllVendors(AllVendorsResult vendorsResult)
     {
-        allVendors = vendorsResult.vendorList;
+        cachedData.allVendors = vendorsResult.vendorList;
 
-        foreach (var vendor in allVendors)
+        foreach (var vendor in cachedData.allVendors)
         {
             Debug.Log(vendor.name);
         }

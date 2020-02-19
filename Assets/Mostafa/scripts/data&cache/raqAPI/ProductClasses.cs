@@ -12,10 +12,10 @@ public class ProductResult
 [System.Serializable]
 public class Product
 {
+    public int id;
     public string name;
     public string shortDescription;
     public string defaultPicture;
-    public int id;
 }
 
 
@@ -72,6 +72,7 @@ public class Sponsor
 [System.Serializable]
 public class Vendor
 {
+    public int id;
     public string name;
     public string description;
     public string defualtPicture;
