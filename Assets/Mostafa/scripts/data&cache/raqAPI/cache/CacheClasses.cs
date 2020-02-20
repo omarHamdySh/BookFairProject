@@ -20,8 +20,9 @@ public class CategoryData
     public string name;
 
     public int total;//maximum number of books to be loaded
-    
-    public int loadedPages;
+
+    public int page;
+
     public int loadedBooks;
     
     public List<BookData> booksData;

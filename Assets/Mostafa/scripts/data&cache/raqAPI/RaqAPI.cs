@@ -82,8 +82,6 @@ public class RaqAPI : MonoBehaviour
 
         res = JsonUtility.FromJson<ProductResult>(www.downloadHandler.text);
 
-        Debug.Log(www.downloadHandler.text);
-
         if (res != null)
         {
             Cache.Instance.cacheCategoryInPublisher(res, publisherId, categoryId);
