@@ -78,6 +78,7 @@ public class RaqAPI : MonoBehaviour
         www.SetRequestHeader("Content-Type", "application/json");
         www.SetRequestHeader("LanguageId", "1");
 
+
         yield return www.SendWebRequest();
 
         res = JsonUtility.FromJson<ProductResult>(www.downloadHandler.text);

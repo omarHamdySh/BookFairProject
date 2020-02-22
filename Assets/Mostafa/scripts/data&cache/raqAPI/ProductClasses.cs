@@ -71,11 +71,15 @@ public class Sponsor
 
 [System.Serializable]
 public class Vendor
-{
+{ 
     public int id;
     public string name;
     public string description;
     public string defualtPicture;
+
+    public int accessFrequency;
+
+    public BookcaseData bookcaseData;
 }
 
 public class AllVendorsResult

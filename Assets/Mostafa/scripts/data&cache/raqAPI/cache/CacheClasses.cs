@@ -23,7 +23,7 @@ public class CategoryData
 
     public int page;
 
-    public int loadedBooks;
+    public int accessFrequency;
     
     public List<BookData> booksData;
 }
