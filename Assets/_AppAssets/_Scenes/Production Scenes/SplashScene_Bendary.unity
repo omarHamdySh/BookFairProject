@@ -131,24 +131,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoadingBar
       objectReference: {fileID: 0}
-    - target: {fileID: 1845895455957400, guid: 0a2436e260fbc0b44b7337d4c4ccbd62, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114545494095500904, guid: 0a2436e260fbc0b44b7337d4c4ccbd62,
+    - target: {fileID: 114919184629511080, guid: 0a2436e260fbc0b44b7337d4c4ccbd62,
         type: 3}
-      propertyPath: m_fontSize
-      value: 16.75
+      propertyPath: rotateSpeed
+      value: -200
       objectReference: {fileID: 0}
-    - target: {fileID: 114545494095500904, guid: 0a2436e260fbc0b44b7337d4c4ccbd62,
+    - target: {fileID: 114919184629511080, guid: 0a2436e260fbc0b44b7337d4c4ccbd62,
         type: 3}
-      propertyPath: m_fontSizeMin
-      value: 1
+      propertyPath: openSpeed
+      value: 0.005
       objectReference: {fileID: 0}
-    - target: {fileID: 114545494095500904, guid: 0a2436e260fbc0b44b7337d4c4ccbd62,
+    - target: {fileID: 114919184629511080, guid: 0a2436e260fbc0b44b7337d4c4ccbd62,
         type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 2
+      propertyPath: closeSpeed
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 224401555416978932, guid: 0a2436e260fbc0b44b7337d4c4ccbd62,
         type: 3}
@@ -254,16 +250,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224694009318645408, guid: 0a2436e260fbc0b44b7337d4c4ccbd62,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 224694009318645408, guid: 0a2436e260fbc0b44b7337d4c4ccbd62,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a2436e260fbc0b44b7337d4c4ccbd62, type: 3}
