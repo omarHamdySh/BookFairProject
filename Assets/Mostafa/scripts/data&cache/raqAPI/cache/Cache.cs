@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using System.IO.Compression;
 
 public class Cache : MonoBehaviour
 {
@@ -157,10 +159,17 @@ public class Cache : MonoBehaviour
             {
                 BookData tmpBook = new BookData();
                 tmpBook.id = book.id;
+                tmpBook.texture = new Texture2D(1, 1);
                 //tmpBook.description = book.shortDescription;
                 tmpBook.name = book.name;
                 //add picture and url later
-                tmpBook.imgString = book.defaultPicture;
+                tmpBook.imgString = Convert.ToBase64String(Decompress(Convert.FromBase64String(book.defaultPicture)));
+                if (book.defaultPicture != "" && book.defaultPicture != null)
+                {
+                    tmpBook.texture.LoadRawTextureData(Decompress(Convert.FromBase64String(book.defaultPicture)));
+                    tmpBook.texture.Apply();
+                }
+                //if(tmpBook.imgString != "" && tmpBook.imgString != null)tmpBook.texture.LoadImage(Decompress(Convert.FromBase64String(tmpBook.imgString)));
                 tmpCat.booksData.Add(tmpBook);
             }
 
@@ -185,5 +194,26 @@ public class Cache : MonoBehaviour
         }
     }
 
+
+    public static byte[] Compress(byte[] data)
+    {
+        MemoryStream output = new MemoryStream();
+        using (DeflateStream dstream = new DeflateStream(output, System.IO.Compression.CompressionLevel.Optimal))
+        {
+            dstream.Write(data, 0, data.Length);
+        }
+        return output.ToArray();
+    }
+
+    public static byte[] Decompress(byte[] data)
+    {
+        MemoryStream input = new MemoryStream(data);
+        MemoryStream output = new MemoryStream();
+        using (DeflateStream dstream = new DeflateStream(input, System.IO.Compression.CompressionMode.Decompress))
+        {
+            dstream.CopyTo(output);
+        }
+        return output.ToArray();
+    }
 
 }
