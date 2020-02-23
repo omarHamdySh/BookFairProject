@@ -10,15 +10,11 @@ public class RaqAPI : MonoBehaviour
     public ApiAuth authInfo;
    
     // Start is called before the first frame update
-    void Start()
+   
+
+    public void Init()
     {
         StartCoroutine(GetAuthToken());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     [ContextMenu("foo")]
@@ -35,7 +31,7 @@ public class RaqAPI : MonoBehaviour
         StartCoroutine(getAllCategories(0, 0));
     }
 
-    IEnumerator GetAuthToken()
+    public IEnumerator GetAuthToken()
     {
         // Prebare data for request
         string jsonAttributes = "{\"clientId\":\"402f4c7d-1453-4f4c-9041-684cbb5dad8c\",\"clientSecret\":\"200fae09-d003-46f9-a305-13469fabc7e6\",\"serverUrl\":\"https://raaqeem.com:1000\"}";
@@ -57,6 +53,8 @@ public class RaqAPI : MonoBehaviour
         else
         {
             authInfo = JsonUtility.FromJson<ApiAuth>(www.downloadHandler.text);
+            Cache.Instance.retrieveVendors();
+            Cache.Instance.retrieveCategories();
         }
     }
     
