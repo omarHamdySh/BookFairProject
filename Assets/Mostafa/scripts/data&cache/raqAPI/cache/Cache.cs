@@ -13,6 +13,8 @@ public class Cache : MonoBehaviour
 
     public RaqAPI api;
 
+    public UIHandller uiHandler;
+
     public int maxLimit;//maxiumum number of books to be loaded at one time
     #region singleton
     private static Cache _instance;
@@ -27,6 +29,7 @@ public class Cache : MonoBehaviour
         else
         {
             _instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
     #endregion
@@ -34,11 +37,15 @@ public class Cache : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         api = GetComponent<RaqAPI>();
         api.Init();
 
         cachedData.allVendors = new List<Vendor>();
         cachedTextures = new List<Texture2D>();
+
+        uiHandler = FindObjectOfType<UIHandller>();
+        uiHandler.LoadLevel("TestUIScene_Bendary", true);
     }
 
     

@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class UIHandler : MonoBehaviour
+public class UIHandller : MonoBehaviour
 {
     [SerializeField] private Slider loading;
 
@@ -35,10 +35,16 @@ public class UIHandler : MonoBehaviour
     /// Moving from scene to another
     /// </summary>
     /// <param name="scencName">index of the scene you will go to</param>
-    public void LoadLevel(string scencName)
+    public void LoadLevel(string scencName, bool loadImmediately = false)
     {
-        StartCoroutine(LoadAsynchronously(scencName));
+        if (!loadImmediately)
+            StartCoroutine(LoadAsynchronously(scencName));
+        else
+        {
+            SceneManager.LoadScene(scencName);
+        }
     }
+
 
     private IEnumerator LoadAsynchronously(string scencName)
     {

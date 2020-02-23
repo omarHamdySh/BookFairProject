@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class LevelUI : UIHandler
+public class LevelUI : UIHandller
 {
     #region Singleton
     public static LevelUI Instance;
