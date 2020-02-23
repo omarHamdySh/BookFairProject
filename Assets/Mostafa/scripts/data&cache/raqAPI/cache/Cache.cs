@@ -2,10 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using System.IO.Compression;
 
 public class Cache : MonoBehaviour
 {
     public CacheSO cachedData;
+
+    public List<Texture2D> cachedTextures;
 
     public RaqAPI api;
 
@@ -31,7 +35,7 @@ public class Cache : MonoBehaviour
     void Start()
     {
         cachedData.allVendors = new List<Vendor>();
-
+        cachedTextures = new List<Texture2D>();
     }
 
     [ContextMenu("foo")]
@@ -157,10 +161,21 @@ public class Cache : MonoBehaviour
             {
                 BookData tmpBook = new BookData();
                 tmpBook.id = book.id;
+                tmpBook.texture = new Texture2D(1, 1);
                 //tmpBook.description = book.shortDescription;
                 tmpBook.name = book.name;
                 //add picture and url later
-                tmpBook.imgString = book.defaultPicture;
+                tmpBook.imgString = Convert.ToBase64String(Decompress(Convert.FromBase64String(book.defaultPicture)));
+                if (book.defaultPicture != "" && book.defaultPicture != null)
+                {
+                    Texture2D tmpTexture = new Texture2D(1, 1);
+                    tmpTexture.LoadImage(Convert.FromBase64String(tmpBook.imgString));
+                    tmpTexture.Apply();
+
+                    cachedTextures.Add(tmpTexture);
+                    tmpBook.texture = tmpTexture;
+                }
+                //if(tmpBook.imgString != "" && tmpBook.imgString != null)tmpBook.texture.LoadImage(Decompress(Convert.FromBase64String(tmpBook.imgString)));
                 tmpCat.booksData.Add(tmpBook);
             }
 
@@ -185,5 +200,26 @@ public class Cache : MonoBehaviour
         }
     }
 
+
+    public static byte[] Compress(byte[] data)
+    {
+        MemoryStream output = new MemoryStream();
+        using (DeflateStream dstream = new DeflateStream(output, System.IO.Compression.CompressionLevel.Optimal))
+        {
+            dstream.Write(data, 0, data.Length);
+        }
+        return output.ToArray();
+    }
+
+    public static byte[] Decompress(byte[] data)
+    {
+        MemoryStream input = new MemoryStream(data);
+        MemoryStream output = new MemoryStream();
+        using (DeflateStream dstream = new DeflateStream(input, System.IO.Compression.CompressionMode.Decompress))
+        {
+            dstream.CopyTo(output);
+        }
+        return output.ToArray();
+    }
 
 }
