@@ -9,6 +9,8 @@ public class Cache : MonoBehaviour
 {
     public CacheSO cachedData;
 
+    public List<Texture2D> cachedTextures;
+
     public RaqAPI api;
 
     public int maxLimit;//maxiumum number of books to be loaded at one time
@@ -33,7 +35,7 @@ public class Cache : MonoBehaviour
     void Start()
     {
         cachedData.allVendors = new List<Vendor>();
-
+        cachedTextures = new List<Texture2D>();
     }
 
     [ContextMenu("foo")]
@@ -166,8 +168,12 @@ public class Cache : MonoBehaviour
                 tmpBook.imgString = Convert.ToBase64String(Decompress(Convert.FromBase64String(book.defaultPicture)));
                 if (book.defaultPicture != "" && book.defaultPicture != null)
                 {
-                    tmpBook.texture.LoadRawTextureData(Decompress(Convert.FromBase64String(book.defaultPicture)));
-                    tmpBook.texture.Apply();
+                    Texture2D tmpTexture = new Texture2D(1, 1);
+                    tmpTexture.LoadImage(Convert.FromBase64String(tmpBook.imgString));
+                    tmpTexture.Apply();
+
+                    cachedTextures.Add(tmpTexture);
+                    tmpBook.texture = tmpTexture;
                 }
                 //if(tmpBook.imgString != "" && tmpBook.imgString != null)tmpBook.texture.LoadImage(Decompress(Convert.FromBase64String(tmpBook.imgString)));
                 tmpCat.booksData.Add(tmpBook);
