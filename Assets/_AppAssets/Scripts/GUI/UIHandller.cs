@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine;
 
 public class UIHandler : MonoBehaviour
-{ 
+{
     [SerializeField] private Slider loading;
 
     /// <summary>
