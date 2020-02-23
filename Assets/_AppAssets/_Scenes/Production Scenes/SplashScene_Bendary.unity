@@ -162,21 +162,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoadingBar
       objectReference: {fileID: 0}
-    - target: {fileID: 114919184629511080, guid: 0a2436e260fbc0b44b7337d4c4ccbd62,
-        type: 3}
-      propertyPath: rotateSpeed
-      value: -200
-      objectReference: {fileID: 0}
-    - target: {fileID: 114919184629511080, guid: 0a2436e260fbc0b44b7337d4c4ccbd62,
-        type: 3}
-      propertyPath: openSpeed
-      value: 0.005
-      objectReference: {fileID: 0}
-    - target: {fileID: 114919184629511080, guid: 0a2436e260fbc0b44b7337d4c4ccbd62,
-        type: 3}
-      propertyPath: closeSpeed
-      value: 0.01
-      objectReference: {fileID: 0}
     - target: {fileID: 224401555416978932, guid: 0a2436e260fbc0b44b7337d4c4ccbd62,
         type: 3}
       propertyPath: m_LocalPosition.x

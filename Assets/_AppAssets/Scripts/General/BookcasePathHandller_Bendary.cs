@@ -28,7 +28,10 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
 
     private void Start()
     {
-        PutDataOnCurrent(4);
+        if (Cache.Instance)
+        {
+            PutDataOnCurrent(4);
+        }
     }
 
     private void Update()

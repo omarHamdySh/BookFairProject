@@ -13,7 +13,6 @@ public class Cache : MonoBehaviour
 
     public RaqAPI api;
 
-    public UIHandller uiHandler;
 
     public int maxLimit;//maxiumum number of books to be loaded at one time
     #region singleton
@@ -44,11 +43,16 @@ public class Cache : MonoBehaviour
         cachedData.allVendors = new List<Vendor>();
         cachedTextures = new List<Texture2D>();
 
-        uiHandler = FindObjectOfType<UIHandller>();
+
+    }
+
+    [ContextMenu("Finish Loading Data")]
+    public void FinishLoadingData()
+    {
+        UIHandller uiHandler = FindObjectOfType<UIHandller>();
         uiHandler.LoadLevel("TestUIScene_Bendary", true);
     }
 
-    
     [ContextMenu("foo1")]
     void foo1()
     {
