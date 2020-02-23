@@ -34,16 +34,14 @@ public class Cache : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        api = GetComponent<RaqAPI>();
+        api.Init();
+
         cachedData.allVendors = new List<Vendor>();
         cachedTextures = new List<Texture2D>();
     }
 
-    [ContextMenu("foo")]
-    void foo()
-    {
-        retrieveCategories();
-        retrieveVendors();
-    }
+    
     [ContextMenu("foo1")]
     void foo1()
     {
