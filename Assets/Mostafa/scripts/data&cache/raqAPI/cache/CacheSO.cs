@@ -6,6 +6,5 @@ using UnityEngine;
 public class CacheSO : ScriptableObject
 {
     public List<ProductCategory> allCategories;
-    public List<BookcaseData> bookcasesData;
     public List<Vendor> allVendors;
 }

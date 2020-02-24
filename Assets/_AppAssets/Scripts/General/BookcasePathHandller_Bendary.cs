@@ -30,7 +30,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     {
         if (Cache.Instance)
         {
-            PutDataOnCurrent(4);
+            PutDataOnCurrent(1);
         }
     }
 
@@ -253,13 +253,13 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
 
     }
 
-    public void PutDataOnCurrent(int publisherID)
+    public void PutDataOnCurrent(int publisherIndex)
     {
-        BookcaseData tmpBookcaseData = Cache.Instance.cachedData.bookcasesData.Find(bc => bc.id == publisherID);
+        BookcaseData tmpBookcaseData = Cache.Instance.cachedData.allVendors[publisherIndex].bookcaseData;
 
         if (tmpBookcaseData != null)
         {
-            realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().SetAllVisableCategory(tmpBookcaseData.categories);
+            realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().SetAllVisibleCategory(tmpBookcaseData.categories);
         }
     }
     #endregion

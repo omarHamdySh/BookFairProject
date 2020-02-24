@@ -48,6 +48,11 @@ public class Book_Bendary : MonoBehaviour, IScrollable
             mesh.enabled = enabled;
         }
     }
+
+    public void SetBookData(BookData bookData)
+    {
+        bookBodyMeshRenderer.material.mainTexture = bookData.texture;
+    }
     #endregion
 
     #region IScrollable

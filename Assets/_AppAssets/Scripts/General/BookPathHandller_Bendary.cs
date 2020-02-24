@@ -133,5 +133,20 @@ public class BookPathHandller_Bendary : MonoBehaviour
     {
         return books[currentBookIndex];
     }
+
+    public void SetAllVisibleBooks(List<BookData> booksData)
+    {
+        for (int i = 0; i < books.Length; i++) 
+        {
+            if (i < booksData.Count)
+            {
+                books[i].SetBookData(booksData[i]);
+            }
+            else
+            {
+                //But the Dommy Data
+            }
+        }
+    }
     #endregion
 }

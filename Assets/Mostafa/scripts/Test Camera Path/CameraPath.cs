@@ -280,12 +280,12 @@ public class CameraPath : MonoBehaviour, ITraverseable
 
     public void onDeparture()
     {
-        print("depart");
+        //print("depart");
     }
 
     public void onMoving()
     {
-        print("moving");
+        //print("moving");
     }
 
     public void move(Vector3 destination, float duration)

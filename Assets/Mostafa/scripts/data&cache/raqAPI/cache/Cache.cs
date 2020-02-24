@@ -20,7 +20,7 @@ public class Cache : MonoBehaviour
     private static Cache _instance;
     public static Cache Instance { get { return _instance; } }
 
-    
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -38,7 +38,6 @@ public class Cache : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("dl");
         api = GetComponent<RaqAPI>();
         api.Init();
 
@@ -51,14 +50,13 @@ public class Cache : MonoBehaviour
     [ContextMenu("Finish Loading Data")]
     public void FinishLoadingData()
     {
-        Debug.Log("finish");
         UIHandller uiHandler = FindObjectOfType<UIHandller>();
         uiHandler.LoadLevel("TestUIScene_Bendary", true);
 
     }
 
     [ContextMenu("foo1")]
-    void foo1()
+    public void foo1()
     {
         retrieveCategoryInBookcase(4, 20, 10, 1);
     }
@@ -77,7 +75,7 @@ public class Cache : MonoBehaviour
 
     [ContextMenu("foo4")]
     public void foo4()
-    { 
+    {
         retrieveCategoryInBookcase(4, 23, 10, 1);
     }
     //purpose: gets book case by publisher id
@@ -206,11 +204,6 @@ public class Cache : MonoBehaviour
     public void cacheAllVendors(AllVendorsResult vendorsResult)
     {
         cachedData.allVendors = vendorsResult.vendorList;
-
-        foreach (var vendor in cachedData.allVendors)
-        {
-            Debug.Log(vendor.name);
-        }
     }
 
 

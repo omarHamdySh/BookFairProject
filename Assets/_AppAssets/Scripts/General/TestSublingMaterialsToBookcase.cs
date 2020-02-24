@@ -7,7 +7,7 @@ public class TestSublingMaterialsToBookcase : MonoBehaviour
     [SerializeField] private Material[] bookMaterials;
     [SerializeField] private Sprite[] bookCovers;
 
-    private void Start()
+    private void Awake()
     {
         Book_Bendary[] books = GetComponentsInChildren<Book_Bendary>();
         for (int i = 0; i < books.Length; i++)
