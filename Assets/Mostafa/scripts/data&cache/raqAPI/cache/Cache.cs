@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.IO.Compression;
+using UnityEngine.Events;
 
 public class Cache : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class Cache : MonoBehaviour
     private static Cache _instance;
     public static Cache Instance { get { return _instance; } }
 
+    
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -27,8 +29,8 @@ public class Cache : MonoBehaviour
         }
         else
         {
-            _instance = this;
             DontDestroyOnLoad(gameObject);
+            _instance = this;
         }
     }
     #endregion
@@ -36,21 +38,23 @@ public class Cache : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Debug.Log("dl");
         api = GetComponent<RaqAPI>();
         api.Init();
 
         cachedData.allVendors = new List<Vendor>();
+        cachedData.allCategories = new List<ProductCategory>();
+
         cachedTextures = new List<Texture2D>();
-
-
     }
 
     [ContextMenu("Finish Loading Data")]
     public void FinishLoadingData()
     {
+        Debug.Log("finish");
         UIHandller uiHandler = FindObjectOfType<UIHandller>();
         uiHandler.LoadLevel("TestUIScene_Bendary", true);
+
     }
 
     [ContextMenu("foo1")]
@@ -73,7 +77,7 @@ public class Cache : MonoBehaviour
 
     [ContextMenu("foo4")]
     void foo4()
-    {
+    { 
         retrieveCategoryInBookcase(4, 23, 10, 1);
     }
     //purpose: gets book case by publisher id

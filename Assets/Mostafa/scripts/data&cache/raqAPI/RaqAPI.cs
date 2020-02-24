@@ -2,19 +2,29 @@
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
-
+using UnityEngine.Events;
 public class RaqAPI : MonoBehaviour
 {
 
     private string baseUrl = "https://raaqeem.com:1000";
     public ApiAuth authInfo;
-   
+
+    public UnityEvent authTokenLoadedEvent;
+    public UnityEvent vendorsRetrievedEvent;
+    public UnityEvent startUpDataEvent;//data loaded at start up
+
     // Start is called before the first frame update
-   
+
 
     public void Init()
     {
         StartCoroutine(GetAuthToken());
+    }
+
+    void Start()
+    {
+        if (authTokenLoadedEvent == null) authTokenLoadedEvent = new UnityEvent();
+        if (vendorsRetrievedEvent == null) vendorsRetrievedEvent = new UnityEvent();
     }
 
     [ContextMenu("foo")]
@@ -53,8 +63,10 @@ public class RaqAPI : MonoBehaviour
         else
         {
             authInfo = JsonUtility.FromJson<ApiAuth>(www.downloadHandler.text);
-            Cache.Instance.retrieveVendors();
+            //  Cache.Instance.retrieveVendors();
             Cache.Instance.retrieveCategories();
+
+            authTokenLoadedEvent.Invoke();
         }
     }
     
@@ -83,6 +95,7 @@ public class RaqAPI : MonoBehaviour
 
         if (res != null)
         {
+            startUpDataEvent.Invoke();
             Cache.Instance.cacheCategoryInPublisher(res, publisherId, categoryId);
         }
     }
@@ -135,13 +148,12 @@ public class RaqAPI : MonoBehaviour
         www.SetRequestHeader("LanguageId", "1");
 
         yield return www.SendWebRequest();
+        res = JsonUtility.FromJson<AllCategoriesResult>(www.downloadHandler.text);
 
         if (res != null)
         {
-            res = JsonUtility.FromJson<AllCategoriesResult>(www.downloadHandler.text);
+            Cache.Instance.cacheAllCategories(res);    
         }
-        
-
     }
 
     public IEnumerator getAllVendors(int limit, int page)
@@ -166,8 +178,9 @@ public class RaqAPI : MonoBehaviour
         if (res != null)
         {
             Cache.Instance.cacheAllVendors(res);
+            vendorsRetrievedEvent.Invoke();//load peliminary data
         }
-
+        
     }
     public IEnumerator allSponsors()
     {
