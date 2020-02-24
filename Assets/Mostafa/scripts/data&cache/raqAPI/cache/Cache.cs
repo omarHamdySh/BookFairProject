@@ -76,7 +76,7 @@ public class Cache : MonoBehaviour
     }
 
     [ContextMenu("foo4")]
-    void foo4()
+    public void foo4()
     { 
         retrieveCategoryInBookcase(4, 23, 10, 1);
     }
