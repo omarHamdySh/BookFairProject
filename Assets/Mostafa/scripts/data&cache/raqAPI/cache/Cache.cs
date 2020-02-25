@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using System.IO;
 using System.IO.Compression;
 using UnityEngine.Events;
@@ -15,12 +16,13 @@ public class Cache : MonoBehaviour
     public RaqAPI api;
 
 
-    public int maxLimit;//maxiumum number of books to be loaded at one time
+    public int oneTimeLoadLimit;//maxiumum number of books to be loaded at one time
     #region singleton
     private static Cache _instance;
     public static Cache Instance { get { return _instance; } }
 
-
+    public const int booksLimit = 200;
+    public int loadedBooks;
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -99,12 +101,12 @@ public class Cache : MonoBehaviour
 
                 if (tmpCat == null)
                 {
-                    StartCoroutine(api.productsByPublisher(publisherId, categoryId, maxLimit, 1));
+                    StartCoroutine(api.productsByPublisher(publisherId, categoryId, oneTimeLoadLimit, 1));
                 }
                 else if (limit * page > tmpCat.booksData.Count && tmpCat.booksData.Count < tmpCat.total)
                 {
                     tmpCat.accessFrequency++;
-                    StartCoroutine(api.productsByPublisher(publisherId, categoryId, maxLimit, tmpCat.page));
+                    StartCoroutine(api.productsByPublisher(publisherId, categoryId, oneTimeLoadLimit, tmpCat.page));
                 }
                 else
                 {
@@ -114,7 +116,7 @@ public class Cache : MonoBehaviour
             }
             else
             {
-                StartCoroutine(api.productsByPublisher(publisherId, categoryId, maxLimit, 1));
+                StartCoroutine(api.productsByPublisher(publisherId, categoryId, oneTimeLoadLimit, 1));
             }
         }
     }
@@ -189,7 +191,7 @@ public class Cache : MonoBehaviour
                 //if(tmpBook.imgString != "" && tmpBook.imgString != null)tmpBook.texture.LoadImage(Decompress(Convert.FromBase64String(tmpBook.imgString)));
                 tmpCat.booksData.Add(tmpBook);
             }
-
+            loadedBooks += res.prodcutList.Count;
 
         }
         //TODO
@@ -228,4 +230,43 @@ public class Cache : MonoBehaviour
         return output.ToArray();
     }
 
+    public void removeLeastAccessedCategory(BookcaseData bookCaseData)
+    {
+
+        if(bookCaseData != null)
+        {
+            CategoryData tmpLeastAccessCat = bookCaseData.categories[0];
+
+            foreach (CategoryData c in bookCaseData.categories)
+            {
+                if (c.accessFrequency < tmpLeastAccessCat.accessFrequency) tmpLeastAccessCat = c;
+            }
+
+            //remove pictures
+            foreach(BookData bd in tmpLeastAccessCat.booksData)
+            {
+                bd.texture = null; 
+            }
+
+            bookCaseData.categories.Remove(tmpLeastAccessCat);
+            loadedBooks--;
+        }
+
+    }
+
+    public void removeExcess()
+    {
+        int i = 0;
+        while(loadedBooks >= booksLimit)
+        {
+            i = i % cachedData.allVendors.Count;
+            
+            if (cachedData.allVendors[i].bookcaseData != null)
+            {
+                removeLeastAccessedCategory(cachedData.allVendors[i].bookcaseData);
+            }
+
+            i++;
+        }
+    }
 }
