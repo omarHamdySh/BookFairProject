@@ -14,6 +14,8 @@ public class BookPathHandller_Bendary : MonoBehaviour
     private float currentScrollSpeed;
     private bool isObjMoving = false;
 
+    [SerializeField] private Texture dummyTexture;
+
     private void Update()
     {
         if (GameManager.Instance.gameplayFSMManager.getCurrentState() == GameplayState.Shelf && GetComponent<Shelf_Bendary>().GetIsCurretn() && !LevelUI.Instance.isUIOpen)
@@ -136,15 +138,24 @@ public class BookPathHandller_Bendary : MonoBehaviour
 
     public void SetAllVisibleBooks(List<BookData> booksData)
     {
-        for (int i = 0; i < books.Length; i++) 
+        for (int i = 0; i < books.Length; i++)
         {
             if (i < booksData.Count)
             {
+                if (!booksData[i].texture)
+                {
+                    booksData[i].texture = (Texture2D)dummyTexture;
+                }
+
                 books[i].SetBookData(booksData[i]);
             }
             else
             {
                 //But the Dommy Data
+                books[i].SetBookData(new BookData()
+                {
+                    texture = (Texture2D)dummyTexture
+                });
             }
         }
     }
