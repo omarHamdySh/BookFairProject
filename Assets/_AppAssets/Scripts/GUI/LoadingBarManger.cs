@@ -26,6 +26,9 @@ public class LoadingBarManger : MonoBehaviour
     {
         rectComponent.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
         changeSize();
+
+
+
     }
 
     private void changeSize()

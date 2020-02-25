@@ -60,28 +60,31 @@ public class Cache : MonoBehaviour
     [ContextMenu("foo1")]
     public void foo1()
     {
-        retrieveCategoryInBookcase(4, 20, 10, 1);
+        retrieveCategoryInBookcase(4, 20);
     }
 
     [ContextMenu("foo2")]
     void foo2()
     {
-        retrieveCategoryInBookcase(4, 20, 10, 2);
+        retrieveCategoryInBookcase(4, 20);
     }
 
     [ContextMenu("foo3")]
     void foo3()
     {
-        retrieveCategoryInBookcase(4, 20, 10, 3);
+        retrieveCategoryInBookcase(4, 20);
     }
 
     [ContextMenu("foo4")]
     public void foo4()
     {
-        retrieveCategoryInBookcase(4, 23, 10, 1);
+        retrieveCategoryInBookcase(4, 23);
     }
+
+
+
     //purpose: gets book case by publisher id
-    public void retrieveCategoryInBookcase(int publisherId, int categoryId, int limit, int page)
+    public void retrieveCategoryInBookcase(int publisherId, int categoryId)
     {
         //all vendors and categories must be present first
         Vendor tmpVendorReference = cachedData.allVendors.Find(v => v.id == publisherId);
@@ -103,7 +106,7 @@ public class Cache : MonoBehaviour
                 {
                     StartCoroutine(api.productsByPublisher(publisherId, categoryId, oneTimeLoadLimit, 1));
                 }
-                else if (limit * page > tmpCat.booksData.Count && tmpCat.booksData.Count < tmpCat.total)
+                else if (tmpCat.booksData.Count < tmpCat.total)
                 {
                     tmpCat.accessFrequency++;
                     StartCoroutine(api.productsByPublisher(publisherId, categoryId, oneTimeLoadLimit, tmpCat.page));
@@ -139,65 +142,68 @@ public class Cache : MonoBehaviour
         Vendor tmpVendorReference = cachedData.allVendors.Find(v => v.id == publisherId);
         if (res != null && tmpVendorReference != null)
         {
-
-            BookcaseData tmpBookcase = null;
-            CategoryData tmpCat = null;
-
-            tmpBookcase = tmpVendorReference.bookcaseData;
-
-            if (tmpBookcase == null) tmpBookcase = new BookcaseData();
-
-            if (tmpBookcase.categories != null)
+            if (res.prodcutList.Count > 0)
             {
-                tmpCat = tmpBookcase.categories.Find(c => c.id == categoryId);
-            }
-            else
-            {
-                tmpBookcase.categories = new List<CategoryData>();
-            }
+                BookcaseData tmpBookcase = null;
+                CategoryData tmpCat = null;
 
-            if (tmpCat == null)
-            {
-                tmpCat = new CategoryData();
-                tmpCat.booksData = new List<BookData>();
-                tmpCat.id = categoryId;
-                tmpCat.name = cachedData.allCategories.Find(x => x.id == categoryId).name;
-                tmpCat.total = res.totalRecord;
-                tmpCat.page = 1;
-                tmpBookcase.categories.Add(tmpCat);
-                tmpCat = tmpBookcase.categories[tmpBookcase.categories.Count - 1];
+                tmpBookcase = tmpVendorReference.bookcaseData;
 
-            }
+                if (tmpBookcase == null) tmpBookcase = new BookcaseData();
 
-            tmpCat.page++;
-            foreach (Product book in res.prodcutList)
-            {
-                BookData tmpBook = new BookData();
-                tmpBook.id = book.id;
-                tmpBook.texture = new Texture2D(1, 1);
-                //tmpBook.description = book.shortDescription;
-                tmpBook.name = book.name;
-                //add picture and url later
-                tmpBook.imgString = Convert.ToBase64String(Decompress(Convert.FromBase64String(book.defaultPicture)));
-                if (book.defaultPicture != "" && book.defaultPicture != null)
+                if (tmpBookcase.categories != null)
                 {
-                    Texture2D tmpTexture = new Texture2D(1, 1);
-                    tmpTexture.LoadImage(Convert.FromBase64String(tmpBook.imgString));
-                    tmpTexture.Apply();
-
-                    cachedTextures.Add(tmpTexture);
-                    tmpBook.texture = tmpTexture;
+                    tmpCat = tmpBookcase.categories.Find(c => c.id == categoryId);
                 }
-                //if(tmpBook.imgString != "" && tmpBook.imgString != null)tmpBook.texture.LoadImage(Decompress(Convert.FromBase64String(tmpBook.imgString)));
-                tmpCat.booksData.Add(tmpBook);
+                else
+                {
+                    tmpBookcase.categories = new List<CategoryData>();
+                }
+
+                if (tmpCat == null)
+                {
+                    tmpCat = new CategoryData();
+                    tmpCat.booksData = new List<BookData>();
+                    tmpCat.id = categoryId;
+                    tmpCat.name = cachedData.allCategories.Find(x => x.id == categoryId).name;
+                    tmpCat.total = res.totalRecord;
+                    tmpCat.page = 1;
+                    tmpBookcase.categories.Add(tmpCat);
+                    tmpCat = tmpBookcase.categories[tmpBookcase.categories.Count - 1];
+
+                }
+
+                tmpCat.page++;
+
+                foreach (Product book in res.prodcutList)
+                {
+                    BookData tmpBook = new BookData();
+                    tmpBook.id = book.id;
+                    tmpBook.texture = new Texture2D(1, 1);
+                    //tmpBook.description = book.shortDescription;
+                    tmpBook.name = book.name;
+                    //add picture and url later
+                    tmpBook.imgString = Convert.ToBase64String(Decompress(Convert.FromBase64String(book.defaultPicture)));
+                    if (book.defaultPicture != "" && book.defaultPicture != null)
+                    {
+                        Texture2D tmpTexture = new Texture2D(1, 1);
+                        tmpTexture.LoadImage(Convert.FromBase64String(tmpBook.imgString));
+                        tmpTexture.Apply();
+
+                        cachedTextures.Add(tmpTexture);
+                        tmpBook.texture = tmpTexture;
+                    }
+                    //if(tmpBook.imgString != "" && tmpBook.imgString != null)tmpBook.texture.LoadImage(Decompress(Convert.FromBase64String(tmpBook.imgString)));
+                    tmpCat.booksData.Add(tmpBook);
+                }
+                loadedBooks += res.prodcutList.Count;
+
             }
-            loadedBooks += res.prodcutList.Count;
+            //TODO
+            //call function here which fills physical bookcase with categories and books
 
         }
-        //TODO
-        //call function here which fills physical bookcase with categories and books
     }
-
     public void cacheAllCategories(AllCategoriesResult categoriesResult)
     {
         cachedData.allCategories = categoriesResult.categories;
@@ -233,7 +239,7 @@ public class Cache : MonoBehaviour
     public void removeLeastAccessedCategory(BookcaseData bookCaseData)
     {
 
-        if(bookCaseData != null)
+        if (bookCaseData != null)
         {
             CategoryData tmpLeastAccessCat = bookCaseData.categories[0];
 
@@ -243,9 +249,9 @@ public class Cache : MonoBehaviour
             }
 
             //remove pictures
-            foreach(BookData bd in tmpLeastAccessCat.booksData)
+            foreach (BookData bd in tmpLeastAccessCat.booksData)
             {
-                bd.texture = null; 
+                bd.texture = null;
             }
 
             bookCaseData.categories.Remove(tmpLeastAccessCat);
@@ -257,10 +263,10 @@ public class Cache : MonoBehaviour
     public void removeExcess()
     {
         int i = 0;
-        while(loadedBooks >= booksLimit)
+        while (loadedBooks >= booksLimit)
         {
             i = i % cachedData.allVendors.Count;
-            
+
             if (cachedData.allVendors[i].bookcaseData != null)
             {
                 removeLeastAccessedCategory(cachedData.allVendors[i].bookcaseData);

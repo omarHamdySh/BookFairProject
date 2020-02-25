@@ -11,8 +11,7 @@ public class RaqAPI : MonoBehaviour
 
     public UnityEvent authTokenLoadedEvent;
     public UnityEvent vendorsRetrievedEvent;
-    public UnityEvent startUpDataEvent;//data loaded at start up
-
+    
     // Start is called before the first frame update
 
 
@@ -95,7 +94,6 @@ public class RaqAPI : MonoBehaviour
 
         if (res != null)
         {
-            startUpDataEvent.Invoke();
             Cache.Instance.cacheCategoryInPublisher(res, publisherId, categoryId);
         }
     }
@@ -152,7 +150,8 @@ public class RaqAPI : MonoBehaviour
 
         if (res != null)
         {
-            Cache.Instance.cacheAllCategories(res);    
+            Cache.Instance.cacheAllCategories(res);
+            Cache.Instance.retrieveVendors();
         }
     }
 

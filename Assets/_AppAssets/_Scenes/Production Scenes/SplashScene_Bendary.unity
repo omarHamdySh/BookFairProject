@@ -564,7 +564,8 @@ MonoBehaviour:
   cachedData: {fileID: 11400000, guid: d7a57a54a5e58bc46adba20975bab4bc, type: 2}
   cachedTextures: []
   api: {fileID: 1882423685}
-  maxLimit: 10
+  oneTimeLoadLimit: 10
+  loadedBooks: 0
 --- !u!4 &1882423684
 Transform:
   m_ObjectHideFlags: 0
