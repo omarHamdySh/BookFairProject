@@ -120,6 +120,7 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
         return shelves[currentShelfIndex].GetComponent<BookPathHandller_Bendary>().GetCurrentBook();
     }
 
+    #region Data
     public void SetAllVisibleCategory(List<CategoryData> categories)
     {
         for (int i = 0; i < shelves.Length; i++)
@@ -135,7 +136,7 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
             }
         }
     }
-
+    #endregion
 
     #endregion
 }

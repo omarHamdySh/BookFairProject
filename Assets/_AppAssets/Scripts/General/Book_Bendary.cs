@@ -49,10 +49,12 @@ public class Book_Bendary : MonoBehaviour, IScrollable
         }
     }
 
+    #region Data
     public void SetBookData(BookData bookData)
     {
         bookBodyMeshRenderer.material.mainTexture = bookData.texture;
     }
+    #endregion
     #endregion
 
     #region IScrollable

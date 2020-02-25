@@ -14,7 +14,9 @@ public class BookPathHandller_Bendary : MonoBehaviour
     private float currentScrollSpeed;
     private bool isObjMoving = false;
 
+    #region Data
     [SerializeField] private Texture dummyTexture;
+    #endregion
 
     private void Update()
     {
@@ -136,6 +138,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
         return books[currentBookIndex];
     }
 
+    #region Data
     public void SetAllVisibleBooks(List<BookData> booksData)
     {
         for (int i = 0; i < books.Length; i++)
@@ -159,5 +162,6 @@ public class BookPathHandller_Bendary : MonoBehaviour
             }
         }
     }
+    #endregion
     #endregion
 }

@@ -20,6 +20,10 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     private float currentScrollSpeed;
     private bool isObjMoving = false;
     private Vector3 bookBackwordPos;
+    #region Data
+    [SerializeField] private int bookcaseCashIndex = 0;
+    private List<CategoryData> dummy = new List<CategoryData>();
+    #endregion
 
     private void Awake()
     {
@@ -30,7 +34,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     {
         if (Cache.Instance)
         {
-            PutDataOnCurrent(1);
+            PutDataOnCurrent(0);
         }
     }
 
@@ -81,6 +85,17 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         int newIndexInUse = currentRealBookcaseInUse;
         newIndexInUse = (newIndexInUse + 1) % realBookcases.Length;
 
+        #region Data
+        if (currentScrollSpeed < 0)
+        {
+            bookcaseCashIndex = (bookcaseCashIndex + 1) % Cache.Instance.cachedData.allVendors.Count;
+        }
+        else
+        {
+            bookcaseCashIndex = (bookcaseCashIndex == 0) ? Cache.Instance.cachedData.allVendors.Count - 1 : bookcaseCashIndex - 1;
+        }
+        #endregion
+
         foreach (var bookcase in bookcases)
         {
             int nextPosIndex = 0;
@@ -115,6 +130,10 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
                 ToggleCurrentRealBookcaseMeshRenderer(true);
                 ToggleCurrentRealBookcase(true);
                 ToggleTexts(true);
+
+                #region Data
+                PutDataOnCurrent(bookcaseCashIndex);
+                #endregion
             }
             else
             {
@@ -248,6 +267,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         animatedBook.ToggleRenderers(false);
     }
 
+    #region Data
     public void StartCallData()
     {
 
@@ -257,11 +277,16 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     {
         BookcaseData tmpBookcaseData = Cache.Instance.cachedData.allVendors[publisherIndex].bookcaseData;
 
-        if (tmpBookcaseData != null)
+        if (tmpBookcaseData != null && tmpBookcaseData.categories != null)
         {
             realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().SetAllVisibleCategory(tmpBookcaseData.categories);
         }
+        else if (tmpBookcaseData.categories != null)
+        {
+            realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().SetAllVisibleCategory(dummy);
+        }
     }
+    #endregion
     #endregion
 }
 

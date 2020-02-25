@@ -68,10 +68,12 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
         }
     }
 
+    #region Data
     public void SetCategoryText(string categoryText)
     {
         this.categoryText.text = categoryText;
     }
+    #endregion
     #endregion
 
     #region IScrollable
