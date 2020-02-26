@@ -21,7 +21,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     private bool isObjMoving = false;
     private Vector3 bookBackwordPos;
     #region Data
-    [SerializeField] private int bookcaseCashIndex = 0;
+    [SerializeField] private int bookcaseCasheIndex = 0;
     private List<CategoryData> dummy = new List<CategoryData>();
     #endregion
 
@@ -90,11 +90,11 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         {
             if (currentScrollSpeed < 0)
             {
-                bookcaseCashIndex = (bookcaseCashIndex + 1) % Cache.Instance.cachedData.allVendors.Count;
+                bookcaseCasheIndex = (bookcaseCasheIndex + 1) % Cache.Instance.cachedData.allVendors.Count;
             }
             else
             {
-                bookcaseCashIndex = (bookcaseCashIndex == 0) ? Cache.Instance.cachedData.allVendors.Count - 1 : bookcaseCashIndex - 1;
+                bookcaseCasheIndex = (bookcaseCasheIndex == 0) ? Cache.Instance.cachedData.allVendors.Count - 1 : bookcaseCasheIndex - 1;
             }
         }
         #endregion
@@ -137,7 +137,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
                 #region Data
                 if (Cache.Instance)
                 {
-                    PutDataOnCurrent(bookcaseCashIndex);
+                    PutDataOnCurrent(bookcaseCasheIndex);
                 }
                 #endregion
             }
