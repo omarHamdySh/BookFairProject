@@ -57,6 +57,7 @@ public class Cache : MonoBehaviour
 
     }
 
+
     [ContextMenu("foo1")]
     public void foo1()
     {
@@ -69,11 +70,13 @@ public class Cache : MonoBehaviour
         retrieveCategoryInBookcase(4, 20);
     }
 
+
     [ContextMenu("foo3")]
     void foo3()
     {
         retrieveCategoryInBookcase(4, 20);
     }
+
 
     [ContextMenu("foo4")]
     public void foo4()
@@ -136,7 +139,6 @@ public class Cache : MonoBehaviour
     }
 
     ////////////////////////////////caching functions//////////////////////////////////////////
-
     public void cacheCategoryInPublisher(ProductResult res, int publisherId, int categoryId)
     {
         Vendor tmpVendorReference = cachedData.allVendors.Find(v => v.id == publisherId);
@@ -179,7 +181,7 @@ public class Cache : MonoBehaviour
                 {
                     BookData tmpBook = new BookData();
                     tmpBook.id = book.id;
-                    tmpBook.texture = new Texture2D(1, 1);
+                    tmpBook.texture = null;
                     //tmpBook.description = book.shortDescription;
                     tmpBook.name = book.name;
                     //add picture and url later
