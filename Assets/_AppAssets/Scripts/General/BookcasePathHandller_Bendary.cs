@@ -86,13 +86,16 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         newIndexInUse = (newIndexInUse + 1) % realBookcases.Length;
 
         #region Data
-        if (currentScrollSpeed < 0)
+        if (Cache.Instance)
         {
-            bookcaseCashIndex = (bookcaseCashIndex + 1) % Cache.Instance.cachedData.allVendors.Count;
-        }
-        else
-        {
-            bookcaseCashIndex = (bookcaseCashIndex == 0) ? Cache.Instance.cachedData.allVendors.Count - 1 : bookcaseCashIndex - 1;
+            if (currentScrollSpeed < 0)
+            {
+                bookcaseCashIndex = (bookcaseCashIndex + 1) % Cache.Instance.cachedData.allVendors.Count;
+            }
+            else
+            {
+                bookcaseCashIndex = (bookcaseCashIndex == 0) ? Cache.Instance.cachedData.allVendors.Count - 1 : bookcaseCashIndex - 1;
+            }
         }
         #endregion
 
@@ -132,7 +135,10 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
                 ToggleTexts(true);
 
                 #region Data
-                PutDataOnCurrent(bookcaseCashIndex);
+                if (Cache.Instance)
+                {
+                    PutDataOnCurrent(bookcaseCashIndex);
+                }
                 #endregion
             }
             else
