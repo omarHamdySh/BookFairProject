@@ -618,7 +618,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: fda9f7495b994074096541b9a6508c10, type: 2}
   - {fileID: 2100000, guid: f39c342cc8faeab419fb9c1f7dbc8f8a, type: 2}
   bookCovers:
-  - {fileID: 21300000, guid: 5d85d6c4e619da5488b0f09275a9abea, type: 3}
+  - {fileID: 21300000, guid: 149fb66db35131546a88355c392a8d3e, type: 3}
 --- !u!1 &8380689207131759565
 GameObject:
   m_ObjectHideFlags: 0

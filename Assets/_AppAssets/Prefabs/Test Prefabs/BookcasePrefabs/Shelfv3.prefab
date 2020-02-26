@@ -157,7 +157,7 @@ MonoBehaviour:
   - {fileID: 7475523358490934922}
   - {fileID: 3387031143034046706}
   - {fileID: 616894384617567792}
-  dummyTexture: {fileID: 2800000, guid: a4c493bb7c62f2f4c9078aa9c3be6a57, type: 3}
+  dummyTexture: {fileID: 2800000, guid: 149fb66db35131546a88355c392a8d3e, type: 3}
 --- !u!1 &8006585386587463477
 GameObject:
   m_ObjectHideFlags: 0
