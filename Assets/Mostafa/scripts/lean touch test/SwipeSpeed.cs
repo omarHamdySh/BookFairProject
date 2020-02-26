@@ -28,6 +28,7 @@ public class SwipeSpeed : MonoBehaviour
     //drag objeccts while finger is pressed
     public bool drag;
 
+    public bool swipeEnabled = true;
 
     public float dragDecay;
     public float scrollDecay;
@@ -76,14 +77,20 @@ public class SwipeSpeed : MonoBehaviour
 
     public void setHDirection(int dir)
     {
-        horizontalDirection = dir;
-        calculateTimeHorizontal();
+        if (swipeEnabled)
+        {
+            horizontalDirection = dir;
+            calculateTimeHorizontal();
+        }
     }
 
     public void setVDirection(int dir)
     {
-        horizontalDirection = dir;
-        calculateTimeVertical();
+        if (swipeEnabled)
+        {
+            horizontalDirection = dir;
+            calculateTimeVertical();
+        }
     }
     public void add()
     {
