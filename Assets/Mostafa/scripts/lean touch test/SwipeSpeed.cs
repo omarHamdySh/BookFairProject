@@ -62,6 +62,7 @@ public class SwipeSpeed : MonoBehaviour
 
     private void Update()
     {
+        swipeEnabled = !CameraPath.instance.cameraMoving;
         if (drag && swipeEnabled)
         {
             Vector2 tmpFingerPos = Lean.Touch.LeanTouch.Fingers[0].ScreenPosition;
