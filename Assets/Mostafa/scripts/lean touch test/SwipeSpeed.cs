@@ -74,6 +74,36 @@ public class SwipeSpeed : MonoBehaviour
         {
             decay();
         }
+
+        if (swipeEnabled )
+        {
+            if (Input.mouseScrollDelta.y != 0)
+            {
+                verticalScrollSpeed = Input.mouseScrollDelta.y;
+                horizontalScrollSpeed = Input.mouseScrollDelta.y;
+            }
+
+            if (Input.GetKeyDown("left"))
+            {
+                horizontalScrollSpeed -= 1;
+            }
+
+            if (Input.GetKeyDown("right"))
+            {
+                horizontalScrollSpeed += 1;
+            }
+
+            if (Input.GetKeyDown("down"))
+            {
+                verticalScrollSpeed -= 1;
+            }
+
+            if (Input.GetKeyDown("up"))
+            {
+                verticalScrollSpeed += 1;
+            }
+        }
+
     }
 
     public void setHDirection(int dir)
