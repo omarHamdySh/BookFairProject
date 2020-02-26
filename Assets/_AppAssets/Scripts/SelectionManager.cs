@@ -32,7 +32,6 @@ public class SelectionManager : MonoBehaviour
     public void deselectThis(IClickable selectedObject)
     {
         this.selectedObject = null;
-
     }
 
     public void deselectCurrent()

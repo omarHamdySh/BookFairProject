@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using System.Linq;
 using System.IO;
 using System.IO.Compression;
@@ -15,6 +16,7 @@ public class Cache : MonoBehaviour
 
     public RaqAPI api;
 
+    public UnityEvent dataArrivedEvent;
 
     public int oneTimeLoadLimit;//maxiumum number of books to be loaded at one time
     #region singleton
@@ -199,11 +201,11 @@ public class Cache : MonoBehaviour
                     tmpCat.booksData.Add(tmpBook);
                 }
                 loadedBooks += res.prodcutList.Count;
-
+                
             }
             //TODO
             //call function here which fills physical bookcase with categories and books
-
+            dataArrivedEvent.Invoke();
         }
     }
     public void cacheAllCategories(AllCategoriesResult categoriesResult)
@@ -276,5 +278,24 @@ public class Cache : MonoBehaviour
 
             i++;
         }
+    }
+
+    void funcFloorMode()
+    {
+        foreach (Vendor vendor in Cache.Instance.cachedData.allVendors)
+        {
+            if (vendor.bookcaseData != null)
+            {
+                foreach (ProductCategory pc in Cache.Instance.cachedData.allCategories)
+                {
+                    Cache.Instance.retrieveCategoryInBookcase(vendor.id, pc.id);
+                }
+            }
+        }
+    }
+
+    void funcBookcaseMode(int publisherId)
+    {
+
     }
 }
