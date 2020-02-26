@@ -62,14 +62,14 @@ public class SwipeSpeed : MonoBehaviour
 
     private void Update()
     {
-        if (drag)
+        if (drag && swipeEnabled)
         {
             Vector2 tmpFingerPos = Lean.Touch.LeanTouch.Fingers[0].ScreenPosition;
             horizontalScrollSpeed = (tmpFingerPos.x - dragPivot.x) * dragDecay;
             verticalScrollSpeed = (tmpFingerPos.y - dragPivot.y) * dragDecay;
             dragPivot = tmpFingerPos;
         }
-        if (Mathf.Abs(horizontalScrollSpeed) > 0 || Mathf.Abs(verticalScrollSpeed) > 0)
+        if ((Mathf.Abs(horizontalScrollSpeed) > 0 || Mathf.Abs(verticalScrollSpeed) > 0) && swipeEnabled)
         {
             decay();
         }
