@@ -68,6 +68,19 @@ public class BookPathHandller_Bendary : MonoBehaviour
                    (nextPosIndex == leftDomyIndex && book.getObjectIndex() == rightDomyIndex))
                 {
                     book.ToggleLoopingDomy(true);
+
+                    #region Data
+                    if (currentScrollSpeed < 0 && book.getObjectIndex() == rightDomyIndex)
+                    {
+                        // Retrive the next data 
+                        // Prepare cache more data on that direction
+                    }
+                    else if (currentScrollSpeed > 0 && book.getObjectIndex() == leftDomyIndex)
+                    {
+                        // Retrive the next data 
+                        // Prepare cache more data on that direction
+                    }
+                    #endregion
                 }
                 else
                 {

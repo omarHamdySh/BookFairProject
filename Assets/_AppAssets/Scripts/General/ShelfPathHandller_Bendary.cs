@@ -72,6 +72,19 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
                     (nextPosIndex == lowerDomyIndex && shelf.getObjectIndex() == upperDomyIndex))
                 {
                     shelf.ToggleLoopingDomy(true);
+
+                    #region Data
+                    if (currentScrollSpeed > 0 && shelf.getObjectIndex() == lowerDomyIndex)
+                    {
+                        // Retrive the next data 
+                        // Prepare cache more data on that direction
+                    }
+                    else if (currentScrollSpeed < 0 && shelf.getObjectIndex() == upperDomyIndex)
+                    {
+                        // Retrive the next data 
+                        // Prepare cache more data on that direction
+                    }
+                    #endregion
                 }
                 else
                 {

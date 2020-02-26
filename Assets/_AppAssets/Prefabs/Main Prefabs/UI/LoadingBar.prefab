@@ -90,7 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rectComponent: {fileID: 224694009318645408}
   imageComp: {fileID: 114416959373275488}
-  rotateSpeed: 200
+  rotateSpeed: -200
   openSpeed: 0.005
   closeSpeed: 0.01
 --- !u!1 &1901891512105396
