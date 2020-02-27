@@ -38,7 +38,6 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
             else if (!isObjMoving && currentScrollSpeed != 0)
             {
                 isObjMoving = true;
-
                 if (CheckAllObjectsLanded())
                 {
                     OnDepartureCall();
@@ -219,5 +218,6 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
         }
         return -1;
     }
+
     #endregion
 }

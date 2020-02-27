@@ -280,22 +280,5 @@ public class Cache : MonoBehaviour
         }
     }
 
-    void funcFloorMode()
-    {
-        foreach (Vendor vendor in Cache.Instance.cachedData.allVendors)
-        {
-            if (vendor.bookcaseData != null)
-            {
-                foreach (ProductCategory pc in Cache.Instance.cachedData.allCategories)
-                {
-                    Cache.Instance.retrieveCategoryInBookcase(vendor.id, pc.id);
-                }
-            }
-        }
-    }
 
-    void funcBookcaseMode(int publisherId)
-    {
-
-    }
 }

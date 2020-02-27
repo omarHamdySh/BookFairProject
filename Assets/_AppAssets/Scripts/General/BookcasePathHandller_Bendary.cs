@@ -34,6 +34,8 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     {
         if (Cache.Instance)
         {
+            //mostafa
+            DataLoader.instance.funcFloorMode();
             PutDataOnCurrent();
         }
     }
@@ -198,7 +200,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     }
 
     public void ToggleCurrentRealBookcase(bool enabled)
-    {
+    { 
         realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().isCurrentBookcase = enabled;
         realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().AwakeCurrent();
     }
@@ -296,6 +298,14 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         {
             realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().SetAllVisibleCategory(dummy, bookcaseCasheIndex);
         }
+    }
+
+    public void retrieveDataOfCurrentBookcase()
+    {
+        Debug.Log(currentRealBookcaseInUse);
+        if (Cache.Instance.cachedData.allVendors != null)
+            DataLoader.instance.funcBookcaseMode(Cache.Instance.cachedData.allVendors[currentRealBookcaseInUse].id);
+
     }
     #endregion
 }
