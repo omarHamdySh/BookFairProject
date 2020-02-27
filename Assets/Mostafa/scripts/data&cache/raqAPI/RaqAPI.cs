@@ -8,7 +8,7 @@ public class RaqAPI : MonoBehaviour
 
     private string baseUrl = "https://raaqeem.com:1000";
     public ApiAuth authInfo;
-
+    public int languageId = 1;
     public UnityEvent authTokenLoadedEvent;
     public UnityEvent vendorsRetrievedEvent;
     
@@ -85,7 +85,7 @@ public class RaqAPI : MonoBehaviour
         www.SetRequestHeader("Authorization", authInfo.token_type + " " + authInfo.access_token);
         www.SetRequestHeader("customerId", "1");
         www.SetRequestHeader("Content-Type", "application/json");
-        www.SetRequestHeader("LanguageId", "1");
+        www.SetRequestHeader("LanguageId", languageId.ToString());
 
 
         yield return www.SendWebRequest();
@@ -143,7 +143,7 @@ public class RaqAPI : MonoBehaviour
         www.SetRequestHeader("Authorization", authInfo.token_type + " " + authInfo.access_token);
         www.SetRequestHeader("customerId", "1");
         www.SetRequestHeader("Content-Type", "application/json");
-        www.SetRequestHeader("LanguageId", "1");
+        www.SetRequestHeader("LanguageId", languageId.ToString());
 
         yield return www.SendWebRequest();
         res = JsonUtility.FromJson<AllCategoriesResult>(www.downloadHandler.text);
@@ -168,7 +168,7 @@ public class RaqAPI : MonoBehaviour
         www.SetRequestHeader("Authorization", authInfo.token_type + " " + authInfo.access_token);
         www.SetRequestHeader("customerId", "1");
         www.SetRequestHeader("Content-Type", "application/json");
-        www.SetRequestHeader("LanguageId", "1");
+        www.SetRequestHeader("LanguageId", languageId.ToString());
 
         yield return www.SendWebRequest();
 
