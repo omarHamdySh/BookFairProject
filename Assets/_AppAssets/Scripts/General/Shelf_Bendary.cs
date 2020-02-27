@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using TMPro;
 
 public class Shelf_Bendary : MonoBehaviour, IScrollable
 {
@@ -13,7 +14,11 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
     private bool isCurrent = false;
     private bool isLoopingDomy = false;
 
-    [SerializeField] private Text categoryText;
+
+    #region Data
+    [SerializeField] private TextMeshProUGUI categoryText;
+    public int categoryIndex = -1;
+    #endregion
 
     private void Start()
     {
@@ -55,6 +60,11 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
         return isCurrent;
     }
 
+    public bool GetIsCurrentBookcase()
+    {
+        return shelfPathHandller.isCurrentBookcase;
+    }
+
     public void ToggleLoopingDomy(bool isLoopingDomy)
     {
         this.isLoopingDomy = isLoopingDomy;
@@ -69,9 +79,10 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
     }
 
     #region Data
-    public void SetCategoryText(string categoryText)
+    public void SetCategoryData(string categoryText, int categoryIndex)
     {
         this.categoryText.text = categoryText;
+        this.categoryIndex = categoryIndex;
     }
     #endregion
     #endregion

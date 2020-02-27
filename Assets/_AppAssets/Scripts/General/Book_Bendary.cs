@@ -13,6 +13,10 @@ public class Book_Bendary : MonoBehaviour, IScrollable
     private bool isCurrent = false;
     private bool isLoopingDomy = false;
 
+    #region Data
+    public int bookDataIndex;
+    #endregion
+
     #region Helper
     public void Init()
     {
@@ -50,9 +54,10 @@ public class Book_Bendary : MonoBehaviour, IScrollable
     }
 
     #region Data
-    public void SetBookData(BookData bookData)
+    public void SetBookData(BookData bookData, int bookDataIndex)
     {
         bookBodyMeshRenderer.material.mainTexture = bookData.texture;
+        this.bookDataIndex = bookDataIndex;
     }
     #endregion
     #endregion
