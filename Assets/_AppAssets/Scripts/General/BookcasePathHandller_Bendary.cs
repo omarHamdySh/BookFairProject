@@ -34,7 +34,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     {
         if (Cache.Instance)
         {
-            PutDataOnCurrent(0);
+            PutDataOnCurrent();
         }
     }
 
@@ -139,7 +139,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
                 #region Data
                 if (Cache.Instance)
                 {
-                    PutDataOnCurrent(bookcaseCasheIndex);
+                    PutDataOnCurrent();
                 }
                 #endregion
             }
@@ -275,26 +275,28 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         animatedBook.ToggleRenderers(false);
     }
 
+
+    #endregion
+
     #region Data
     public void StartCallData()
     {
 
     }
 
-    public void PutDataOnCurrent(int publisherIndex)
+    public void PutDataOnCurrent()
     {
-        BookcaseData tmpBookcaseData = Cache.Instance.cachedData.allVendors[publisherIndex].bookcaseData;
+        BookcaseData tmpBookcaseData = Cache.Instance.cachedData.allVendors[bookcaseCasheIndex].bookcaseData;
 
         if (tmpBookcaseData != null && tmpBookcaseData.categories != null)
         {
-            realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().SetAllVisibleCategory(tmpBookcaseData.categories);
+            realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().SetAllVisibleCategory(tmpBookcaseData.categories, bookcaseCasheIndex);
         }
-        else if (tmpBookcaseData.categories != null)
+        else if (tmpBookcaseData.categories == null)
         {
-            realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().SetAllVisibleCategory(dummy);
+            realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().SetAllVisibleCategory(dummy, bookcaseCasheIndex);
         }
     }
-    #endregion
     #endregion
 }
 

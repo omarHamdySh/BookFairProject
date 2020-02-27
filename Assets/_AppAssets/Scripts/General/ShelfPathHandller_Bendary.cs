@@ -16,6 +16,10 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
     private float currentScrollSpeed;
     private bool isObjMoving = false;
 
+    #region Data
+    private int vendorIndex = -1;
+    #endregion
+
     private void Start()
     {
         currentShelfIndex = IndexOfCurrent;
@@ -38,6 +42,7 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
                 if (CheckAllObjectsLanded())
                 {
                     OnDepartureCall();
+                    PrepareData();
                     MoveAccordingToScrollSpeed();
                 }
             }
@@ -45,6 +50,8 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
     }
 
     #region Helper
+
+
     private void MoveAccordingToScrollSpeed()
     {
         foreach (var shelf in shelves)
@@ -72,19 +79,6 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
                     (nextPosIndex == lowerDomyIndex && shelf.getObjectIndex() == upperDomyIndex))
                 {
                     shelf.ToggleLoopingDomy(true);
-
-                    #region Data
-                    if (currentScrollSpeed > 0 && shelf.getObjectIndex() == lowerDomyIndex)
-                    {
-                        // Retrive the next data 
-                        // Prepare cache more data on that direction
-                    }
-                    else if (currentScrollSpeed < 0 && shelf.getObjectIndex() == upperDomyIndex)
-                    {
-                        // Retrive the next data 
-                        // Prepare cache more data on that direction
-                    }
-                    #endregion
                 }
                 else
                 {
@@ -133,23 +127,97 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
         return shelves[currentShelfIndex].GetComponent<BookPathHandller_Bendary>().GetCurrentBook();
     }
 
+    #endregion
+
     #region Data
-    public void SetAllVisibleCategory(List<CategoryData> categories)
+    private void PrepareData()
     {
+        if (Cache.Instance && Cache.Instance.cachedData.allVendors.Count > 0)
+        {
+            if (Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData != null && Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories != null)
+            {
+                if (Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories.Count > shelves.Length)
+                {
+                    for (int i = 0; i < shelves.Length; i++)
+                    {
+                        if (currentScrollSpeed < 0 && shelves[i].getObjectIndex() == upperDomyIndex)
+                        {
+                            //Retrive the next data
+                            List<CategoryData> categories = Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories;
+
+                            int index = GetCategoryIndexFromOtherDommy(false);
+                            if (index == -1)
+                            {
+                                Debug.LogError("can't find the other dommy");
+                            }
+                            index = (index + 1) % categories.Count;
+
+                            shelves[i].SetCategoryData(categories[index].name, index);
+                            shelves[i].GetComponent<BookPathHandller_Bendary>().SetAllVisibleBooks(categories[index].booksData, vendorIndex, index);
+
+                            break;
+                            //Prepare cache more data on that direction
+                        }
+                        else if (currentScrollSpeed > 0 && shelves[i].getObjectIndex() == lowerDomyIndex)
+                        {
+                            //Retrive the next data
+                            List<CategoryData> categories = Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories;
+
+                            int index = GetCategoryIndexFromOtherDommy(true);
+                            if (index == -1)
+                            {
+                                Debug.LogError("can't find the other dommy");
+                            }
+                            index = (index == 0) ? categories.Count - 1 : index - 1;
+
+                            shelves[i].SetCategoryData(categories[index].name, index);
+                            shelves[i].GetComponent<BookPathHandller_Bendary>().SetAllVisibleBooks(categories[index].booksData, vendorIndex, index);
+
+                            break;
+                            //Prepare cache more data on that direction
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void SetAllVisibleCategory(List<CategoryData> categories, int vendorIndex)
+    {
+        this.vendorIndex = vendorIndex;
         for (int i = 0; i < shelves.Length; i++)
         {
             if (i < categories.Count)
             {
-                shelves[i].SetCategoryText(categories[i].name);
-                shelves[i].GetComponent<BookPathHandller_Bendary>().SetAllVisibleBooks(categories[i].booksData);
+                shelves[i].SetCategoryData(categories[i].name, i);
+                shelves[i].GetComponent<BookPathHandller_Bendary>().SetAllVisibleBooks(categories[i].booksData, vendorIndex, i);
             }
             else
             {
-                shelves[i].SetCategoryText("");
+                shelves[i].SetCategoryData("", -1);
             }
         }
     }
-    #endregion
 
+    /// <summary>
+    /// get the category index of the other dommy
+    /// </summary>
+    /// <param name="isUpdommy">the other dommy type</param>
+    /// <returns>category index</returns>
+    private int GetCategoryIndexFromOtherDommy(bool isUpdommy)
+    {
+        for (int i = 0; i < shelves.Length; i++)
+        {
+            if (isUpdommy && shelves[i].getObjectIndex() == upperDomyIndex)
+            {
+                return shelves[i].categoryIndex;
+            }
+            else if (!isUpdommy && shelves[i].getObjectIndex() == lowerDomyIndex)
+            {
+                return shelves[i].categoryIndex;
+            }
+        }
+        return -1;
+    }
     #endregion
 }
