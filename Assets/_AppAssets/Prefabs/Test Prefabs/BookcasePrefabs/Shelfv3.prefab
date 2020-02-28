@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectScrollDuration: 0.5
   currentBookIndex: 0
-  IndexOfCurrent: 5
+  IndexOfCurrent: 4
   rightDomyIndex: 0
   leftDomyIndex: 8
   bookPathPoints:

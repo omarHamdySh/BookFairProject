@@ -5,7 +5,7 @@ using UnityEngine;
 public class BookPathHandller_Bendary : MonoBehaviour
 {
     [SerializeField] private float objectScrollDuration = 0.7f;
-    [HideInInspector] public int currentBookIndex;
+     public int currentBookIndex;
 
     public int IndexOfCurrent, rightDomyIndex, leftDomyIndex;
     public Transform[] bookPathPoints;
@@ -13,6 +13,11 @@ public class BookPathHandller_Bendary : MonoBehaviour
 
     private float currentScrollSpeed;
     private bool isObjMoving = false;
+
+    private void Start()
+    {
+        currentBookIndex = IndexOfCurrent;
+    }
 
     #region Data
     [SerializeField] private Texture dummyTexture;
@@ -158,7 +163,6 @@ public class BookPathHandller_Bendary : MonoBehaviour
                         {
                             if (currentScrollSpeed < 0 && books[i].getObjectIndex() == rightDomyIndex)
                             {
-                                print("asdf");
                                 // Retrive the next data
                                 int index = GetBookIndexFromOtherDommy(false);
                                 if (index == -1)
