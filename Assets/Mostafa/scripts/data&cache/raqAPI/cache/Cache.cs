@@ -181,27 +181,31 @@ public class Cache : MonoBehaviour
 
                 foreach (Product book in res.prodcutList)
                 {
-                    BookData tmpBook = new BookData();
-                    tmpBook.id = book.id;
-                    tmpBook.texture = null;
-                    //tmpBook.description = book.shortDescription;
-                    tmpBook.name = book.name;
-                    //add picture and url later
-                    tmpBook.imgString = Convert.ToBase64String(Decompress(Convert.FromBase64String(book.defaultPicture)));
-                    if (book.defaultPicture != "" && book.defaultPicture != null)
+                    if (tmpCat.booksData.Find(b => book.id == b.id) == null)
                     {
-                        Texture2D tmpTexture = new Texture2D(1, 1);
-                        tmpTexture.LoadImage(Convert.FromBase64String(tmpBook.imgString));
-                        tmpTexture.Apply();
+                        BookData tmpBook = new BookData();
+                        tmpBook.id = book.id;
+                        tmpBook.texture = null;
+                        //tmpBook.description = book.shortDescription;
+                        tmpBook.name = book.name;
+                        //add picture and url later
+                        tmpBook.imgString = Convert.ToBase64String(Decompress(Convert.FromBase64String(book.defaultPicture)));
+                        if (book.defaultPicture != "" && book.defaultPicture != null)
+                        {
+                            Texture2D tmpTexture = new Texture2D(1, 1);
+                            tmpTexture.LoadImage(Convert.FromBase64String(tmpBook.imgString));
+                            tmpTexture.Apply();
 
-                        cachedTextures.Add(tmpTexture);
-                        tmpBook.texture = tmpTexture;
+                            cachedTextures.Add(tmpTexture);
+                            tmpBook.texture = tmpTexture;
+                        }
+                        //if(tmpBook.imgString != "" && tmpBook.imgString != null)tmpBook.texture.LoadImage(Decompress(Convert.FromBase64String(tmpBook.imgString)));
+                        tmpCat.booksData.Add(tmpBook);
+                        loadedBooks++;
                     }
-                    //if(tmpBook.imgString != "" && tmpBook.imgString != null)tmpBook.texture.LoadImage(Decompress(Convert.FromBase64String(tmpBook.imgString)));
-                    tmpCat.booksData.Add(tmpBook);
                 }
-                loadedBooks += res.prodcutList.Count;
-                
+
+
             }
             //TODO
             //call function here which fills physical bookcase with categories and books

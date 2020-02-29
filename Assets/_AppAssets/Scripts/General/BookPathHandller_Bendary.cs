@@ -157,7 +157,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
                 List<BookData> booksData = Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].booksData;
                 if (booksData != null)
                 {
-                    if (booksData.Count > books.Length)
+                    if (Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].total > books.Length)
                     {
                         for (int i = 0; i < books.Length; i++)
                         {

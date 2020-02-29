@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024a9416a95834c40a1d634db6a41177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadedBooksLimit: 5
+  loadedBooksLimit: 20
   cachedata: {fileID: 11400000, guid: d7a57a54a5e58bc46adba20975bab4bc, type: 2}
   startUpDataEvent:
     m_PersistentCalls:
@@ -601,7 +601,6 @@ GameObject:
   - component: {fileID: 1882423684}
   - component: {fileID: 1882423683}
   - component: {fileID: 1882423685}
-  - component: {fileID: 1882423686}
   m_Layer: 0
   m_Name: cache&data
   m_TagString: Untagged
@@ -627,18 +626,18 @@ MonoBehaviour:
   dataArrivedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1882423686}
-        m_MethodName: funcDataArrivedCallback
+      - m_Target: {fileID: 0}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  oneTimeLoadLimit: 2
+  oneTimeLoadLimit: 10
   loadedBooks: 0
 --- !u!4 &1882423684
 Transform:
@@ -700,19 +699,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1882423686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1882423682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44d5f7829a420f542a6e85c41c150515, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  categoryIndex: 0
 --- !u!1 &2002302472
 GameObject:
   m_ObjectHideFlags: 0

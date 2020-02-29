@@ -126,6 +126,11 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
         return shelves[currentShelfIndex].GetComponent<BookPathHandller_Bendary>().GetCurrentBook();
     }
 
+    public Shelf_Bendary GetCurrentShelf()
+    {
+        return shelves[currentShelfIndex];
+    }
+
     #endregion
 
     #region Data

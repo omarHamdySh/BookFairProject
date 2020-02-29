@@ -5,24 +5,37 @@ using UnityEngine;
 //functions to load data in different states
 public class DataLoader : MonoBehaviour
 {
-    #region Singleton
-    public static DataLoader instance { private set; get; }
-    private void Awake()
+
+    
+    public BookcasePathHandller_Bendary bookcasePathHandler;
+    public ShelfPathHandller_Bendary shelfPathHandler;
+
+    private void Start()
     {
-        if (!instance)
+        Cache.Instance.dataArrivedEvent.AddListener(requestStateData);
+    }
+
+    public void requestStateData()
+    {
+        switch (GameManager.Instance.gameplayFSMManager.getCurrentState())
         {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
+            case GameplayState.Floor:
+                funcFloorMode();
+                break;
+            case GameplayState.BookCase:
+                funcBookcaseMode();
+                break;
+            case GameplayState.Shelf:
+                funcShelfMode();
+                break;
+            default:
+                print("noth");
+                break;
         }
     }
-    #endregion
-
     public void funcFloorMode()
     {
-        Debug.Log("floor load");
+        Debug.Log("floor load");    
         StopAllCoroutines();
         foreach (Vendor vendor in Cache.Instance.cachedData.allVendors)
         {
@@ -36,43 +49,36 @@ public class DataLoader : MonoBehaviour
     public int categoryIndex = 0;
     private int lastPublisherId = 0;
     //load categories in bookcase mode
-    public void funcBookcaseMode(int publisherId)
+    public void funcBookcaseMode()
     {
-        print(publisherId);
-
-        if (GameManager.Instance.gameplayFSMManager.getCurrentState() == GameplayState.BookCase)
-        {
-            StopAllCoroutines();
-            BookcaseData tmpBookcase = Cache.Instance.cachedData.allVendors.Find(v => v.id == publisherId).bookcaseData;
-
-            if (tmpBookcase != null)
-            {
-                if (tmpBookcase.categories != null)
-                {
-                    if (categoryIndex >= tmpBookcase.categories.Count) categoryIndex = 0;
-                    Cache.Instance.retrieveCategoryInBookcase(publisherId, tmpBookcase.categories[categoryIndex++].id);
-                }
-            }
-        }
-    }
-
-    public void funcShelfMode(int publisherId, int categoryId)
-    {
+        print("load bookcase mode");
         StopAllCoroutines();
-        Cache.Instance.retrieveCategoryInBookcase(publisherId, categoryId);
-    }
+        int publisherId = Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].id;
+        BookcaseData tmpBookcase = Cache.Instance.cachedData.allVendors.Find(v => v.id == publisherId).bookcaseData;
 
-    public void funcDataArrivedCallback()
-    {
-        if (GameManager.Instance != null)
+        if (tmpBookcase != null)
         {
-            switch (GameManager.Instance.gameplayFSMManager.getCurrentState())
+            if (tmpBookcase.categories != null)
             {
-                case GameplayState.BookCase:
-                    funcBookcaseMode(lastPublisherId);
-                    print("loading " + categoryIndex.ToString());
-                    break;
+                if (categoryIndex >= tmpBookcase.categories.Count) categoryIndex = 0;
+                Cache.Instance.retrieveCategoryInBookcase(publisherId, tmpBookcase.categories[categoryIndex++].id);
             }
         }
+
     }
+
+    public void funcShelfMode()
+    {
+        shelfPathHandler = bookcasePathHandler.getCurrentShelfPathHandler();
+        Debug.Log("shelf mode");
+        StopAllCoroutines();
+        int publisherId = Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].id;
+        if (Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].bookcaseData != null)
+        {
+            int categoryId = Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].bookcaseData.categories[0].id;
+            Cache.Instance.retrieveCategoryInBookcase(publisherId, categoryId);
+        }
+    }
+
+    
 }
