@@ -34,19 +34,24 @@ public class DataLoader : MonoBehaviour
     }
 
     public int categoryIndex = 0;
+    private int lastPublisherId = 0;
     //load categories in bookcase mode
     public void funcBookcaseMode(int publisherId)
     {
-        StopAllCoroutines();
+        print(publisherId);
 
-        BookcaseData tmpBookcase = Cache.Instance.cachedData.allVendors.Find(v => v.id == publisherId).bookcaseData;
-
-        if (tmpBookcase != null)
+        if (GameManager.Instance.gameplayFSMManager.getCurrentState() == GameplayState.BookCase)
         {
-            if (tmpBookcase.categories != null)
+            StopAllCoroutines();
+            BookcaseData tmpBookcase = Cache.Instance.cachedData.allVendors.Find(v => v.id == publisherId).bookcaseData;
+
+            if (tmpBookcase != null)
             {
-                if (categoryIndex >= tmpBookcase.categories.Count) categoryIndex = 0;
-                Cache.Instance.retrieveCategoryInBookcase(publisherId, tmpBookcase.categories[categoryIndex++].id);
+                if (tmpBookcase.categories != null)
+                {
+                    if (categoryIndex >= tmpBookcase.categories.Count) categoryIndex = 0;
+                    Cache.Instance.retrieveCategoryInBookcase(publisherId, tmpBookcase.categories[categoryIndex++].id);
+                }
             }
         }
     }
@@ -55,5 +60,19 @@ public class DataLoader : MonoBehaviour
     {
         StopAllCoroutines();
         Cache.Instance.retrieveCategoryInBookcase(publisherId, categoryId);
+    }
+
+    public void funcDataArrivedCallback()
+    {
+        if (GameManager.Instance != null)
+        {
+            switch (GameManager.Instance.gameplayFSMManager.getCurrentState())
+            {
+                case GameplayState.BookCase:
+                    funcBookcaseMode(lastPublisherId);
+                    print("loading " + categoryIndex.ToString());
+                    break;
+            }
+        }
     }
 }

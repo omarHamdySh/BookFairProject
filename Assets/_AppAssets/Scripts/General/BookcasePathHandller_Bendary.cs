@@ -35,7 +35,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         if (Cache.Instance)
         {
             //mostafa
-            DataLoader.instance.funcFloorMode();
+            //DataLoader.instance.funcFloorMode();
             PutDataOnCurrent();
         }
     }
@@ -302,10 +302,12 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
 
     public void retrieveDataOfCurrentBookcase()
     {
-        Debug.Log(currentRealBookcaseInUse);
+        print("a7a");
         if (Cache.Instance.cachedData.allVendors != null)
-            DataLoader.instance.funcBookcaseMode(Cache.Instance.cachedData.allVendors[currentRealBookcaseInUse].id);
-
+        {
+            DataLoader.instance.categoryIndex = 0;
+            DataLoader.instance.funcBookcaseMode(Cache.Instance.cachedData.allVendors[bookcaseCasheIndex].id);
+        }
     }
     #endregion
 }

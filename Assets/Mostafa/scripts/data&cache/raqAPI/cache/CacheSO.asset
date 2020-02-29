@@ -13,4 +13,31 @@ MonoBehaviour:
   m_Name: CacheSO
   m_EditorClassIdentifier: 
   allCategories: []
-  allVendors: []
+  allVendors:
+  - id: 0
+    name: 
+    description: 
+    defualtPicture: 
+    accessFrequency: 0
+    bookcaseData:
+      id: 0
+      name: 
+      categories: []
+  - id: 0
+    name: 
+    description: 
+    defualtPicture: 
+    accessFrequency: 0
+    bookcaseData:
+      id: 0
+      name: 
+      categories: []
+  - id: 0
+    name: 
+    description: 
+    defualtPicture: 
+    accessFrequency: 0
+    bookcaseData:
+      id: 0
+      name: 
+      categories: []
