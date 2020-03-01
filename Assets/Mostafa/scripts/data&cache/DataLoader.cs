@@ -6,13 +6,16 @@ using UnityEngine;
 public class DataLoader : MonoBehaviour
 {
 
-    
+
     public BookcasePathHandller_Bendary bookcasePathHandler;
     public ShelfPathHandller_Bendary shelfPathHandler;
 
     private void Start()
     {
-        Cache.Instance.dataArrivedEvent.AddListener(requestStateData);
+        if (Cache.Instance)
+        {
+            Cache.Instance.dataArrivedEvent.AddListener(requestStateData);
+        }
     }
 
     public void requestStateData()
@@ -35,7 +38,7 @@ public class DataLoader : MonoBehaviour
     }
     public void funcFloorMode()
     {
-        Debug.Log("floor load");    
+        Debug.Log("floor load");
         StopAllCoroutines();
         foreach (Vendor vendor in Cache.Instance.cachedData.allVendors)
         {
@@ -80,5 +83,5 @@ public class DataLoader : MonoBehaviour
         }
     }
 
-    
+
 }
