@@ -9,6 +9,7 @@ public class RaqAPI : MonoBehaviour
     private string baseUrl = "https://raaqeem.com:1000";
     public ApiAuth authInfo;
     public int languageId = 1;
+    public int fairId = -1;
     public UnityEvent authTokenLoadedEvent;
     public UnityEvent vendorsRetrievedEvent;
     
@@ -77,6 +78,7 @@ public class RaqAPI : MonoBehaviour
 
         if (limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
         if (categoryId > 0) uri += "&categoryId=" + categoryId.ToString();
+        if (fairId >= 0) uri += "&fairId=" + fairId.ToString();
 
         ProductResult res = new ProductResult();
 
@@ -95,6 +97,36 @@ public class RaqAPI : MonoBehaviour
         if (res != null)
         {
             Cache.Instance.cacheCategoryInPublisher(res, publisherId, categoryId);
+        }
+    }
+
+    public IEnumerator searchWithFilter(string keyword, int categoryId, int limit, int page)
+    {
+        Debug.Log("searching");
+        //temporary until badawy gives us another endpoint
+        string uri = baseUrl + "/api/products_sample_data?" + "vendorId=" + "&keyword=" + keyword;
+
+        if (limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
+        if (categoryId > 0) uri += "&categoryId=" + categoryId.ToString();
+        if(fairId >= 0) uri += "&fairId=" + fairId.ToString();
+        
+        ProductResult res = new ProductResult();
+
+        UnityWebRequest www = UnityWebRequest.Get(uri);
+
+        www.SetRequestHeader("Authorization", authInfo.token_type + " " + authInfo.access_token);
+        www.SetRequestHeader("customerId", "1");
+        www.SetRequestHeader("Content-Type", "application/json");
+        www.SetRequestHeader("LanguageId", languageId.ToString());
+
+
+        yield return www.SendWebRequest();
+
+        res = JsonUtility.FromJson<ProductResult>(www.downloadHandler.text);
+
+        if (res != null)
+        {
+            Cache.Instance.cacheSearchResult(res);
         }
     }
 

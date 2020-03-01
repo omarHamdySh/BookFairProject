@@ -13,10 +13,14 @@ public class Cache : MonoBehaviour
     public CacheSO cachedData;
 
     public List<Texture2D> cachedTextures;
+    public List<Texture2D> searchTextures;
 
     public RaqAPI api;
 
     public UnityEvent dataArrivedEvent;
+    
+    public delegate void SearchCallBack(List<BookData> result);
+    SearchCallBack searchCallBack;
 
     public int oneTimeLoadLimit;//maxiumum number of books to be loaded at one time
     #region singleton
@@ -47,8 +51,9 @@ public class Cache : MonoBehaviour
 
         cachedData.allVendors = new List<Vendor>();
         cachedData.allCategories = new List<ProductCategory>();
-
+        cachedData.searchResult = new List<BookData>();
         cachedTextures = new List<Texture2D>();
+        searchTextures = new List<Texture2D>();
     }
 
     [ContextMenu("Finish Loading Data")]
@@ -83,7 +88,7 @@ public class Cache : MonoBehaviour
     [ContextMenu("foo4")]
     public void foo4()
     {
-        retrieveCategoryInBookcase(4, 23);
+        search(null, "synthesis", 0, 10, 1);
     }
 
 
@@ -140,6 +145,13 @@ public class Cache : MonoBehaviour
         StartCoroutine(api.getAllVendors(0, 0));
     }
 
+    public void search(SearchCallBack callBack, string keyword, int categoryId, int limit, int page)
+    {
+        StartCoroutine(api.searchWithFilter(keyword, categoryId, limit, page));
+        searchCallBack = callBack;
+        
+    }
+
     ////////////////////////////////caching functions//////////////////////////////////////////
     public void cacheCategoryInPublisher(ProductResult res, int publisherId, int categoryId)
     {
@@ -186,9 +198,8 @@ public class Cache : MonoBehaviour
                         BookData tmpBook = new BookData();
                         tmpBook.id = book.id;
                         tmpBook.texture = null;
-                        //tmpBook.description = book.shortDescription;
+                        tmpBook.description = book.shortDescription;
                         tmpBook.name = book.name;
-                        //add picture and url later
                         tmpBook.imgString = Convert.ToBase64String(Decompress(Convert.FromBase64String(book.defaultPicture)));
                         if (book.defaultPicture != "" && book.defaultPicture != null)
                         {
@@ -210,6 +221,37 @@ public class Cache : MonoBehaviour
             //TODO
             //call function here which fills physical bookcase with categories and books
             dataArrivedEvent.Invoke();
+        }
+    }
+
+    public void cacheSearchResult(ProductResult res)
+    {
+        if (res != null)
+        {
+            print("store");
+            searchTextures = new List<Texture2D>();
+            foreach (Product book in res.prodcutList)
+            {
+                BookData tmpBook = new BookData();
+                tmpBook.id = book.id;
+                tmpBook.texture = null;
+                tmpBook.description = book.shortDescription;
+                tmpBook.name = book.name;
+                if (book.defaultPicture != "" && book.defaultPicture != null)
+                {
+                    tmpBook.imgString = Convert.ToBase64String(Decompress(Convert.FromBase64String(book.defaultPicture)));
+                    Texture2D tmpTexture = new Texture2D(1, 1);
+                    tmpTexture.LoadImage(Convert.FromBase64String(tmpBook.imgString));
+                    tmpTexture.Apply();
+                    searchTextures.Add(tmpTexture);
+                    tmpBook.texture = tmpTexture;
+                }
+                //if(tmpBook.imgString != "" && tmpBook.imgString != null)tmpBook.texture.LoadImage(Decompress(Convert.FromBase64String(tmpBook.imgString)));
+
+                cachedData.searchResult.Add(tmpBook);
+            }
+            if(searchCallBack != null)
+            searchCallBack(cachedData.searchResult);
         }
     }
     public void cacheAllCategories(AllCategoriesResult categoriesResult)

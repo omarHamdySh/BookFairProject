@@ -7,4 +7,5 @@ public class CacheSO : ScriptableObject
 {
     public List<ProductCategory> allCategories;
     public List<Vendor> allVendors;
+    public List<BookData> searchResult;
 }
