@@ -46,7 +46,7 @@ public class DataLoader : MonoBehaviour
             {
                 foreach (ProductCategory pc in Cache.Instance.cachedData.allCategories)
                 {
-                    //Cache.Instance.retrieveCategoryInBookcase(vendor.id, pc.id);
+                    Cache.Instance.retrieveCategoryInBookcase(vendor.id, pc.id);
                 }
             }
         }

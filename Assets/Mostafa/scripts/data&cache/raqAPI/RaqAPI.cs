@@ -102,7 +102,6 @@ public class RaqAPI : MonoBehaviour
 
     public IEnumerator searchWithFilter(string keyword, int categoryId, int limit, int page)
     {
-        Debug.Log("searching");
         //temporary until badawy gives us another endpoint
         string uri = baseUrl + "/api/products_sample_data?" + "vendorId=" + "&keyword=" + keyword;
 
