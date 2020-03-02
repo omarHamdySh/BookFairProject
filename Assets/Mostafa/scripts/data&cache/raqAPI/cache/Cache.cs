@@ -155,7 +155,7 @@ public class Cache : MonoBehaviour
     ////////////////////////////////caching functions//////////////////////////////////////////
     public void cacheCategoryInPublisher(ProductResult res, int publisherId, int categoryId)
     {
-        //removeExcess();
+        removeExcess();
         Vendor tmpVendorReference = cachedData.allVendors.Find(v => v.id == publisherId);
         if (res != null && tmpVendorReference != null)
         {
@@ -220,8 +220,6 @@ public class Cache : MonoBehaviour
 
 
             }
-            //TODO
-            //call function here which fills physical bookcase with categories and books
             dataArrivedEvent.Invoke();
         }
     }
@@ -296,21 +294,24 @@ public class Cache : MonoBehaviour
         {
             if (bookCaseData.categories != null)
             {
-                CategoryData tmpLeastAccessCat = bookCaseData.categories[0];
-
-                foreach (CategoryData c in bookCaseData.categories)
+                if (bookCaseData.categories.Count > 0)
                 {
-                    if (c.accessFrequency < tmpLeastAccessCat.accessFrequency) tmpLeastAccessCat = c;
-                }
+                    CategoryData tmpLeastAccessCat = bookCaseData.categories[0];
 
-                //remove pictures
-                foreach (BookData bd in tmpLeastAccessCat.booksData)
-                {
-                    bd.texture = null;
-                }
+                    foreach (CategoryData c in bookCaseData.categories)
+                    {
+                        if (c.accessFrequency < tmpLeastAccessCat.accessFrequency) tmpLeastAccessCat = c;
+                    }
 
-                bookCaseData.categories.Remove(tmpLeastAccessCat);
-                loadedBooks--;
+                    //remove pictures
+                    foreach (BookData bd in tmpLeastAccessCat.booksData)
+                    {
+                        bd.texture = null;
+                    }
+
+                    loadedBooks -= tmpLeastAccessCat.booksData.Count;
+                    bookCaseData.categories.Remove(tmpLeastAccessCat);
+                }
             }
         }
 
@@ -318,9 +319,9 @@ public class Cache : MonoBehaviour
 
     public void removeExcess()
     {
-        foreach(Vendor v in cachedData.allVendors)
+        foreach (Vendor v in cachedData.allVendors)
         {
-            if(loadedBooks > booksLimit)
+            if (loadedBooks > booksLimit)
             {
                 removeLeastAccessedCategory(v.bookcaseData);
             }
