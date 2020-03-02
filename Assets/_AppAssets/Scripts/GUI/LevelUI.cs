@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Runtime.InteropServices;
 
 public class LevelUI : UIHandller
 {
@@ -22,8 +23,7 @@ public class LevelUI : UIHandller
     #endregion
 
     #region LoadingBar
-    [Header("LoadingBar")]
-    public GameObject loadingBar;
+    public GameObject endlessLoadingBar;
     #endregion
 
     #region SwitchFromUI to Game Mode
@@ -37,46 +37,130 @@ public class LevelUI : UIHandller
 
     #region Search
     [Header("Search")]
-    [SerializeField] private Button prevSearchPageBtn, nextSearchPageBtn;
+    [SerializeField] private Button prevSearchPageBtn;
+    [SerializeField] private Button nextSearchPageBtn;
     [SerializeField] private TextMeshProUGUI seachResultCountTxt;
     [SerializeField] private Transform searchedBookContainer;
 
     private int searchPageIndex = 0;
     private int filterCategoryID = -1;
-    private int searchedBookCount = 0;
+    private int totalSearchedBooksCount = 0;
+    private List<BookData> searchPageResult;
 
+    [DllImport("__Internal")]
+    private static extern void openWindow(string url);
+
+    public void StartSearch(string searchWord)
+    {
+        if (!string.IsNullOrEmpty(searchWord))
+        {
+            //Cache.Instance.search()
+        }
+    }
+
+    public void StartSearch(TMP_InputField searchIn)
+    {
+        if (!string.IsNullOrEmpty(searchIn.text))
+        {
+            //Cache.Instance.search()
+        }
+    }
+
+    public void SearchResultCallback(List<BookData> searchPageResult, int totalSearchedBooksCount)
+    {
+        this.searchPageResult = searchPageResult;
+        this.totalSearchedBooksCount = totalSearchedBooksCount;
+
+        PutBooksDataOnUI();
+        ManageSeachUIForSearchedResult();
+    }
+
+    private void CloseAllBooks()
+    {
+        foreach (Transform i in searchedBookContainer)
+        {
+            i.gameObject.SetActive(false);
+        }
+    }
+
+    private void PutBooksDataOnUI()
+    {
+        // Close All Books
+        CloseAllBooks();
+
+        for (int i = 0; i < searchPageResult.Count; i++)
+        {
+            // Get the book
+            Transform book = searchedBookContainer.GetChild(i);
+
+            // Enable Book
+            book.gameObject.SetActive(true);
+
+            // Put Data on the book
+            book.GetComponentInChildren<TextMeshProUGUI>().text = searchPageResult[i].name;
+            book.GetChild(0).GetChild(0).GetComponent<Image>().sprite = Sprite.Create(searchPageResult[i].texture, new Rect(0, 0, searchPageResult[i].texture.width, searchPageResult[i].texture.height), new Vector2(0.5f, 0.5f));
+            book.GetComponent<Button>().onClick.RemoveAllListeners();
+            book.GetComponent<PressHandler>().OnPress.AddListener(() => OpenURL(searchPageResult[i].description));
+        }
+    }
 
     public void NextOrPrevPage(NextOrPrev nextOrPrev)
     {
         if (nextOrPrev == NextOrPrev.Next)
         {
-            //Cache.Instance.search()
+
         }
         else
         {
 
         }
+        endlessLoadingBar.SetActive(true);
+
+        //Cache.Instance.search()
     }
 
     private void ManageSeachUIForSearchedResult()
     {
-        if (searchedBookCount == 0)
+        if (totalSearchedBooksCount == 0)
         {
             prevSearchPageBtn.interactable = false;
             nextSearchPageBtn.interactable = false;
         }
-        else if (searchedBookCount > 0)
+        else if (totalSearchedBooksCount > 0)
         {
-            if (searchPageIndex * searchedBookContainer.childCount <= searchedBookCount)
+            if (totalSearchedBooksCount <= searchedBookContainer.childCount)
             {
                 prevSearchPageBtn.interactable = false;
                 nextSearchPageBtn.interactable = false;
             }
-            else if (searchPageIndex > 2 && searchPageIndex < s)
+            else
             {
-
+                if (searchPageIndex > 0 && searchPageIndex < Mathf.CeilToInt(totalSearchedBooksCount / searchedBookContainer.childCount) - 1)
+                {
+                    prevSearchPageBtn.interactable = true;
+                    nextSearchPageBtn.interactable = true;
+                }
+                else if (searchPageIndex == 0)
+                {
+                    prevSearchPageBtn.interactable = false;
+                    nextSearchPageBtn.interactable = true;
+                }
+                else if (searchPageIndex == Mathf.CeilToInt(totalSearchedBooksCount / searchedBookContainer.childCount) - 1)
+                {
+                    prevSearchPageBtn.interactable = true;
+                    nextSearchPageBtn.interactable = false;
+                }
             }
         }
+    }
+
+    public void OpenURL(string url)
+    {
+#if !UNITY_EDITOR
+    openWindow(url);
+#else
+        Application.OpenURL(url);
+#endif
     }
     #endregion
 }

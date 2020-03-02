@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class UIHandller : MonoBehaviour
 {
-    [SerializeField] private Slider loading;
+    [Header("LoadingBar")]
+    [SerializeField] private Slider endedLoadingBar;
 
     /// <summary>
     /// Exit the game
@@ -52,9 +53,9 @@ public class UIHandller : MonoBehaviour
         AsyncOperation operation = SceneManager.LoadSceneAsync(scencName);
         while (!operation.isDone)
         {
-            if (loading)
+            if (endedLoadingBar)
             {
-                loading.value = operation.progress;
+                endedLoadingBar.value = operation.progress;
             }
 
             yield return null;
