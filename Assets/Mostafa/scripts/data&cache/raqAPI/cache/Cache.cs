@@ -84,11 +84,18 @@ public class Cache : MonoBehaviour
         retrieveCategoryInBookcase(4, 20);
     }
 
+    [ContextMenu("foo4")]
+    void foo4()
+    {
+        search(null, 6, 1, "sound");
+    }
 
 
 
-    //purpose: gets book case by publisher id
-    public void retrieveCategoryInBookcase(int publisherId, int categoryId)
+
+
+        //purpose: gets book case by publisher id
+        public void retrieveCategoryInBookcase(int publisherId, int categoryId)
     {
         //all vendors and categories must be present first
         Vendor tmpVendorReference = cachedData.allVendors.Find(v => v.id == publisherId);
@@ -141,6 +148,7 @@ public class Cache : MonoBehaviour
 
     public void search(SearchCallBack callBack, int limit, int page, string keyword, int categoryId = -1)
     {
+        cachedData.searchResult = new List<BookData>();
         StartCoroutine(api.searchWithFilter(keyword, categoryId, limit, page));
         searchCallBack = callBack;
 
