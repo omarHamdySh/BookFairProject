@@ -108,11 +108,11 @@ public class LevelUI : UIHandller
     {
         if (nextOrPrev == NextOrPrev.Next)
         {
-
+            searchPageIndex = (searchPageIndex + 1) % (Mathf.CeilToInt(totalSearchedBooksCount / searchedBookContainer.childCount));
         }
         else
         {
-
+            searchPageIndex = (searchPageIndex == 0) ? Mathf.CeilToInt(totalSearchedBooksCount / searchedBookContainer.childCount) - 1 : searchPageIndex - 1;
         }
         endlessLoadingBar.SetActive(true);
 
