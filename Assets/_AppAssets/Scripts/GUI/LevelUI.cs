@@ -42,6 +42,7 @@ public class LevelUI : UIHandller
     [SerializeField] private TextMeshProUGUI seachResultCountTxt;
     [SerializeField] private Transform searchedBookContainer;
     [SerializeField] private TMP_InputField searchIN;
+    [SerializeField] private TextMeshProUGUI searchPageIndexTxt;
 
     private int searchPageIndex = 0;
     private int filterCategoryID = -1;
@@ -56,6 +57,7 @@ public class LevelUI : UIHandller
         searchIN.text = (enabled) ? searchIN.text : "";
         searchPageIndex = (enabled) ? searchPageIndex : 0;
         filterCategoryID = (enabled) ? filterCategoryID : -1;
+        searchPageIndexTxt.gameObject.SetActive(enabled);
         prevSearchPageBtn.gameObject.SetActive(enabled);
         nextSearchPageBtn.gameObject.SetActive(enabled);
         seachResultCountTxt.gameObject.SetActive(enabled);
@@ -66,7 +68,7 @@ public class LevelUI : UIHandller
     {
         if (Cache.Instance)
         {
-            if (!string.IsNullOrEmpty(searchWord))
+            if (!string.IsNullOrEmpty(searchWord) && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)))
             {
                 endlessLoadingBar.SetActive(true);
                 Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchWord);
@@ -92,6 +94,7 @@ public class LevelUI : UIHandller
         this.totalSearchedBooksCount = totalSearchedBooksCount;
 
         seachResultCountTxt.text = "Search Result " + totalSearchedBooksCount + ((totalSearchedBooksCount > 1) ? " books" : " book");
+        searchPageIndexTxt.text = "Page " + (searchPageIndex + 1);
 
         endlessLoadingBar.SetActive(false);
         ToggleAllSearchCommponent(true);
@@ -123,21 +126,24 @@ public class LevelUI : UIHandller
 
             // Put Data on the book
             book.GetComponentInChildren<TextMeshProUGUI>().text = searchPageResult[i].name;
-            book.GetChild(0).GetChild(0).GetComponent<Image>().sprite = Sprite.Create(searchPageResult[i].texture, new Rect(0, 0, searchPageResult[i].texture.width, searchPageResult[i].texture.height), new Vector2(0.5f, 0.5f));
+            if (searchPageResult[i].texture)
+            {
+                book.GetChild(0).GetChild(0).GetComponent<Image>().sprite = Sprite.Create(searchPageResult[i].texture, new Rect(0, 0, searchPageResult[i].texture.width, searchPageResult[i].texture.height), new Vector2(0.5f, 0.5f));
+            }
             book.GetComponent<Button>().onClick.RemoveAllListeners();
             book.GetComponent<PressHandler>().OnPress.AddListener(() => OpenURL(searchPageResult[i].url));
         }
     }
 
-    public void NextOrPrevPage(NextOrPrev nextOrPrev)
+    public void NextOrPrevPage(bool isNext)
     {
-        if (nextOrPrev == NextOrPrev.Next)
+        if (isNext)
         {
-            searchPageIndex = (searchPageIndex + 1) % (Mathf.CeilToInt(totalSearchedBooksCount / searchedBookContainer.childCount));
+            searchPageIndex = (searchPageIndex + 1) % (Mathf.CeilToInt((float)totalSearchedBooksCount / (float)searchedBookContainer.childCount));
         }
         else
         {
-            searchPageIndex = (searchPageIndex == 0) ? Mathf.CeilToInt(totalSearchedBooksCount / searchedBookContainer.childCount) - 1 : searchPageIndex - 1;
+            searchPageIndex = (searchPageIndex == 0) ? Mathf.CeilToInt((float)totalSearchedBooksCount / (float)searchedBookContainer.childCount) - 1 : searchPageIndex - 1;
         }
         endlessLoadingBar.SetActive(true);
 
@@ -163,7 +169,7 @@ public class LevelUI : UIHandller
             }
             else
             {
-                if (searchPageIndex > 0 && searchPageIndex < Mathf.CeilToInt(totalSearchedBooksCount / searchedBookContainer.childCount) - 1)
+                if (searchPageIndex > 0 && searchPageIndex < Mathf.CeilToInt((float)totalSearchedBooksCount / (float)searchedBookContainer.childCount) - 1)
                 {
                     prevSearchPageBtn.interactable = true;
                     nextSearchPageBtn.interactable = true;
@@ -173,7 +179,7 @@ public class LevelUI : UIHandller
                     prevSearchPageBtn.interactable = false;
                     nextSearchPageBtn.interactable = true;
                 }
-                else if (searchPageIndex == Mathf.CeilToInt(totalSearchedBooksCount / searchedBookContainer.childCount) - 1)
+                else if (searchPageIndex == Mathf.CeilToInt((float)totalSearchedBooksCount / (float)searchedBookContainer.childCount) - 1)
                 {
                     prevSearchPageBtn.interactable = true;
                     nextSearchPageBtn.interactable = false;
@@ -191,10 +197,4 @@ public class LevelUI : UIHandller
 #endif
     }
     #endregion
-}
-
-public enum NextOrPrev
-{
-    Next,
-    Previous
 }
