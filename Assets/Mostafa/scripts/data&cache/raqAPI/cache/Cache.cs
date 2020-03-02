@@ -318,17 +318,16 @@ public class Cache : MonoBehaviour
 
     public void removeExcess()
     {
-        int i = 0;
-        while (loadedBooks >= booksLimit)
+        foreach(Vendor v in cachedData.allVendors)
         {
-            i = i % cachedData.allVendors.Count;
-
-            if (cachedData.allVendors[i].bookcaseData != null)
+            if(loadedBooks > booksLimit)
             {
-                removeLeastAccessedCategory(cachedData.allVendors[i].bookcaseData);
+                removeLeastAccessedCategory(v.bookcaseData);
             }
-
-            i++;
+            else
+            {
+                break;
+            }
         }
     }
 
