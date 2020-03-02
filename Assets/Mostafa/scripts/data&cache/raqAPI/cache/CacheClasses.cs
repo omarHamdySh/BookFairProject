@@ -9,6 +9,7 @@ public class BookData
     public string name;
     public string description;
     public Texture2D texture;
+    public string url;
     public string imgString;
 }
 
