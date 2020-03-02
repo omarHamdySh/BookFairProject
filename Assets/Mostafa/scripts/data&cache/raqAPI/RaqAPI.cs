@@ -12,7 +12,7 @@ public class RaqAPI : MonoBehaviour
     public int fairId = -1;
     public UnityEvent authTokenLoadedEvent;
     public UnityEvent vendorsRetrievedEvent;
-    
+
     // Start is called before the first frame update
 
 
@@ -69,7 +69,7 @@ public class RaqAPI : MonoBehaviour
             authTokenLoadedEvent.Invoke();
         }
     }
-    
+
 
     public IEnumerator productsByPublisher(int publisherId, int categoryId, int limit, int page)
     {
@@ -107,9 +107,9 @@ public class RaqAPI : MonoBehaviour
         string uri = baseUrl + "/api/products_sample_data?" + "vendorId=" + "&keyword=" + keyword;
 
         if (limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
-        if (categoryId > 0) uri += "&categoryId=" + categoryId.ToString();
-        if(fairId >= 0) uri += "&fairId=" + fairId.ToString();
-        
+        if (categoryId >= 0) uri += "&categoryId=" + categoryId.ToString();
+        if (fairId >= 0) uri += "&fairId=" + fairId.ToString();
+
         ProductResult res = new ProductResult();
 
         UnityWebRequest www = UnityWebRequest.Get(uri);
@@ -135,7 +135,7 @@ public class RaqAPI : MonoBehaviour
         //temporary until badawy gives us another endpoint
         string uri = baseUrl + "/api/products?" + "vendorId=" + publisherId.ToString();
 
-        if(limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
+        if (limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
         if (categoryId > 0) uri += "&categoryId=" + categoryId.ToString();
 
         ProducIdstResult res = new ProducIdstResult();
@@ -151,9 +151,9 @@ public class RaqAPI : MonoBehaviour
 
         res = JsonUtility.FromJson<ProducIdstResult>(www.downloadHandler.text);
 
-        
+
         Debug.Log(res.prodcutList.Count);
-        foreach(BookId productList in res.prodcutList)
+        foreach (BookId productList in res.prodcutList)
         {
             Debug.Log(productList.id);
         }
@@ -167,7 +167,7 @@ public class RaqAPI : MonoBehaviour
         string uri = baseUrl + "/api/categories/categories_list";
 
         if (limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
-        
+
         AllCategoriesResult res = new AllCategoriesResult();
 
         UnityWebRequest www = UnityWebRequest.Get(uri);
@@ -211,7 +211,7 @@ public class RaqAPI : MonoBehaviour
             Cache.Instance.cacheAllVendors(res);
             vendorsRetrievedEvent.Invoke();//load peliminary data
         }
-        
+
     }
     public IEnumerator allSponsors()
     {
@@ -228,7 +228,7 @@ public class RaqAPI : MonoBehaviour
         www.SetRequestHeader("LanguageId", "1");
 
         yield return www.SendWebRequest();
-        
+
         if (res != null)
         {
             res = JsonUtility.FromJson<SponsorsResult>(www.downloadHandler.text);

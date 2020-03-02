@@ -54,6 +54,8 @@ public class LevelUI : UIHandller
     public void ToggleAllSearchCommponent(bool enabled)
     {
         searchIN.text = (enabled) ? searchIN.text : "";
+        searchPageIndex = (enabled) ? searchPageIndex : 0;
+        filterCategoryID = (enabled) ? filterCategoryID : -1;
         prevSearchPageBtn.gameObject.SetActive(enabled);
         nextSearchPageBtn.gameObject.SetActive(enabled);
         seachResultCountTxt.gameObject.SetActive(enabled);
@@ -62,17 +64,25 @@ public class LevelUI : UIHandller
 
     public void StartSearch(string searchWord)
     {
-        if (!string.IsNullOrEmpty(searchWord))
+        if (Cache.Instance)
         {
-            //Cache.Instance.search()
+            if (!string.IsNullOrEmpty(searchWord))
+            {
+                endlessLoadingBar.SetActive(true);
+                Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchWord);
+            }
         }
     }
 
     public void StartSearch(TMP_InputField searchIn)
     {
-        if (!string.IsNullOrEmpty(searchIn.text))
+        if (Cache.Instance)
         {
-            //Cache.Instance.search()
+            if (!string.IsNullOrEmpty(searchIn.text))
+            {
+                endlessLoadingBar.SetActive(true);
+                Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchIn.text);
+            }
         }
     }
 
@@ -80,6 +90,11 @@ public class LevelUI : UIHandller
     {
         this.searchPageResult = searchPageResult;
         this.totalSearchedBooksCount = totalSearchedBooksCount;
+
+        seachResultCountTxt.text = "Search Result " + totalSearchedBooksCount + ((totalSearchedBooksCount > 1) ? " books" : " book");
+
+        endlessLoadingBar.SetActive(false);
+        ToggleAllSearchCommponent(true);
 
         PutBooksDataOnUI();
         ManageSeachUIForSearchedResult();
@@ -126,7 +141,10 @@ public class LevelUI : UIHandller
         }
         endlessLoadingBar.SetActive(true);
 
-        //Cache.Instance.search()
+        if (Cache.Instance)
+        {
+            Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchIN.text);
+        }
     }
 
     private void ManageSeachUIForSearchedResult()

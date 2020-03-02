@@ -85,12 +85,6 @@ public class Cache : MonoBehaviour
     }
 
 
-    [ContextMenu("foo4")]
-    public void foo4()
-    {
-        search(null, "synthesis", 0, 10, 1);
-    }
-
 
 
     //purpose: gets book case by publisher id
@@ -145,7 +139,7 @@ public class Cache : MonoBehaviour
         StartCoroutine(api.getAllVendors(0, 0));
     }
 
-    public void search(SearchCallBack callBack, string keyword, int categoryId, int limit, int page)
+    public void search(SearchCallBack callBack, int limit, int page, string keyword, int categoryId = -1)
     {
         StartCoroutine(api.searchWithFilter(keyword, categoryId, limit, page));
         searchCallBack = callBack;
@@ -318,9 +312,9 @@ public class Cache : MonoBehaviour
 
     public void removeExcess()
     {
-        foreach(Vendor v in cachedData.allVendors)
+        foreach (Vendor v in cachedData.allVendors)
         {
-            if(loadedBooks > booksLimit)
+            if (loadedBooks > booksLimit)
             {
                 removeLeastAccessedCategory(v.bookcaseData);
             }
