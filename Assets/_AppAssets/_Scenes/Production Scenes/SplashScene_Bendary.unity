@@ -639,7 +639,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   oneTimeLoadLimit: 10
-  booksLimit: 5
+  booksLimit: 10
   loadedBooks: 0
 --- !u!4 &1882423684
 Transform:
