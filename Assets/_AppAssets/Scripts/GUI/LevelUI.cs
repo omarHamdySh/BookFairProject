@@ -41,6 +41,7 @@ public class LevelUI : UIHandller
     [SerializeField] private Button nextSearchPageBtn;
     [SerializeField] private TextMeshProUGUI seachResultCountTxt;
     [SerializeField] private Transform searchedBookContainer;
+    [SerializeField] private TMP_InputField searchIN;
 
     private int searchPageIndex = 0;
     private int filterCategoryID = -1;
@@ -49,6 +50,15 @@ public class LevelUI : UIHandller
 
     [DllImport("__Internal")]
     private static extern void openWindow(string url);
+
+    public void ToggleAllSearchCommponent(bool enabled)
+    {
+        searchIN.text = (enabled) ? searchIN.text : "";
+        prevSearchPageBtn.gameObject.SetActive(enabled);
+        nextSearchPageBtn.gameObject.SetActive(enabled);
+        seachResultCountTxt.gameObject.SetActive(enabled);
+        searchedBookContainer.gameObject.SetActive(enabled);
+    }
 
     public void StartSearch(string searchWord)
     {
@@ -100,7 +110,7 @@ public class LevelUI : UIHandller
             book.GetComponentInChildren<TextMeshProUGUI>().text = searchPageResult[i].name;
             book.GetChild(0).GetChild(0).GetComponent<Image>().sprite = Sprite.Create(searchPageResult[i].texture, new Rect(0, 0, searchPageResult[i].texture.width, searchPageResult[i].texture.height), new Vector2(0.5f, 0.5f));
             book.GetComponent<Button>().onClick.RemoveAllListeners();
-            book.GetComponent<PressHandler>().OnPress.AddListener(() => OpenURL(searchPageResult[i].description));
+            book.GetComponent<PressHandler>().OnPress.AddListener(() => OpenURL(searchPageResult[i].url));
         }
     }
 
@@ -108,11 +118,11 @@ public class LevelUI : UIHandller
     {
         if (nextOrPrev == NextOrPrev.Next)
         {
-
+            searchPageIndex = (searchPageIndex + 1) % (Mathf.CeilToInt(totalSearchedBooksCount / searchedBookContainer.childCount));
         }
         else
         {
-
+            searchPageIndex = (searchPageIndex == 0) ? Mathf.CeilToInt(totalSearchedBooksCount / searchedBookContainer.childCount) - 1 : searchPageIndex - 1;
         }
         endlessLoadingBar.SetActive(true);
 
