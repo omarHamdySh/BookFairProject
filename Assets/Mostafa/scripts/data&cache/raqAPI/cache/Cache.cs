@@ -18,8 +18,8 @@ public class Cache : MonoBehaviour
     public RaqAPI api;
 
     public UnityEvent dataArrivedEvent;
-    
-    public delegate void SearchCallBack(List<BookData> result);
+
+    public delegate void SearchCallBack(List<BookData> result, int total);
     SearchCallBack searchCallBack;
 
     public int oneTimeLoadLimit;//maxiumum number of books to be loaded at one time
@@ -27,7 +27,7 @@ public class Cache : MonoBehaviour
     private static Cache _instance;
     public static Cache Instance { get { return _instance; } }
 
-    public const int booksLimit = 200;
+    public int booksLimit = 5;
     public int loadedBooks;
     private void Awake()
     {
@@ -149,12 +149,13 @@ public class Cache : MonoBehaviour
     {
         StartCoroutine(api.searchWithFilter(keyword, categoryId, limit, page));
         searchCallBack = callBack;
-        
+
     }
 
     ////////////////////////////////caching functions//////////////////////////////////////////
     public void cacheCategoryInPublisher(ProductResult res, int publisherId, int categoryId)
     {
+        //removeExcess();
         Vendor tmpVendorReference = cachedData.allVendors.Find(v => v.id == publisherId);
         if (res != null && tmpVendorReference != null)
         {
@@ -252,8 +253,8 @@ public class Cache : MonoBehaviour
 
                 cachedData.searchResult.Add(tmpBook);
             }
-            if(searchCallBack != null)
-            searchCallBack(cachedData.searchResult);
+            if (searchCallBack != null)
+                searchCallBack(cachedData.searchResult, res.totalRecord);
         }
     }
     public void cacheAllCategories(AllCategoriesResult categoriesResult)
@@ -293,21 +294,24 @@ public class Cache : MonoBehaviour
 
         if (bookCaseData != null)
         {
-            CategoryData tmpLeastAccessCat = bookCaseData.categories[0];
-
-            foreach (CategoryData c in bookCaseData.categories)
+            if (bookCaseData.categories != null)
             {
-                if (c.accessFrequency < tmpLeastAccessCat.accessFrequency) tmpLeastAccessCat = c;
-            }
+                CategoryData tmpLeastAccessCat = bookCaseData.categories[0];
 
-            //remove pictures
-            foreach (BookData bd in tmpLeastAccessCat.booksData)
-            {
-                bd.texture = null;
-            }
+                foreach (CategoryData c in bookCaseData.categories)
+                {
+                    if (c.accessFrequency < tmpLeastAccessCat.accessFrequency) tmpLeastAccessCat = c;
+                }
 
-            bookCaseData.categories.Remove(tmpLeastAccessCat);
-            loadedBooks--;
+                //remove pictures
+                foreach (BookData bd in tmpLeastAccessCat.booksData)
+                {
+                    bd.texture = null;
+                }
+
+                bookCaseData.categories.Remove(tmpLeastAccessCat);
+                loadedBooks--;
+            }
         }
 
     }
