@@ -94,7 +94,7 @@ public class LevelUI : UIHandller
         this.totalSearchedBooksCount = totalSearchedBooksCount;
 
         seachResultCountTxt.text = "Search Result " + totalSearchedBooksCount + ((totalSearchedBooksCount > 1) ? " books" : " book");
-        searchPageIndexTxt.text = "Page " + (searchPageIndex + 1);
+        searchPageIndexTxt.text = "Page " + (searchPageIndex + 1)+" / "+ (Mathf.CeilToInt((float)totalSearchedBooksCount / (float)searchedBookContainer.childCount));
 
         endlessLoadingBar.SetActive(false);
         ToggleAllSearchCommponent(true);
