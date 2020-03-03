@@ -13,6 +13,7 @@ public class DataLoader : MonoBehaviour
     public float maxInterval = 5;
     private float currentInterval;
 
+    public bool active = true;
 
     private void Start()
     {
@@ -46,20 +47,23 @@ public class DataLoader : MonoBehaviour
     }
     public void requestStateData()
     {
-        switch (GameManager.Instance.gameplayFSMManager.getCurrentState())
+        if (active)
         {
-            case GameplayState.Floor:
-                funcFloorMode();
-                break;
-            case GameplayState.BookCase:
-                funcBookcaseMode();
-                break;
-            case GameplayState.Shelf:
-                funcShelfMode();
-                break;
-            default:
-                print("not loading");
-                break;
+            switch (GameManager.Instance.gameplayFSMManager.getCurrentState())
+            {
+                case GameplayState.Floor:
+                    funcFloorMode();
+                    break;
+                case GameplayState.BookCase:
+                    funcBookcaseMode();
+                    break;
+                case GameplayState.Shelf:
+                    funcShelfMode();
+                    break;
+                default:
+                    print("not loading");
+                    break;
+            }
         }
     }
 
