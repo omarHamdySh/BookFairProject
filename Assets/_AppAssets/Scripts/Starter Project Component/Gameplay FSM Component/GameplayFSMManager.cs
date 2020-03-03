@@ -13,6 +13,7 @@ using UnityEngine;
 public enum GameplayState
 {
     Floor,
+    Search,
     BookCase,
     Shelf,
     Book,
@@ -57,6 +58,9 @@ public class GameplayFSMManager : MonoBehaviour
     [HideInInspector]
     public PauseState pauseState;
 
+    [HideInInspector]
+    public SearchState searchState;
+
     //define a temp to know which the state the player come from it to pause state
     [HideInInspector]
     public IGameplayState tempFromPause;
@@ -98,6 +102,11 @@ public class GameplayFSMManager : MonoBehaviour
         };
 
         bookCaseState = new BookCaseState()
+        {
+            gameplayFSMManager = this
+        };
+
+        searchState = new SearchState()
         {
             gameplayFSMManager = this
         };
@@ -296,6 +305,12 @@ public class GameplayFSMManager : MonoBehaviour
 
         PopState();
         PushState(bookCaseState);
+    }
+    public void toSearchState()
+    {
+
+        PopState();
+        PushState(searchState);
     }
     public void toShelfState()
     {

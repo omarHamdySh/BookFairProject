@@ -58,6 +58,7 @@ public class DataLoader : MonoBehaviour
                 funcShelfMode();
                 break;
             default:
+                print("not loading");
                 break;
         }
     }
