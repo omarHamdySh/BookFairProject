@@ -18,12 +18,12 @@ public class DataLoader : MonoBehaviour
     {
         if (Cache.Instance)
         {
-       
-            if(Cache.Instance.cachedData.allVendors != null)
+
+            if (Cache.Instance.cachedData.allVendors != null)
             {
                 floorModeVendorEnumrator = Cache.Instance.cachedData.allVendors.GetEnumerator();
             }
-            
+
             if (Cache.Instance.cachedData.allCategories != null)
             {
                 floorModeCategoryEnumrator = Cache.Instance.cachedData.allCategories.GetEnumerator();
@@ -38,7 +38,6 @@ public class DataLoader : MonoBehaviour
     {
         if (currentInterval >= maxInterval)
         {
-            print("tick");
             requestStateData();
             currentInterval = 0;
         }
@@ -59,7 +58,6 @@ public class DataLoader : MonoBehaviour
                 funcShelfMode();
                 break;
             default:
-                print("noth");
                 break;
         }
     }
@@ -73,14 +71,12 @@ public class DataLoader : MonoBehaviour
 
         if (floorModeVendorEnumrator.Current != null)
         {
-            Debug.Log("ll");
             publisherId = floorModeVendorEnumrator.Current.id;
         }
-        
+
 
         if (floorModeCategoryEnumrator.Current != null)
         {
-            Debug.Log("mm");
             categoryId = floorModeCategoryEnumrator.Current.id;
         }
 
@@ -88,8 +84,10 @@ public class DataLoader : MonoBehaviour
         StopAllCoroutines();
         Cache.Instance.retrieveCategoryInBookcase(publisherId, categoryId);
 
-        if(!floorModeCategoryEnumrator.MoveNext()){
-            if (!floorModeVendorEnumrator.MoveNext()){
+        if (!floorModeCategoryEnumrator.MoveNext())
+        {
+            if (!floorModeVendorEnumrator.MoveNext())
+            {
                 floorModeVendorEnumrator = Cache.Instance.cachedData.allVendors.GetEnumerator();
                 floorModeVendorEnumrator.MoveNext();
             }
@@ -126,8 +124,11 @@ public class DataLoader : MonoBehaviour
         int publisherId = Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].id;
         if (Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].bookcaseData != null)
         {
-            int categoryId = Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].bookcaseData.categories[0].id;
-            Cache.Instance.retrieveCategoryInBookcase(publisherId, categoryId);
+            if (Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].bookcaseData.categories != null)
+            {
+                int categoryId = Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].bookcaseData.categories[shelfPathHandler.GetCurrentShelf().categoryIndex].id;
+                Cache.Instance.retrieveCategoryInBookcase(publisherId, categoryId);
+            }
         }
     }
 
