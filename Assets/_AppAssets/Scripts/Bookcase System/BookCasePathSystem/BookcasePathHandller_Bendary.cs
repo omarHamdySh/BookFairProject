@@ -200,7 +200,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     }
 
     public void ToggleCurrentRealBookcase(bool enabled)
-    { 
+    {
         realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().isCurrentBookcase = enabled;
         realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().AwakeCurrent();
     }
@@ -242,6 +242,9 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
 
         // Assign current book cover material to animated book
         animatedBook.AssignCoverMaterials(book.bookBodyMeshRenderer.material);
+
+        // Assign current book buy url to animated book
+        animatedBook.AssignBuyURL(book.buyURL);
 
         // Close current book renderers
         book.ToggleRenderers(false);
@@ -304,7 +307,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         }
     }
 
-    
+
     #endregion
 }
 

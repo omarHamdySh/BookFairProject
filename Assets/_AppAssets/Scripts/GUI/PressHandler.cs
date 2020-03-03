@@ -5,13 +5,16 @@ using UnityEngine.Events;
 
 public class PressHandler : MonoBehaviour, IPointerDownHandler
 {
-	[Serializable]
-	public class ButtonPressEvent : UnityEvent { } 
+    [Serializable]
+    public class ButtonPressEvent : UnityEvent { }
 
-	public ButtonPressEvent OnPress = new ButtonPressEvent();
+    public ButtonPressEvent OnPress = new ButtonPressEvent();
 
-	public void OnPointerDown(PointerEventData eventData)
-	{
-		OnPress.Invoke();
-	}
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            OnPress.Invoke();
+        }
+    }
 }
