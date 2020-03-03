@@ -66,10 +66,8 @@ public class DataLoader : MonoBehaviour
         StopAllCoroutines();
         Cache.Instance.retrieveCategoryInBookcase(publisherId, categoryId);
 
-        if(!floorModeCategoryEnumrator.MoveNext())
-        {
-            if (!floorModeVendorEnumrator.MoveNext())
-            {
+        if(!floorModeCategoryEnumrator.MoveNext()){
+            if (!floorModeVendorEnumrator.MoveNext()){
                 floorModeVendorEnumrator = Cache.Instance.cachedData.allVendors.GetEnumerator();
             }
             floorModeCategoryEnumrator = Cache.Instance.cachedData.allCategories.GetEnumerator();
