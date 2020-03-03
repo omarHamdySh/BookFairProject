@@ -238,7 +238,7 @@ public class RaqAPI : MonoBehaviour
 
     public string makeBookUrl(int bookId)
     {
-        return "https://raaqeem.com/" + (languageId == 1 ? "ar" : "en") + "/" + bookId.ToString();
+        return "https://raaqeem.com/" + (languageId == 1 ? "ar" : "en") + "/" + "book" + "/" + bookId.ToString();
     }
 }
 
