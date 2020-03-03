@@ -94,7 +94,7 @@ public class LevelUI : UIHandller
         this.totalSearchedBooksCount = totalSearchedBooksCount;
 
         seachResultCountTxt.text = "Search Result " + totalSearchedBooksCount + ((totalSearchedBooksCount > 1) ? " books" : " book");
-        searchPageIndexTxt.text = "Page " + (searchPageIndex + 1)+" / "+ (Mathf.CeilToInt((float)totalSearchedBooksCount / (float)searchedBookContainer.childCount));
+        searchPageIndexTxt.text = "Page " + (searchPageIndex + 1) + " / " + (Mathf.CeilToInt((float)totalSearchedBooksCount / (float)searchedBookContainer.childCount));
 
         endlessLoadingBar.SetActive(false);
         ToggleAllSearchCommponent(true);
@@ -190,11 +190,18 @@ public class LevelUI : UIHandller
 
     public void OpenURL(string url)
     {
+        if (!string.IsNullOrEmpty(url))
+        {
 #if !UNITY_EDITOR
     openWindow(url);
 #else
-        Application.OpenURL(url);
+            Application.OpenURL(url);
 #endif
+        }
+        else
+        {
+            Debug.LogError("Empty URL");
+        }
     }
     #endregion
 }

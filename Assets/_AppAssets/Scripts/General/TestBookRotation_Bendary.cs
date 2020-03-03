@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 [RequireComponent(typeof(Animator))]
 public class TestBookRotation_Bendary : MonoBehaviour
 {
     [SerializeField] private MeshRenderer[] bookCoverRenderers;
     [SerializeField] private MeshRenderer[] bookPapersRenderers;
+    [SerializeField] private Canvas animatedBookCanvas;
 
     private bool rotationEnabled = false;
     private Animator myAnim;
@@ -52,6 +54,8 @@ public class TestBookRotation_Bendary : MonoBehaviour
         {
             mesh.enabled = enabled;
         }
+
+        animatedBookCanvas.enabled = enabled;
     }
 
     public void RotateBook(Vector3 posDelta)
@@ -99,6 +103,12 @@ public class TestBookRotation_Bendary : MonoBehaviour
     public void RotateToOrign(float delay, TweenCallback tw)
     {
         transform.DORotate(OrignalRot, delay, RotateMode.Fast).OnComplete(tw);
+    }
+
+    internal void AssignBuyURL(string buyURL)
+    {
+        animatedBookCanvas.GetComponentInChildren<PressHandler>().OnPress.RemoveAllListeners();
+        animatedBookCanvas.GetComponentInChildren<PressHandler>().OnPress.AddListener(() => LevelUI.Instance.OpenURL(buyURL));
     }
     #endregion
 }

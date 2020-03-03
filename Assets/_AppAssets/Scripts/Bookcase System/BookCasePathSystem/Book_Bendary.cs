@@ -15,6 +15,7 @@ public class Book_Bendary : MonoBehaviour, IScrollable
 
     #region Data
     public int bookDataIndex;
+    public string buyURL;
     #endregion
 
     #region Helper
@@ -58,6 +59,7 @@ public class Book_Bendary : MonoBehaviour, IScrollable
     {
         bookBodyMeshRenderer.material.mainTexture = bookData.texture;
         this.bookDataIndex = bookDataIndex;
+        buyURL = bookData.url;
     }
     #endregion
     #endregion
