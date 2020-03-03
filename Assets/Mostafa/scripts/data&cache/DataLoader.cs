@@ -15,6 +15,16 @@ public class DataLoader : MonoBehaviour
         if (Cache.Instance)
         {
             Cache.Instance.dataArrivedEvent.AddListener(requestStateData);
+
+            if(Cache.Instance.cachedData.allVendors != null)
+            {
+                floorModeVendorEnumrator = Cache.Instance.cachedData.allVendors.GetEnumerator();
+            }
+            
+            if (Cache.Instance.cachedData.allCategories != null)
+            {
+                floorModeCategoryEnumrator = Cache.Instance.cachedData.allCategories.GetEnumerator();
+            }
         }
     }
 
@@ -36,21 +46,34 @@ public class DataLoader : MonoBehaviour
                 break;
         }
     }
+
+    List<Vendor>.Enumerator floorModeVendorEnumrator;
+    List<ProductCategory>.Enumerator floorModeCategoryEnumrator;
     public void funcFloorMode()
     {
-        if (Cache.Instance.loadedBooks < Cache.Instance.booksLimit / 2)
+        int publisherId = 0;
+        int categoryId = 0;
+
+        if (floorModeVendorEnumrator.Current != null)
         {
-            Debug.Log("floor mode");
-            StopAllCoroutines();
-            foreach (Vendor vendor in Cache.Instance.cachedData.allVendors)
-            {
-                foreach (ProductCategory pc in Cache.Instance.cachedData.allCategories)
-                {
-                    Cache.Instance.retrieveCategoryInBookcase(vendor.id, pc.id);
-                }
+            publisherId = floorModeVendorEnumrator.Current.id;
+        }
+
+        if (floorModeCategoryEnumrator.Current != null)
+        {
+            categoryId = floorModeCategoryEnumrator.Current.id;
+        }
+        StopAllCoroutines();
+        Cache.Instance.retrieveCategoryInBookcase(publisherId, categoryId);
+
+        if(!floorModeCategoryEnumrator.MoveNext()){
+            if (!floorModeVendorEnumrator.MoveNext()){
+                floorModeVendorEnumrator = Cache.Instance.cachedData.allVendors.GetEnumerator();
             }
+            floorModeCategoryEnumrator = Cache.Instance.cachedData.allCategories.GetEnumerator();
         }
     }
+
 
     public int categoryIndex = 0;
     private int lastPublisherId = 0;
