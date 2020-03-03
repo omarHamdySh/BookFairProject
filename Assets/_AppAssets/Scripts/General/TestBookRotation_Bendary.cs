@@ -10,6 +10,7 @@ public class TestBookRotation_Bendary : MonoBehaviour
     [SerializeField] private MeshRenderer[] bookCoverRenderers;
     [SerializeField] private MeshRenderer[] bookPapersRenderers;
     [SerializeField] private Canvas animatedBookCanvas;
+    [SerializeField] private float animationDelay;
 
     private bool rotationEnabled = false;
     private Animator myAnim;
@@ -54,7 +55,10 @@ public class TestBookRotation_Bendary : MonoBehaviour
         {
             mesh.enabled = enabled;
         }
+    }
 
+    public void ToggleCanvas(bool enabled)
+    {
         animatedBookCanvas.enabled = enabled;
     }
 
@@ -82,11 +86,19 @@ public class TestBookRotation_Bendary : MonoBehaviour
     {
         rotationEnabled = true;
         myAnim.SetBool("IsBookOpen", rotationEnabled);
+        StartCoroutine(ToggleCanvasCoroutine(true));
+    }
+
+    IEnumerator ToggleCanvasCoroutine(bool enabled)
+    {
+        yield return new WaitForSeconds(animationDelay);
+        ToggleCanvas(enabled);
     }
 
     public void CloseBook()
     {
         rotationEnabled = false;
+        ToggleCanvas(false);
         myAnim.SetBool("IsBookOpen", rotationEnabled);
     }
 
