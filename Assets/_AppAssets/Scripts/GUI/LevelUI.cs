@@ -56,6 +56,12 @@ public class LevelUI : UIHandller
     {
         searchIN.text = (enabled) ? searchIN.text : "";
         searchPageIndex = (enabled) ? searchPageIndex : 0;
+        ToggleSearchForNewSearch(enabled);
+    }
+
+    private void ToggleSearchForNewSearch(bool enabled)
+    {
+        searchPageIndex = (enabled) ? searchPageIndex : 0;
         filterCategoryID = (enabled) ? filterCategoryID : -1;
         searchPageIndexTxt.gameObject.SetActive(enabled);
         prevSearchPageBtn.gameObject.SetActive(enabled);
@@ -70,6 +76,7 @@ public class LevelUI : UIHandller
         {
             if (!string.IsNullOrEmpty(searchWord) && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)))
             {
+                ToggleSearchForNewSearch(false);
                 endlessLoadingBar.SetActive(true);
                 Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchWord);
             }
@@ -82,6 +89,7 @@ public class LevelUI : UIHandller
         {
             if (!string.IsNullOrEmpty(searchIn.text))
             {
+                ToggleSearchForNewSearch(false);
                 endlessLoadingBar.SetActive(true);
                 Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchIn.text);
             }
@@ -129,9 +137,23 @@ public class LevelUI : UIHandller
             if (searchPageResult[i].texture)
             {
                 book.GetChild(0).GetChild(0).GetComponent<Image>().sprite = Sprite.Create(searchPageResult[i].texture, new Rect(0, 0, searchPageResult[i].texture.width, searchPageResult[i].texture.height), new Vector2(0.5f, 0.5f));
+                book.GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(
+                    book.GetChild(0).GetChild(0).GetComponent<Image>().color.r,
+                    book.GetChild(0).GetChild(0).GetComponent<Image>().color.g,
+                    book.GetChild(0).GetChild(0).GetComponent<Image>().color.b,
+                    1.0f);
+            }
+            else
+            {
+                book.GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(
+                    book.GetChild(0).GetChild(0).GetComponent<Image>().color.r,
+                    book.GetChild(0).GetChild(0).GetComponent<Image>().color.g,
+                    book.GetChild(0).GetChild(0).GetComponent<Image>().color.b,
+                    0.0f);
             }
             book.GetComponent<Button>().onClick.RemoveAllListeners();
-            book.GetComponent<PressHandler>().OnPress.AddListener(() => OpenURL(searchPageResult[i].url));
+            string url = searchPageResult[i].url;
+            book.GetComponent<PressHandler>().OnPress.AddListener(() => OpenURL(url));
         }
     }
 

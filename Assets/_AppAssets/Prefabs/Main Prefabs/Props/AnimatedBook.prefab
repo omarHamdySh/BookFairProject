@@ -917,3 +917,4 @@ MonoBehaviour:
   - {fileID: 3704854238320785114}
   - {fileID: 800004249343593112}
   animatedBookCanvas: {fileID: 1870947859}
+  animationDelay: 1.1
