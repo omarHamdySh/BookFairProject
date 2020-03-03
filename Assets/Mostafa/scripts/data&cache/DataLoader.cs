@@ -10,12 +10,15 @@ public class DataLoader : MonoBehaviour
     public BookcasePathHandller_Bendary bookcasePathHandler;
     public ShelfPathHandller_Bendary shelfPathHandler;
 
+    public float maxInterval = 5;
+    private float currentInterval;
+
+
     private void Start()
     {
         if (Cache.Instance)
         {
-            Cache.Instance.dataArrivedEvent.AddListener(requestStateData);
-
+       
             if(Cache.Instance.cachedData.allVendors != null)
             {
                 floorModeVendorEnumrator = Cache.Instance.cachedData.allVendors.GetEnumerator();
@@ -25,9 +28,23 @@ public class DataLoader : MonoBehaviour
             {
                 floorModeCategoryEnumrator = Cache.Instance.cachedData.allCategories.GetEnumerator();
             }
+            floorModeCategoryEnumrator.MoveNext();
+            floorModeVendorEnumrator.MoveNext();
+
         }
     }
 
+    void FixedUpdate()
+    {
+        if (currentInterval >= maxInterval)
+        {
+            print("tick");
+            requestStateData();
+            currentInterval = 0;
+        }
+
+        currentInterval += Time.deltaTime;
+    }
     public void requestStateData()
     {
         switch (GameManager.Instance.gameplayFSMManager.getCurrentState())
@@ -56,21 +73,28 @@ public class DataLoader : MonoBehaviour
 
         if (floorModeVendorEnumrator.Current != null)
         {
+            Debug.Log("ll");
             publisherId = floorModeVendorEnumrator.Current.id;
         }
+        
 
         if (floorModeCategoryEnumrator.Current != null)
         {
+            Debug.Log("mm");
             categoryId = floorModeCategoryEnumrator.Current.id;
         }
+
+
         StopAllCoroutines();
         Cache.Instance.retrieveCategoryInBookcase(publisherId, categoryId);
 
         if(!floorModeCategoryEnumrator.MoveNext()){
             if (!floorModeVendorEnumrator.MoveNext()){
                 floorModeVendorEnumrator = Cache.Instance.cachedData.allVendors.GetEnumerator();
+                floorModeVendorEnumrator.MoveNext();
             }
             floorModeCategoryEnumrator = Cache.Instance.cachedData.allCategories.GetEnumerator();
+            floorModeCategoryEnumrator.MoveNext();
         }
     }
 

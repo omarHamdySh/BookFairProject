@@ -94,8 +94,8 @@ public class Cache : MonoBehaviour
 
 
 
-        //purpose: gets book case by publisher id
-        public void retrieveCategoryInBookcase(int publisherId, int categoryId)
+    //purpose: gets book case by publisher id
+    public void retrieveCategoryInBookcase(int publisherId, int categoryId)
     {
         //all vendors and categories must be present first
         Vendor tmpVendorReference = cachedData.allVendors.Find(v => v.id == publisherId);
@@ -157,7 +157,7 @@ public class Cache : MonoBehaviour
     ////////////////////////////////caching functions//////////////////////////////////////////
     public void cacheCategoryInPublisher(ProductResult res, int publisherId, int categoryId)
     {
-        removeExcess();
+        //removeExcess();
         Vendor tmpVendorReference = cachedData.allVendors.Find(v => v.id == publisherId);
         if (res != null && tmpVendorReference != null)
         {
