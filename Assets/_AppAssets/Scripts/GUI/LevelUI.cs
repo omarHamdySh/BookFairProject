@@ -98,17 +98,27 @@ public class LevelUI : UIHandller
 
     public void SearchResultCallback(List<BookData> searchPageResult, int totalSearchedBooksCount)
     {
-        this.searchPageResult = searchPageResult;
-        this.totalSearchedBooksCount = totalSearchedBooksCount;
+        if (totalSearchedBooksCount > 0)
+        {
+            this.searchPageResult = searchPageResult;
+            this.totalSearchedBooksCount = totalSearchedBooksCount;
 
-        seachResultCountTxt.text = "Search Result " + totalSearchedBooksCount + ((totalSearchedBooksCount > 1) ? " books" : " book");
-        searchPageIndexTxt.text = "Page " + (searchPageIndex + 1) + " / " + (Mathf.CeilToInt((float)totalSearchedBooksCount / (float)searchedBookContainer.childCount));
+            seachResultCountTxt.text = "Search Result " + totalSearchedBooksCount + ((totalSearchedBooksCount > 1) ? " books" : " book");
+            searchPageIndexTxt.text = "Page " + (searchPageIndex + 1) + " / " + (Mathf.CeilToInt((float)totalSearchedBooksCount / (float)searchedBookContainer.childCount));
 
-        endlessLoadingBar.SetActive(false);
-        ToggleAllSearchCommponent(true);
+            endlessLoadingBar.SetActive(false);
+            ToggleAllSearchCommponent(true);
 
-        PutBooksDataOnUI();
-        ManageSeachUIForSearchedResult();
+            PutBooksDataOnUI();
+            ManageSeachUIForSearchedResult();
+        }
+        else
+        {
+            endlessLoadingBar.SetActive(false);
+            seachResultCountTxt.text = "Search Result " + totalSearchedBooksCount + ((totalSearchedBooksCount > 1) ? " books" : " book");
+            seachResultCountTxt.gameObject.SetActive(true);
+        }
+
     }
 
     private void CloseAllBooks()
