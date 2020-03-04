@@ -160,6 +160,10 @@ public class RaqAPI : MonoBehaviour
 
     }
 
+    public void abortRetrieve() 
+    {
+        StopAllCoroutines();
+    }
     public IEnumerator getAllCategories(int limit, int page)
     {
         //temporary until badawy gives us another endpoint
@@ -191,7 +195,7 @@ public class RaqAPI : MonoBehaviour
         string uri = baseUrl + "/api/products/PublishersHousesListSampleData";
 
         if (limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
-
+        
         AllVendorsResult res = new AllVendorsResult();
 
         UnityWebRequest www = UnityWebRequest.Get(uri);

@@ -32,6 +32,8 @@ public class DataLoader : MonoBehaviour
             floorModeCategoryEnumrator.MoveNext();
             floorModeVendorEnumrator.MoveNext();
 
+            Cache.Instance.dataArrivedEvent.AddListener(requestStateData);
+            requestStateData();
         }
     }
 
@@ -71,6 +73,7 @@ public class DataLoader : MonoBehaviour
     List<ProductCategory>.Enumerator floorModeCategoryEnumrator;
     public void funcFloorMode()
     {
+        Debug.Log("floormode");
         int publisherId = 0;
         int categoryId = 0;
 
@@ -85,19 +88,21 @@ public class DataLoader : MonoBehaviour
             categoryId = floorModeCategoryEnumrator.Current.id;
         }
 
-
-        StopAllCoroutines();
-        Cache.Instance.retrieveCategoryInBookcase(publisherId, categoryId);
-
-        if (!floorModeCategoryEnumrator.MoveNext())
+        if (floorModeVendorEnumrator.Current.bookcaseData.categories != null)
         {
-            if (!floorModeVendorEnumrator.MoveNext())
+            Cache.Instance.api.abortRetrieve();
+            Cache.Instance.retrieveCategoryInBookcase(publisherId, categoryId);
+
+            if (!floorModeCategoryEnumrator.MoveNext())
             {
-                floorModeVendorEnumrator = Cache.Instance.cachedData.allVendors.GetEnumerator();
-                floorModeVendorEnumrator.MoveNext();
+                if (!floorModeVendorEnumrator.MoveNext())
+                {
+                    floorModeVendorEnumrator = Cache.Instance.cachedData.allVendors.GetEnumerator();
+                    floorModeVendorEnumrator.MoveNext();
+                }
+                floorModeCategoryEnumrator = Cache.Instance.cachedData.allCategories.GetEnumerator();
+                floorModeCategoryEnumrator.MoveNext();
             }
-            floorModeCategoryEnumrator = Cache.Instance.cachedData.allCategories.GetEnumerator();
-            floorModeCategoryEnumrator.MoveNext();
         }
     }
 
@@ -107,7 +112,7 @@ public class DataLoader : MonoBehaviour
     //load categories in bookcase mode
     public void funcBookcaseMode()
     {
-        StopAllCoroutines();
+        Cache.Instance.api.abortRetrieve();
         int publisherId = Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].id;
         BookcaseData tmpBookcase = Cache.Instance.cachedData.allVendors.Find(v => v.id == publisherId).bookcaseData;
 
@@ -125,7 +130,7 @@ public class DataLoader : MonoBehaviour
     public void funcShelfMode()
     {
         shelfPathHandler = bookcasePathHandler.getCurrentShelfPathHandler();
-        StopAllCoroutines();
+        Cache.Instance.api.abortRetrieve();
         int publisherId = Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].id;
         if (Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].bookcaseData != null)
         {
