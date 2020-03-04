@@ -32,7 +32,7 @@ public class DataLoader : MonoBehaviour
             floorModeCategoryEnumrator.MoveNext();
             floorModeVendorEnumrator.MoveNext();
 
-            Cache.Instance.dataArrivedEvent.AddListener(requestStateData);
+            //Cache.Instance.dataArrivedEvent.AddListener(requestStateData);
             requestStateData();
         }
     }
@@ -73,9 +73,8 @@ public class DataLoader : MonoBehaviour
     List<ProductCategory>.Enumerator floorModeCategoryEnumrator;
     public void funcFloorMode()
     {
-        Debug.Log("floormode");
+
         int publisherId = 0;
-        int categoryId = 0;
 
         if (floorModeVendorEnumrator.Current != null)
         {
@@ -83,27 +82,26 @@ public class DataLoader : MonoBehaviour
         }
 
 
-        if (floorModeCategoryEnumrator.Current != null)
-        {
-            categoryId = floorModeCategoryEnumrator.Current.id;
-        }
-
         if (floorModeVendorEnumrator.Current.bookcaseData.categories != null)
         {
+            
             Cache.Instance.api.abortRetrieve();
-            Cache.Instance.retrieveCategoryInBookcase(publisherId, categoryId);
-
-            if (!floorModeCategoryEnumrator.MoveNext())
+            foreach (ProductCategory c in Cache.Instance.cachedData.allCategories)
             {
-                if (!floorModeVendorEnumrator.MoveNext())
-                {
-                    floorModeVendorEnumrator = Cache.Instance.cachedData.allVendors.GetEnumerator();
-                    floorModeVendorEnumrator.MoveNext();
-                }
-                floorModeCategoryEnumrator = Cache.Instance.cachedData.allCategories.GetEnumerator();
-                floorModeCategoryEnumrator.MoveNext();
+                Debug.Log("floormode");
+                Debug.Log (publisherId + " " + c.name);
+                Cache.Instance.api.abortRetrieve();
+                Cache.Instance.retrieveCategoryInBookcase(publisherId, c.id);
             }
+
         }
+       
+            if (!floorModeVendorEnumrator.MoveNext())
+            {
+                floorModeVendorEnumrator = Cache.Instance.cachedData.allVendors.GetEnumerator();
+                floorModeVendorEnumrator.MoveNext();
+            }
+        
     }
 
 
