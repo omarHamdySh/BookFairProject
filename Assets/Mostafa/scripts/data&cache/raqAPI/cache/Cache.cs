@@ -219,7 +219,7 @@ public class Cache : MonoBehaviour
                         tmpCat.booksData.Add(tmpBook);
                         loadedBooks++;
                     }
-                    Debug.Log("cached " + tmpCat.booksData.Count + " in " + tmpCat.name + " in " + tmpBookcase.name);
+                    //Debug.Log("cached " + res.prodcutList.Count + " in " + tmpCat.name + " in " + tmpBookcase.name);
                 }
 
 
