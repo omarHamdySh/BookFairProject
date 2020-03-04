@@ -18,6 +18,7 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
 
     #region Data
     private int vendorIndex = -1;
+    private List<BookData> dummyBooksData = new List<BookData>();
     #endregion
 
     private void Start()
@@ -199,6 +200,7 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
             else
             {
                 shelves[i].SetCategoryData("", -1);
+                shelves[i].GetComponent<BookPathHandller_Bendary>().SetAllVisibleBooks(dummyBooksData, vendorIndex, -1);
             }
         }
     }
