@@ -99,7 +99,6 @@ public class Cache : MonoBehaviour
     {
         //all vendors and categories must be present first
         Vendor tmpVendorReference = cachedData.allVendors.Find(v => v.id == publisherId);
-
         if (tmpVendorReference != null)
         {
             BookcaseData tmpBookcase = tmpVendorReference.bookcaseData;
@@ -157,13 +156,14 @@ public class Cache : MonoBehaviour
     ////////////////////////////////caching functions//////////////////////////////////////////
     public void cacheCategoryInPublisher(ProductResult res, int publisherId, int categoryId)
     {
-        if (loadedBooks >= booksLimit)
-        {
-            removeExcess();
-        }
+
         Vendor tmpVendorReference = cachedData.allVendors.Find(v => v.id == publisherId);
-        if (res != null && tmpVendorReference != null)
+        if (res.prodcutList.Count > 0 && tmpVendorReference != null)
         {
+            if (loadedBooks >= booksLimit)
+            {
+                //removeExcess();
+            }
             if (res.prodcutList.Count > 0)
             {
                 BookcaseData tmpBookcase = null;
@@ -191,8 +191,6 @@ public class Cache : MonoBehaviour
                     tmpCat.total = res.totalRecord;
                     tmpCat.page = 1;
                     tmpBookcase.categories.Add(tmpCat);
-                    tmpCat = tmpBookcase.categories[tmpBookcase.categories.Count - 1];
-
                 }
 
                 tmpCat.page++;
@@ -221,6 +219,7 @@ public class Cache : MonoBehaviour
                         tmpCat.booksData.Add(tmpBook);
                         loadedBooks++;
                     }
+                    Debug.Log("cached " + tmpCat.booksData.Count + " in " + tmpCat.name + " in " + tmpBookcase.name);
                 }
 
 
@@ -315,7 +314,9 @@ public class Cache : MonoBehaviour
                     }
 
                     loadedBooks -= tmpLeastAccessCat.booksData.Count;
-                    bookCaseData.categories.Remove(tmpLeastAccessCat);
+                    tmpLeastAccessCat.page = 1;
+                    tmpLeastAccessCat.accessFrequency = 0;
+                    tmpLeastAccessCat.booksData.Clear();
                 }
             }
         }

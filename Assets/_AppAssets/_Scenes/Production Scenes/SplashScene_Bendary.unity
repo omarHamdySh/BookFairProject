@@ -150,7 +150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadedBooksLimit: 20
-  cachedata: {fileID: 11400000, guid: d7a57a54a5e58bc46adba20975bab4bc, type: 2}
   startUpDataEvent:
     m_PersistentCalls:
       m_Calls:
@@ -639,7 +638,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   oneTimeLoadLimit: 10
-  booksLimit: 500
+  booksLimit: 50
   loadedBooks: 0
 --- !u!4 &1882423684
 Transform:

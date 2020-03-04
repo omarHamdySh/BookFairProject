@@ -7,11 +7,9 @@ public class LoadingStartupData : MonoBehaviour
 {
     public int loadedBooksLimit;
 
-    public CacheSO cachedata;
-
-
     public UnityEvent startUpDataEvent;//data loaded at start up
 
+    
     void Update()
     {
         if(Cache.Instance.loadedBooks >= loadedBooksLimit)
@@ -22,9 +20,10 @@ public class LoadingStartupData : MonoBehaviour
 
     public void loadStartupData()
     {
-        foreach(Vendor vendor in cachedata.allVendors)
+        //loadedBooksLimit = Cache.Instance.cachedData.allVendors.Count * 10;
+        foreach(Vendor vendor in Cache.Instance.cachedData.allVendors)
         {
-            foreach(ProductCategory pc in cachedata.allCategories)
+            foreach(ProductCategory pc in Cache.Instance.cachedData.allCategories)
             {
                 Cache.Instance.retrieveCategoryInBookcase(vendor.id, pc.id);
             }
