@@ -246,6 +246,12 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         // Assign current book buy url to animated book
         animatedBook.AssignBuyURL(book.buyURL);
 
+        // Assign Current Book Description to animated book
+        animatedBook.AssignBookDes(book.description);
+
+        // Assign Current Book Index to animated Book
+        animatedBook.AssignBookIndex(book.bookDataIndex);
+
         // Close current book renderers
         book.ToggleRenderers(false);
 
@@ -288,11 +294,6 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     #endregion
 
     #region Data
-    public void StartCallData()
-    {
-
-    }
-
     public void PutDataOnCurrent()
     {
         BookcaseData tmpBookcaseData = Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData;
@@ -306,8 +307,6 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
             realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().SetAllVisibleCategory(dummy, vendorIndex);
         }
     }
-
-
     #endregion
 }
 

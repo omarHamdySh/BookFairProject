@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 using System;
 
 [RequireComponent(typeof(Animator))]
@@ -11,10 +12,14 @@ public class TestBookRotation_Bendary : MonoBehaviour
     [SerializeField] private MeshRenderer[] bookPapersRenderers;
     [SerializeField] private Canvas animatedBookCanvas;
     [SerializeField] private float animationDelay;
+    [SerializeField] private TextMeshProUGUI bookDescription;
+    [SerializeField] private TextMeshProUGUI bookClickHereTxt;
 
     private bool rotationEnabled = false;
     private Animator myAnim;
     private Vector3 OrignalRot;
+
+    private int bookDataIndex;
 
     #region Mouse Info
     private Vector3 prevPos = Vector3.zero;
@@ -59,7 +64,7 @@ public class TestBookRotation_Bendary : MonoBehaviour
 
     public void ToggleCanvas(bool enabled)
     {
-        animatedBookCanvas.enabled = enabled;
+        animatedBookCanvas.gameObject.SetActive(enabled);
     }
 
     public void RotateBook(Vector3 posDelta)
@@ -92,7 +97,20 @@ public class TestBookRotation_Bendary : MonoBehaviour
     IEnumerator ToggleCanvasCoroutine(bool enabled)
     {
         yield return new WaitForSeconds(animationDelay);
+        ToggleClickHereText();
         ToggleCanvas(enabled);
+    }
+
+    private void ToggleClickHereText()
+    {
+        if (bookDataIndex == -1)
+        {
+            bookClickHereTxt.text = "This Book Is dummy";
+        }
+        else
+        {
+            bookClickHereTxt.text = "Click here to open book link";
+        }
     }
 
     public void CloseBook()
@@ -117,10 +135,21 @@ public class TestBookRotation_Bendary : MonoBehaviour
         transform.DORotate(OrignalRot, delay, RotateMode.Fast).OnComplete(tw);
     }
 
-    internal void AssignBuyURL(string buyURL)
+    public void AssignBuyURL(string buyURL)
     {
         animatedBookCanvas.GetComponentInChildren<PressHandler>().OnPress.RemoveAllListeners();
         animatedBookCanvas.GetComponentInChildren<PressHandler>().OnPress.AddListener(() => LevelUI.Instance.OpenURL(buyURL));
     }
+
+    public void AssignBookDes(string description)
+    {
+        bookDescription.text = description;
+    }
+
+    public void AssignBookIndex(int bookDataIndex)
+    {
+        this.bookDataIndex = bookDataIndex;
+    }
+
     #endregion
 }

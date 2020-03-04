@@ -14,8 +14,9 @@ public class Book_Bendary : MonoBehaviour, IScrollable
     private bool isLoopingDomy = false;
 
     #region Data
-    public int bookDataIndex;
-    public string buyURL;
+    [HideInInspector] public int bookDataIndex;
+    [HideInInspector] public string buyURL;
+    [HideInInspector] public string description;
     #endregion
 
     #region Helper
@@ -60,6 +61,7 @@ public class Book_Bendary : MonoBehaviour, IScrollable
         bookBodyMeshRenderer.material.mainTexture = bookData.texture;
         this.bookDataIndex = bookDataIndex;
         buyURL = bookData.url;
+        description = bookData.description;
     }
     #endregion
     #endregion
