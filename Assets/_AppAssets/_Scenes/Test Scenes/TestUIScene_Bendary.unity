@@ -7883,6 +7883,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentStateTxt: {fileID: 0}
   hintTxt: {fileID: 0}
+  pageStateColliderPos: {fileID: 659426295}
 --- !u!4 &467904815 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7350657590472079970, guid: 9190b1ca7dea54749b822e13a5653556,
@@ -9899,7 +9900,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 659426294}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.24, y: 2.52, z: 8.06}
+  m_LocalPosition: {x: -0.24, y: 2.52, z: 8.4}
   m_LocalScale: {x: 0.2954, y: 0.32186, z: 0.01007}
   m_Children: []
   m_Father: {fileID: 693811390}
@@ -9971,8 +9972,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.353855, y: 2.016635, z: 1}
+  m_Center: {x: -0.67692757, y: 0, z: 0}
 --- !u!1 &664299758
 GameObject:
   m_ObjectHideFlags: 0
@@ -23653,7 +23654,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1834086283
 Transform:
   m_ObjectHideFlags: 0
