@@ -10,11 +10,11 @@ public class RaqAPI : MonoBehaviour
     public ApiAuth authInfo;
     public int languageId = 1;
     public int fairId = -1;
+    public bool transmitting; //true if data is being requested
     public UnityEvent authTokenLoadedEvent;
     public UnityEvent vendorsRetrievedEvent;
 
-    // Start is called before the first frame update
-
+    
 
     public void Init()
     {
@@ -52,6 +52,7 @@ public class RaqAPI : MonoBehaviour
         www.downloadHandler = new DownloadHandlerBuffer();
         www.SetRequestHeader("Content-Type", "application/json");
 
+        transmitting = true;
         // Send Request
         yield return www.SendWebRequest();
 
@@ -68,18 +69,16 @@ public class RaqAPI : MonoBehaviour
 
             authTokenLoadedEvent.Invoke();
         }
+        transmitting = false;
     }
 
 
     public IEnumerator productsByPublisher(int publisherId, int categoryId, int limit, int page)
     {
-        //temporary until badawy gives us another endpoint
         string uri = baseUrl + "/api/products_sample_data?" + "vendorId=" + publisherId.ToString();
-
         if (limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
         if (categoryId > 0) uri += "&categoryId=" + categoryId.ToString();
         if (fairId >= 0) uri += "&fairId=" + fairId.ToString();
-
         ProductResult res = new ProductResult();
 
         UnityWebRequest www = UnityWebRequest.Get(uri);
@@ -89,6 +88,7 @@ public class RaqAPI : MonoBehaviour
         www.SetRequestHeader("Content-Type", "application/json");
         www.SetRequestHeader("LanguageId", languageId.ToString());
 
+        transmitting = true;
 
         yield return www.SendWebRequest();
 
@@ -97,7 +97,9 @@ public class RaqAPI : MonoBehaviour
         if (res != null)
         {
             Cache.Instance.cacheCategoryInPublisher(res, publisherId, categoryId);
+            transmitting = false;
         }
+        //transmitting = false;
     }
 
     public IEnumerator searchWithFilter(string keyword, int categoryId, int limit, int page)
@@ -118,6 +120,7 @@ public class RaqAPI : MonoBehaviour
         www.SetRequestHeader("Content-Type", "application/json");
         www.SetRequestHeader("LanguageId", languageId.ToString());
 
+        transmitting = true;
 
         yield return www.SendWebRequest();
 
@@ -127,6 +130,8 @@ public class RaqAPI : MonoBehaviour
         {
             Cache.Instance.cacheSearchResult(res);
         }
+
+        //transmitting = false;
     }
 
     public IEnumerator productIdsByPublisher(int publisherId, int categoryId, int limit, int page)
@@ -166,6 +171,7 @@ public class RaqAPI : MonoBehaviour
     }
     public IEnumerator getAllCategories(int limit, int page)
     {
+
         //temporary until badawy gives us another endpoint
         string uri = baseUrl + "/api/categories/categories_list";
 
@@ -179,6 +185,7 @@ public class RaqAPI : MonoBehaviour
         www.SetRequestHeader("customerId", "1");
         www.SetRequestHeader("Content-Type", "application/json");
         www.SetRequestHeader("LanguageId", languageId.ToString());
+        transmitting = true;
 
         yield return www.SendWebRequest();
         res = JsonUtility.FromJson<AllCategoriesResult>(www.downloadHandler.text);
@@ -188,6 +195,8 @@ public class RaqAPI : MonoBehaviour
             Cache.Instance.cacheAllCategories(res);
             Cache.Instance.retrieveVendors();
         }
+
+        transmitting = false;
     }
 
     public IEnumerator getAllVendors(int limit, int page)
@@ -205,6 +214,8 @@ public class RaqAPI : MonoBehaviour
         www.SetRequestHeader("Content-Type", "application/json");
         www.SetRequestHeader("LanguageId", languageId.ToString());
 
+        transmitting = true;
+
         yield return www.SendWebRequest();
 
         res = JsonUtility.FromJson<AllVendorsResult>(www.downloadHandler.text);
@@ -214,6 +225,8 @@ public class RaqAPI : MonoBehaviour
             Cache.Instance.cacheAllVendors(res);
             vendorsRetrievedEvent.Invoke();//load peliminary data
         }
+
+        transmitting = false;
 
     }
     public IEnumerator allSponsors()
@@ -230,6 +243,8 @@ public class RaqAPI : MonoBehaviour
         www.SetRequestHeader("Content-Type", "application/json");
         www.SetRequestHeader("LanguageId", "1");
 
+        transmitting = true;
+
         yield return www.SendWebRequest();
 
         if (res != null)
@@ -237,7 +252,7 @@ public class RaqAPI : MonoBehaviour
             res = JsonUtility.FromJson<SponsorsResult>(www.downloadHandler.text);
         }
 
-
+        transmitting = false;
     }
 
     public string makeBookUrl(int bookId)

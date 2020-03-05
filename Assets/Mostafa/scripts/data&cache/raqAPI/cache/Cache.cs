@@ -81,7 +81,7 @@ public class Cache : MonoBehaviour
     [ContextMenu("foo3")]
     void foo3()
     {
-        retrieveCategoryInBookcase(4, 20);
+        retrieveCategoryInBookcase(4, 32);
     }
 
     [ContextMenu("foo4")]
@@ -101,36 +101,31 @@ public class Cache : MonoBehaviour
         Vendor tmpVendorReference = cachedData.allVendors.Find(v => v.id == publisherId);
         if (tmpVendorReference != null)
         {
+
             BookcaseData tmpBookcase = tmpVendorReference.bookcaseData;
             CategoryData tmpCat = null;
 
-            if (tmpBookcase != null)
+
+            if (tmpBookcase.categories != null)
             {
-
-                if (tmpBookcase.categories != null)
-                {
-                    tmpCat = tmpBookcase.categories.Find(c => c.id == categoryId);
-                }
-
-                if (tmpCat == null)
-                {
-                    StartCoroutine(api.productsByPublisher(publisherId, categoryId, oneTimeLoadLimit, 1));
-                }
-                else if (tmpCat.booksData.Count < tmpCat.total)
-                {
-                    tmpCat.accessFrequency++;
-                    StartCoroutine(api.productsByPublisher(publisherId, categoryId, oneTimeLoadLimit, tmpCat.page));
-                }
-                else
-                {
-                    tmpCat.accessFrequency++;
-                    //call back
-                }
+                tmpCat = tmpBookcase.categories.Find(c => c.id == categoryId);
             }
-            else
+
+            if (tmpCat == null)
             {
                 StartCoroutine(api.productsByPublisher(publisherId, categoryId, oneTimeLoadLimit, 1));
             }
+            else if (tmpCat.booksData.Count < tmpCat.total)
+            {
+                tmpCat.accessFrequency++;
+                StartCoroutine(api.productsByPublisher(publisherId, categoryId, oneTimeLoadLimit, tmpCat.page));
+            }
+            else
+            {
+                tmpCat.accessFrequency++;
+                //call back
+            }
+
         }
     }
 
@@ -162,7 +157,7 @@ public class Cache : MonoBehaviour
         {
             if (loadedBooks >= booksLimit)
             {
-                //removeExcess();
+                removeExcess();
             }
             if (res.prodcutList.Count > 0)
             {
@@ -189,7 +184,7 @@ public class Cache : MonoBehaviour
                     tmpCat.id = categoryId;
                     tmpCat.name = cachedData.allCategories.Find(x => x.id == categoryId).name;
                     tmpCat.total = res.totalRecord;
-                    tmpCat.page = 1;
+                    tmpCat.page = 0;
                     tmpBookcase.categories.Add(tmpCat);
                 }
 
@@ -232,7 +227,6 @@ public class Cache : MonoBehaviour
     {
         if (res != null)
         {
-            print("store");
             searchTextures = new List<Texture2D>();
             foreach (Product book in res.prodcutList)
             {
@@ -267,6 +261,7 @@ public class Cache : MonoBehaviour
     public void cacheAllVendors(AllVendorsResult vendorsResult)
     {
         cachedData.allVendors = vendorsResult.vendorList;
+        //foreach (Vendor v in cachedData.allVendors) v.bookcaseData = null;
     }
 
 
@@ -329,6 +324,7 @@ public class Cache : MonoBehaviour
         {
             if (loadedBooks > booksLimit)
             {
+                print("fuck");
                 removeLeastAccessedCategory(v.bookcaseData);
             }
             else

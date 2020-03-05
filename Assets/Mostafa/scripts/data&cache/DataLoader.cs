@@ -41,8 +41,11 @@ public class DataLoader : MonoBehaviour
     {
         if (currentInterval >= maxInterval)
         {
-            requestStateData();
-            currentInterval = 0;
+            if (Cache.Instance.api.transmitting == false)
+            {
+                requestStateData();
+                currentInterval = 0;
+            }
         }
 
         currentInterval += Time.deltaTime;
@@ -73,7 +76,6 @@ public class DataLoader : MonoBehaviour
     List<ProductCategory>.Enumerator floorModeCategoryEnumrator;
     public void funcFloorMode()
     {
-
         int publisherId = 0;
 
         if (floorModeVendorEnumrator.Current != null)
@@ -84,24 +86,21 @@ public class DataLoader : MonoBehaviour
 
         if (floorModeVendorEnumrator.Current.bookcaseData.categories != null)
         {
-            
+
             Cache.Instance.api.abortRetrieve();
             foreach (ProductCategory c in Cache.Instance.cachedData.allCategories)
             {
-                Debug.Log("floormode");
-                Debug.Log (publisherId + " " + c.name);
-                Cache.Instance.api.abortRetrieve();
                 Cache.Instance.retrieveCategoryInBookcase(publisherId, c.id);
             }
 
         }
-       
-            if (!floorModeVendorEnumrator.MoveNext())
-            {
-                floorModeVendorEnumrator = Cache.Instance.cachedData.allVendors.GetEnumerator();
-                floorModeVendorEnumrator.MoveNext();
-            }
-        
+
+        if (!floorModeVendorEnumrator.MoveNext())
+        {
+            floorModeVendorEnumrator = Cache.Instance.cachedData.allVendors.GetEnumerator();
+            floorModeVendorEnumrator.MoveNext();
+        }
+
     }
 
 
@@ -110,25 +109,23 @@ public class DataLoader : MonoBehaviour
     //load categories in bookcase mode
     public void funcBookcaseMode()
     {
-        Cache.Instance.api.abortRetrieve();
+        Debug.Log("bookcase mode");
         int publisherId = Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].id;
         BookcaseData tmpBookcase = Cache.Instance.cachedData.allVendors.Find(v => v.id == publisherId).bookcaseData;
 
-        if (tmpBookcase != null)
+        if (tmpBookcase.categories != null)
         {
-            if (tmpBookcase.categories != null)
-            {
-                if (categoryIndex >= tmpBookcase.categories.Count) categoryIndex = 0;
-                Cache.Instance.retrieveCategoryInBookcase(publisherId, tmpBookcase.categories[categoryIndex++].id);
-            }
+            if (categoryIndex >= tmpBookcase.categories.Count) categoryIndex = 0;
+            Debug.Log("bc mode req " + tmpBookcase.categories[categoryIndex].name);
+            Cache.Instance.retrieveCategoryInBookcase(publisherId, tmpBookcase.categories[categoryIndex++].id);
         }
+
 
     }
 
     public void funcShelfMode()
     {
         shelfPathHandler = bookcasePathHandler.getCurrentShelfPathHandler();
-        Cache.Instance.api.abortRetrieve();
         int publisherId = Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].id;
         if (Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].bookcaseData != null)
         {
