@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ShelfPathHandller_Bendary : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
 
     private float currentScrollSpeed;
     private bool isObjMoving = false;
+
+    public TextMeshProUGUI vendorNameOntheBookcase;
 
     #region Data
     private int vendorIndex = -1;
@@ -190,6 +193,7 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
     public void SetAllVisibleCategory(List<CategoryData> categories, int vendorIndex)
     {
         this.vendorIndex = vendorIndex;
+        vendorNameOntheBookcase.text = Cache.Instance.cachedData.allVendors[vendorIndex].name;
         for (int i = 0; i < shelves.Length; i++)
         {
             if (i < categories.Count)

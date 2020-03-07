@@ -20,8 +20,10 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     private float currentScrollSpeed;
     private bool isObjMoving = false;
     private Vector3 bookBackwordPos;
+
+    public TextMeshPro VendorNameOntheWorld;
     #region Data
-    public int vendorIndex = 0;
+    [HideInInspector] public int vendorIndex = 0;
     private List<CategoryData> dummy = new List<CategoryData>();
     #endregion
 
@@ -297,7 +299,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     public void PutDataOnCurrent()
     {
         BookcaseData tmpBookcaseData = Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData;
-
+        VendorNameOntheWorld.text = Cache.Instance.cachedData.allVendors[vendorIndex].name;
         if (tmpBookcaseData != null && tmpBookcaseData.categories != null)
         {
             realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().SetAllVisibleCategory(tmpBookcaseData.categories, vendorIndex);
