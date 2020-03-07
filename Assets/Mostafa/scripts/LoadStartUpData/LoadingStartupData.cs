@@ -20,7 +20,6 @@ public class LoadingStartupData : MonoBehaviour
 
     public void loadStartupData()
     {
-        print("see");
         //loadedBooksLimit = Cache.Instance.cachedData.allVendors.Count * 10;
         foreach(Vendor vendor in Cache.Instance.cachedData.allVendors)
         {

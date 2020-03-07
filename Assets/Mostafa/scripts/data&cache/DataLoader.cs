@@ -65,6 +65,9 @@ public class DataLoader : MonoBehaviour
                 case GameplayState.Shelf:
                     funcShelfMode();
                     break;
+                case GameplayState.BookPage:
+                    funcShelfMode();
+                    break;
                 default:
                     print("not loading");
                     break;
