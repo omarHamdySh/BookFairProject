@@ -15,6 +15,7 @@ public class RaqAPI : MonoBehaviour
     public UnityEvent authTokenLoadedEvent;
     public UnityEvent vendorsRetrievedEvent;
     public UnityEvent sponsorsRetrievedEvent;
+    public UnityEvent dataArrivedEvent;
 
 
 
@@ -89,7 +90,6 @@ public class RaqAPI : MonoBehaviour
         www.SetRequestHeader("customerId", "1");
         www.SetRequestHeader("Content-Type", "application/json");
         www.SetRequestHeader("LanguageId", languageId.ToString());
-
         transmitting = true;
 
         yield return www.SendWebRequest();
@@ -99,9 +99,10 @@ public class RaqAPI : MonoBehaviour
         if (res != null)
         {
             Cache.Instance.cacheCategoryInPublisher(res, publisherId, categoryId);
-            transmitting = false;
+            dataArrivedEvent.Invoke();
         }
-        //transmitting = false;
+        transmitting = false;
+
     }
 
     public IEnumerator searchWithFilter(string keyword, int categoryId, int limit, int page)
@@ -167,8 +168,9 @@ public class RaqAPI : MonoBehaviour
 
     }
 
-    public void abortRetrieve() 
+    public void abortRetrieve()
     {
+        transmitting = false;
         StopAllCoroutines();
     }
     public IEnumerator getAllCategories(int limit, int page)
@@ -206,7 +208,7 @@ public class RaqAPI : MonoBehaviour
         string uri = baseUrl + "/api/products/PublishersHousesListSampleData";
 
         if (limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
-        
+
         AllVendorsResult res = new AllVendorsResult();
 
         UnityWebRequest www = UnityWebRequest.Get(uri);

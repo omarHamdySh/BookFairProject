@@ -15,11 +15,17 @@ public class DataLoader : MonoBehaviour
 
     public bool active = true;
 
+    public class DataRequest
+    {
+        public int vendorId;
+        public int categoryId;
+    }
+
+    public Queue<DataRequest> requestQueue;
     private void Start()
     {
-        if (Cache.Instance)
+        if (Cache.Instance != null)
         {
-
             if (Cache.Instance.cachedData.allVendors != null)
             {
                 floorModeVendorEnumrator = Cache.Instance.cachedData.allVendors.GetEnumerator();
@@ -34,6 +40,11 @@ public class DataLoader : MonoBehaviour
 
             //Cache.Instance.dataArrivedEvent.AddListener(requestStateData);
             requestStateData();
+
+            requestQueue = new Queue<DataRequest>();
+
+            Cache.Instance.api.abortRetrieve();
+            Cache.Instance.api.dataArrivedEvent.AddListener(dataArrivedCallBack);
         }
     }
 
@@ -45,6 +56,8 @@ public class DataLoader : MonoBehaviour
             {
                 requestStateData();
                 currentInterval = 0;
+
+                
             }
         }
 
@@ -86,28 +99,31 @@ public class DataLoader : MonoBehaviour
             publisherId = floorModeVendorEnumrator.Current.id;
         }
 
-
+        print("1");
         if (floorModeVendorEnumrator.Current.bookcaseData.categories != null)
         {
-
-            Cache.Instance.api.abortRetrieve();
             foreach (CategoryData c in floorModeVendorEnumrator.Current.bookcaseData.categories)
             {
-                if(c.total < c.booksData.Count)
-                    Cache.Instance.retrieveCategoryInBookcase(publisherId, c.id);
+                print("2");
+                if (c.total > c.booksData.Count)
+                {
+                    DataRequest dr = new DataRequest();
+                    dr.vendorId = publisherId;
+                    dr.categoryId = c.id;
+                    requestQueue.Enqueue(dr);
+                }
+
+            }
+
+            if (!floorModeVendorEnumrator.MoveNext())
+            {
+                floorModeVendorEnumrator = Cache.Instance.cachedData.allVendors.GetEnumerator();
+                floorModeVendorEnumrator.MoveNext();
             }
 
         }
 
-        if (!floorModeVendorEnumrator.MoveNext())
-        {
-            floorModeVendorEnumrator = Cache.Instance.cachedData.allVendors.GetEnumerator();
-            floorModeVendorEnumrator.MoveNext();
-        }
-
     }
-
-
     public int categoryIndex = 0;
     private int lastPublisherId = 0;
     //load categories in bookcase mode
@@ -144,4 +160,9 @@ public class DataLoader : MonoBehaviour
     }
 
 
+    void dataArrivedCallBack()
+    {
+        requestQueue.Dequeue();
+        Cache.Instance.retrieveCategoryInBookcase(requestQueue.Peek().vendorId, requestQueue.Peek().categoryId);
+    }
 }

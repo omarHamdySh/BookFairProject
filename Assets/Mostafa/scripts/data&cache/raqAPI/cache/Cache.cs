@@ -44,6 +44,8 @@ public class Cache : MonoBehaviour
     #endregion
 
     // Start is called before the first frame update
+    
+    
     void Start()
     {
         api = GetComponent<RaqAPI>();
@@ -334,7 +336,6 @@ public class Cache : MonoBehaviour
         {
             if (loadedBooks > booksLimit)
             {
-                print("fuck");
                 removeLeastAccessedCategory(v.bookcaseData);
             }
             else

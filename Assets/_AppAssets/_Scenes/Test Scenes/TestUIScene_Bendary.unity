@@ -23939,7 +23939,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1834086283
 Transform:
   m_ObjectHideFlags: 0
@@ -23968,7 +23968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bookcasePathHandler: {fileID: 693811389}
   shelfPathHandler: {fileID: 0}
-  maxInterval: 10
+  maxInterval: 5
   active: 1
   categoryIndex: 0
 --- !u!1 &1834523374
