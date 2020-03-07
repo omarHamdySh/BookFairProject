@@ -24,28 +24,27 @@ public class DataLoader : MonoBehaviour
     public Queue<DataRequest> requestQueue;
     private void Start()
     {
-        if (Cache.Instance != null)
+
+        if (Cache.Instance.cachedData.allVendors != null)
         {
-            if (Cache.Instance.cachedData.allVendors != null)
-            {
-                floorModeVendorEnumrator = Cache.Instance.cachedData.allVendors.GetEnumerator();
-            }
-
-            if (Cache.Instance.cachedData.allCategories != null)
-            {
-                floorModeCategoryEnumrator = Cache.Instance.cachedData.allCategories.GetEnumerator();
-            }
-            floorModeCategoryEnumrator.MoveNext();
-            floorModeVendorEnumrator.MoveNext();
-
-            //Cache.Instance.dataArrivedEvent.AddListener(requestStateData);
-            requestStateData();
-
-            requestQueue = new Queue<DataRequest>();
-
-            Cache.Instance.api.abortRetrieve();
-            Cache.Instance.api.dataArrivedEvent.AddListener(dataArrivedCallBack);
+            floorModeVendorEnumrator = Cache.Instance.cachedData.allVendors.GetEnumerator();
         }
+
+        if (Cache.Instance.cachedData.allCategories != null)
+        {
+            floorModeCategoryEnumrator = Cache.Instance.cachedData.allCategories.GetEnumerator();
+        }
+        floorModeCategoryEnumrator.MoveNext();
+        floorModeVendorEnumrator.MoveNext();
+
+        //Cache.Instance.dataArrivedEvent.AddListener(requestStateData);
+
+
+        Cache.Instance.api.abortRetrieve();
+        Cache.Instance.api.dataArrivedEvent.AddListener(dataArrivedCallBack);
+
+        requestQueue = new Queue<DataRequest>();
+
     }
 
     void FixedUpdate()
@@ -57,7 +56,10 @@ public class DataLoader : MonoBehaviour
                 requestStateData();
                 currentInterval = 0;
 
-                
+                if(requestQueue.Count > 0)
+                {
+                    Cache.Instance.retrieveCategoryInBookcase(requestQueue.Peek().vendorId, requestQueue.Peek().categoryId);
+                }
             }
         }
 
@@ -99,12 +101,11 @@ public class DataLoader : MonoBehaviour
             publisherId = floorModeVendorEnumrator.Current.id;
         }
 
-        print("1");
+        
         if (floorModeVendorEnumrator.Current.bookcaseData.categories != null)
         {
             foreach (CategoryData c in floorModeVendorEnumrator.Current.bookcaseData.categories)
             {
-                print("2");
                 if (c.total > c.booksData.Count)
                 {
                     DataRequest dr = new DataRequest();
@@ -129,16 +130,19 @@ public class DataLoader : MonoBehaviour
     //load categories in bookcase mode
     public void funcBookcaseMode()
     {
-        Debug.Log("bookcase mode");
         int publisherId = Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].id;
         BookcaseData tmpBookcase = Cache.Instance.cachedData.allVendors.Find(v => v.id == publisherId).bookcaseData;
 
         Cache.Instance.api.abortRetrieve();
         if (tmpBookcase.categories != null)
         {
-            if (categoryIndex >= tmpBookcase.categories.Count) categoryIndex = 0;
-            Debug.Log("bc mode req " + tmpBookcase.categories[categoryIndex].name);
-            Cache.Instance.retrieveCategoryInBookcase(publisherId, tmpBookcase.categories[categoryIndex++].id);
+            if (categoryIndex >= tmpBookcase.categories.Count)
+            {
+                DataRequest dr = new DataRequest();
+                dr.vendorId = publisherId;
+                dr.categoryId = tmpBookcase.categories[categoryIndex++].id;
+                requestQueue.Enqueue(dr);
+            }
         }
 
 
@@ -153,8 +157,16 @@ public class DataLoader : MonoBehaviour
             Cache.Instance.api.abortRetrieve();
             if (Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].bookcaseData.categories != null)
             {
-                int categoryId = Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].bookcaseData.categories[shelfPathHandler.GetCurrentShelf().categoryIndex].id;
-                Cache.Instance.retrieveCategoryInBookcase(publisherId, categoryId);
+                int categoryId = 0;
+                if (shelfPathHandler.GetCurrentShelf().categoryIndex >= 0)
+                categoryId = Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].bookcaseData.categories[shelfPathHandler.GetCurrentShelf().categoryIndex].id;
+                
+                
+                DataRequest dr = new DataRequest();
+                dr.vendorId = publisherId;
+                dr.categoryId = categoryId;
+                requestQueue.Enqueue(dr);
+
             }
         }
     }
@@ -162,7 +174,7 @@ public class DataLoader : MonoBehaviour
 
     void dataArrivedCallBack()
     {
+        if(requestQueue.Count > 0)
         requestQueue.Dequeue();
-        Cache.Instance.retrieveCategoryInBookcase(requestQueue.Peek().vendorId, requestQueue.Peek().categoryId);
     }
 }
