@@ -117,6 +117,7 @@ public class DataLoader : MonoBehaviour
         int publisherId = Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].id;
         BookcaseData tmpBookcase = Cache.Instance.cachedData.allVendors.Find(v => v.id == publisherId).bookcaseData;
 
+        Cache.Instance.api.abortRetrieve();
         if (tmpBookcase.categories != null)
         {
             if (categoryIndex >= tmpBookcase.categories.Count) categoryIndex = 0;
@@ -133,6 +134,7 @@ public class DataLoader : MonoBehaviour
         int publisherId = Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].id;
         if (Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].bookcaseData != null)
         {
+            Cache.Instance.api.abortRetrieve();
             if (Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].bookcaseData.categories != null)
             {
                 int categoryId = Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].bookcaseData.categories[shelfPathHandler.GetCurrentShelf().categoryIndex].id;

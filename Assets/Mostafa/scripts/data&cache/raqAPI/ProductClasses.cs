@@ -87,3 +87,4 @@ public class AllVendorsResult
     public List<Vendor> vendorList;
     public int totalRecord;
 }
+

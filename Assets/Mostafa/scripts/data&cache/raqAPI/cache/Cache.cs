@@ -10,7 +10,7 @@ using UnityEngine.Events;
 
 public class Cache : MonoBehaviour
 {
-    public CacheSO cachedData;
+    public CachedData cachedData;
 
     public List<Texture2D> cachedTextures;
     public List<Texture2D> searchTextures;
@@ -49,9 +49,11 @@ public class Cache : MonoBehaviour
         api = GetComponent<RaqAPI>();
         api.Init();
 
+        cachedData = new CachedData();
         cachedData.allVendors = new List<Vendor>();
         cachedData.allCategories = new List<ProductCategory>();
         cachedData.searchResult = new List<BookData>();
+        cachedData.allSponsors = new List<Sponsor>();
         cachedTextures = new List<Texture2D>();
         searchTextures = new List<Texture2D>();
     }
@@ -138,6 +140,11 @@ public class Cache : MonoBehaviour
     public void retrieveVendors()
     {
         StartCoroutine(api.getAllVendors(0, 0));
+    }
+
+    public void retrieveSponsors()
+    {
+        StartCoroutine(api.getAllSponsors());
     }
 
     public void search(SearchCallBack callBack, int limit, int page, string keyword, int categoryId = -1)
@@ -261,9 +268,12 @@ public class Cache : MonoBehaviour
     public void cacheAllVendors(AllVendorsResult vendorsResult)
     {
         cachedData.allVendors = vendorsResult.vendorList;
-        //foreach (Vendor v in cachedData.allVendors) v.bookcaseData = null;
     }
 
+    public void cacheAllSponsors(SponsorsResult sponsorsResult)
+    {
+        cachedData.allSponsors = sponsorsResult.sponsorList;
+    }
 
     public static byte[] Compress(byte[] data)
     {

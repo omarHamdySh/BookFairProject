@@ -23968,7 +23968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bookcasePathHandler: {fileID: 693811389}
   shelfPathHandler: {fileID: 0}
-  maxInterval: 5
+  maxInterval: 10
   active: 1
   categoryIndex: 0
 --- !u!1 &1834523374

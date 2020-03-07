@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 024a9416a95834c40a1d634db6a41177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadedBooksLimit: 100
+  loadedBooksLimit: 400
   startUpDataEvent:
     m_PersistentCalls:
       m_Calls:
@@ -619,7 +619,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a892d35131a6c8448d9195180931872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cachedData: {fileID: 11400000, guid: d7a57a54a5e58bc46adba20975bab4bc, type: 2}
   cachedTextures: []
   searchTextures: []
   api: {fileID: 1882423685}
@@ -637,7 +636,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  oneTimeLoadLimit: 10
+  oneTimeLoadLimit: 20
   booksLimit: 500
   loadedBooks: 0
 --- !u!4 &1882423684
@@ -678,7 +677,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1882423683}
-        m_MethodName: retrieveCategories
+        m_MethodName: retrieveSponsors
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -693,6 +692,20 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 285206332}
         m_MethodName: loadStartupData
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  sponsorsRetrievedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1882423683}
+        m_MethodName: retrieveCategories
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

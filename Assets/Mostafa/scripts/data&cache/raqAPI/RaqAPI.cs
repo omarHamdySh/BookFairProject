@@ -11,10 +11,12 @@ public class RaqAPI : MonoBehaviour
     public int languageId = 1;
     public int fairId = -1;
     public bool transmitting; //true if data is being requested
+
     public UnityEvent authTokenLoadedEvent;
     public UnityEvent vendorsRetrievedEvent;
+    public UnityEvent sponsorsRetrievedEvent;
 
-    
+
 
     public void Init()
     {
@@ -230,7 +232,7 @@ public class RaqAPI : MonoBehaviour
         transmitting = false;
 
     }
-    public IEnumerator allSponsors()
+    public IEnumerator getAllSponsors()
     {
         //temporary until badawy gives us another endpoint
         string uri = baseUrl + "/api/products/sponsors_list";
@@ -251,6 +253,8 @@ public class RaqAPI : MonoBehaviour
         if (res != null)
         {
             res = JsonUtility.FromJson<SponsorsResult>(www.downloadHandler.text);
+            sponsorsRetrievedEvent.Invoke();
+            Cache.Instance.cacheAllSponsors(res);
         }
 
         transmitting = false;
