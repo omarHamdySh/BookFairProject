@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Lean.Touch;
 
 /// <summary>
 /// define the gamepaly states
@@ -26,6 +27,9 @@ public class GameplayFSMManager : MonoBehaviour
     //Debug Variables
     public TextMeshProUGUI currentStateTxt;
     public TextMeshProUGUI hintTxt;
+
+    public Transform pageStateColliderPos;
+
     /// <summary>
     /// Declaration of dynamic variables for surving the logic goes here.
     /// Eg.
@@ -148,8 +152,16 @@ public class GameplayFSMManager : MonoBehaviour
     void Update()
     {
         stateStack.Peek().OnStateUpdate();
-
         if (Input.GetKeyDown(KeyCode.Escape))SelectionManager.instance.deselectCurrent();
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            LeanFinger f = new LeanFinger();
+            f.ScreenPosition.x = CameraPath.instance.cameraTransform.position.x;
+            f.ScreenPosition.y = CameraPath.instance.cameraTransform.position.y;
+            f.Set = true;
+            f.TapCount = 1;
+            Lean.Touch.LeanTouch.Fingers.Add(f);
+        } 
     }
     /// <summary>
     /// functions to define the stak functionality

@@ -88,9 +88,10 @@ public class DataLoader : MonoBehaviour
         {
 
             Cache.Instance.api.abortRetrieve();
-            foreach (ProductCategory c in Cache.Instance.cachedData.allCategories)
+            foreach (CategoryData c in floorModeVendorEnumrator.Current.bookcaseData.categories)
             {
-                Cache.Instance.retrieveCategoryInBookcase(publisherId, c.id);
+                if(c.total < c.booksData.Count)
+                    Cache.Instance.retrieveCategoryInBookcase(publisherId, c.id);
             }
 
         }

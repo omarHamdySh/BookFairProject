@@ -224,6 +224,7 @@ public class RaqAPI : MonoBehaviour
         {
             Cache.Instance.cacheAllVendors(res);
             vendorsRetrievedEvent.Invoke();//load peliminary data
+            vendorsRetrievedEvent.RemoveAllListeners();
         }
 
         transmitting = false;
