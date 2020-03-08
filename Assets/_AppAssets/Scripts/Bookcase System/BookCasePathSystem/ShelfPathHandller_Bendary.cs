@@ -37,6 +37,10 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
             if (isObjMoving && currentScrollSpeed == 0)
             {
                 isObjMoving = !CheckAllObjectsLanded();
+                if (!isObjMoving)
+                {
+                    SelectionManager.instance.canSelect = true;
+                }
                 return;
             }
             else if (!isObjMoving && currentScrollSpeed != 0)
@@ -108,6 +112,7 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
 
     private void OnDepartureCall()
     {
+        SelectionManager.instance.canSelect = false;
         foreach (var scrollable in shelves)// Change each scrollable State to --> onDeparture()
         {
             scrollable.onDeparture();

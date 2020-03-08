@@ -33,6 +33,10 @@ public class BookPathHandller_Bendary : MonoBehaviour
             if (isObjMoving && currentScrollSpeed == 0)
             {
                 isObjMoving = !CheckAllObjectsLanded();
+                if (!isObjMoving)
+                {
+                    SelectionManager.instance.canSelect = true;
+                }
                 return;
             }
             else if (!isObjMoving && currentScrollSpeed != 0)
@@ -102,6 +106,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
 
     private void OnDepartureCall()
     {
+        SelectionManager.instance.canSelect = false;
         foreach (var scrollable in books)// Change each scrollable State to --> onDeparture()
         {
             scrollable.onDeparture();
