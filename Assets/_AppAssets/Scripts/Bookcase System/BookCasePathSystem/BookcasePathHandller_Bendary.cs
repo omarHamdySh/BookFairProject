@@ -62,8 +62,6 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
                     MoveAccordingToScrollSpeed();
                 }
             }
-
-
         }
     }
 
