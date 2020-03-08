@@ -5,7 +5,7 @@ using UnityEngine;
 public class BookPathHandller_Bendary : MonoBehaviour
 {
     [SerializeField] private float objectScrollDuration = 0.7f;
-     public int currentBookIndex;
+    public int currentBookIndex;
 
     public int IndexOfCurrent, rightDomyIndex, leftDomyIndex;
     public Transform[] bookPathPoints;
@@ -150,7 +150,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
     #region Data
     private void PrepareData()
     {
-        if (Cache.Instance && Cache.Instance.cachedData.allVendors.Count > 0)
+        if (Cache.Instance && Cache.Instance.cachedData.allVendors.Count > 0 && categoryIndex != -1)
         {
             if (Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData != null && Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories != null)
             {
