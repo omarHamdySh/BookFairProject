@@ -6,6 +6,7 @@ public class SelectionManager : MonoBehaviour
 {
     public IClickable selectedObject;
 
+    public bool canSelect = true;
     #region Singleton
     public static SelectionManager instance { private set; get; }
     private void Awake()
@@ -39,7 +40,7 @@ public class SelectionManager : MonoBehaviour
 
         if (this.selectedObject != null)
         {
-            if (CameraPath.instance.cameraMoving == false)
+            if (CameraPath.instance.cameraMoving == false && canSelect)
             {
                 CameraPath.instance.cameraMoving = true;
                 this.selectedObject.unfocus();
