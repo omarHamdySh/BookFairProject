@@ -7888,6 +7888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8148c51cd622cc41943fdd1f6d70476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &460165979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7955,6 +7956,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentStateTxt: {fileID: 0}
   hintTxt: {fileID: 0}
+  pageStateColliderPos: {fileID: 0}
 --- !u!4 &467904815 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7350657590472079970, guid: 9190b1ca7dea54749b822e13a5653556,
