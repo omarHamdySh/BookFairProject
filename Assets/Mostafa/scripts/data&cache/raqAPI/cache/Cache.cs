@@ -201,34 +201,28 @@ public class Cache : MonoBehaviour
 
                 foreach (Product book in res.prodcutList)
                 {
-                    if (tmpCat.booksData.Find(b => book.id == b.id) == null)
-                    {
+                    if (tmpCat.booksData.Find(b => book.id == b.id) == null){
                         BookData tmpBook = new BookData();
                         tmpBook.url = api.makeBookUrl(book.id);
                         tmpBook.id = book.id;
                         tmpBook.texture = null;
                         tmpBook.description = book.shortDescription;
                         tmpBook.name = book.name;
-                        tmpBook.imgString = Convert.ToBase64String(Decompress(Convert.FromBase64String(book.defaultPicture)));
+                        tmpCat.booksData.Add(tmpBook);
                         if (book.defaultPicture != "" && book.defaultPicture != null)
                         {
+                            tmpBook.imgString = Convert.ToBase64String(Decompress(Convert.FromBase64String(book.defaultPicture)));
                             Texture2D tmpTexture = new Texture2D(1, 1);
                             tmpTexture.LoadImage(Convert.FromBase64String(tmpBook.imgString));
                             tmpTexture.Apply();
-
-                            cachedTextures.Add(tmpTexture);
                             tmpBook.texture = tmpTexture;
                         }
-                        //if(tmpBook.imgString != "" && tmpBook.imgString != null)tmpBook.texture.LoadImage(Decompress(Convert.FromBase64String(tmpBook.imgString)));
-                        tmpCat.booksData.Add(tmpBook);
                         loadedBooks++;
                     }
-                    //Debug.Log("cached " + res.prodcutList.Count + " in " + tmpCat.name + " in " + tmpBookcase.name);
                 }
 
 
             }
-            dataArrivedEvent.Invoke();
         }
     }
 
@@ -251,7 +245,6 @@ public class Cache : MonoBehaviour
                     Texture2D tmpTexture = new Texture2D(1, 1);
                     tmpTexture.LoadImage(Convert.FromBase64String(tmpBook.imgString));
                     tmpTexture.Apply();
-                    searchTextures.Add(tmpTexture);
                     tmpBook.texture = tmpTexture;
                 }
                 //if(tmpBook.imgString != "" && tmpBook.imgString != null)tmpBook.texture.LoadImage(Decompress(Convert.FromBase64String(tmpBook.imgString)));

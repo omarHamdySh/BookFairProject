@@ -152,15 +152,25 @@ public class GameplayFSMManager : MonoBehaviour
     void Update()
     {
         stateStack.Peek().OnStateUpdate();
-        if (Input.GetKeyDown(KeyCode.Escape))SelectionManager.instance.deselectCurrent();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (SelectionManager.instance.canSelect)
+            {
+                SelectionManager.instance.deselectCurrent();
+            }
+        }
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            LeanFinger f = new LeanFinger();
-            f.ScreenPosition.x = CameraPath.instance.cameraTransform.position.x;
-            f.ScreenPosition.y = CameraPath.instance.cameraTransform.position.y;
-            f.Set = true;
-            f.TapCount = 1;
-            Lean.Touch.LeanTouch.Fingers.Add(f);
+            if (SelectionManager.instance.canSelect)
+            {
+
+                LeanFinger f = new LeanFinger();
+                f.ScreenPosition.x = CameraPath.instance.cameraTransform.position.x;
+                f.ScreenPosition.y = CameraPath.instance.cameraTransform.position.y;
+                f.Set = true;
+                f.TapCount = 1;
+                Lean.Touch.LeanTouch.Fingers.Add(f);
+            }
         } 
     }
     /// <summary>
