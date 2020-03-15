@@ -1,4 +1,4 @@
-var OpenWindowPlugin = {
+var JSPlugin = {
     openWindow: function(link)
     {
     	var url = Pointer_stringify(link);
@@ -30,4 +30,4 @@ var OpenWindowPlugin = {
     },
 };
 
-mergeInto(LibraryManager.library, OpenWindowPlugin);
+mergeInto(LibraryManager.library, JSPlugin);

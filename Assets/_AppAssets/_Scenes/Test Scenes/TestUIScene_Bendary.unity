@@ -7816,6 +7816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8148c51cd622cc41943fdd1f6d70476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSelect: 1
 --- !u!114 &460165979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24004,7 +24005,7 @@ MonoBehaviour:
   AllMenus:
   - {fileID: 1772209880}
   - {fileID: 619683445}
-  CurActiveMenu: {fileID: 0}
+  CurActiveMenu: {fileID: 1772209880}
   AnimateFirstMenuAtStart: 1
   AllPopups: []
   CurActivePopup: {fileID: 0}

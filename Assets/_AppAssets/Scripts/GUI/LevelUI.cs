@@ -103,8 +103,9 @@ public class LevelUI : UIHandller
             this.searchPageResult = searchPageResult;
             this.totalSearchedBooksCount = totalSearchedBooksCount;
 
-            seachResultCountTxt.text = "Search Result " + totalSearchedBooksCount + ((totalSearchedBooksCount > 1) ? " books" : " book");
-            searchPageIndexTxt.text = "Page " + (searchPageIndex + 1) + " / " + (Mathf.CeilToInt((float)totalSearchedBooksCount / (float)searchedBookContainer.childCount));
+            seachResultCountTxt.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "نتيجة البحث " + totalSearchedBooksCount + ((totalSearchedBooksCount > 2) ? " كتب" : (totalSearchedBooksCount == 1) ? " كتاب" : " كتابان") :
+                "Search Result " + totalSearchedBooksCount + ((totalSearchedBooksCount > 1) ? " books" : " book");
+            searchPageIndexTxt.text = ((PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "صفحة " : "Page ") + (searchPageIndex + 1) + " / " + (Mathf.CeilToInt((float)totalSearchedBooksCount / (float)searchedBookContainer.childCount));
 
             endlessLoadingBar.SetActive(false);
             ToggleAllSearchCommponent(true);
@@ -115,7 +116,7 @@ public class LevelUI : UIHandller
         else
         {
             endlessLoadingBar.SetActive(false);
-            seachResultCountTxt.text = "Search Result " + totalSearchedBooksCount + ((totalSearchedBooksCount > 1) ? " books" : " book");
+            seachResultCountTxt.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "لا يوجد نتائج للبحث" : "There is no search result";
             seachResultCountTxt.gameObject.SetActive(true);
         }
 
@@ -232,7 +233,7 @@ public class LevelUI : UIHandller
         }
         else
         {
-            Debug.LogError("Empty URL");
+            Debug.Log("Empty URL");
         }
     }
     #endregion
