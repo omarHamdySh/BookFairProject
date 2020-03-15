@@ -138,7 +138,7 @@ public class TestBookRotation_Bendary : MonoBehaviour
     public void AssignBuyURL(string buyURL)
     {
         animatedBookCanvas.GetComponentInChildren<PressHandler>().OnPress.RemoveAllListeners();
-        animatedBookCanvas.GetComponentInChildren<PressHandler>().OnPress.AddListener(() => LevelUI.Instance.OpenURL(buyURL));
+        animatedBookCanvas.GetComponentInChildren<PressHandler>().OnPress.AddListener(() => LevelUI.Instance.OpenURLInNewTab(buyURL));
     }
 
     public void AssignBookDes(string description)

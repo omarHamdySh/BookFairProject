@@ -39,10 +39,10 @@ public class LevelUI : UIHandller
     [Header("Search")]
     [SerializeField] private Button prevSearchPageBtn;
     [SerializeField] private Button nextSearchPageBtn;
-    [SerializeField] private TextMeshProUGUI seachResultCountTxt;
+    [SerializeField] private FixTextMeshPro seachResultCountTxt;
     [SerializeField] private Transform searchedBookContainer;
-    [SerializeField] private TMP_InputField searchIN;
-    [SerializeField] private TextMeshProUGUI searchPageIndexTxt;
+    [SerializeField] private FixInputFieldMeshPro searchIN;
+    [SerializeField] private FixTextMeshPro searchPageIndexTxt;
 
     private int searchPageIndex = 0;
     private int filterCategoryID = -1;
@@ -54,7 +54,7 @@ public class LevelUI : UIHandller
 
     public void ToggleAllSearchCommponent(bool enabled)
     {
-        searchIN.text = (enabled) ? searchIN.text : "";
+        searchIN.RealText.text = (enabled) ? searchIN.RealText.text : "";
         searchPageIndex = (enabled) ? searchPageIndex : 0;
         ToggleSearchForNewSearch(enabled);
     }
@@ -144,7 +144,7 @@ public class LevelUI : UIHandller
             book.gameObject.SetActive(true);
 
             // Put Data on the book
-            book.GetComponentInChildren<TextMeshProUGUI>().text = searchPageResult[i].name;
+            book.GetComponentInChildren<FixTextMeshPro>().text = searchPageResult[i].name;
             if (searchPageResult[i].texture)
             {
                 book.GetChild(0).GetChild(0).GetComponent<Image>().sprite = Sprite.Create(searchPageResult[i].texture, new Rect(0, 0, searchPageResult[i].texture.width, searchPageResult[i].texture.height), new Vector2(0.5f, 0.5f));
@@ -164,7 +164,7 @@ public class LevelUI : UIHandller
             }
             book.GetComponent<Button>().onClick.RemoveAllListeners();
             string url = searchPageResult[i].url;
-            book.GetComponent<PressHandler>().OnPress.AddListener(() => OpenURL(url));
+            book.GetComponent<PressHandler>().OnPress.AddListener(() => OpenURLInNewTab(url));
         }
     }
 
@@ -182,7 +182,7 @@ public class LevelUI : UIHandller
 
         if (Cache.Instance)
         {
-            Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchIN.text);
+            Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchIN.RealText.text);
         }
     }
 
@@ -221,7 +221,7 @@ public class LevelUI : UIHandller
         }
     }
 
-    public void OpenURL(string url)
+    public void OpenURLInNewTab(string url)
     {
         if (!string.IsNullOrEmpty(url))
         {

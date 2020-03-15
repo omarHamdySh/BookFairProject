@@ -2,7 +2,7 @@
 using TMPro;
 using ArabicSupport;
 
-[ExecuteInEditMode]
+[ExecuteAlways]
 public class FixTextMeshPro : MonoBehaviour
 {
     [Multiline] public string text;
