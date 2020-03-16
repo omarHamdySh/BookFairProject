@@ -19,6 +19,7 @@ public class LevelUI : UIHandller
         {
             Destroy(gameObject);
         }
+        isUIOpen = true;
     }
     #endregion
 
@@ -27,7 +28,7 @@ public class LevelUI : UIHandller
     #endregion
 
     #region SwitchFromUI to Game Mode
-    [HideInInspector] public bool isUIOpen = true;
+    [HideInInspector] public bool isUIOpen;
 
     public void ToggleUI(bool check)
     {
