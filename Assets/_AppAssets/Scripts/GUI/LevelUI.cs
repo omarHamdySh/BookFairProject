@@ -27,7 +27,7 @@ public class LevelUI : UIHandller
     #endregion
 
     #region SwitchFromUI to Game Mode
-    [HideInInspector] public bool isUIOpen = false;
+    [HideInInspector] public bool isUIOpen = true;
 
     public void ToggleUI(bool check)
     {
@@ -230,6 +230,18 @@ public class LevelUI : UIHandller
 #else
             Application.OpenURL(url);
 #endif
+        }
+        else
+        {
+            Debug.Log("Empty URL");
+        }
+    }
+
+    public void OpenURLInTheSameTab(string url)
+    {
+        if (!string.IsNullOrEmpty(url))
+        {
+            Application.OpenURL(url);
         }
         else
         {
