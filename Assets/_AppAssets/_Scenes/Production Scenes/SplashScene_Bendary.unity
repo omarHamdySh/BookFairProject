@@ -319,6 +319,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 75
       objectReference: {fileID: 0}
+    - target: {fileID: 3495226073932226162, guid: 0a2436e260fbc0b44b7337d4c4ccbd62,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495226073932226162, guid: 0a2436e260fbc0b44b7337d4c4ccbd62,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a2436e260fbc0b44b7337d4c4ccbd62, type: 3}
 --- !u!224 &744228502 stripped
@@ -659,7 +669,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  oneTimeLoadLimit: 14
+  oneTimeLoadLimit: 50
   booksLimit: 400
   loadedBooks: 0
 --- !u!4 &1882423684
