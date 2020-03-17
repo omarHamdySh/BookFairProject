@@ -19,6 +19,7 @@ public class LevelUI : UIHandller
         {
             Destroy(gameObject);
         }
+        isUIOpen = true;
     }
     #endregion
 
@@ -27,7 +28,7 @@ public class LevelUI : UIHandller
     #endregion
 
     #region SwitchFromUI to Game Mode
-    [HideInInspector] public bool isUIOpen = false;
+    [HideInInspector] public bool isUIOpen;
 
     public void ToggleUI(bool check)
     {
@@ -35,8 +36,15 @@ public class LevelUI : UIHandller
     }
     #endregion
 
-    #region Search
-    [Header("Search")]
+
+
+    #region Menus
+    [Header("Menus")]
+    [SerializeField] private GameObject regularScrollItem;
+    [SerializeField] private GameObject toggleScrollItem;
+
+    #region SearchMenu
+    [Header("SearchMenu")]
     [SerializeField] private Button prevSearchPageBtn;
     [SerializeField] private Button nextSearchPageBtn;
     [SerializeField] private FixTextMeshPro seachResultCountTxt;
@@ -236,5 +244,71 @@ public class LevelUI : UIHandller
             Debug.Log("Empty URL");
         }
     }
+
+    public void OpenURLInTheSameTab(string url)
+    {
+        if (!string.IsNullOrEmpty(url))
+        {
+            Application.OpenURL(url);
+        }
+        else
+        {
+            Debug.Log("Empty URL");
+        }
+    }
+    #endregion
+
+    #region FairMenu
+    [Header("FairsMenu")]
+    [SerializeField] private ScrollRect fairsScroll;
+
+    public void PutFairsData()
+    {
+        if (Cache.Instance)
+        {
+            //if(fairsScroll.content.childCount>Cache.Instance.cachedData..)
+        }
+    }
+    #endregion
+
+    #region SponsorsMenu
+    [Header("SponsorsMenu")]
+    [SerializeField] private ScrollRect SponsorsScroll;
+
+    public void PutSponsorsData()
+    {
+        if (Cache.Instance)
+        {
+            if (SponsorsScroll.content.childCount < Cache.Instance.cachedData.allSponsors.Count)
+            {
+                for (int i = SponsorsScroll.content.childCount; i < Cache.Instance.cachedData.allSponsors.Count; i++)
+                {
+                    GameObject go = Instantiate(regularScrollItem, SponsorsScroll.content);
+                    go.GetComponentInChildren<FixTextMeshPro>().text = Cache.Instance.cachedData.allSponsors[i].name;
+                }
+            }
+        }
+    }
+    #endregion
+
+    #region PublishersMenu
+    [Header("PublishersMenu")]
+    [SerializeField] private ScrollRect publishersScroll;
+
+    public void PutPublishersData()
+    {
+        if (Cache.Instance)
+        {
+            if (publishersScroll.content.childCount < Cache.Instance.cachedData.allVendors.Count)
+            {
+                for (int i = publishersScroll.content.childCount; i < Cache.Instance.cachedData.allVendors.Count; i++)
+                {
+                    GameObject go = Instantiate(regularScrollItem, publishersScroll.content);
+                    go.GetComponentInChildren<FixTextMeshPro>().text = Cache.Instance.cachedData.allVendors[i].name;
+                }
+            }
+        }
+    }
+    #endregion
     #endregion
 }
