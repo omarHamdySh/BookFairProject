@@ -243,7 +243,7 @@ public class Cache : MonoBehaviour
     public void cacheAllFairs(FairResult fairResult)
     {
         cachedData.allFairs = fairResult.fairsList;
-        api.fairId = cachedData.allFairs[0].id;
+        //api.fairId = cachedData.allFairs[0].id;
     }
     public void cacheAllSponsors(SponsorsResult sponsorsResult)
     {
