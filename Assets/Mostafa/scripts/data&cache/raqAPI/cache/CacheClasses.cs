@@ -38,3 +38,12 @@ public class BookcaseData
 }
 
 
+[System.Serializable]
+public class FairData
+{
+    public int id;
+    public string shortName;
+    public string fullName;
+    public string briefDescription;
+}
+

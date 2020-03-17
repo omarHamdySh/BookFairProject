@@ -7,4 +7,5 @@ public class CachedData {
     public List<Vendor> allVendors;
     public List<BookData> searchResult;
     public List<Sponsor> allSponsors;
+    public List<FairData> allFairs;
 }

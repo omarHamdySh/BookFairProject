@@ -12,9 +12,6 @@ public class Cache : MonoBehaviour
 {
     public CachedData cachedData;
 
-    public List<Texture2D> cachedTextures;
-    public List<Texture2D> searchTextures;
-
     public RaqAPI api;
 
     public UnityEvent dataArrivedEvent;
@@ -56,8 +53,6 @@ public class Cache : MonoBehaviour
         cachedData.allCategories = new List<ProductCategory>();
         cachedData.searchResult = new List<BookData>();
         cachedData.allSponsors = new List<Sponsor>();
-        cachedTextures = new List<Texture2D>();
-        searchTextures = new List<Texture2D>();
     }
 
     [ContextMenu("Finish Loading Data")]
@@ -69,31 +64,7 @@ public class Cache : MonoBehaviour
     }
 
 
-    [ContextMenu("foo1")]
-    public void foo1()
-    {
-        retrieveCategoryInBookcase(4, 20);
-    }
-
-    [ContextMenu("foo2")]
-    void foo2()
-    {
-        retrieveCategoryInBookcase(4, 20);
-    }
-
-
-    [ContextMenu("foo3")]
-    void foo3()
-    {
-        retrieveCategoryInBookcase(4, 32);
-    }
-
-    [ContextMenu("foo4")]
-    void foo4()
-    {
-        search(null, 6, 1, "sound");
-    }
-
+    
 
 
 
@@ -142,6 +113,11 @@ public class Cache : MonoBehaviour
     public void retrieveVendors()
     {
         StartCoroutine(api.getAllVendors(0, 0));
+    }
+
+    public void retrieveFairs()
+    {
+        StartCoroutine(api.getCurrentFairs());
     }
 
     public void retrieveSponsors()
@@ -230,7 +206,6 @@ public class Cache : MonoBehaviour
     {
         if (res != null)
         {
-            searchTextures = new List<Texture2D>();
             foreach (Product book in res.prodcutList)
             {
                 BookData tmpBook = new BookData();
@@ -265,6 +240,11 @@ public class Cache : MonoBehaviour
         cachedData.allVendors = vendorsResult.vendorList;
     }
 
+    public void cacheAllFairs(FairResult fairResult)
+    {
+        cachedData.allFairs = fairResult.fairsList;
+        api.fairId = cachedData.allFairs[0].id;
+    }
     public void cacheAllSponsors(SponsorsResult sponsorsResult)
     {
         cachedData.allSponsors = sponsorsResult.sponsorList;
