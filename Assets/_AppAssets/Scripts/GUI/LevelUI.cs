@@ -266,7 +266,10 @@ public class LevelUI : UIHandller
     {
         if (Cache.Instance)
         {
-            //if(fairsScroll.content.childCount>Cache.Instance.cachedData..)
+            if (fairsScroll.content.childCount < Cache.Instance.cachedData.allFairs.Count)
+            {
+
+            }
         }
     }
     #endregion
