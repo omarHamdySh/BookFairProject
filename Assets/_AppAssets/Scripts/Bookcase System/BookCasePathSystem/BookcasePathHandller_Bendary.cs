@@ -21,7 +21,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     private bool isObjMoving = false;
     private Vector3 bookBackwordPos;
 
-    public TextMeshPro VendorNameOntheWorld;
+    public FixTextMeshPro VendorNameOntheWorld;
     #region Data
     [HideInInspector] public int vendorIndex = 0;
     private List<CategoryData> dummy = new List<CategoryData>();

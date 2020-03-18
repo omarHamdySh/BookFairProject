@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.UI;
-using TMPro;
 
 public class Shelf_Bendary : MonoBehaviour, IScrollable
 {
@@ -16,7 +14,7 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
 
 
     #region Data
-    [SerializeField] private TextMeshProUGUI categoryText;
+    [SerializeField] private FixTextMeshPro categoryText;
     public int categoryIndex = -1;
     #endregion
 

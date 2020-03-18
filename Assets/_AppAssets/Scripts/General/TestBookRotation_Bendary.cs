@@ -12,8 +12,8 @@ public class TestBookRotation_Bendary : MonoBehaviour
     [SerializeField] private MeshRenderer[] bookPapersRenderers;
     [SerializeField] private Canvas animatedBookCanvas;
     [SerializeField] private float animationDelay;
-    [SerializeField] private TextMeshProUGUI bookDescription;
-    [SerializeField] private TextMeshProUGUI bookClickHereTxt;
+    [SerializeField] private FixTextMeshPro bookDescription;
+    [SerializeField] private FixTextMeshPro bookClickHereTxt;
 
     private bool rotationEnabled = false;
     private Animator myAnim;
@@ -105,11 +105,11 @@ public class TestBookRotation_Bendary : MonoBehaviour
     {
         if (bookDataIndex == -1)
         {
-            bookClickHereTxt.text = "This Book Is dummy";
+            bookClickHereTxt.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "هذا كتاب وهمي" : "This Book Is dummy";
         }
         else
         {
-            bookClickHereTxt.text = "Click here to open book link";
+            bookClickHereTxt.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "اضغط هنا لفتح صفحة الكتاب" : "Click here to open book link";
         }
     }
 

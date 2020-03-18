@@ -268,7 +268,17 @@ public class LevelUI : UIHandller
         {
             if (fairsScroll.content.childCount < Cache.Instance.cachedData.allFairs.Count)
             {
+                for (int i = fairsScroll.content.childCount; i < Cache.Instance.cachedData.allFairs.Count; i++)
+                {
+                    GameObject go = Instantiate(toggleScrollItem, fairsScroll.content);
+                    go.GetComponentInChildren<FixTextMeshPro>().text = Cache.Instance.cachedData.allFairs[i].fullName;
+                    go.GetComponentInChildren<Toggle>().group = fairsScroll.content.GetComponent<ToggleGroup>();
 
+                    //if (Cache.Instance.cachedData.allFairs[i].id == Cache.Instance.cachedData)
+                    //{
+                    //    go.GetComponentInChildren<Toggle>().isOn = true;
+                    //}
+                }
             }
         }
     }

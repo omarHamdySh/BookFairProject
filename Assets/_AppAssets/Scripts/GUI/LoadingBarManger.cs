@@ -5,6 +5,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class LoadingBarManger : MonoBehaviour
 {
@@ -17,15 +19,24 @@ public class LoadingBarManger : MonoBehaviour
     [SerializeField] private float openSpeed = .005f;
     [SerializeField] private float closeSpeed = .01f;
 
+    private Scene oldScene;
+
     private void Start()
     {
         up = true;
+        oldScene = SceneManager.GetActiveScene();
+        StartCoroutine(StartMotion());
     }
 
-    private void Update()
+
+    IEnumerator StartMotion()
     {
-        rectComponent.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
-        changeSize();
+        while (oldScene == SceneManager.GetActiveScene())
+        {
+            rectComponent.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
+            changeSize();
+            yield return null;
+        }
     }
 
     private void changeSize()

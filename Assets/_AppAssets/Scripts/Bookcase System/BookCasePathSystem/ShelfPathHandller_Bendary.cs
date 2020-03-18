@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class ShelfPathHandller_Bendary : MonoBehaviour
 {
@@ -17,7 +16,7 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
     private float currentScrollSpeed;
     private bool isObjMoving = false;
 
-    public TextMeshProUGUI vendorNameOntheBookcase;
+    public FixTextMeshPro vendorNameOntheBookcase;
 
     #region Data
     private int vendorIndex = -1;
