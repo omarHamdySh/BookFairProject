@@ -21,7 +21,6 @@ public class FixTextMeshPro : MonoBehaviour
                 gameObject.GetComponent<TMP_Text>().isRightToLeftText = true;
                 convertedText.Reverse();
                 gameObject.GetComponent<TMP_Text>().text = string.Join("", convertedText.ToArray());
-
             }
             else
             {
