@@ -58,6 +58,13 @@ public class SponsorsResult
 }
 
 [System.Serializable]
+public class FairResult
+{
+    public List<FairData> fairsList;
+    public int totalRecord;
+}
+
+[System.Serializable]
 public class Sponsor
 {
     public string pictureThumbnailUrl;

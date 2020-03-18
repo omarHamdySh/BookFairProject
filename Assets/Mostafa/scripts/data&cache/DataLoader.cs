@@ -43,6 +43,7 @@ public class DataLoader : MonoBehaviour
         Cache.Instance.api.abortRetrieve();
 
         requestQueue = new Queue<DataRequest>();
+
     }
 
     void FixedUpdate()

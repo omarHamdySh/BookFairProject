@@ -14,7 +14,7 @@ public class RaqAPI : MonoBehaviour
 
     public UnityEvent authTokenLoadedEvent;
     public UnityEvent vendorsRetrievedEvent;
-    public UnityEvent sponsorsRetrievedEvent;
+    public UnityEvent fairsRetrievedEvent;
     public UnityEvent dataArrivedEvent;
 
 
@@ -255,13 +255,39 @@ public class RaqAPI : MonoBehaviour
         if (res != null)
         {
             res = JsonUtility.FromJson<SponsorsResult>(www.downloadHandler.text);
-            sponsorsRetrievedEvent.Invoke();
             Cache.Instance.cacheAllSponsors(res);
         }
 
         transmitting = false;
     }
 
+    public IEnumerator getCurrentFairs()
+    {
+        //temporary until badawy gives us another endpoint
+        string uri = baseUrl + "/api/fairs/FairsList";
+
+        FairResult res = new FairResult();
+
+        UnityWebRequest www = UnityWebRequest.Get(uri);
+
+        www.SetRequestHeader("Authorization", authInfo.token_type + " " + authInfo.access_token);
+        www.SetRequestHeader("customerId", "1");
+        www.SetRequestHeader("Content-Type", "application/json");
+        www.SetRequestHeader("LanguageId", "1");
+
+        transmitting = true;
+
+        yield return www.SendWebRequest();
+
+        if (res != null)
+        {
+            res = JsonUtility.FromJson<FairResult>(www.downloadHandler.text);
+            fairsRetrievedEvent.Invoke();
+            Cache.Instance.cacheAllFairs(res);
+        }
+
+        transmitting = false;
+    }
     public string makeBookUrl(int bookId)
     {
         return "https://raaqeem.com/" + (languageId == 1 ? "ar" : "en") + "/" + "book" + "/" + bookId.ToString();

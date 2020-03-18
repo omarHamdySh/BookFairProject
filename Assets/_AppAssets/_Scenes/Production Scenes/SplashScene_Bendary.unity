@@ -319,6 +319,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 75
       objectReference: {fileID: 0}
+    - target: {fileID: 3495226073932226162, guid: 0a2436e260fbc0b44b7337d4c4ccbd62,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495226073932226162, guid: 0a2436e260fbc0b44b7337d4c4ccbd62,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a2436e260fbc0b44b7337d4c4ccbd62, type: 3}
 --- !u!224 &744228502 stripped
@@ -644,8 +654,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a892d35131a6c8448d9195180931872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cachedTextures: []
-  searchTextures: []
   api: {fileID: 1882423685}
   dataArrivedEvent:
     m_PersistentCalls:
@@ -661,7 +669,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  oneTimeLoadLimit: 14
+  oneTimeLoadLimit: 50
   booksLimit: 400
   loadedBooks: 0
 --- !u!4 &1882423684
@@ -712,6 +720,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1882423683}
+        m_MethodName: retrieveFairs
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   vendorsRetrievedEvent:
     m_PersistentCalls:
       m_Calls:
@@ -726,11 +745,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  sponsorsRetrievedEvent:
+  fairsRetrievedEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1882423683}
-        m_MethodName: retrieveCategories
+        m_MethodName: retrieveVendors
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
