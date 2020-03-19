@@ -146,7 +146,10 @@ public class Cache : MonoBehaviour
     {
         api.fairId = id;
     }
-
+    public int getFairId()
+    {
+        return api.fairId;
+    }
     ////////////////////////////////caching functions//////////////////////////////////////////
     public void cacheCategoryInPublisher(ProductResult res, int publisherId, int categoryId)
     {
