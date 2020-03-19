@@ -65,7 +65,16 @@ public class Cache : MonoBehaviour
 
 
     
-
+    void clearCache()
+    {
+        if(cachedData.allVendors != null)
+        {
+            foreach(Vendor v in cachedData.allVendors)
+            {
+                v.bookcaseData = null;
+            }
+        }
+    }
 
 
 
@@ -131,6 +140,11 @@ public class Cache : MonoBehaviour
         StartCoroutine(api.searchWithFilter(keyword, categoryId, limit, page));
         searchCallBack = callBack;
 
+    }
+
+    public void setFairId(int id)
+    {
+        api.fairId = id;
     }
 
     ////////////////////////////////caching functions//////////////////////////////////////////
