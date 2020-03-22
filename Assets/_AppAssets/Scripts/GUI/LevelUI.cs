@@ -284,12 +284,6 @@ public class LevelUI : UIHandller
         }
     }
 
-    [ContextMenu("asas")]
-    public void ss()
-    {
-
-    }
-
     public void CheckFairChanged()
     {
         Toggle toggle = fairsScroll.content.GetComponent<ToggleGroup>().ActiveToggles().First();
