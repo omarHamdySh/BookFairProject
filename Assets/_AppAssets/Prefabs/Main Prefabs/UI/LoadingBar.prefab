@@ -130,7 +130,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -0.00000059605, y: -25}
+  m_AnchoredPosition: {x: 0, y: -25}
   m_SizeDelta: {x: 41.03, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222783605368667362
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0574ff4379db114b93371ffbb9c6fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: '.... Loading'
+  text: Loading ....
   tashkeel: 0
   hinduNumbers: 0
 --- !u!114 &360232020375585155
@@ -280,7 +280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arText: "\u062A\u062D\u0645\u064A\u0644 ...."
-  enText: '.... Loading'
+  enText: Loading ....
   enableAlignment: 0
 --- !u!1 &1908991284014858
 GameObject:

@@ -12950,6 +12950,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 6428605536069417339}
+        m_MethodName: CheckFairChanged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &6221378711642100199
 GameObject:
   m_ObjectHideFlags: 0
@@ -13103,7 +13114,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6814859674165854093}
   m_HandleRect: {fileID: 6311205235380794718}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -22542,6 +22553,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495226073932226162, guid: 0a2436e260fbc0b44b7337d4c4ccbd62,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3495226073932226162, guid: 0a2436e260fbc0b44b7337d4c4ccbd62,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a2436e260fbc0b44b7337d4c4ccbd62, type: 3}

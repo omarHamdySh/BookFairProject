@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Runtime.InteropServices;
+using System.Linq;
 
 public class LevelUI : UIHandller
 {
@@ -36,13 +37,12 @@ public class LevelUI : UIHandller
     }
     #endregion
 
-
-
     #region Menus
     [Header("Menus")]
     [SerializeField] private GameObject regularScrollItem;
     [SerializeField] private GameObject toggleScrollItem;
 
+    private int currentFairIndex;
     #region SearchMenu
     [Header("SearchMenu")]
     [SerializeField] private Button prevSearchPageBtn;
@@ -274,11 +274,35 @@ public class LevelUI : UIHandller
                     go.GetComponentInChildren<FixTextMeshPro>().text = Cache.Instance.cachedData.allFairs[i].fullName;
                     go.GetComponentInChildren<Toggle>().group = fairsScroll.content.GetComponent<ToggleGroup>();
 
-                    //if (Cache.Instance.cachedData.allFairs[i].id == Cache.Instance.cachedData)
-                    //{
-                    //    go.GetComponentInChildren<Toggle>().isOn = true;
-                    //}
+                    if (Cache.Instance.cachedData.allFairs[i].id == Cache.Instance.getFairId())
+                    {
+                        go.GetComponentInChildren<Toggle>().isOn = true;
+                        currentFairIndex = i;
+                    }
                 }
+            }
+        }
+    }
+
+    [ContextMenu("asas")]
+    public void ss()
+    {
+
+    }
+
+    public void CheckFairChanged()
+    {
+        Toggle toggle = fairsScroll.content.GetComponent<ToggleGroup>().ActiveToggles().First();
+        if (toggle)
+        {
+            if (toggle.transform.parent.GetSiblingIndex() != currentFairIndex)
+            {
+                Cache.Instance.setFairId(Cache.Instance.cachedData.allFairs[toggle.transform.parent.GetSiblingIndex()].id);
+                PlayerPrefs.SetInt(ImportantStrings.fairIDKey, Cache.Instance.getFairId());
+                Destroy(Cache.Instance.gameObject);
+                endlessLoadingBar.SetActive(true);
+                endlessLoadingBar.GetComponent<Image>().color = Color.black;
+                LoadLevel(ImportantStrings.splashScene, true);
             }
         }
     }

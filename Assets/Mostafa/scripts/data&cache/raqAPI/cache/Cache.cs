@@ -59,8 +59,7 @@ public class Cache : MonoBehaviour
     public void FinishLoadingData()
     {
         UIHandller uiHandler = FindObjectOfType<UIHandller>();
-        uiHandler.LoadLevel("TestUIScene_Bendary", true);
-
+        uiHandler.LoadLevel(ImportantStrings.gameplayScene, true);
     }
 
 
