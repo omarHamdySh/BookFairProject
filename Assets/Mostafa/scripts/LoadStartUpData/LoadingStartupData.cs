@@ -20,6 +20,15 @@ public class LoadingStartupData : MonoBehaviour
 
     public void loadStartupData()
     {
+
+        if(Cache.Instance.getFairId() == -1)
+        {
+            Cache.Instance.setFairId(Cache.Instance.cachedData.allFairs[1].id);
+        }
+        else
+        {
+            Cache.Instance.setFairId(int.Parse(ImportantStrings.fairIDKey));
+        }
         //loadedBooksLimit = Cache.Instance.cachedData.allVendors.Count * 10;
         foreach(Vendor vendor in Cache.Instance.cachedData.allVendors)
         {
