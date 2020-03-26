@@ -51,6 +51,7 @@ public class LevelUI : UIHandller
     [SerializeField] private Transform searchedBookContainer;
     [SerializeField] private FixInputFieldMeshPro searchIN;
     [SerializeField] private FixTextMeshPro searchPageIndexTxt;
+    [SerializeField] private Sprite noBookCover;
 
     private int searchPageIndex = 0;
     private int filterCategoryID = -1;
@@ -156,19 +157,10 @@ public class LevelUI : UIHandller
             if (searchPageResult[i].texture)
             {
                 book.GetChild(0).GetChild(0).GetComponent<Image>().sprite = Sprite.Create(searchPageResult[i].texture, new Rect(0, 0, searchPageResult[i].texture.width, searchPageResult[i].texture.height), new Vector2(0.5f, 0.5f));
-                book.GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(
-                    book.GetChild(0).GetChild(0).GetComponent<Image>().color.r,
-                    book.GetChild(0).GetChild(0).GetComponent<Image>().color.g,
-                    book.GetChild(0).GetChild(0).GetComponent<Image>().color.b,
-                    1.0f);
             }
             else
             {
-                book.GetChild(0).GetChild(0).GetComponent<Image>().color = new Color(
-                    book.GetChild(0).GetChild(0).GetComponent<Image>().color.r,
-                    book.GetChild(0).GetChild(0).GetComponent<Image>().color.g,
-                    book.GetChild(0).GetChild(0).GetComponent<Image>().color.b,
-                    0.0f);
+                book.GetChild(0).GetChild(0).GetComponent<Image>().sprite = noBookCover;
             }
             book.GetComponent<Button>().onClick.RemoveAllListeners();
             string url = searchPageResult[i].url;
