@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Runtime.InteropServices;
 using System.Linq;
+using ArabicSupport;
 
 public class LevelUI : UIHandller
 {
@@ -23,6 +24,14 @@ public class LevelUI : UIHandller
         isUIOpen = true;
     }
     #endregion
+
+    private void Start()
+    {
+        if (Cache.Instance)
+        {
+            InitSearchFilters();
+        }
+    }
 
     #region LoadingBar
     public GameObject endlessLoadingBar;
@@ -52,6 +61,9 @@ public class LevelUI : UIHandller
     [SerializeField] private FixInputFieldMeshPro searchIN;
     [SerializeField] private FixTextMeshPro searchPageIndexTxt;
     [SerializeField] private Sprite noBookCover;
+    [SerializeField] private TMP_Dropdown fairsDD;
+    [SerializeField] private TMP_Dropdown publishersDD;
+    [SerializeField] private TMP_Dropdown categoriesDD;
 
     private int searchPageIndex = 0;
     private int filterCategoryID = -1;
@@ -60,6 +72,61 @@ public class LevelUI : UIHandller
 
     [DllImport("__Internal")]
     private static extern void openWindow(string url);
+
+    private void InitSearchFilters()
+    {
+        List<TMP_Dropdown.OptionData> options = new List<TMP_Dropdown.OptionData>();
+        TMP_Dropdown.OptionData option = new TMP_Dropdown.OptionData();
+
+        #region Fairs
+        fairsDD.ClearOptions();
+
+        option.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ?
+            ImportantMesthods.FixRTLForArabic("المعرض") : ImportantMesthods.FixRTLForArabic("Fair");
+        options.Add(option);
+        foreach (FairData fair in Cache.Instance.cachedData.allFairs)
+        {
+            option.text = ImportantMesthods.FixRTLForArabic(fair.fullName);
+            options.Add(option);
+        }
+
+        fairsDD.AddOptions(options);
+        #endregion
+
+        options.Clear();
+
+        #region Publisher
+        publishersDD.ClearOptions();
+
+        option.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ?
+            ImportantMesthods.FixRTLForArabic("دار النشر") : ImportantMesthods.FixRTLForArabic("Publisher");
+        options.Add(option);
+        foreach (Vendor vendor in Cache.Instance.cachedData.allVendors)
+        {
+            option.text = ImportantMesthods.FixRTLForArabic(vendor.name);
+            options.Add(option);
+        }
+
+        publishersDD.AddOptions(options);
+        #endregion
+
+        options.Clear();
+
+        #region Categories
+        categoriesDD.ClearOptions();
+
+        option.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ?
+           ImportantMesthods.FixRTLForArabic("القسم") : ImportantMesthods.FixRTLForArabic("Category");
+        options.Add(option);
+        foreach (ProductCategory productCategory in Cache.Instance.cachedData.allCategories)
+        {
+            option.text = ImportantMesthods.FixRTLForArabic(productCategory.name);
+            options.Add(option);
+        }
+
+        categoriesDD.AddOptions(options);
+        #endregion
+    }
 
     public void ToggleAllSearchCommponent(bool enabled)
     {
@@ -220,6 +287,8 @@ public class LevelUI : UIHandller
             }
         }
     }
+
+
 
     public void OpenURLInNewTab(string url)
     {
