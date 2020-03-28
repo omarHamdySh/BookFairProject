@@ -75,17 +75,20 @@ public class LevelUI : UIHandller
 
     private void InitSearchFilters()
     {
-        List<TMP_Dropdown.OptionData> options = new List<TMP_Dropdown.OptionData>();
-        TMP_Dropdown.OptionData option = new TMP_Dropdown.OptionData();
+        List<TMP_Dropdown.OptionData> options;
+        TMP_Dropdown.OptionData option;
 
         #region Fairs
         fairsDD.ClearOptions();
+        options = new List<TMP_Dropdown.OptionData>();
+        option = new TMP_Dropdown.OptionData();
 
         option.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ?
             ImportantMesthods.FixRTLForArabic("المعرض") : ImportantMesthods.FixRTLForArabic("Fair");
         options.Add(option);
         foreach (FairData fair in Cache.Instance.cachedData.allFairs)
         {
+            option = new TMP_Dropdown.OptionData();
             option.text = ImportantMesthods.FixRTLForArabic(fair.fullName);
             options.Add(option);
         }
@@ -97,12 +100,15 @@ public class LevelUI : UIHandller
 
         #region Publisher
         publishersDD.ClearOptions();
+        options = new List<TMP_Dropdown.OptionData>();
+        option = new TMP_Dropdown.OptionData();
 
         option.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ?
             ImportantMesthods.FixRTLForArabic("دار النشر") : ImportantMesthods.FixRTLForArabic("Publisher");
         options.Add(option);
         foreach (Vendor vendor in Cache.Instance.cachedData.allVendors)
         {
+            option = new TMP_Dropdown.OptionData();
             option.text = ImportantMesthods.FixRTLForArabic(vendor.name);
             options.Add(option);
         }
@@ -114,12 +120,15 @@ public class LevelUI : UIHandller
 
         #region Categories
         categoriesDD.ClearOptions();
+        options = new List<TMP_Dropdown.OptionData>();
+        option = new TMP_Dropdown.OptionData();
 
         option.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ?
            ImportantMesthods.FixRTLForArabic("القسم") : ImportantMesthods.FixRTLForArabic("Category");
         options.Add(option);
         foreach (ProductCategory productCategory in Cache.Instance.cachedData.allCategories)
         {
+            option = new TMP_Dropdown.OptionData();
             option.text = ImportantMesthods.FixRTLForArabic(productCategory.name);
             options.Add(option);
         }
