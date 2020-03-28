@@ -44,6 +44,7 @@ public class DataLoader : MonoBehaviour
 
         requestQueue = new Queue<DataRequest>();
 
+        bookcasePathHandler = FindObjectOfType<BookcasePathHandller_Bendary>();
     }
 
     void FixedUpdate()
