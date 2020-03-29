@@ -69,6 +69,7 @@ public class LevelUI : UIHandller
     private int filterCategoryID = -1;
     private int totalSearchedBooksCount = 0;
     private List<BookData> searchPageResult;
+    private int fairID, publisherID, categoryID;
 
     [DllImport("__Internal")]
     private static extern void openWindow(string url);
@@ -163,7 +164,15 @@ public class LevelUI : UIHandller
             {
                 ToggleSearchForNewSearch(false);
                 endlessLoadingBar.SetActive(true);
-                Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchWord);
+
+                #region Filters
+                fairID = (fairsDD.value != 0) ? Cache.Instance.cachedData.allFairs[fairsDD.value - 1].id : -1;
+                publisherID = (publishersDD.value != 0) ? Cache.Instance.cachedData.allVendors[publishersDD.value - 1].id : -1;
+                categoryID = (categoriesDD.value != 0) ? Cache.Instance.cachedData.allCategories[categoriesDD.value - 1].id : -1;
+                #endregion
+
+                print("category = " + categoryID + " : " + "fair = " + fairID + " : " + "publisher = " + publisherID);
+                Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchWord, categoryID, fairID, publisherID);
             }
         }
     }
@@ -176,7 +185,15 @@ public class LevelUI : UIHandller
             {
                 ToggleSearchForNewSearch(false);
                 endlessLoadingBar.SetActive(true);
-                Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchIn.text);
+
+                #region Filters
+                fairID = (fairsDD.value != 0) ? Cache.Instance.cachedData.allFairs[fairsDD.value - 1].id : -1;
+                publisherID = (publishersDD.value != 0) ? Cache.Instance.cachedData.allVendors[publishersDD.value - 1].id : -1;
+                categoryID = (categoriesDD.value != 0) ? Cache.Instance.cachedData.allCategories[categoriesDD.value - 1].id : -1;
+                #endregion
+
+                print("category = " + categoryID + " : " + "fair = " + fairID + " : " + "publisher = " + publisherID);
+                Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchIn.text, categoryID, fairID, publisherID);
             }
         }
     }
@@ -258,7 +275,7 @@ public class LevelUI : UIHandller
 
         if (Cache.Instance)
         {
-            Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchIN.RealText.text);
+            Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchIN.RealText.text, categoryID, fairID, publisherID);
         }
     }
 
