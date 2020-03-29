@@ -156,6 +156,17 @@ public class LevelUI : UIHandller
         searchedBookContainer.gameObject.SetActive(enabled);
     }
 
+    public void ResetFilters()
+    {
+        fairsDD.value = 0;
+        publishersDD.value = 0;
+        categoriesDD.value = 0;
+
+        fairID = -1;
+        publisherID = -1;
+        categoryID = -1;
+    }
+
     public void StartSearch(string searchWord)
     {
         if (Cache.Instance)
@@ -171,7 +182,6 @@ public class LevelUI : UIHandller
                 categoryID = (categoriesDD.value != 0) ? Cache.Instance.cachedData.allCategories[categoriesDD.value - 1].id : -1;
                 #endregion
 
-                print("category = " + categoryID + " : " + "fair = " + fairID + " : " + "publisher = " + publisherID);
                 Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchWord, categoryID, fairID, publisherID);
             }
         }
@@ -192,7 +202,6 @@ public class LevelUI : UIHandller
                 categoryID = (categoriesDD.value != 0) ? Cache.Instance.cachedData.allCategories[categoriesDD.value - 1].id : -1;
                 #endregion
 
-                print("category = " + categoryID + " : " + "fair = " + fairID + " : " + "publisher = " + publisherID);
                 Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchIn.text, categoryID, fairID, publisherID);
             }
         }
