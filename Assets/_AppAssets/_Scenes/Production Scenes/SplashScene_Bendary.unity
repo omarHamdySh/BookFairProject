@@ -735,7 +735,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 285206332}
-        m_MethodName: loadStartupData
+        m_MethodName: setUpStartupData
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

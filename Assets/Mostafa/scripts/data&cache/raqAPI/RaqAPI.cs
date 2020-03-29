@@ -105,15 +105,15 @@ public class RaqAPI : MonoBehaviour
 
     }
 
-    public IEnumerator searchWithFilter(string keyword, int categoryId, int limit, int page)
+    public IEnumerator searchWithFilter(string keyword, int categoryId, int fairId,int vendorId ,int limit, int page)
     {
         //temporary until badawy gives us another endpoint
-        string uri = baseUrl + "/api/products_sample_data?" + "vendorId=" + "&keyword=" + keyword;
+        string uri = baseUrl + "/api/products_sample_data?"  + "&keyword=" + keyword;
 
         if (limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
         if (categoryId >= 0) uri += "&categoryId=" + categoryId.ToString();
         if (fairId >= 0) uri += "&fairId=" + fairId.ToString();
-
+        if (vendorId >= 0) uri += "&vendorId=" + vendorId.ToString();
         ProductResult res = new ProductResult();
 
         UnityWebRequest www = UnityWebRequest.Get(uri);

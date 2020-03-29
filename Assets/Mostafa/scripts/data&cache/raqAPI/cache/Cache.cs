@@ -133,10 +133,10 @@ public class Cache : MonoBehaviour
         StartCoroutine(api.getAllSponsors());
     }
 
-    public void search(SearchCallBack callBack, int limit, int page, string keyword, int categoryId = -1)
+    public void search(SearchCallBack callBack, int limit, int page, string keyword, int categoryId, int fairId, int vendorId)
     {
         cachedData.searchResult = new List<BookData>();
-        StartCoroutine(api.searchWithFilter(keyword, categoryId, limit, page));
+        StartCoroutine(api.searchWithFilter(keyword, categoryId, fairId, vendorId, limit, page));
         searchCallBack = callBack;
 
     }

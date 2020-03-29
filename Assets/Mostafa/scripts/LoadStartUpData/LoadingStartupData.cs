@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class LoadingStartupData : MonoBehaviour
 {
     public int loadedBooksLimit;
-
+    private bool canLoad = false;
     public UnityEvent startUpDataEvent;//data loaded at start up
 
     
@@ -14,14 +14,30 @@ public class LoadingStartupData : MonoBehaviour
     {
         if(Cache.Instance.loadedBooks >= loadedBooksLimit)
         {
-            startUpDataEvent.Invoke();            
+            
+            startUpDataEvent.Invoke();
+
+        }else if(Cache.Instance.api.transmitting == false)
+        {
+            loadStartupData();
         }    
     }
 
     public void loadStartupData()
     {
-        Debug.Log(Cache.Instance.getFairId());
-        if(Cache.Instance.getFairId() == -1)
+        
+        foreach (Vendor vendor in Cache.Instance.cachedData.allVendors)
+        {
+            foreach(ProductCategory pc in Cache.Instance.cachedData.allCategories)
+            {
+                Cache.Instance.retrieveCategoryInBookcase(vendor.id, pc.id);
+            }
+        }
+    }
+
+    public void setUpStartupData()
+    {
+        if (!PlayerPrefs.HasKey(ImportantStrings.fairIDKey))
         {
             Cache.Instance.setFairId(Cache.Instance.cachedData.allFairs[0].id);
             PlayerPrefs.SetInt(ImportantStrings.fairIDKey, Cache.Instance.getFairId());
@@ -30,13 +46,9 @@ public class LoadingStartupData : MonoBehaviour
         {
             Cache.Instance.setFairId(PlayerPrefs.GetInt(ImportantStrings.fairIDKey));
         }
-        //loadedBooksLimit = Cache.Instance.cachedData.allVendors.Count * 10;
-        foreach(Vendor vendor in Cache.Instance.cachedData.allVendors)
-        {
-            foreach(ProductCategory pc in Cache.Instance.cachedData.allCategories)
-            {
-                Cache.Instance.retrieveCategoryInBookcase(vendor.id, pc.id);
-            }
-        }
+
+        loadedBooksLimit = Cache.Instance.cachedData.allVendors.Count * 0;
+
+        loadStartupData();
     }
 }
