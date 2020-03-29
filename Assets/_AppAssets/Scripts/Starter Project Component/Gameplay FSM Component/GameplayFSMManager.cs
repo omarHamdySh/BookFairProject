@@ -152,14 +152,14 @@ public class GameplayFSMManager : MonoBehaviour
     void Update()
     {
         stateStack.Peek().OnStateUpdate();
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !LevelUI.Instance.isUIOpen)
         {
             if (SelectionManager.instance.canSelect)
             {
                 SelectionManager.instance.deselectCurrent();
             }
         }
-        if (Input.GetKeyDown(KeyCode.Return))
+        if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) && !LevelUI.Instance.isUIOpen)
         {
             if (SelectionManager.instance.canSelect)
             {
@@ -171,7 +171,7 @@ public class GameplayFSMManager : MonoBehaviour
                 f.TapCount = 1;
                 Lean.Touch.LeanTouch.Fingers.Add(f);
             }
-        } 
+        }
     }
     /// <summary>
     /// functions to define the stak functionality

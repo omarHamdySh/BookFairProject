@@ -115,6 +115,8 @@ public class TestBookRotation_Bendary : MonoBehaviour
 
     public void CloseBook()
     {
+        transform.DOKill();
+        StopAllCoroutines();
         rotationEnabled = false;
         ToggleCanvas(false);
         myAnim.SetBool("IsBookOpen", rotationEnabled);

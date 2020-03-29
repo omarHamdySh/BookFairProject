@@ -52,6 +52,12 @@ public class LevelUI : UIHandller
     [SerializeField] private GameObject toggleScrollItem;
 
     private int currentFairIndex;
+
+    #region Gameplay
+    [Header("Gameplay")]
+    public GameObject backFromPageModeBtn;
+    #endregion
+
     #region SearchMenu
     [Header("SearchMenu")]
     [SerializeField] private Button prevSearchPageBtn;
