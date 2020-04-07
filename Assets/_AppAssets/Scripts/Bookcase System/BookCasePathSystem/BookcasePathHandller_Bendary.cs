@@ -22,6 +22,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     private Vector3 bookBackwordPos;
 
     public FixTextMeshPro VendorNameOntheWorld;
+    public FixTextMeshPro FairNameOntheWorld;
     #region Data
     [HideInInspector] public int vendorIndex = 0;
     private List<CategoryData> dummy = new List<CategoryData>();
@@ -304,6 +305,9 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     {
         BookcaseData tmpBookcaseData = Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData;
         VendorNameOntheWorld.text = Cache.Instance.cachedData.allVendors[vendorIndex].name;
+        int fairIndex = Cache.Instance.cachedData.allFairs.FindIndex(x => x.id == Cache.Instance.getFairId());
+        FairNameOntheWorld.text = Cache.Instance.cachedData.allFairs[fairIndex].fullName;
+
         if (tmpBookcaseData != null && tmpBookcaseData.categories != null)
         {
             realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().SetAllVisibleCategory(tmpBookcaseData.categories, vendorIndex);
