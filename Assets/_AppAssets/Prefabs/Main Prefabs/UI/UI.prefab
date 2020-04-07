@@ -5651,7 +5651,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0.98976094, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5913314545637055263
@@ -10492,7 +10492,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0.98976094, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00012207031}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6441654017314387462
@@ -13205,7 +13205,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0.98976094, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00012207031}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5356491598355591078
@@ -13504,7 +13504,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 11.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 2021254671746341269}
   m_TextComponent: {fileID: 6428605536762505362}
   m_materialReferenceIndex: 1
@@ -13958,7 +13958,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 1649038345370224870}
   m_TextComponent: {fileID: 373596116703404963}
   m_materialReferenceIndex: 1
@@ -14825,8 +14825,8 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 6428605536069417339}
-        m_MethodName: ToggleUI
-        m_Mode: 6
+        m_MethodName: TeleportToGamplay
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -15163,8 +15163,8 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 6428605536069417339}
-        m_MethodName: ToggleUI
-        m_Mode: 6
+        m_MethodName: TeleportToUI
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -16473,7 +16473,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 2837884218356272588}
   m_TextComponent: {fileID: 6428605537005253287}
   m_materialReferenceIndex: 1
@@ -18600,6 +18600,10 @@ MonoBehaviour:
   toggleScrollItem: {fileID: 5854897521851840222, guid: 427e9812cc9deda428096dd591634e50,
     type: 3}
   backFromPageModeBtn: {fileID: 7558136371530611903}
+  cameraTransform: {fileID: 0}
+  cameraUIPos: {x: -0.24, y: 2.74, z: 17.01}
+  cameraUIRot: {x: 0, y: 270, z: 0}
+  teleportDelayBetweenUI_game: 2
   prevSearchPageBtn: {fileID: 6428605535734530806}
   nextSearchPageBtn: {fileID: 6428605535638045972}
   seachResultCountTxt: {fileID: 3664641975577929781}
@@ -23334,7 +23338,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 826594071109686690}
   m_TextComponent: {fileID: 8735396769456973129}
   m_materialReferenceIndex: 1
@@ -24800,7 +24804,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 2452494064816067836}
   m_TextComponent: {fileID: 8011622402110515041}
   m_materialReferenceIndex: 1

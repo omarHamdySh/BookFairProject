@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Runtime.InteropServices;
 using System.Linq;
-using ArabicSupport;
+using DG.Tweening;
 
 public class LevelUI : UIHandller
 {
@@ -27,6 +27,12 @@ public class LevelUI : UIHandller
 
     private void Start()
     {
+        currentCameraPos = cameraTransform.localPosition;
+        currentCameraRot = cameraTransform.localEulerAngles;
+
+        cameraTransform.localPosition = cameraUIPos;
+        cameraTransform.localEulerAngles = cameraUIRot;
+
         if (Cache.Instance)
         {
             InitSearchFilters();
@@ -56,6 +62,36 @@ public class LevelUI : UIHandller
     #region Gameplay
     [Header("Gameplay")]
     public GameObject backFromPageModeBtn;
+
+    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private Vector3 cameraUIPos;
+    [SerializeField] private Vector3 cameraUIRot;
+    [SerializeField] private float teleportDelayBetweenUI_game;
+
+    private Vector3 currentCameraPos;
+    private Vector3 currentCameraRot;
+
+    public void TeleportToUI()
+    {
+        ToggleUI(true);
+
+        currentCameraPos = cameraTransform.localPosition;
+        currentCameraRot = cameraTransform.localEulerAngles;
+
+        cameraTransform.DOLocalMove(cameraUIPos, teleportDelayBetweenUI_game);
+        cameraTransform.DOLocalRotate(cameraUIRot, teleportDelayBetweenUI_game);
+    }
+
+    public void TeleportToGamplay()
+    {
+        cameraTransform.DOLocalMove(currentCameraPos, teleportDelayBetweenUI_game).OnComplete(CloseUI);
+        cameraTransform.DOLocalRotate(currentCameraRot, teleportDelayBetweenUI_game);
+    }
+
+    private void CloseUI()
+    {
+        ToggleUI(false);
+    }
     #endregion
 
     #region SearchMenu
