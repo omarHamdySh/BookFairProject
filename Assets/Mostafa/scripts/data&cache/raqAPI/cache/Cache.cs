@@ -259,7 +259,17 @@ public class Cache : MonoBehaviour
     public void cacheAllFairs(FairResult fairResult)
     {
         cachedData.allFairs = fairResult.fairsList;
-        //api.fairId = cachedData.allFairs[0].id;
+        
+        foreach(FairData f in cachedData.allFairs)
+        {
+            if (f.logoPictureBinary != "" && f.logoPictureBinary != null)
+            {
+                Convert.ToBase64String(Decompress(Convert.FromBase64String(f.logoPictureBinary)));
+                f.pic = new Texture2D(1, 1);
+                f.pic.LoadImage(Convert.FromBase64String(f.logoPictureBinary));
+                f.pic.Apply();
+            }
+        }
     }
     public void cacheAllSponsors(SponsorsResult sponsorsResult)
     {

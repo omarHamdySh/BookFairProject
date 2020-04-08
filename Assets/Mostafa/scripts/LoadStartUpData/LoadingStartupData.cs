@@ -17,9 +17,10 @@ public class LoadingStartupData : MonoBehaviour
             
             startUpDataEvent.Invoke();
 
-        }else if(Cache.Instance.api.transmitting == false)
+        }else if(!Cache.Instance.api.transmitting == false && canLoad)
         {
             loadStartupData();
+            canLoad = false;
         }    
     }
 
@@ -33,6 +34,8 @@ public class LoadingStartupData : MonoBehaviour
                 Cache.Instance.retrieveCategoryInBookcase(vendor.id, pc.id);
             }
         }
+
+        canLoad = true;
     }
 
     public void setUpStartupData()
@@ -47,7 +50,7 @@ public class LoadingStartupData : MonoBehaviour
             Cache.Instance.setFairId(PlayerPrefs.GetInt(ImportantStrings.fairIDKey));
         }
 
-        loadedBooksLimit = Cache.Instance.cachedData.allVendors.Count * 0;
+        loadedBooksLimit = Cache.Instance.cachedData.allFairs.Find(f => f.id == Cache.Instance.getFairId()).booksCount /2;
 
         loadStartupData();
     }

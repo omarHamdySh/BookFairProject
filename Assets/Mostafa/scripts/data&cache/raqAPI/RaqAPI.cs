@@ -65,10 +65,8 @@ public class RaqAPI : MonoBehaviour
             Debug.LogError("Error : " + www.error);
         }
         else
-        {
+        { 
             authInfo = JsonUtility.FromJson<ApiAuth>(www.downloadHandler.text);
-            //  Cache.Instance.retrieveVendors();
-            Cache.Instance.retrieveCategories();
 
             authTokenLoadedEvent.Invoke();
         }
@@ -197,7 +195,6 @@ public class RaqAPI : MonoBehaviour
         if (res != null)
         {
             Cache.Instance.cacheAllCategories(res);
-            Cache.Instance.retrieveVendors();
         }
 
         transmitting = false;
@@ -252,9 +249,9 @@ public class RaqAPI : MonoBehaviour
 
         yield return www.SendWebRequest();
 
+        res = JsonUtility.FromJson<SponsorsResult>(www.downloadHandler.text);
         if (res != null)
-        {
-            res = JsonUtility.FromJson<SponsorsResult>(www.downloadHandler.text);
+        {    
             Cache.Instance.cacheAllSponsors(res);
         }
 
@@ -278,12 +275,12 @@ public class RaqAPI : MonoBehaviour
         transmitting = true;
 
         yield return www.SendWebRequest();
-
+        
+        res = JsonUtility.FromJson<FairResult>(www.downloadHandler.text);
         if (res != null)
         {
-            res = JsonUtility.FromJson<FairResult>(www.downloadHandler.text);
-            fairsRetrievedEvent.Invoke();
             Cache.Instance.cacheAllFairs(res);
+            fairsRetrievedEvent.Invoke();
         }
 
         transmitting = false;
