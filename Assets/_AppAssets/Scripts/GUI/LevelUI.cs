@@ -56,11 +56,11 @@ public class LevelUI : UIHandller
     [Header("Menus")]
     [SerializeField] private GameObject regularScrollItem;
     [SerializeField] private GameObject toggleScrollItem;
-
-    private int currentFairIndex;
+    [SerializeField] private BookcasePathHandller_Bendary BookcasePathHandller;
 
     #region Gameplay
     [Header("Gameplay")]
+    public Button backToUIModeBtn;
     public GameObject backFromPageModeBtn;
 
     [SerializeField] private Transform cameraTransform;
@@ -111,7 +111,8 @@ public class LevelUI : UIHandller
     private int filterCategoryID = -1;
     private int totalSearchedBooksCount = 0;
     private List<BookData> searchPageResult;
-    private int fairID, publisherID, categoryID;
+    private int searchFairID, searchPublisherID, searchCategoryID;
+    private bool isSearching;
 
     [DllImport("__Internal")]
     private static extern void openWindow(string url);
@@ -204,47 +205,51 @@ public class LevelUI : UIHandller
         publishersDD.value = 0;
         categoriesDD.value = 0;
 
-        fairID = -1;
-        publisherID = -1;
-        categoryID = -1;
+        searchFairID = -1;
+        searchPublisherID = -1;
+        searchCategoryID = -1;
     }
 
     public void StartSearch(string searchWord)
     {
-        if (Cache.Instance)
+        if (Cache.Instance && !isSearching)
         {
             if (!string.IsNullOrEmpty(searchWord) && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)))
             {
+                isSearching = true;
+
                 ToggleSearchForNewSearch(false);
                 endlessLoadingBar.SetActive(true);
 
                 #region Filters
-                fairID = (fairsDD.value != 0) ? Cache.Instance.cachedData.allFairs[fairsDD.value - 1].id : -1;
-                publisherID = (publishersDD.value != 0) ? Cache.Instance.cachedData.allVendors[publishersDD.value - 1].id : -1;
-                categoryID = (categoriesDD.value != 0) ? Cache.Instance.cachedData.allCategories[categoriesDD.value - 1].id : -1;
+                searchFairID = (fairsDD.value != 0) ? Cache.Instance.cachedData.allFairs[fairsDD.value - 1].id : -1;
+                searchPublisherID = (publishersDD.value != 0) ? Cache.Instance.cachedData.allVendors[publishersDD.value - 1].id : -1;
+                searchCategoryID = (categoriesDD.value != 0) ? Cache.Instance.cachedData.allCategories[categoriesDD.value - 1].id : -1;
                 #endregion
 
-                Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchWord, categoryID, fairID, publisherID);
+                Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchWord, searchCategoryID, searchFairID, searchPublisherID);
             }
         }
     }
 
     public void StartSearch(TMP_InputField searchIn)
     {
-        if (Cache.Instance)
+        if (Cache.Instance && !isSearching)
         {
             if (!string.IsNullOrEmpty(searchIn.text))
             {
+                isSearching = true;
+
                 ToggleSearchForNewSearch(false);
                 endlessLoadingBar.SetActive(true);
 
                 #region Filters
-                fairID = (fairsDD.value != 0) ? Cache.Instance.cachedData.allFairs[fairsDD.value - 1].id : -1;
-                publisherID = (publishersDD.value != 0) ? Cache.Instance.cachedData.allVendors[publishersDD.value - 1].id : -1;
-                categoryID = (categoriesDD.value != 0) ? Cache.Instance.cachedData.allCategories[categoriesDD.value - 1].id : -1;
+                searchFairID = (fairsDD.value != 0) ? Cache.Instance.cachedData.allFairs[fairsDD.value - 1].id : -1;
+                searchPublisherID = (publishersDD.value != 0) ? Cache.Instance.cachedData.allVendors[publishersDD.value - 1].id : -1;
+                searchCategoryID = (categoriesDD.value != 0) ? Cache.Instance.cachedData.allCategories[categoriesDD.value - 1].id : -1;
                 #endregion
 
-                Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchIn.text, categoryID, fairID, publisherID);
+                Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchIn.text, searchCategoryID, searchFairID, searchPublisherID);
             }
         }
     }
@@ -260,7 +265,6 @@ public class LevelUI : UIHandller
                 "Search Result " + totalSearchedBooksCount + ((totalSearchedBooksCount > 1) ? " books" : " book");
             searchPageIndexTxt.text = ((PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "صفحة " : "Page ") + (searchPageIndex + 1) + " / " + (Mathf.CeilToInt((float)totalSearchedBooksCount / (float)searchedBookContainer.childCount));
 
-            endlessLoadingBar.SetActive(false);
             ToggleAllSearchCommponent(true);
 
             PutBooksDataOnUI();
@@ -268,10 +272,12 @@ public class LevelUI : UIHandller
         }
         else
         {
-            endlessLoadingBar.SetActive(false);
             seachResultCountTxt.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "لا يوجد نتائج للبحث" : "There is no search result";
             seachResultCountTxt.gameObject.SetActive(true);
         }
+
+        endlessLoadingBar.SetActive(false);
+        isSearching = false;
 
     }
 
@@ -326,7 +332,7 @@ public class LevelUI : UIHandller
 
         if (Cache.Instance)
         {
-            Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchIN.RealText.text, categoryID, fairID, publisherID);
+            Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchIN.RealText.text, searchCategoryID, searchFairID, searchPublisherID);
         }
     }
 
@@ -400,6 +406,8 @@ public class LevelUI : UIHandller
     [Header("FairsMenu")]
     [SerializeField] private ScrollRect fairsScroll;
 
+    private int currentFairIndex;
+
     public void PutFairsData()
     {
         if (Cache.Instance)
@@ -464,6 +472,8 @@ public class LevelUI : UIHandller
     [Header("PublishersMenu")]
     [SerializeField] private ScrollRect publishersScroll;
 
+    private int currentPublisherIndex;
+
     public void PutPublishersData()
     {
         if (Cache.Instance)
@@ -472,12 +482,83 @@ public class LevelUI : UIHandller
             {
                 for (int i = publishersScroll.content.childCount; i < Cache.Instance.cachedData.allVendors.Count; i++)
                 {
-                    GameObject go = Instantiate(regularScrollItem, publishersScroll.content);
+                    GameObject go = Instantiate(toggleScrollItem, publishersScroll.content);
                     go.GetComponentInChildren<FixTextMeshPro>().text = Cache.Instance.cachedData.allVendors[i].name;
+                    go.GetComponentInChildren<Toggle>().group = publishersScroll.content.GetComponent<ToggleGroup>();
+
+                    if (i == BookcasePathHandller.vendorIndex)
+                    {
+                        go.GetComponentInChildren<Toggle>().isOn = true;
+                        currentPublisherIndex = i;
+                    }
                 }
+            }
+            UpdateCurrentPublisherOnUI();
+        }
+    }
+
+    private void UpdateCurrentPublisherOnUI()
+    {
+        publishersScroll.content.GetChild(BookcasePathHandller.vendorIndex).GetComponentInChildren<Toggle>().isOn = true;
+        currentPublisherIndex = BookcasePathHandller.vendorIndex;
+    }
+
+    public void CheckPublisherChanged()
+    {
+        Toggle toggle = publishersScroll.content.GetComponent<ToggleGroup>().ActiveToggles().First();
+        if (toggle)
+        {
+            if (toggle.transform.parent.GetSiblingIndex() != currentPublisherIndex)
+            {
+                endlessLoadingBar.SetActive(true);
+                int stepsCount = 0;
+                NearstDir nearstDir = CheckNearstDir(toggle.transform.parent.GetSiblingIndex(), ref stepsCount);
+
+                BookcasePathHandller.MoveToIndex(nearstDir, stepsCount);
             }
         }
     }
+
+    private NearstDir CheckNearstDir(int newIndex, ref int stepsCount)
+    {
+        int right = 0, left = 0, currentIndex = currentPublisherIndex;
+        while (currentIndex != newIndex)
+        {
+            currentIndex = (currentIndex == 0) ? Cache.Instance.cachedData.allVendors.Count - 1 : currentIndex - 1;
+            right++;
+        }
+
+        currentIndex = currentPublisherIndex;
+        while (currentIndex != newIndex)
+        {
+            currentIndex = (currentIndex + 1) % Cache.Instance.cachedData.allVendors.Count;
+            left++;
+        }
+
+        if (right < left)
+        {
+            stepsCount = right;
+            return NearstDir.right;
+        }
+        else if (right > left)
+        {
+            stepsCount = left;
+            return NearstDir.left;
+        }
+        else
+        {
+            stepsCount = right;
+            return NearstDir.even;
+        }
+    }
+
     #endregion
     #endregion
+}
+
+public enum NearstDir
+{
+    right = 0,
+    left = 1,
+    even,
 }

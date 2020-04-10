@@ -64,13 +64,13 @@ public class CameraPath : MonoBehaviour, ITraverseable
         cameraMoving = false;
         GameManager.Instance.pathData.FloorScrollSpeed = 0;
         gotoTarget();
-        
+
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        
+
         if (GameManager.Instance.pathData.FloorScrollSpeed != 0)
         {
             if (areX_AtRoot(currentNode))
@@ -79,9 +79,9 @@ public class CameraPath : MonoBehaviour, ITraverseable
 
                 if (GameManager.Instance.pathData.FloorScrollSpeed < 0)
                 {
-                    if(tmpLevel > 0)setTarget(levels[tmpLevel - 1]);
+                    if (tmpLevel > 0) setTarget(levels[tmpLevel - 1]);
                 }
-                else 
+                else
                 if (GameManager.Instance.pathData.FloorScrollSpeed > 0)
                 {
                     if (tmpLevel < levels.Count - 1) setTarget(levels[tmpLevel + 1]);
@@ -174,27 +174,32 @@ public class CameraPath : MonoBehaviour, ITraverseable
         return false;
     }
 
-    
+
     public void move()
     {
-        
+
         if (!areNodesEqual(currentNode, endNode))
         {
             step();
             cameraTransform.DOMove(currentNode.transform.position, cameraSpeed).OnComplete(move).OnUpdate(onMoving);
 
+            // bendary modify
+            LevelUI.Instance.backToUIModeBtn.interactable = false;
         }
         else
         {
             cameraMoving = false;
             onLand();
 
+            // bendary modify
+            LevelUI.Instance.backToUIModeBtn.interactable = true;
         }
     }
 
     public void step()
     {
-        if (cameraState != CameraMoveState.NotMoving){
+        if (cameraState != CameraMoveState.NotMoving)
+        {
             cameraMoving = true;
             switch (cameraState)
             {
@@ -255,16 +260,16 @@ public class CameraPath : MonoBehaviour, ITraverseable
     public void gotoTarget()
     {
         onDeparture();
-        
-            if (areYsEqual(currentNode, endNode) && currentNode.nodeXIndex < endNode.nodeXIndex)
-            {
-                cameraState = CameraMoveState.MoveIn;
-            }
-            else
-            {
-                cameraState = CameraMoveState.MoveOut;
-            }
-        
+
+        if (areYsEqual(currentNode, endNode) && currentNode.nodeXIndex < endNode.nodeXIndex)
+        {
+            cameraState = CameraMoveState.MoveIn;
+        }
+        else
+        {
+            cameraState = CameraMoveState.MoveOut;
+        }
+
 
         move();
     }

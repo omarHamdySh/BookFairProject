@@ -1329,6 +1329,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 6428605536069417339}
+        m_MethodName: CheckPublisherChanged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &249854689796344844
 GameObject:
   m_ObjectHideFlags: 0
@@ -1898,7 +1909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 22715a55ad6388d419657130825b7b1b, type: 2}
   m_Color: {r: 0, g: 0, b: 0, a: 0.6156863}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5179,7 +5190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 22715a55ad6388d419657130825b7b1b, type: 2}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.6156863}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7655,7 +7666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 22715a55ad6388d419657130825b7b1b, type: 2}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.6156863}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -10454,7 +10465,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0
+  m_padding: 1.25
   m_canvasRenderer: {fileID: 347832923530992571}
   m_TextComponent: {fileID: 4784255750831545912}
   m_materialReferenceIndex: 1
@@ -10592,7 +10603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 22715a55ad6388d419657130825b7b1b, type: 2}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.6156863}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -13167,7 +13178,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0
+  m_padding: 1.25
   m_canvasRenderer: {fileID: 4958138239303525768}
   m_TextComponent: {fileID: 7930830875207532681}
   m_materialReferenceIndex: 1
@@ -13182,6 +13193,7 @@ GameObject:
   - component: {fileID: 390663108055306867}
   - component: {fileID: 5356491598355591078}
   - component: {fileID: 5240109901960015967}
+  - component: {fileID: 372348461332741962}
   m_Layer: 0
   m_Name: Content
   m_TagString: Untagged
@@ -13247,6 +13259,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &372348461332741962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4495239605485579619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AllowSwitchOff: 0
 --- !u!1 &4615563567641402544
 GameObject:
   m_ObjectHideFlags: 0
@@ -18599,11 +18624,13 @@ MonoBehaviour:
     type: 3}
   toggleScrollItem: {fileID: 5854897521851840222, guid: 427e9812cc9deda428096dd591634e50,
     type: 3}
+  BookcasePathHandller: {fileID: 0}
+  backToUIModeBtn: {fileID: 6488089247330137836}
   backFromPageModeBtn: {fileID: 7558136371530611903}
   cameraTransform: {fileID: 0}
   cameraUIPos: {x: -0.24, y: 2.74, z: 17.01}
   cameraUIRot: {x: 0, y: 270, z: 0}
-  teleportDelayBetweenUI_game: 2
+  teleportDelayBetweenUI_game: 0.5
   prevSearchPageBtn: {fileID: 6428605535734530806}
   nextSearchPageBtn: {fileID: 6428605535638045972}
   seachResultCountTxt: {fileID: 3664641975577929781}

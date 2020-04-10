@@ -24,7 +24,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     public FixTextMeshPro VendorNameOntheWorld;
     public FixTextMeshPro FairNameOntheWorld;
     #region Data
-    [HideInInspector] public int vendorIndex = 0;
+    public int vendorIndex = 0;
     private List<CategoryData> dummy = new List<CategoryData>();
     #endregion
 
@@ -65,7 +65,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
                 if (CheckAllObjectsLanded())
                 {
                     OnDepartureCall();
-                    MoveAccordingToScrollSpeed();
+                    MoveAccordingToScrollSpeed(currentScrollSpeed);
                 }
             }
         }
@@ -90,7 +90,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         }
     }
 
-    private void MoveAccordingToScrollSpeed()
+    private void MoveAccordingToScrollSpeed(float speed)
     {
         int newIndexInUse = currentRealBookcaseInUse;
         newIndexInUse = (newIndexInUse + 1) % realBookcases.Length;
@@ -98,7 +98,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         #region Data
         if (Cache.Instance)
         {
-            if (currentScrollSpeed < 0)
+            if (speed < 0)
             {
                 vendorIndex = (vendorIndex + 1) % Cache.Instance.cachedData.allVendors.Count;
             }
@@ -112,7 +112,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         foreach (var bookcase in bookcases)
         {
             int nextPosIndex = 0;
-            if (currentScrollSpeed < 0)
+            if (speed < 0)
             {
                 nextPosIndex = (bookcase.getObjectIndex() + 1) % bookCasePathPoints.Length;
             }
@@ -174,6 +174,44 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
             }
         }
         return true;
+    }
+
+    public void MoveToIndex(NearstDir nearstDir, int stepsCount)
+    {
+        float speed;
+        if (nearstDir == NearstDir.left)
+        {
+            speed = -0.2f;
+        }
+        else if (nearstDir == NearstDir.right)
+        {
+            speed = 0.2f;
+        }
+        else
+        {
+            if (Random.Range(0, 2) == 0)
+            {
+                speed = 0.2f;
+            }
+            else
+            {
+                speed = -0.2f;
+            }
+        }
+
+        StartCoroutine(MoveToInexLoop(speed, stepsCount));
+    }
+
+    IEnumerator MoveToInexLoop(float speed, int stepCount)
+    {
+        for (int i = 0; i < stepCount; i++)
+        {
+            MoveAccordingToScrollSpeed(speed);
+
+            yield return new WaitUntil(() => CheckAllObjectsLanded());
+        }
+
+        LevelUI.Instance.endlessLoadingBar.SetActive(false);
     }
 
     private void OnDepartureCall()

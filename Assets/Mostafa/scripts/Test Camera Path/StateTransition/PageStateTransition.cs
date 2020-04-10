@@ -35,6 +35,7 @@ public class PageStateTransition : MonoBehaviour, IClickable
     public void unfocus()
     {
         // Bendary modify
+        LevelUI.Instance.backToUIModeBtn.interactable = false;
         animatedBook.CloseBook();
         animatedBook.RotateToOrign(closeBookAnimationDelay, unfocusCallback);
         LevelUI.Instance.backFromPageModeBtn.SetActive(false);

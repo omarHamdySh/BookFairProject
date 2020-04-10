@@ -8566,6 +8566,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6428605536069417339, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
         type: 3}
+      propertyPath: BookcasePathHandller
+      value: 
+      objectReference: {fileID: 693811389}
+    - target: {fileID: 6428605536069417339, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 1890772186}
