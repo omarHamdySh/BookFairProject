@@ -67,9 +67,12 @@ public class LevelUI : UIHandller
     [SerializeField] private Vector3 cameraUIPos;
     [SerializeField] private Vector3 cameraUIRot;
     [SerializeField] private float teleportDelayBetweenUI_game;
+    [SerializeField] private Material floarMat, wallMat;
+    [SerializeField] private Texture[] newConceptTextures;
 
     private Vector3 currentCameraPos;
     private Vector3 currentCameraRot;
+    private int currentEnvironmentTextureIndex = 0;
 
     public void TeleportToUI()
     {
@@ -91,6 +94,13 @@ public class LevelUI : UIHandller
     private void CloseUI()
     {
         ToggleUI(false);
+    }
+
+    public void ChangeEnvironmentColor()
+    {
+        currentEnvironmentTextureIndex = (currentEnvironmentTextureIndex + 1) % newConceptTextures.Length;
+        floarMat.mainTexture = newConceptTextures[currentEnvironmentTextureIndex];
+        wallMat.mainTexture = newConceptTextures[currentEnvironmentTextureIndex];
     }
     #endregion
 
