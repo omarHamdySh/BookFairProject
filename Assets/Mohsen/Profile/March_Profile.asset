@@ -168,10 +168,10 @@ MonoBehaviour:
     value: 0
   saturation:
     overrideState: 1
-    value: 100
+    value: 8.5
   brightness:
     overrideState: 1
-    value: 41
+    value: -22.1
   postExposure:
     overrideState: 1
     value: 1
