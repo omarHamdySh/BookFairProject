@@ -6308,7 +6308,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306368429}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.23, y: 4.54, z: 9.29}
+  m_LocalPosition: {x: -0.23, y: 4.54, z: 8.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1898088648}
@@ -8565,7 +8565,7 @@ PrefabInstance:
     - target: {fileID: 4829511044236233708, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.000050078143
       objectReference: {fileID: 0}
     - target: {fileID: 4997272808437115072, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
         type: 3}
@@ -8694,9 +8694,64 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6428605536069417339, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
         type: 3}
+      propertyPath: newConceptTextures.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6428605536069417339, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 1890772186}
+    - target: {fileID: 6428605536069417339, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: newConceptTextures.Array.data[3]
+      value: 
+      objectReference: {fileID: 2800000, guid: 518ef067b871f184cb07b4c1eaed8acc, type: 3}
+    - target: {fileID: 6428605536069417339, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: newConceptTextures.Array.data[4]
+      value: 
+      objectReference: {fileID: 2800000, guid: 30afa86a96e0e884dbe74955b4c0471c, type: 3}
+    - target: {fileID: 6428605536069417339, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: newConceptTextures.Array.data[5]
+      value: 
+      objectReference: {fileID: 2800000, guid: 11b1112329d8c25468211d3b6c8c6327, type: 3}
+    - target: {fileID: 6428605536069417339, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: newConceptTextures.Array.data[6]
+      value: 
+      objectReference: {fileID: 2800000, guid: 92d9138747f6fac499e4da8075c90678, type: 3}
+    - target: {fileID: 6428605536069417339, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: newConceptTextures.Array.data[7]
+      value: 
+      objectReference: {fileID: 2800000, guid: 814c775d439d7254e8afbc55fbd3267c, type: 3}
+    - target: {fileID: 6428605536069417339, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: newConceptTextures.Array.data[8]
+      value: 
+      objectReference: {fileID: 2800000, guid: 24b9dc36c6d56c84cb3ec44c9777e296, type: 3}
+    - target: {fileID: 6428605536069417339, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: newConceptTextures.Array.data[9]
+      value: 
+      objectReference: {fileID: 2800000, guid: 982db04a803a68d4fb2937fad71c3d06, type: 3}
+    - target: {fileID: 6428605536069417339, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: newConceptTextures.Array.data[0]
+      value: 
+      objectReference: {fileID: 2800000, guid: 0100e92759c12214d9696a18ebcfa2b1, type: 3}
+    - target: {fileID: 6428605536069417339, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: newConceptTextures.Array.data[1]
+      value: 
+      objectReference: {fileID: 2800000, guid: 00626011dc55c8b4194254aad0097720, type: 3}
+    - target: {fileID: 6428605536069417339, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: newConceptTextures.Array.data[2]
+      value: 
+      objectReference: {fileID: 2800000, guid: eb9e087420efc88498da17de81f6570f, type: 3}
     - target: {fileID: 8127862681802765096, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
         type: 3}
       propertyPath: m_Material
