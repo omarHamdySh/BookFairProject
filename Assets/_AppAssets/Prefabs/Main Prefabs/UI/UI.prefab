@@ -5662,7 +5662,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0.98976094, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5913314545637055263
@@ -10632,7 +10632,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0.98976094, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.00012207031}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6441654017314387462
@@ -11006,13 +11006,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1188914025881595258}
-    characterCount: 11
+    characterCount: 0
     spriteCount: 0
     spaceCount: 0
-    wordCount: 1
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -13501,7 +13501,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0.98976094, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.00012207031}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5356491598355591078
@@ -18918,10 +18918,16 @@ MonoBehaviour:
   floarMat: {fileID: 2100000, guid: 9b8e56fde29dccf438e561626d8ceb58, type: 2}
   wallMat: {fileID: 2100000, guid: 72e4def8ff166cf448d1d48417a95ed5, type: 2}
   newConceptTextures:
-  - {fileID: 2800000, guid: a227d4c1eea5b764092cfe37e91750cc, type: 3}
-  - {fileID: 2800000, guid: 1f11ecd886f2c7f49b256329036fffff, type: 3}
-  - {fileID: 2800000, guid: 1b25d7e4382774243863d084e7679489, type: 3}
-  - {fileID: 2800000, guid: bab5e11b010b25f4fb48b0676038e903, type: 3}
+  - {fileID: 2800000, guid: 0100e92759c12214d9696a18ebcfa2b1, type: 3}
+  - {fileID: 2800000, guid: 00626011dc55c8b4194254aad0097720, type: 3}
+  - {fileID: 2800000, guid: eb9e087420efc88498da17de81f6570f, type: 3}
+  - {fileID: 2800000, guid: 518ef067b871f184cb07b4c1eaed8acc, type: 3}
+  - {fileID: 2800000, guid: 30afa86a96e0e884dbe74955b4c0471c, type: 3}
+  - {fileID: 2800000, guid: 11b1112329d8c25468211d3b6c8c6327, type: 3}
+  - {fileID: 2800000, guid: 814c775d439d7254e8afbc55fbd3267c, type: 3}
+  - {fileID: 2800000, guid: 92d9138747f6fac499e4da8075c90678, type: 3}
+  - {fileID: 2800000, guid: 24b9dc36c6d56c84cb3ec44c9777e296, type: 3}
+  - {fileID: 2800000, guid: 982db04a803a68d4fb2937fad71c3d06, type: 3}
   prevSearchPageBtn: {fileID: 6428605535734530806}
   nextSearchPageBtn: {fileID: 6428605535638045972}
   seachResultCountTxt: {fileID: 3664641975577929781}
