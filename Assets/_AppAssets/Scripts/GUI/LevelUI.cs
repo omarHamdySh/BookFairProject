@@ -111,7 +111,7 @@ public class LevelUI : UIHandller
     [SerializeField] private FixTextMeshPro seachResultCountTxt;
     [SerializeField] private Transform searchedBookContainer;
     [SerializeField] private FixInputFieldMeshPro searchIN;
-    [SerializeField] private FixTextMeshPro searchPageIndexTxt;
+    [SerializeField] private TextMeshProUGUI searchPageIndexTxt;
     [SerializeField] private Sprite noBookCover;
     [SerializeField] private TMP_Dropdown fairsDD;
     [SerializeField] private TMP_Dropdown publishersDD;
@@ -273,7 +273,7 @@ public class LevelUI : UIHandller
 
             seachResultCountTxt.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "نتيجة البحث " + totalSearchedBooksCount + ((totalSearchedBooksCount > 2) ? " كتب" : (totalSearchedBooksCount == 1) ? " كتاب" : " كتابان") :
                 "Search Result " + totalSearchedBooksCount + ((totalSearchedBooksCount > 1) ? " books" : " book");
-            searchPageIndexTxt.text = ((PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "صفحة " : "Page ") + (searchPageIndex + 1) + " / " + (Mathf.CeilToInt((float)totalSearchedBooksCount / (float)searchedBookContainer.childCount));
+            searchPageIndexTxt.text = (searchPageIndex + 1) + " / " + (Mathf.CeilToInt((float)totalSearchedBooksCount / (float)searchedBookContainer.childCount));
 
             ToggleAllSearchCommponent(true);
 
