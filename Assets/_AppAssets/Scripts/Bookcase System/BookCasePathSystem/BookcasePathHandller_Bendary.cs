@@ -28,6 +28,21 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     private List<CategoryData> dummy = new List<CategoryData>();
     #endregion
 
+    #region WallMaterial
+    [Header("Wall Color")]
+    [SerializeField] private Material floarMat, wallMat;
+    [SerializeField] private Texture[] newConceptTextures;
+
+    private int currentEnvironmentTextureIndex = 0;
+
+    public void ChangeEnvironmentColor()
+    {
+        currentEnvironmentTextureIndex = (currentEnvironmentTextureIndex + 1) % newConceptTextures.Length;
+        floarMat.mainTexture = newConceptTextures[currentEnvironmentTextureIndex];
+        wallMat.mainTexture = newConceptTextures[currentEnvironmentTextureIndex];
+    }
+    #endregion
+
     private void Awake()
     {
         Init();

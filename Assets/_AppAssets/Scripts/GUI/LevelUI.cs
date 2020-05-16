@@ -39,8 +39,83 @@ public class LevelUI : UIHandller
         }
     }
 
+    
+
     #region LoadingBar
     public GameObject endlessLoadingBar;
+    #endregion
+
+    #region Colored UI
+    [Header("Colored UI")]
+    [SerializeField] private Color[] colors;
+    [SerializeField] private Sprite[] searchColoredUIPanel, searchColoredLogoContainerUI, miniPanelUI;
+
+    [SerializeField] private int indexOfColor;
+
+    #region search
+    public void ChangeColorForSearchColoredUI()
+    {
+        foreach (Image i in searchColoredUI)
+        {
+            i.color = colors[indexOfColor];
+        }
+    }
+
+    public void ChangeSpriteForSearchPanelImages()
+    {
+        searchPanel.sprite = searchColoredUIPanel[indexOfColor];
+        searchLogoContainer.sprite = searchColoredLogoContainerUI[indexOfColor];
+    }
+    #endregion
+
+    #region Fair
+    public void ChangeColorForFairColoredUI()
+    {
+        foreach (Image i in fairColoredUI)
+        {
+            i.color = colors[indexOfColor];
+        }
+    }
+
+    public void ChangeSpriteForFairPanelImages()
+    {
+        fairPanel.sprite = miniPanelUI[indexOfColor];
+        fairLogoContainer.sprite = searchColoredLogoContainerUI[indexOfColor];
+    }
+    #endregion
+
+    #region Sponsors
+    public void ChangeColorForSponsorsColoredUI()
+    {
+        foreach (Image i in sponsorsColoredUI)
+        {
+            i.color = colors[indexOfColor];
+        }
+    }
+
+    public void ChangeSpriteForSponsorsPanelImages()
+    {
+        sponsorsPanel.sprite = miniPanelUI[indexOfColor];
+        sponsorsLogoContainer.sprite = searchColoredLogoContainerUI[indexOfColor];
+    }
+    #endregion
+
+    #region Publishers
+    public void ChangeColorForPublishersColoredUI()
+    {
+        foreach (Image i in publishersColoredUI)
+        {
+            i.color = colors[indexOfColor];
+        }
+    }
+
+    public void ChangeSpriteForPublishersPanelImages()
+    {
+        publishersPanel.sprite = miniPanelUI[indexOfColor];
+        publishersLogoContainer.sprite = searchColoredLogoContainerUI[indexOfColor];
+    }
+    #endregion
+
     #endregion
 
     #region SwitchFromUI to Game Mode
@@ -67,12 +142,9 @@ public class LevelUI : UIHandller
     [SerializeField] private Vector3 cameraUIPos;
     [SerializeField] private Vector3 cameraUIRot;
     [SerializeField] private float teleportDelayBetweenUI_game;
-    [SerializeField] private Material floarMat, wallMat;
-    [SerializeField] private Texture[] newConceptTextures;
 
     private Vector3 currentCameraPos;
     private Vector3 currentCameraRot;
-    private int currentEnvironmentTextureIndex = 0;
 
     public void TeleportToUI()
     {
@@ -95,13 +167,6 @@ public class LevelUI : UIHandller
     {
         ToggleUI(false);
     }
-
-    public void ChangeEnvironmentColor()
-    {
-        currentEnvironmentTextureIndex = (currentEnvironmentTextureIndex + 1) % newConceptTextures.Length;
-        floarMat.mainTexture = newConceptTextures[currentEnvironmentTextureIndex];
-        wallMat.mainTexture = newConceptTextures[currentEnvironmentTextureIndex];
-    }
     #endregion
 
     #region SearchMenu
@@ -116,6 +181,8 @@ public class LevelUI : UIHandller
     [SerializeField] private TMP_Dropdown fairsDD;
     [SerializeField] private TMP_Dropdown publishersDD;
     [SerializeField] private TMP_Dropdown categoriesDD;
+    [SerializeField] private Image[] searchColoredUI;
+    [SerializeField] private Image searchPanel, searchLogoContainer;
 
     private int searchPageIndex = 0;
     private int filterCategoryID = -1;
@@ -415,6 +482,8 @@ public class LevelUI : UIHandller
     #region FairMenu
     [Header("FairsMenu")]
     [SerializeField] private ScrollRect fairsScroll;
+    [SerializeField] private Image[] fairColoredUI;
+    [SerializeField] private Image fairPanel, fairLogoContainer;
 
     private int currentFairIndex;
 
@@ -429,6 +498,7 @@ public class LevelUI : UIHandller
                     GameObject go = Instantiate(toggleScrollItem, fairsScroll.content);
                     go.GetComponentInChildren<FixTextMeshPro>().text = Cache.Instance.cachedData.allFairs[i].fullName;
                     go.GetComponentInChildren<Toggle>().group = fairsScroll.content.GetComponent<ToggleGroup>();
+                    go.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().color = colors[indexOfColor];
 
                     if (Cache.Instance.cachedData.allFairs[i].id == Cache.Instance.getFairId())
                     {
@@ -442,17 +512,20 @@ public class LevelUI : UIHandller
 
     public void CheckFairChanged()
     {
-        Toggle toggle = fairsScroll.content.GetComponent<ToggleGroup>().ActiveToggles().First();
-        if (toggle)
+        if (fairsScroll.content.GetComponent<ToggleGroup>().ActiveToggles().First())
         {
-            if (toggle.transform.parent.GetSiblingIndex() != currentFairIndex)
+            Toggle toggle = fairsScroll.content.GetComponent<ToggleGroup>().ActiveToggles().First();
+            if (toggle)
             {
-                Cache.Instance.setFairId(Cache.Instance.cachedData.allFairs[toggle.transform.parent.GetSiblingIndex()].id);
-                PlayerPrefs.SetInt(ImportantStrings.fairIDKey, Cache.Instance.getFairId());
-                Destroy(Cache.Instance.gameObject);
-                endlessLoadingBar.SetActive(true);
-                endlessLoadingBar.GetComponent<Image>().color = Color.black;
-                LoadLevel(ImportantStrings.splashScene, true);
+                if (toggle.transform.parent.GetSiblingIndex() != currentFairIndex)
+                {
+                    Cache.Instance.setFairId(Cache.Instance.cachedData.allFairs[toggle.transform.parent.GetSiblingIndex()].id);
+                    PlayerPrefs.SetInt(ImportantStrings.fairIDKey, Cache.Instance.getFairId());
+                    Destroy(Cache.Instance.gameObject);
+                    endlessLoadingBar.SetActive(true);
+                    endlessLoadingBar.GetComponent<Image>().color = Color.black;
+                    LoadLevel(ImportantStrings.splashScene, true);
+                }
             }
         }
     }
@@ -461,6 +534,8 @@ public class LevelUI : UIHandller
     #region SponsorsMenu
     [Header("SponsorsMenu")]
     [SerializeField] private ScrollRect SponsorsScroll;
+    [SerializeField] private Image[] sponsorsColoredUI;
+    [SerializeField] private Image sponsorsPanel, sponsorsLogoContainer;
 
     public void PutSponsorsData()
     {
@@ -481,6 +556,8 @@ public class LevelUI : UIHandller
     #region PublishersMenu
     [Header("PublishersMenu")]
     [SerializeField] private ScrollRect publishersScroll;
+    [SerializeField] private Image[] publishersColoredUI;
+    [SerializeField] private Image publishersPanel, publishersLogoContainer;
 
     private int currentPublisherIndex;
 
@@ -495,6 +572,7 @@ public class LevelUI : UIHandller
                     GameObject go = Instantiate(toggleScrollItem, publishersScroll.content);
                     go.GetComponentInChildren<FixTextMeshPro>().text = Cache.Instance.cachedData.allVendors[i].name;
                     go.GetComponentInChildren<Toggle>().group = publishersScroll.content.GetComponent<ToggleGroup>();
+                    go.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().color = colors[indexOfColor];
 
                     if (i == BookcasePathHandller.vendorIndex)
                     {
@@ -515,16 +593,19 @@ public class LevelUI : UIHandller
 
     public void CheckPublisherChanged()
     {
-        Toggle toggle = publishersScroll.content.GetComponent<ToggleGroup>().ActiveToggles().First();
-        if (toggle)
+        if (publishersScroll.content.GetComponent<ToggleGroup>().ActiveToggles().First())
         {
-            if (toggle.transform.parent.GetSiblingIndex() != currentPublisherIndex)
+            Toggle toggle = publishersScroll.content.GetComponent<ToggleGroup>().ActiveToggles().First();
+            if (toggle)
             {
-                endlessLoadingBar.SetActive(true);
-                int stepsCount = 0;
-                NearstDir nearstDir = CheckNearstDir(toggle.transform.parent.GetSiblingIndex(), ref stepsCount);
+                if (toggle.transform.parent.GetSiblingIndex() != currentPublisherIndex)
+                {
+                    endlessLoadingBar.SetActive(true);
+                    int stepsCount = 0;
+                    NearstDir nearstDir = CheckNearstDir(toggle.transform.parent.GetSiblingIndex(), ref stepsCount);
 
-                BookcasePathHandller.MoveToIndex(nearstDir, stepsCount);
+                    BookcasePathHandller.MoveToIndex(nearstDir, stepsCount);
+                }
             }
         }
     }
