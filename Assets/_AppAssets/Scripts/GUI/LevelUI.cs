@@ -39,7 +39,7 @@ public class LevelUI : UIHandller
         }
     }
 
-    
+
 
     #region LoadingBar
     public GameObject endlessLoadingBar;
@@ -50,7 +50,7 @@ public class LevelUI : UIHandller
     [SerializeField] private Color[] colors;
     [SerializeField] private Sprite[] searchColoredUIPanel, searchColoredLogoContainerUI, miniPanelUI;
 
-    [SerializeField] private int indexOfColor;
+    private int indexOfColor;
 
     #region search
     public void ChangeColorForSearchColoredUI()

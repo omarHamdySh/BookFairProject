@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class BookcasePathHandller_Bendary : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
 
     public FixTextMeshPro VendorNameOntheWorld;
     public FixTextMeshPro FairNameOntheWorld;
+    public Image vendorImg;
     #region Data
     public int vendorIndex = 0;
     private List<CategoryData> dummy = new List<CategoryData>();
@@ -358,6 +360,25 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     {
         BookcaseData tmpBookcaseData = Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData;
         VendorNameOntheWorld.text = Cache.Instance.cachedData.allVendors[vendorIndex].name;
+
+        //if (Cache.Instance.cachedData.allVendors[vendorIndex].texture)
+        //{
+        //    vendorImg.sprite = Sprite.Create(
+        //        Cache.Instance.cachedData.allVendors[vendorIndex].texture,
+        //        new Rect(
+        //            0,
+        //            0,
+        //            Cache.Instance.cachedData.allVendors[vendorIndex].texture.width,
+        //            Cache.Instance.cachedData.allVendors[vendorIndex].texture.height
+        //            ),
+        //        new Vector2(0.5f, 0.5f)
+        //        );
+        //}
+        //else
+        //{
+        //    vendorImg.sprite = null;
+        //}
+        
         int fairIndex = Cache.Instance.cachedData.allFairs.FindIndex(x => x.id == Cache.Instance.getFairId());
         FairNameOntheWorld.text = Cache.Instance.cachedData.allFairs[fairIndex].fullName;
 

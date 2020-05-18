@@ -14875,7 +14875,7 @@ GameObject:
   - component: {fileID: 6043536215165643039}
   - component: {fileID: 7882028823847056897}
   m_Layer: 0
-  m_Name: Logo
+  m_Name: LogoImg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15591,7 +15591,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0
+  m_padding: 11.25
   m_canvasRenderer: {fileID: 2021254671746341269}
   m_TextComponent: {fileID: 6428605536762505362}
   m_materialReferenceIndex: 1
@@ -16192,7 +16192,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0
+  m_padding: 1.25
   m_canvasRenderer: {fileID: 1649038345370224870}
   m_TextComponent: {fileID: 373596116703404963}
   m_materialReferenceIndex: 1
@@ -16918,7 +16918,7 @@ GameObject:
   - component: {fileID: 5663131642556429880}
   - component: {fileID: 8715192996042316065}
   m_Layer: 0
-  m_Name: StartYourTour
+  m_Name: StartYourTourBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18631,7 +18631,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0
+  m_padding: 1.25
   m_canvasRenderer: {fileID: 2837884218356272588}
   m_TextComponent: {fileID: 6428605537005253287}
   m_materialReferenceIndex: 1
@@ -20554,7 +20554,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6428605536069417338}
   - component: {fileID: 6428605536069417339}
-  - component: {fileID: 9025422841498456991}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -20600,49 +20599,49 @@ MonoBehaviour:
   endedLoadingBar: {fileID: 0}
   endlessLoadingBar: {fileID: 552927935360159302}
   colors:
-  - {r: 0.23529413, g: 0.41176474, b: 0.8941177, a: 1}
-  - {r: 0.63529414, g: 0.34901962, b: 0.5176471, a: 1}
-  - {r: 0.8941177, g: 0.8941177, b: 0.8941177, a: 1}
+  - {r: 0.882353, g: 0.027450982, b: 0.019607844, a: 1}
   - {r: 0.29803923, g: 0.67058825, b: 0.3254902, a: 1}
   - {r: 0.9568628, g: 0.62352943, b: 0.12941177, a: 1}
+  - {r: 0.9568628, g: 0.8000001, b: 0.12941177, a: 1}
   - {r: 0.5372549, g: 0.3372549, b: 0.69803923, a: 1}
-  - {r: 0.882353, g: 0.027450982, b: 0.019607844, a: 1}
+  - {r: 0.63529414, g: 0.34901962, b: 0.5176471, a: 1}
+  - {r: 0.23529413, g: 0.41176474, b: 0.8941177, a: 1}
   - {r: 0.21568629, g: 0.68235296, b: 0.76470596, a: 1}
   - {r: 0.38823533, g: 0.5411765, b: 0.62352943, a: 1}
-  - {r: 0.9568628, g: 0.8000001, b: 0.12941177, a: 1}
+  - {r: 0.8941177, g: 0.8941177, b: 0.8941177, a: 1}
   searchColoredUIPanel:
-  - {fileID: 21300000, guid: ed6ea3ea069e46a4faf86fbefcc381e0, type: 3}
-  - {fileID: 21300000, guid: 736200be12f73c841883ae8194366b23, type: 3}
-  - {fileID: 21300000, guid: 98b28c33d5d6a574aa092d5750f26792, type: 3}
+  - {fileID: 21300000, guid: 31d7b62ed5b3b64498d36ce12b19f85d, type: 3}
   - {fileID: 21300000, guid: 618763f956a28734a857d692058d659b, type: 3}
   - {fileID: 21300000, guid: d47bb6167a498024cac4ead16834a68b, type: 3}
+  - {fileID: 21300000, guid: ddca8175282cd3b49921c3ff69b85ce8, type: 3}
   - {fileID: 21300000, guid: 80b380d1f94547d4a87d4e1800835d5c, type: 3}
-  - {fileID: 21300000, guid: 31d7b62ed5b3b64498d36ce12b19f85d, type: 3}
+  - {fileID: 21300000, guid: 736200be12f73c841883ae8194366b23, type: 3}
+  - {fileID: 21300000, guid: ed6ea3ea069e46a4faf86fbefcc381e0, type: 3}
   - {fileID: 21300000, guid: 2cc9588b0a845fd4abace36020998914, type: 3}
   - {fileID: 21300000, guid: c88be124cbaeb3d4eae60d67019db05a, type: 3}
-  - {fileID: 21300000, guid: ddca8175282cd3b49921c3ff69b85ce8, type: 3}
+  - {fileID: 21300000, guid: 98b28c33d5d6a574aa092d5750f26792, type: 3}
   searchColoredLogoContainerUI:
-  - {fileID: 21300000, guid: 72514c85fea6b104389d186b32bbbf85, type: 3}
-  - {fileID: 21300000, guid: a1bf6d3ef55e4a34fb4084d7806d2d0e, type: 3}
-  - {fileID: 21300000, guid: 798d70ddfce9948469a9d5765e41b521, type: 3}
+  - {fileID: 21300000, guid: 9b58b39b5cfec0b42ba786e8fb217c45, type: 3}
   - {fileID: 21300000, guid: d58eaf71cb4d58c4c8284e106ea0a503, type: 3}
   - {fileID: 21300000, guid: e55e4dc1070961548908bc82ff70adc8, type: 3}
+  - {fileID: 21300000, guid: 97f7fa8f9ba79a7408cded6e65a44ee3, type: 3}
   - {fileID: 21300000, guid: 43e84104e28535d4eaafdc326615c898, type: 3}
-  - {fileID: 21300000, guid: 9b58b39b5cfec0b42ba786e8fb217c45, type: 3}
+  - {fileID: 21300000, guid: a1bf6d3ef55e4a34fb4084d7806d2d0e, type: 3}
+  - {fileID: 21300000, guid: 72514c85fea6b104389d186b32bbbf85, type: 3}
   - {fileID: 21300000, guid: 4a4e2ca9b0fade940ae714b074103175, type: 3}
   - {fileID: 21300000, guid: a5763b49674e98642a0dc10199906f64, type: 3}
-  - {fileID: 21300000, guid: 97f7fa8f9ba79a7408cded6e65a44ee3, type: 3}
+  - {fileID: 21300000, guid: 798d70ddfce9948469a9d5765e41b521, type: 3}
   miniPanelUI:
-  - {fileID: 21300000, guid: ba36d520af487b94c80ef1d6974a911b, type: 3}
-  - {fileID: 21300000, guid: 3cae248669509934f98a4b90299eb5f7, type: 3}
-  - {fileID: 21300000, guid: 66e459796bc578244bd003fa04b9d9be, type: 3}
+  - {fileID: 21300000, guid: 9674ef75e29277047bd725cc55ffc74f, type: 3}
   - {fileID: 21300000, guid: 29178e4fdafadff4c843caf4e23014c1, type: 3}
   - {fileID: 21300000, guid: 9af66433f077b2648ab773454895edc7, type: 3}
+  - {fileID: 21300000, guid: ec8f3cad505bcca4484285c7c2133785, type: 3}
   - {fileID: 21300000, guid: 937ac376931451d4780c2570df4d14b2, type: 3}
-  - {fileID: 21300000, guid: 9674ef75e29277047bd725cc55ffc74f, type: 3}
+  - {fileID: 21300000, guid: 3cae248669509934f98a4b90299eb5f7, type: 3}
+  - {fileID: 21300000, guid: ba36d520af487b94c80ef1d6974a911b, type: 3}
   - {fileID: 21300000, guid: 8e6be16e399373344b5b18b84bfde50b, type: 3}
   - {fileID: 21300000, guid: 2415a48342f0e854abf5362b189e9866, type: 3}
-  - {fileID: 21300000, guid: ec8f3cad505bcca4484285c7c2133785, type: 3}
+  - {fileID: 21300000, guid: 66e459796bc578244bd003fa04b9d9be, type: 3}
   indexOfColor: 0
   isUIOpen: 1
   regularScrollItem: {fileID: 2435079033362388851, guid: d4d3a93c9cb507f44a29dee8f1c49c9f,
@@ -20696,102 +20695,6 @@ MonoBehaviour:
   - {fileID: 2061545468719255148}
   publishersPanel: {fileID: 6491007835983711286}
   publishersLogoContainer: {fileID: 4184880509578113318}
---- !u!82 &9025422841498456991
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6428605536069417337}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ec69c19a4526d6f47ae801db283fe4a1, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.5
-  m_Pitch: 1
-  Loop: 1
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &6428605536091353571
 GameObject:
   m_ObjectHideFlags: 0
@@ -25091,7 +24994,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 26.85
+  m_fontSize: 26.8
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -25253,7 +25156,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0
+  m_padding: 1.25
   m_canvasRenderer: {fileID: 826594071109686690}
   m_TextComponent: {fileID: 8735396769456973129}
   m_materialReferenceIndex: 1
@@ -26921,7 +26824,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0
+  m_padding: 1.25
   m_canvasRenderer: {fileID: 2452494064816067836}
   m_TextComponent: {fileID: 8011622402110515041}
   m_materialReferenceIndex: 1
