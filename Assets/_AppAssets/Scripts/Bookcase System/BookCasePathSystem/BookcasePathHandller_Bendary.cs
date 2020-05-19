@@ -22,8 +22,10 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     private bool isObjMoving = false;
     private Vector3 bookBackwordPos;
 
+    public SpriteRenderer vendorContainer, fairContainer;
     public FixTextMeshPro VendorNameOntheWorld;
     public FixTextMeshPro FairNameOntheWorld;
+    public Sprite[] fairSprites, vendorSprites;
     public Image vendorImg;
     #region Data
     public int vendorIndex = 0;
@@ -39,7 +41,6 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
 
     public void ChangeEnvironmentColor()
     {
-        currentEnvironmentTextureIndex = (currentEnvironmentTextureIndex + 1) % newConceptTextures.Length;
         floarMat.mainTexture = newConceptTextures[currentEnvironmentTextureIndex];
         wallMat.mainTexture = newConceptTextures[currentEnvironmentTextureIndex];
     }
@@ -360,7 +361,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     {
         BookcaseData tmpBookcaseData = Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData;
         VendorNameOntheWorld.text = Cache.Instance.cachedData.allVendors[vendorIndex].name;
-
+        //vendorContainer.sprite = vendorSprites[Cache.Instance.cachedData.allVendors[vendorIndex].colorIndex];
         //if (Cache.Instance.cachedData.allVendors[vendorIndex].texture)
         //{
         //    vendorImg.sprite = Sprite.Create(
@@ -378,9 +379,12 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         //{
         //    vendorImg.sprite = null;
         //}
-        
+
         int fairIndex = Cache.Instance.cachedData.allFairs.FindIndex(x => x.id == Cache.Instance.getFairId());
         FairNameOntheWorld.text = Cache.Instance.cachedData.allFairs[fairIndex].fullName;
+        //fairContainer.sprite = fairSprites[Cache.Instance.cachedData.allFairs[fairIndex].colorIndex];
+        //currentEnvironmentTextureIndex = Cache.Instance.cachedData.allFairs[fairIndex].colorIndex;
+        //ChangeEnvironmentColor();
 
         if (tmpBookcaseData != null && tmpBookcaseData.categories != null)
         {

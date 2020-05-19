@@ -8526,7 +8526,7 @@ PrefabInstance:
     - target: {fileID: 390663108055306867, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.00036621094
       objectReference: {fileID: 0}
     - target: {fileID: 390663108055306867, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
         type: 3}
@@ -9466,7 +9466,7 @@ PrefabInstance:
     - target: {fileID: 4531368213922327242, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00012207031
+      value: -0.0004272461
       objectReference: {fileID: 0}
     - target: {fileID: 4531368213922327242, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
         type: 3}
@@ -9551,7 +9551,7 @@ PrefabInstance:
     - target: {fileID: 4829511044236233708, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000030517578
+      value: -0.0002746582
       objectReference: {fileID: 0}
     - target: {fileID: 4829511044236233708, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
         type: 3}
@@ -12077,9 +12077,33 @@ MonoBehaviour:
   realBookcases:
   - {fileID: 644756407}
   - {fileID: 1001229648}
+  vendorContainer: {fileID: 834343527}
+  fairContainer: {fileID: 306368430}
   VendorNameOntheWorld: {fileID: 1057850883}
   FairNameOntheWorld: {fileID: 1898088649}
-  vendorImg: {fileID: 0}
+  fairSprites:
+  - {fileID: 21300000, guid: 6b60ff008eb92294a999fa15c961a21a, type: 3}
+  - {fileID: 21300000, guid: 17aa13e081ed0134fbbd6f3d5a1800ad, type: 3}
+  - {fileID: 21300000, guid: c44df746fe88d3d4cb12ba88435d2e41, type: 3}
+  - {fileID: 21300000, guid: a9da29aed3685544bb35d33596ad78df, type: 3}
+  - {fileID: 21300000, guid: b94f2ce28e32ffb4796686e47c0db3c7, type: 3}
+  - {fileID: 21300000, guid: 8eff86a703c24cf4b849ddf83eabe9e4, type: 3}
+  - {fileID: 21300000, guid: 3bae78336710ee3438aaa5f59c9e7979, type: 3}
+  - {fileID: 21300000, guid: 05bd2132aba091d48aa89cd9ed03ef26, type: 3}
+  - {fileID: 21300000, guid: 31afa6d216a07ad4497c36d94c5cc5a0, type: 3}
+  - {fileID: 21300000, guid: f4dd164143f4f454799063844fbca39a, type: 3}
+  vendorSprites:
+  - {fileID: 21300000, guid: 60b21ef8acbcd8746a328a03e55bc8cd, type: 3}
+  - {fileID: 21300000, guid: c4e3552a758527d44933512434fbda61, type: 3}
+  - {fileID: 21300000, guid: 6888aa2fa7c606c45b9e3192e492885d, type: 3}
+  - {fileID: 21300000, guid: 458c8f66ce9a3144481f1bd4704a7841, type: 3}
+  - {fileID: 21300000, guid: 6ddb639b67a15a347b15daf702ec4cfc, type: 3}
+  - {fileID: 21300000, guid: 36393cfd03348f745937f251b24e7d19, type: 3}
+  - {fileID: 21300000, guid: 6eed88cc09c98b44e8d22885dd8cb280, type: 3}
+  - {fileID: 21300000, guid: fc91fdb3394a99c43bbc4920db8f5ece, type: 3}
+  - {fileID: 21300000, guid: 0b996ceb97a6b6741babc363fb4be6bc, type: 3}
+  - {fileID: 21300000, guid: 17f0546c199f46b4796d47e9746786e4, type: 3}
+  vendorImg: {fileID: 1267302135}
   vendorIndex: 0
   floarMat: {fileID: 2100000, guid: 9b8e56fde29dccf438e561626d8ceb58, type: 2}
   wallMat: {fileID: 2100000, guid: 72e4def8ff166cf448d1d48417a95ed5, type: 2}
