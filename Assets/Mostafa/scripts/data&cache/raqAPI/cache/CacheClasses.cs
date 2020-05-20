@@ -47,6 +47,7 @@ public class FairData
     public string briefDescription;
     public string logoPictureBinary;
     public Texture2D pic;
+    public int mainColorNumber;
     public int booksCount;
 }
 
