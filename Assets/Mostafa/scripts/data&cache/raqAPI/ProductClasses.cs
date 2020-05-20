@@ -83,9 +83,9 @@ public class Vendor
     public string name;
     public string description;
     public string defualtPicture;
+    public int vendorColorNumber;
 
     public int accessFrequency;
-
     public BookcaseData bookcaseData;
 }
 
