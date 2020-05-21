@@ -76,19 +76,6 @@ public class Sponsor
     public object form;
 }
 
-[System.Serializable]
-public class Vendor
-{ 
-    public int id;
-    public string name;
-    public string description;
-    public string defualtPicture;
-    public int vendorColorNumber;
-
-    public int accessFrequency;
-    public BookcaseData bookcaseData;
-}
-
 public class AllVendorsResult
 {
     public List<Vendor> vendorList;

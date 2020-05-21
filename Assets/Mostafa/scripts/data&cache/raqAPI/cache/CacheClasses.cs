@@ -51,3 +51,16 @@ public class FairData
     public int booksCount;
 }
 
+[System.Serializable]
+public class Vendor
+{
+    public int id;
+    public string name;
+    public string description;
+    public string defualtPicture;
+    public int vendorColorNumber;
+
+    public int accessFrequency;
+    public BookcaseData bookcaseData;
+    public Texture2D pic;
+}

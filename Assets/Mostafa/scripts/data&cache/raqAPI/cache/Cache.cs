@@ -254,6 +254,18 @@ public class Cache : MonoBehaviour
     public void cacheAllVendors(AllVendorsResult vendorsResult)
     {
         cachedData.allVendors = vendorsResult.vendorList;
+
+        foreach (Vendor v in cachedData.allVendors)
+        {
+            if (v.defualtPicture != "" && v.defualtPicture != null)
+            {
+                string tmpStr;
+                tmpStr = Convert.ToBase64String(Decompress(Convert.FromBase64String(v.defualtPicture)));
+                v.pic = new Texture2D(1, 1);
+                v.pic.LoadImage(Convert.FromBase64String(tmpStr));
+                v.pic.Apply();
+            }
+        }
     }
 
     public void cacheAllFairs(FairResult fairResult)
@@ -264,9 +276,10 @@ public class Cache : MonoBehaviour
         {
             if (f.logoPictureBinary != "" && f.logoPictureBinary != null)
             {
-                Convert.ToBase64String(Decompress(Convert.FromBase64String(f.logoPictureBinary)));
+                string tmpStr;
+                tmpStr = Convert.ToBase64String(Decompress(Convert.FromBase64String(f.logoPictureBinary)));
                 f.pic = new Texture2D(1, 1);
-                f.pic.LoadImage(Convert.FromBase64String(f.logoPictureBinary));
+                f.pic.LoadImage(Convert.FromBase64String(tmpStr));
                 f.pic.Apply();
             }
         }
