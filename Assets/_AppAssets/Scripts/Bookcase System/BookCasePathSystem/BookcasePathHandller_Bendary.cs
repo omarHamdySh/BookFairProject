@@ -361,8 +361,10 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     {
         BookcaseData tmpBookcaseData = Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData;
         VendorNameOntheWorld.text = Cache.Instance.cachedData.allVendors[vendorIndex].name;
-        //vendorContainer.sprite = vendorSprites[Cache.Instance.cachedData.allVendors[vendorIndex].colorIndex];
-        //if (Cache.Instance.cachedData.allVendors[vendorIndex].texture)
+        print(Cache.Instance.cachedData.allVendors[vendorIndex].vendorColorNumber);
+        //LevelUI.Instance.indexOfColor = Cache.Instance.cachedData.allVendors[vendorIndex].vendorColorNumber;
+        //vendorContainer.sprite = vendorSprites[Cache.Instance.cachedData.allVendors[vendorIndex].vendorColorNumber];
+        //if (Cache.Instance.cachedData.allVendors[vendorIndex].textdeure)
         //{
         //    vendorImg.sprite = Sprite.Create(
         //        Cache.Instance.cachedData.allVendors[vendorIndex].texture,
@@ -382,8 +384,8 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
 
         int fairIndex = Cache.Instance.cachedData.allFairs.FindIndex(x => x.id == Cache.Instance.getFairId());
         FairNameOntheWorld.text = Cache.Instance.cachedData.allFairs[fairIndex].fullName;
-        //fairContainer.sprite = fairSprites[Cache.Instance.cachedData.allFairs[fairIndex].colorIndex];
-        //currentEnvironmentTextureIndex = Cache.Instance.cachedData.allFairs[fairIndex].colorIndex;
+        //fairContainer.sprite = fairSprites[Cache.Instance.cachedData.allFairs[fairIndex].mainColorNumber];
+        //currentEnvironmentTextureIndex = Cache.Instance.cachedData.allFairs[fairIndex].mainColorNumber;
         //ChangeEnvironmentColor();
 
         if (tmpBookcaseData != null && tmpBookcaseData.categories != null)

@@ -50,7 +50,7 @@ public class LevelUI : UIHandller
     [SerializeField] private Color[] colors;
     [SerializeField] private Sprite[] searchColoredUIPanel, searchColoredLogoContainerUI, miniPanelUI;
 
-    private int indexOfColor;
+    public int indexOfColor;
 
     #region search
     public void ChangeColorForSearchColoredUI()
