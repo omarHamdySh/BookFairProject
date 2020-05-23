@@ -1379,15 +1379,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: EndlessLoadingBar
       objectReference: {fileID: 0}
-    - target: {fileID: 7698790283700473507, guid: 8d18dc8e5e3575b4192a593acae3d1f4,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7698790283700473507, guid: 8d18dc8e5e3575b4192a593acae3d1f4,
-        type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d18dc8e5e3575b4192a593acae3d1f4, type: 3}

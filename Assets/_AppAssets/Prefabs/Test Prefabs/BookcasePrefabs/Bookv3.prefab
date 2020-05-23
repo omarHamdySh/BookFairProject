@@ -46,6 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bookPathHandller: {fileID: 0}
   bookBodyMeshRenderer: {fileID: 1817617497607238609}
+  bookDataIndex: 0
+  buyURL: 
+  description: 
 --- !u!1 &1817617497598742043
 GameObject:
   m_ObjectHideFlags: 0
