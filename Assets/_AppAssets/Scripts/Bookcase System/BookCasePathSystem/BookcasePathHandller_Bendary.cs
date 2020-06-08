@@ -362,9 +362,11 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         BookcaseData tmpBookcaseData = Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData;
         VendorNameOntheWorld.text = Cache.Instance.cachedData.allVendors[vendorIndex].name;
         LevelUI.Instance.indexOfColor = Cache.Instance.cachedData.allVendors[vendorIndex].vendorColorNumber;
+        LevelUI.Instance.ChangeColorForGameplayUI();
         vendorContainer.sprite = vendorSprites[Cache.Instance.cachedData.allVendors[vendorIndex].vendorColorNumber];
         if (Cache.Instance.cachedData.allVendors[vendorIndex].pic)
         {
+            vendorImg.enabled = true;
             vendorImg.sprite = Sprite.Create(
                 Cache.Instance.cachedData.allVendors[vendorIndex].pic,
                 new Rect(
@@ -375,10 +377,12 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
                     ),
                 new Vector2(0.5f, 0.5f)
                 );
+
         }
         else
         {
             vendorImg.sprite = null;
+            vendorImg.enabled = false;
         }
 
         int fairIndex = Cache.Instance.cachedData.allFairs.FindIndex(x => x.id == Cache.Instance.getFairId());

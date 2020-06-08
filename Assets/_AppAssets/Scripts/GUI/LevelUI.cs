@@ -68,6 +68,16 @@ public class LevelUI : UIHandller
     }
     #endregion
 
+    #region GamePlay
+    public void ChangeColorForGameplayUI()
+    {
+        foreach (Image i in gameplayColoredUI)
+        {
+            i.color = colors[indexOfColor];
+        }
+    }
+    #endregion
+
     #region Fair
     public void ChangeColorForFairColoredUI()
     {
@@ -137,6 +147,7 @@ public class LevelUI : UIHandller
     [Header("Gameplay")]
     public Button backToUIModeBtn;
     public GameObject backFromPageModeBtn;
+    [SerializeField] private Image[] gameplayColoredUI;
 
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private Vector3 cameraUIPos;

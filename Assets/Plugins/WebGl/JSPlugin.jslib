@@ -25,7 +25,7 @@ var JSPlugin = {
            }
        }
        var buffer = _malloc(lengthBytesUTF8(ret) + 1);
-       writeStringToMemory(ret, buffer);
+       stringToUTF8(ret, buffer, lengthBytesUTF8(ret) + 1)
        return buffer;
     },
 };

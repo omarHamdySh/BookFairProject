@@ -3,6 +3,8 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Events;
+using System.Runtime.InteropServices;
+
 public class RaqAPI : MonoBehaviour
 {
 
@@ -17,7 +19,25 @@ public class RaqAPI : MonoBehaviour
     public UnityEvent fairsRetrievedEvent;
     public UnityEvent dataArrivedEvent;
 
+    [DllImport("__Internal")]
+    private static extern string getCookie(string cName);
 
+    private void Awake()
+    {
+        string lang = getCookie("lang");
+        PlayerPrefs.SetString(ImportantStrings.langPPKey, lang);
+#if UNITY_EDITOR
+        switch (lang)
+        {
+            case "ar":
+                languageId = 2;
+                break;
+            case "en":
+                languageId = 1;
+                break;
+        }
+#endif
+    }
 
     public void Init()
     {
@@ -65,7 +85,7 @@ public class RaqAPI : MonoBehaviour
             Debug.LogError("Error : " + www.error);
         }
         else
-        { 
+        {
             authInfo = JsonUtility.FromJson<ApiAuth>(www.downloadHandler.text);
 
             authTokenLoadedEvent.Invoke();
@@ -103,10 +123,10 @@ public class RaqAPI : MonoBehaviour
 
     }
 
-    public IEnumerator searchWithFilter(string keyword, int categoryId, int fairId,int vendorId ,int limit, int page)
+    public IEnumerator searchWithFilter(string keyword, int categoryId, int fairId, int vendorId, int limit, int page)
     {
         //temporary until badawy gives us another endpoint
-        string uri = baseUrl + "/api/products_sample_data?"  + "&keyword=" + keyword;
+        string uri = baseUrl + "/api/products_sample_data?" + "&keyword=" + keyword;
 
         if (limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
         if (categoryId >= 0) uri += "&categoryId=" + categoryId.ToString();
@@ -251,7 +271,7 @@ public class RaqAPI : MonoBehaviour
 
         res = JsonUtility.FromJson<SponsorsResult>(www.downloadHandler.text);
         if (res != null)
-        {    
+        {
             Cache.Instance.cacheAllSponsors(res);
         }
 
@@ -275,7 +295,7 @@ public class RaqAPI : MonoBehaviour
         transmitting = true;
 
         yield return www.SendWebRequest();
-        
+
         res = JsonUtility.FromJson<FairResult>(www.downloadHandler.text);
         if (res != null)
         {
@@ -290,6 +310,4 @@ public class RaqAPI : MonoBehaviour
         return "https://raaqeem.com/" + (languageId == 1 ? "ar" : "en") + "/" + "book" + "/" + bookId.ToString();
     }
 }
-
-
 

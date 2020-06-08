@@ -35,7 +35,7 @@ public class UIHandller : MonoBehaviour
     /// <summary>
     /// Moving from scene to another
     /// </summary>
-    /// <param name="scencName">index of the scene you will go to</param>
+    /// <param name="scencName">name of the scene you will go to</param>
     public void LoadLevel(string scencName, bool loadImmediately = false)
     {
         if (!loadImmediately)
@@ -45,7 +45,6 @@ public class UIHandller : MonoBehaviour
             SceneManager.LoadScene(scencName);
         }
     }
-
 
     private IEnumerator LoadAsynchronously(string scencName)
     {
