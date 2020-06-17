@@ -68,16 +68,6 @@ public class LevelUI : UIHandller
     }
     #endregion
 
-    #region GamePlay
-    public void ChangeColorForGameplayUI()
-    {
-        foreach (Image i in gameplayColoredUI)
-        {
-            i.color = colors[indexOfColor];
-        }
-    }
-    #endregion
-
     #region Fair
     public void ChangeColorForFairColoredUI()
     {
