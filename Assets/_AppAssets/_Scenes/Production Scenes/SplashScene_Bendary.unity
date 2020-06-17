@@ -238,8 +238,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2aec9026b865c724180e1db918f5de5d, type: 2}
-  m_sharedMaterial: {fileID: 21441631188738504, guid: 2aec9026b865c724180e1db918f5de5d,
+  m_fontAsset: {fileID: 11400000, guid: 3cf55f1684d7c284287244e56b1262f8, type: 2}
+  m_sharedMaterial: {fileID: -8564642716040584064, guid: 3cf55f1684d7c284287244e56b1262f8,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1378,6 +1378,23 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EndlessLoadingBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107615192813299434, guid: 8d18dc8e5e3575b4192a593acae3d1f4,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3cf55f1684d7c284287244e56b1262f8,
+        type: 2}
+    - target: {fileID: 5107615192813299434, guid: 8d18dc8e5e3575b4192a593acae3d1f4,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8564642716040584064, guid: 3cf55f1684d7c284287244e56b1262f8,
+        type: 2}
+    - target: {fileID: 5149763885608722752, guid: 8d18dc8e5e3575b4192a593acae3d1f4,
+        type: 3}
+      propertyPath: m_Name
+      value: TMP SubMeshUI [Cairo-Bold SDF Material + LiberationSans SDF Atlas]
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d18dc8e5e3575b4192a593acae3d1f4, type: 3}

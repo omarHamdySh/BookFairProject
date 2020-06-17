@@ -103,8 +103,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: new
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2aec9026b865c724180e1db918f5de5d, type: 2}
-  m_sharedMaterial: {fileID: 21441631188738504, guid: 2aec9026b865c724180e1db918f5de5d,
+  m_fontAsset: {fileID: 11400000, guid: 3cf55f1684d7c284287244e56b1262f8, type: 2}
+  m_sharedMaterial: {fileID: -8564642716040584064, guid: 3cf55f1684d7c284287244e56b1262f8,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 2197585998174706692}
   - component: {fileID: 5017295710745478560}
   m_Layer: 0
-  m_Name: TMP SubMeshUI [Shoroq-Font SDF Material + LiberationSans SDF Atlas]
+  m_Name: TMP SubMeshUI [Cairo-Bold SDF Material + LiberationSans SDF Atlas]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
