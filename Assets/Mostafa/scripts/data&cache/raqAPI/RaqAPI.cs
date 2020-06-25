@@ -305,9 +305,9 @@ public class RaqAPI : MonoBehaviour
 
         transmitting = false;
     }
-    public string makeBookUrl(int bookId)
+    public string makeBookUrl(string slug)
     {
-        return "https://raaqeem.com/" + (languageId == 1 ? "ar" : "en") + "/" + "book" + "/" + bookId.ToString();
+        return "https://raaqeem.com/" + (languageId == 1 ? "ar" : "en") + "/" + "book" + "/" + slug;
     }
 }
 

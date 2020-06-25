@@ -13,6 +13,7 @@ public class ProductResult
 public class Product
 {
     public int id;
+    public string productSlug;
     public string name;
     public string shortDescription;
     public string defaultPicture;

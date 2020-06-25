@@ -55,6 +55,7 @@ public class FairData
 public class Vendor
 {
     public int id;
+    public string vendorSlug;
     public string name;
     public string description;
     public string defualtPicture;

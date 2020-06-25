@@ -195,7 +195,7 @@ public class Cache : MonoBehaviour
                 {
                     if (tmpCat.booksData.Find(b => book.id == b.id) == null){
                         BookData tmpBook = new BookData();
-                        tmpBook.url = api.makeBookUrl(book.id);
+                        tmpBook.url = api.makeBookUrl(book.productSlug);
                         tmpBook.id = book.id;
                         tmpBook.texture = null;
                         tmpBook.description = book.shortDescription;
@@ -225,7 +225,7 @@ public class Cache : MonoBehaviour
             foreach (Product book in res.prodcutList)
             {
                 BookData tmpBook = new BookData();
-                tmpBook.url = api.makeBookUrl(book.id);
+                tmpBook.url = api.makeBookUrl(book.productSlug);
                 tmpBook.id = book.id;
                 tmpBook.texture = null;
                 tmpBook.description = book.shortDescription;
