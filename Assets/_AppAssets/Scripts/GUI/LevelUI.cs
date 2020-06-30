@@ -485,6 +485,7 @@ public class LevelUI : UIHandller
     [SerializeField] private ScrollRect fairsScroll;
     [SerializeField] private Image[] fairColoredUI;
     [SerializeField] private Image fairPanel, fairLogoContainer;
+    [SerializeField] private Button goBtn;
 
     private int currentFairIndex;
 
@@ -506,12 +507,13 @@ public class LevelUI : UIHandller
                         go.GetComponentInChildren<Toggle>().isOn = true;
                         currentFairIndex = i;
                     }
+                    go.GetComponentInChildren<Toggle>().onValueChanged.AddListener(CheckFaireOptionChanged);
                 }
             }
         }
     }
 
-    public void CheckFairChanged()
+    public void CheckFaireOptionChanged(bool enabled)
     {
         if (fairsScroll.content.GetComponent<ToggleGroup>().ActiveToggles().First())
         {
@@ -520,12 +522,37 @@ public class LevelUI : UIHandller
             {
                 if (toggle.transform.parent.GetSiblingIndex() != currentFairIndex)
                 {
-                    Cache.Instance.setFairId(Cache.Instance.cachedData.allFairs[toggle.transform.parent.GetSiblingIndex()].id);
-                    PlayerPrefs.SetInt(ImportantStrings.fairIDKey, Cache.Instance.getFairId());
-                    Destroy(Cache.Instance.gameObject);
-                    endlessLoadingBar.SetActive(true);
-                    endlessLoadingBar.GetComponent<Image>().color = Color.black;
-                    LoadLevel(ImportantStrings.splashScene, true);
+                    goBtn.interactable = true;
+                }
+                else
+                {
+                    goBtn.interactable = false;
+                }
+            }
+        }
+    }
+
+    public void GoToSelectedFair()
+    {
+        Toggle toggle = fairsScroll.content.GetComponent<ToggleGroup>().ActiveToggles().First();
+        Cache.Instance.setFairId(Cache.Instance.cachedData.allFairs[toggle.transform.parent.GetSiblingIndex()].id);
+        PlayerPrefs.SetInt(ImportantStrings.fairIDKey, Cache.Instance.getFairId());
+        Destroy(Cache.Instance.gameObject);
+        endlessLoadingBar.SetActive(true);
+        endlessLoadingBar.GetComponent<Image>().color = Color.black;
+        LoadLevel(ImportantStrings.splashScene, true);
+    }
+
+    public void CancelNewSelectedFair()
+    {
+        if (fairsScroll.content.GetComponent<ToggleGroup>().ActiveToggles().First())
+        {
+            Toggle toggle = fairsScroll.content.GetComponent<ToggleGroup>().ActiveToggles().First();
+            if (toggle)
+            {
+                if (toggle.transform.parent.GetSiblingIndex() != currentFairIndex)
+                {
+                    fairsScroll.content.GetChild(currentFairIndex).GetComponentInChildren<Toggle>().isOn = true;
                 }
             }
         }
