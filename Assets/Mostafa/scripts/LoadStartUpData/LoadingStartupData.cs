@@ -40,6 +40,7 @@ public class LoadingStartupData : MonoBehaviour
 
     public void setUpStartupData()
     {
+
         if (!PlayerPrefs.HasKey(ImportantStrings.fairIDKey))
         {
             Cache.Instance.setFairId(Cache.Instance.cachedData.allFairs[0].id);
@@ -50,7 +51,7 @@ public class LoadingStartupData : MonoBehaviour
             Cache.Instance.setFairId(PlayerPrefs.GetInt(ImportantStrings.fairIDKey));
         }
 
-        loadedBooksLimit = Cache.Instance.cachedData.allFairs.Find(f => f.id == Cache.Instance.getFairId()).booksCount /2;
+        loadedBooksLimit = Cache.Instance.cachedData.allFairs.Find(f => f.id == Cache.Instance.getFairId()).booksCount /8;
 
         loadStartupData();
     }
