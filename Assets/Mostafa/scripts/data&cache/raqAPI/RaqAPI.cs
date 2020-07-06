@@ -24,9 +24,10 @@ public class RaqAPI : MonoBehaviour
 
     private void Awake()
     {
+#if !UNITY_EDITOR
         string lang = getCookie("lang");
         PlayerPrefs.SetString(ImportantStrings.langPPKey, lang);
-#if UNITY_EDITOR
+
         switch (lang)
         {
             case "ar":

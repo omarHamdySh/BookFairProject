@@ -174,21 +174,23 @@ public class DataLoader : MonoBehaviour
             Cache.Instance.api.abortRetrieve();
             if (Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].bookcaseData.categories != null)
             {
-                CategoryData tmpCat = Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].bookcaseData.categories[shelfPathHandler.GetCurrentShelf().categoryIndex];
-
-                if (tmpCat.total > tmpCat.booksData.Count)
+                if (Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].bookcaseData.categories.Count < shelfPathHandler.GetCurrentShelf().categoryIndex)
                 {
-                    int categoryId = 0;
-                    categoryId = tmpCat.id;
+                    CategoryData tmpCat = Cache.Instance.cachedData.allVendors[bookcasePathHandler.vendorIndex].bookcaseData.categories[shelfPathHandler.GetCurrentShelf().categoryIndex];
 
-                    Debug.Log("shelf enq");
+                    if (tmpCat.total > tmpCat.booksData.Count)
+                    {
+                        int categoryId = 0;
+                        categoryId = tmpCat.id;
 
-                    DataRequest dr = new DataRequest();
-                    dr.vendorId = publisherId;
-                    dr.categoryId = categoryId;
-                    requestQueue.Enqueue(dr);
+                        Debug.Log("shelf enq");
+
+                        DataRequest dr = new DataRequest();
+                        dr.vendorId = publisherId;
+                        dr.categoryId = categoryId;
+                        requestQueue.Enqueue(dr);
+                    }
                 }
-
             }
         }
     }

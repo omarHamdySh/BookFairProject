@@ -891,7 +891,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  oneTimeLoadLimit: 14
+  oneTimeLoadLimit: 25
   booksLimit: 100
   loadedBooks: 0
 --- !u!4 &1882423684

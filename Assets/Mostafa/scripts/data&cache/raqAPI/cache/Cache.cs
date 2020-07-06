@@ -257,7 +257,7 @@ public class Cache : MonoBehaviour
 
         foreach (Vendor v in cachedData.allVendors)
         {
-            print(v.id);
+            //print(v.id+"  "+v.name);
             if (v.defualtPicture != "" && v.defualtPicture != null)
             {
                 string tmpStr;
