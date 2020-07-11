@@ -362,6 +362,14 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         BookcaseData tmpBookcaseData = Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData;
         VendorNameOntheWorld.text = Cache.Instance.cachedData.allVendors[vendorIndex].name;
         LevelUI.Instance.indexOfColor = Cache.Instance.cachedData.allVendors[vendorIndex].vendorColorNumber;
+        if (LevelUI.Instance.indexOfColor == fairSprites.Length - 1)
+        {
+            VendorNameOntheWorld.SetTextColor(Color.black);
+        }
+        else
+        {
+            VendorNameOntheWorld.SetTextColor(Color.white);
+        }
         vendorContainer.sprite = vendorSprites[Cache.Instance.cachedData.allVendors[vendorIndex].vendorColorNumber];
         if (Cache.Instance.cachedData.allVendors[vendorIndex].pic)
         {
@@ -388,6 +396,14 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         FairNameOntheWorld.text = Cache.Instance.cachedData.allFairs[fairIndex].fullName;
         fairContainer.sprite = fairSprites[Cache.Instance.cachedData.allFairs[fairIndex].mainColorNumber];
         currentEnvironmentTextureIndex = Cache.Instance.cachedData.allFairs[fairIndex].mainColorNumber;
+        if (currentEnvironmentTextureIndex == fairSprites.Length - 1)
+        {
+            FairNameOntheWorld.SetTextColor(Color.black);
+        }
+        else
+        {
+            FairNameOntheWorld.SetTextColor(Color.white);
+        }
         ChangeEnvironmentColor();
 
         if (tmpBookcaseData != null && tmpBookcaseData.categories != null)

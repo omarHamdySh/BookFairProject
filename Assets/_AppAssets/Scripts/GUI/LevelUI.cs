@@ -500,7 +500,7 @@ public class LevelUI : UIHandller
                     GameObject go = Instantiate(toggleScrollItem, fairsScroll.content);
                     go.GetComponentInChildren<FixTextMeshPro>().text = Cache.Instance.cachedData.allFairs[i].fullName;
                     go.GetComponentInChildren<Toggle>().group = fairsScroll.content.GetComponent<ToggleGroup>();
-                    go.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().color = colors[indexOfColor];
+                    //go.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().color = colors[indexOfColor];
 
                     if (Cache.Instance.cachedData.allFairs[i].id == Cache.Instance.getFairId())
                     {

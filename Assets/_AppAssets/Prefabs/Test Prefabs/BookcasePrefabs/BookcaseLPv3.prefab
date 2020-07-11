@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8878167639767922799}
   - component: {fileID: 7837621382653882908}
   m_Layer: 5
-  m_Name: TMP SubMeshUI [Shoroq-Font SDF Material + LiberationSans SDF Atlas]
+  m_Name: TMP SubMeshUI [Cairo-Bold SDF Material + LiberationSans SDF Atlas]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,8 +172,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: VendorName
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2aec9026b865c724180e1db918f5de5d, type: 2}
-  m_sharedMaterial: {fileID: 21441631188738504, guid: 2aec9026b865c724180e1db918f5de5d,
+  m_fontAsset: {fileID: 11400000, guid: 3cf55f1684d7c284287244e56b1262f8, type: 2}
+  m_sharedMaterial: {fileID: -8564642716040584064, guid: 3cf55f1684d7c284287244e56b1262f8,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1100,32 +1100,32 @@ PrefabInstance:
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_text
-      value: 
+      value: Science
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_fontSize
-      value: 36
+      value: 71.2
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3332285848589918024, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
@@ -1532,32 +1532,32 @@ PrefabInstance:
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_text
-      value: 
+      value: Science
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_fontSize
-      value: 36
+      value: 71.2
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3332285848589918024, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
@@ -1739,32 +1739,32 @@ PrefabInstance:
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_text
-      value: 
+      value: Science
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_fontSize
-      value: 36
+      value: 71.2
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3332285848589918024, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
@@ -2171,32 +2171,32 @@ PrefabInstance:
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_text
-      value: 
+      value: Science
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_fontSize
-      value: 36
+      value: 71.2
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3332285848589918024, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
@@ -2603,32 +2603,32 @@ PrefabInstance:
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_text
-      value: 
+      value: Science
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_fontSize
-      value: 36
+      value: 71.2
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3332285848589918024, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
@@ -3035,32 +3035,32 @@ PrefabInstance:
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_text
-      value: 
+      value: Science
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_fontSize
-      value: 36
+      value: 71.2
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2807424929027426636, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3332285848589918024, guid: bcff9518428d00648a9e8844edbe2380,
         type: 3}

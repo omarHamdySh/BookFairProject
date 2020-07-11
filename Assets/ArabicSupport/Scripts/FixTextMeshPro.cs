@@ -29,4 +29,9 @@ public class FixTextMeshPro : MonoBehaviour
         }
     }
 
+    public void SetTextColor(Color color)
+    {
+        gameObject.GetComponent<TMP_Text>().color = color;
+    }
+
 }
