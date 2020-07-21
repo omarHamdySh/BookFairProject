@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/_AppAssets/_Scenes/Production Scenes/SplashScene_Bendary.unity
     guid: f79ac2202e0d77948bc5ce40555b3d4b
   - enabled: 1
-    path: Assets/_AppAssets/_Scenes/Test Scenes/TestUIScene_Bendary.unity
-    guid: e10de95d5418fb449b485e0150724144
+    path: Assets/_AppAssets/_Scenes/Production Scenes/GamePlayScene_Bendary.unity
+    guid: ff1ecda4074dd844a96a38661dfe8e9c
   m_configObjects: {}
