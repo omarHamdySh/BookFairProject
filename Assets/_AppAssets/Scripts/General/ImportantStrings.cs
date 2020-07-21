@@ -9,5 +9,5 @@ public static class ImportantStrings
     public const string langPPKey = "Lang";
     public const string fairIDKey = "fairID";
     public const string splashScene = "SplashScene_Bendary";
-    public const string gameplayScene = "TestUIScene_Bendary";
+    public const string gameplayScene = "GamePlayScene_Bendary";
 }

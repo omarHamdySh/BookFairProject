@@ -600,7 +600,7 @@ public class LevelUI : UIHandller
                     GameObject go = Instantiate(toggleScrollItem, publishersScroll.content);
                     go.GetComponentInChildren<FixTextMeshPro>().text = Cache.Instance.cachedData.allVendors[i].name;
                     go.GetComponentInChildren<Toggle>().group = publishersScroll.content.GetComponent<ToggleGroup>();
-                    go.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().color = colors[indexOfColor];
+                    //go.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().color = colors[indexOfColor];
 
                     if (i == BookcasePathHandller.vendorIndex)
                     {
