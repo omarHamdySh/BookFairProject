@@ -34,15 +34,18 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
 
     #region WallMaterial
     [Header("Wall Color")]
-    [SerializeField] private Material floarMat, wallMat;
+    [SerializeField] private Transform floarMatContainer;
+    [SerializeField] private Transform wallMatContainer;
     [SerializeField] private Texture[] newConceptTextures;
 
+    private Material[] floarMat;
+    private Material[] wallMat;
     private int currentEnvironmentTextureIndex = 0;
 
     public void ChangeEnvironmentColor()
     {
-        floarMat.mainTexture = newConceptTextures[currentEnvironmentTextureIndex];
-        wallMat.mainTexture = newConceptTextures[currentEnvironmentTextureIndex];
+        foreach (Material i in floarMat) { i.mainTexture = newConceptTextures[currentEnvironmentTextureIndex]; }
+        foreach (Material i in wallMat) { i.mainTexture = newConceptTextures[currentEnvironmentTextureIndex]; }
     }
     #endregion
 
@@ -53,6 +56,19 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
 
     private void Start()
     {
+        MeshRenderer[] meshes = floarMatContainer.GetComponentsInChildren<MeshRenderer>();
+        floarMat = new Material[meshes.Length];
+        for (int i = 0; i < floarMat.Length; i++)
+        {
+            floarMat[i] = meshes[i].material;
+        }
+        meshes = wallMatContainer.GetComponentsInChildren<MeshRenderer>();
+        wallMat = new Material[meshes.Length];
+        for (int i = 0; i < wallMat.Length; i++)
+        {
+            wallMat[i] = meshes[i].material;
+        }
+
         if (Cache.Instance)
         {
             //mostafa
