@@ -136,7 +136,7 @@ public class LevelUI : UIHandller
     #region Gameplay
     [Header("Gameplay")]
     public Button backToUIModeBtn;
-    public GameObject backFromPageModeBtn;
+    public GameObject backFromPageModeBtn, backFromBookModeBtn, backFromShelfModeBtn;
     [SerializeField] private Image[] gameplayColoredUI;
 
     [SerializeField] private Transform cameraTransform;
