@@ -34,4 +34,9 @@ public class FixTextMeshPro : MonoBehaviour
         gameObject.GetComponent<TMP_Text>().color = color;
     }
 
+    public void ToggleAutoContainerSize(bool enabled)
+    {
+        gameObject.GetComponent<TMP_Text>().autoSizeTextContainer = enabled;
+    }
+
 }

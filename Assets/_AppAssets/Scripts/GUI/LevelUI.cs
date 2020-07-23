@@ -522,11 +522,11 @@ public class LevelUI : UIHandller
             {
                 if (toggle.transform.parent.GetSiblingIndex() != currentFairIndex)
                 {
-                    goBtn.interactable = true;
+                    goBtn.GetComponent<Image>().enabled = true;
                 }
                 else
                 {
-                    goBtn.interactable = false;
+                    goBtn.GetComponent<Image>().enabled = false;
                 }
             }
         }
