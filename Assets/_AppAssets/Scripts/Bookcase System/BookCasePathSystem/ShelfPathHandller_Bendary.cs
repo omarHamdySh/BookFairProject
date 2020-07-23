@@ -197,7 +197,8 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
     public void SetAllVisibleCategory(List<CategoryData> categories, int vendorIndex)
     {
         this.vendorIndex = vendorIndex;
-        vendorNameOntheBookcase.text = Cache.Instance.cachedData.allVendors[vendorIndex].name;
+        vendorNameOntheBookcase.SetText(Cache.Instance.cachedData.allVendors[vendorIndex].name);
+
         for (int i = 0; i < shelves.Length; i++)
         {
             if (i < categories.Count)

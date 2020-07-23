@@ -77,9 +77,10 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
     }
 
     #region Data
-    public void SetCategoryData(string categoryText, int categoryIndex)
+    public void SetCategoryData(string categoryTextData, int categoryIndex)
     {
-        this.categoryText.text = categoryText;
+        categoryText.SetText(categoryTextData);
+
         this.categoryIndex = categoryIndex;
     }
     #endregion
@@ -173,5 +174,4 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
         objPathIndex = _objectIndex;
     }
     #endregion
-
 }

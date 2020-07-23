@@ -29,7 +29,7 @@ public class LangSetting : MonoBehaviour
 
         if (fixTextMeshPro)
         {
-            fixTextMeshPro.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? arText : enText;
+            fixTextMeshPro.SetText((PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? arText : enText);
             if (enableAlignment)
             {
                 fixTextMeshPro.GetComponent<TextMeshProUGUI>().alignment = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? TextAlignmentOptions.Right : TextAlignmentOptions.Left;
@@ -51,13 +51,13 @@ public class LangSetting : MonoBehaviour
         {
             case ImportantStrings.arabicPPValue:
                 if (fixTextMeshPro)
-                    fixTextMeshPro.text = arText;
+                    fixTextMeshPro.SetText(arText);
                 else
                     fixText.text = arText;
                 break;
             case ImportantStrings.englishPPValue:
                 if (fixTextMeshPro)
-                    fixTextMeshPro.text = enText;
+                    fixTextMeshPro.SetText(enText);
                 else
                     fixText.text = enText;
                 break;

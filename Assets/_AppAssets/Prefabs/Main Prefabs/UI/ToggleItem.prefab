@@ -263,8 +263,8 @@ RectTransform:
   m_Father: {fileID: 3791347182602100359}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.3}
-  m_AnchorMax: {x: 0.055000003, y: 0.70000005}
+  m_AnchorMin: {x: 0, y: 0.26000002}
+  m_AnchorMax: {x: 0.05281549, y: 0.74}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -474,6 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0574ff4379db114b93371ffbb9c6fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myText: {fileID: 3073629352164282228}
   text: 'new '
   tashkeel: 0
   hinduNumbers: 0
@@ -511,5 +512,5 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 383.21, y: 50}
+  m_SizeDelta: {x: 479.84, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}

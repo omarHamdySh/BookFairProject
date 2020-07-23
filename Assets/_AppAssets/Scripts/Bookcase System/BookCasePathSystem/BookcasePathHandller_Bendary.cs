@@ -376,7 +376,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     public void PutDataOnCurrent()
     {
         BookcaseData tmpBookcaseData = Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData;
-        VendorNameOntheWorld.text = Cache.Instance.cachedData.allVendors[vendorIndex].name;
+        VendorNameOntheWorld.SetText(Cache.Instance.cachedData.allVendors[vendorIndex].name);
         LevelUI.Instance.indexOfColor = Cache.Instance.cachedData.allVendors[vendorIndex].vendorColorNumber;
         if (LevelUI.Instance.indexOfColor == fairSprites.Length - 1)
         {
@@ -409,7 +409,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         }
 
         int fairIndex = Cache.Instance.cachedData.allFairs.FindIndex(x => x.id == Cache.Instance.getFairId());
-        FairNameOntheWorld.text = Cache.Instance.cachedData.allFairs[fairIndex].fullName;
+        FairNameOntheWorld.SetText(Cache.Instance.cachedData.allFairs[fairIndex].fullName);
         fairContainer.sprite = fairSprites[Cache.Instance.cachedData.allFairs[fairIndex].mainColorNumber];
         currentEnvironmentTextureIndex = Cache.Instance.cachedData.allFairs[fairIndex].mainColorNumber;
         if (currentEnvironmentTextureIndex == fairSprites.Length - 1)

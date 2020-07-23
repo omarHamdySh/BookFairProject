@@ -105,11 +105,11 @@ public class TestBookRotation_Bendary : MonoBehaviour
     {
         if (bookDataIndex == -1)
         {
-            bookClickHereTxt.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "هذا كتاب وهمي" : "This Book Is dummy";
+            bookClickHereTxt.SetText((PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "هذا كتاب وهمي" : "This Book Is dummy");
         }
         else
         {
-            bookClickHereTxt.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "اضغط هنا لفتح صفحة الكتاب" : "Click here to open book link";
+            bookClickHereTxt.SetText((PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "اضغط هنا لفتح صفحة الكتاب" : "Click here to open book link");
         }
     }
 
@@ -145,7 +145,7 @@ public class TestBookRotation_Bendary : MonoBehaviour
 
     public void AssignBookDes(string description)
     {
-        bookDescription.text = description;
+        bookDescription.SetText(description);
     }
 
     public void AssignBookIndex(int bookDataIndex)

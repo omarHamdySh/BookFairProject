@@ -29,9 +29,9 @@ public class TutorialManager : MonoBehaviour
 
         while (true)
         {
-            tutorialTxt.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ?
+            tutorialTxt.SetText((PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ?
                 tutorialLines[randomIndexList[i]].arline :
-                tutorialLines[randomIndexList[i]].enline;
+                tutorialLines[randomIndexList[i]].enline);
             yield return new WaitUntil(() => ((timer <= 0) || Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return) || goToNextTxt));
             i = (i + 1) % randomIndexList.Count;
             timer = tutorialLines[randomIndexList[i]].delay;

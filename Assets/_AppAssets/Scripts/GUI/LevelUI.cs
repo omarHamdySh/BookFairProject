@@ -339,8 +339,8 @@ public class LevelUI : UIHandller
             this.searchPageResult = searchPageResult;
             this.totalSearchedBooksCount = totalSearchedBooksCount;
 
-            seachResultCountTxt.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "نتيجة البحث " + totalSearchedBooksCount + ((totalSearchedBooksCount > 2) ? " كتب" : (totalSearchedBooksCount == 1) ? " كتاب" : " كتابان") :
-                "Search Result " + totalSearchedBooksCount + ((totalSearchedBooksCount > 1) ? " books" : " book");
+            seachResultCountTxt.SetText((PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "نتيجة البحث " + totalSearchedBooksCount + ((totalSearchedBooksCount > 2) ? " كتب" : (totalSearchedBooksCount == 1) ? " كتاب" : " كتابان") :
+                "Search Result " + totalSearchedBooksCount + ((totalSearchedBooksCount > 1) ? " books" : " book"));
             searchPageIndexTxt.text = (searchPageIndex + 1) + " / " + (Mathf.CeilToInt((float)totalSearchedBooksCount / (float)searchedBookContainer.childCount));
 
             ToggleAllSearchCommponent(true);
@@ -350,7 +350,7 @@ public class LevelUI : UIHandller
         }
         else
         {
-            seachResultCountTxt.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "لا يوجد نتائج للبحث" : "There is no search result";
+            seachResultCountTxt.SetText((PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "لا يوجد نتائج للبحث" : "There is no search result");
             seachResultCountTxt.gameObject.SetActive(true);
         }
 
@@ -381,7 +381,7 @@ public class LevelUI : UIHandller
             book.gameObject.SetActive(true);
 
             // Put Data on the book
-            book.GetComponentInChildren<FixTextMeshPro>().text = searchPageResult[i].name;
+            book.GetComponentInChildren<FixTextMeshPro>().SetText(searchPageResult[i].name);
             if (searchPageResult[i].texture)
             {
                 book.GetChild(0).GetChild(0).GetComponent<Image>().sprite = Sprite.Create(searchPageResult[i].texture, new Rect(0, 0, searchPageResult[i].texture.width, searchPageResult[i].texture.height), new Vector2(0.5f, 0.5f));
@@ -498,7 +498,7 @@ public class LevelUI : UIHandller
                 for (int i = fairsScroll.content.childCount; i < Cache.Instance.cachedData.allFairs.Count; i++)
                 {
                     GameObject go = Instantiate(toggleScrollItem, fairsScroll.content);
-                    go.GetComponentInChildren<FixTextMeshPro>().text = Cache.Instance.cachedData.allFairs[i].fullName;
+                    go.GetComponentInChildren<FixTextMeshPro>().SetText(Cache.Instance.cachedData.allFairs[i].fullName);
                     go.GetComponentInChildren<Toggle>().group = fairsScroll.content.GetComponent<ToggleGroup>();
                     //go.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().color = colors[indexOfColor];
 
@@ -523,10 +523,12 @@ public class LevelUI : UIHandller
                 if (toggle.transform.parent.GetSiblingIndex() != currentFairIndex)
                 {
                     goBtn.GetComponent<Image>().enabled = true;
+                    goBtn.transform.GetChild(0).gameObject.SetActive(true);
                 }
                 else
                 {
                     goBtn.GetComponent<Image>().enabled = false;
+                    goBtn.transform.GetChild(0).gameObject.SetActive(false);
                 }
             }
         }
@@ -574,7 +576,7 @@ public class LevelUI : UIHandller
                 for (int i = SponsorsScroll.content.childCount; i < Cache.Instance.cachedData.allSponsors.Count; i++)
                 {
                     GameObject go = Instantiate(regularScrollItem, SponsorsScroll.content);
-                    go.GetComponentInChildren<FixTextMeshPro>().text = Cache.Instance.cachedData.allSponsors[i].name;
+                    go.GetComponentInChildren<FixTextMeshPro>().SetText(Cache.Instance.cachedData.allSponsors[i].name);
                 }
             }
         }
@@ -598,7 +600,7 @@ public class LevelUI : UIHandller
                 for (int i = publishersScroll.content.childCount; i < Cache.Instance.cachedData.allVendors.Count; i++)
                 {
                     GameObject go = Instantiate(toggleScrollItem, publishersScroll.content);
-                    go.GetComponentInChildren<FixTextMeshPro>().text = Cache.Instance.cachedData.allVendors[i].name;
+                    go.GetComponentInChildren<FixTextMeshPro>().SetText(Cache.Instance.cachedData.allVendors[i].name);
                     go.GetComponentInChildren<Toggle>().group = publishersScroll.content.GetComponent<ToggleGroup>();
                     //go.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().color = colors[indexOfColor];
 
