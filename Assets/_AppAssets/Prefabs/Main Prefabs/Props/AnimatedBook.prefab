@@ -302,6 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0574ff4379db114b93371ffbb9c6fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myText: {fileID: 571807278}
   text: Click here to open book link
   tashkeel: 0
   hinduNumbers: 0
@@ -905,6 +906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0574ff4379db114b93371ffbb9c6fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myText: {fileID: 8184655809947639784}
   text: 
   tashkeel: 0
   hinduNumbers: 0

@@ -25,6 +25,9 @@ public class BookcaseStateTransition : MonoBehaviour, IClickable
 
         // Bendary modify
         bookcasePathHandler.MoveRealBookcaseForward(CameraPath.instance.cameraSpeed);
+        LevelUI.Instance.backFromPageModeBtn.SetActive(false);
+        LevelUI.Instance.backFromBookModeBtn.SetActive(false);
+        LevelUI.Instance.backFromShelfModeBtn.SetActive(true);
     }
 
     public void unfocus()
@@ -36,6 +39,7 @@ public class BookcaseStateTransition : MonoBehaviour, IClickable
 
         // Bendary modify
         bookcasePathHandler.MoveRealBookcaseBackword(CameraPath.instance.cameraSpeed);
+        LevelUI.Instance.backFromShelfModeBtn.SetActive(false);
     }
 
 }

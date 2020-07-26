@@ -5965,7 +5965,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0.98976094, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000008452684}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5913314545637055263
@@ -7928,14 +7928,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AutoFindHolders: 1
   AllMenus:
-  - {fileID: 9085179269594612496}
-  - {fileID: 6296921554618493138}
-  - {fileID: 6428605535336070181}
-  - {fileID: 6461511929107865428}
-  - {fileID: 665630394452999690}
-  - {fileID: 6428605535681939500}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   CurActiveMenu: {fileID: 6428605535681939500}
-  AnimateFirstMenuAtStart: 1
+  AnimateFirstMenuAtStart: 0
   AllPopups: []
   CurActivePopup: {fileID: 0}
   AllSideMenus: []
@@ -12237,7 +12237,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0.98976094, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00012207031}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6441654017314387462
@@ -21805,6 +21805,8 @@ MonoBehaviour:
   BookcasePathHandller: {fileID: 0}
   backToUIModeBtn: {fileID: 6488089247330137836}
   backFromPageModeBtn: {fileID: 7558136371530611903}
+  backFromBookModeBtn: {fileID: 9154938165029966818}
+  backFromShelfModeBtn: {fileID: 4785858276239861603}
   gameplayColoredUI:
   - {fileID: 1669877772022835376}
   - {fileID: 6722792384627568147}

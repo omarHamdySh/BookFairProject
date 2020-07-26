@@ -29,6 +29,8 @@ public class PageStateTransition : MonoBehaviour, IClickable
 
         // Bendary modify
         bookcasePathHandler.MoveRealBookForward(CameraPath.instance.cameraSpeed, animatedBook);
+        LevelUI.Instance.backFromBookModeBtn.SetActive(false);
+        LevelUI.Instance.backFromShelfModeBtn.SetActive(false);
         LevelUI.Instance.backFromPageModeBtn.SetActive(true);
     }
 

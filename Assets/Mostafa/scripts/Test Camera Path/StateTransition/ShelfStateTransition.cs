@@ -25,6 +25,11 @@ public class ShelfStateTransition : MonoBehaviour, IClickable
         CameraPath.instance.gotoTarget();
         GameManager.Instance.gameplayFSMManager.toShelfState();
 
+        // Bendary modify
+        LevelUI.Instance.backFromPageModeBtn.SetActive(false);
+        LevelUI.Instance.backFromShelfModeBtn.SetActive(false);
+        LevelUI.Instance.backFromBookModeBtn.SetActive(true);
+        
     }
 
     public void unfocus()
@@ -36,6 +41,9 @@ public class ShelfStateTransition : MonoBehaviour, IClickable
         //CameraPath.instance.gotoTarget();
 
         GameManager.Instance.gameplayFSMManager.toBookCaseState();
+
+        // Bendary modify
+        LevelUI.Instance.backFromBookModeBtn.SetActive(false);
     }
 
 }
