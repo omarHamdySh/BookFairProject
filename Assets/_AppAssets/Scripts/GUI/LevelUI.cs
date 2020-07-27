@@ -485,7 +485,7 @@ public class LevelUI : UIHandller
     [SerializeField] private ScrollRect fairsScroll;
     [SerializeField] private Image[] fairColoredUI;
     [SerializeField] private Image fairPanel, fairLogoContainer;
-    [SerializeField] private Button goBtn;
+    [SerializeField] private Button fairGoBtn;
 
     private int currentFairIndex;
 
@@ -522,13 +522,13 @@ public class LevelUI : UIHandller
             {
                 if (toggle.transform.parent.GetSiblingIndex() != currentFairIndex)
                 {
-                    goBtn.GetComponent<Image>().enabled = true;
-                    goBtn.transform.GetChild(0).gameObject.SetActive(true);
+                    fairGoBtn.GetComponent<Image>().enabled = true;
+                    fairGoBtn.transform.GetChild(0).gameObject.SetActive(true);
                 }
                 else
                 {
-                    goBtn.GetComponent<Image>().enabled = false;
-                    goBtn.transform.GetChild(0).gameObject.SetActive(false);
+                    fairGoBtn.GetComponent<Image>().enabled = false;
+                    fairGoBtn.transform.GetChild(0).gameObject.SetActive(false);
                 }
             }
         }
@@ -588,6 +588,7 @@ public class LevelUI : UIHandller
     [SerializeField] private ScrollRect publishersScroll;
     [SerializeField] private Image[] publishersColoredUI;
     [SerializeField] private Image publishersPanel, publishersLogoContainer;
+    [SerializeField] private Button publisherGoBtn;
 
     private int currentPublisherIndex;
 
