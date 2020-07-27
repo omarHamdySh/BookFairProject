@@ -154,23 +154,23 @@ public class GameplayFSMManager : MonoBehaviour
         stateStack.Peek().OnStateUpdate();
         if (Input.GetKeyDown(KeyCode.Escape) && !LevelUI.Instance.isUIOpen)
         {
-            if (SelectionManager.instance.canSelect)
-            {
-                SelectionManager.instance.deselectCurrent();
-            }
+            //if (SelectionManager.instance.canSelect)
+            //{
+            //    SelectionManager.instance.deselectCurrent();
+            //}
         }
         if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) && !LevelUI.Instance.isUIOpen)
         {
-            if (SelectionManager.instance.canSelect)
-            {
+            //if (SelectionManager.instance.canSelect)
+            //{
 
-                LeanFinger f = new LeanFinger();
-                f.ScreenPosition.x = CameraPath.instance.cameraTransform.position.x;
-                f.ScreenPosition.y = CameraPath.instance.cameraTransform.position.y;
-                f.Set = true;
-                f.TapCount = 1;
-                Lean.Touch.LeanTouch.Fingers.Add(f);
-            }
+            //    LeanFinger f = new LeanFinger();
+            //    f.ScreenPosition.x = CameraPath.instance.cameraTransform.position.x;
+            //    f.ScreenPosition.y = CameraPath.instance.cameraTransform.position.y;
+            //    f.Set = true;
+            //    f.TapCount = 1;
+            //    Lean.Touch.LeanTouch.Fingers.Add(f);
+            //}
         }
     }
     /// <summary>
