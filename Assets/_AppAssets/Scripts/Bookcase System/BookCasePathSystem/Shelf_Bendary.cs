@@ -79,7 +79,15 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
     #region Data
     public void SetCategoryData(string categoryTextData, int categoryIndex)
     {
-        categoryText.SetText(categoryTextData);
+        if (!string.IsNullOrEmpty(categoryTextData))
+        {
+            categoryText.ToggleCanvasContainer(true);
+            categoryText.SetText(categoryTextData);
+        }
+        else
+        {
+            categoryText.ToggleCanvasContainer(false);
+        }
 
         this.categoryIndex = categoryIndex;
     }

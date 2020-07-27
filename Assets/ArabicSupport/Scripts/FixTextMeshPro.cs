@@ -47,6 +47,14 @@ public class FixTextMeshPro : MonoBehaviour
 
     public void SetTextColor(Color color)
     {
-        gameObject.GetComponent<TMP_Text>().color = color;
+        myText.color = color;
+    }
+
+    public void ToggleCanvasContainer(bool enabled)
+    {
+        if (myText.canvas)
+        {
+            myText.canvas.enabled = enabled;
+        }
     }
 }
