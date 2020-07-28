@@ -7342,11 +7342,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 390663108055306867, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 619033592165396478, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -7391,7 +7386,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 796428624}
+      objectReference: {fileID: 810183434}
+    - target: {fileID: 2497295161210171504, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: unfocus_state
+      objectReference: {fileID: 0}
     - target: {fileID: 3623399217429349197, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
         type: 3}
       propertyPath: m_Material
@@ -7432,19 +7432,9 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4531368213922327242, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4829511044236233708, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4829511044236233708, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5131428640296881500, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
@@ -7471,7 +7461,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1690232394}
+      objectReference: {fileID: 810183434}
+    - target: {fileID: 5745764530248676796, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: unfocus_state
+      objectReference: {fileID: 0}
     - target: {fileID: 6311205235380794718, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -7576,7 +7571,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 659426297}
+      objectReference: {fileID: 810183434}
+    - target: {fileID: 9095126922157806313, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: unfocus_state
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d42df88ec34fd44ea35cd48bdca69f1, type: 3}
 --- !u!1 &570652681
@@ -8005,9 +8005,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 659426295}
-  - component: {fileID: 659426298}
   - component: {fileID: 659426297}
-  - component: {fileID: 659426296}
   m_Layer: 0
   m_Name: PageStateCollider
   m_TagString: Untagged
@@ -8026,48 +8024,9 @@ Transform:
   m_LocalPosition: {x: -0.24, y: 2.52, z: 8.48}
   m_LocalScale: {x: 0.2954, y: 0.32186, z: 0.01007}
   m_Children: []
-  m_Father: {fileID: 693811390}
-  m_RootOrder: 4
+  m_Father: {fileID: 810183433}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &659426296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659426294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83dcd8dace8b7fe449d796b980cb121d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeselectOnUp: 1
-  HideWithFinger: 0
-  IsolateSelectingFingers: 0
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 659426297}
-        m_MethodName: select
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onSelectSet:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelectUp:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls: []
-  isSelected: 0
 --- !u!114 &659426297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8084,19 +8043,6 @@ MonoBehaviour:
   bookcasePathHandler: {fileID: 693811389}
   animatedBook: {fileID: 2124461682}
   closeBookAnimationDelay: 1.1
---- !u!65 &659426298
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659426294}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.353855, y: 2.016635, z: 1}
-  m_Center: {x: -0.67692757, y: 0, z: 0}
 --- !u!1 &679845427
 GameObject:
   m_ObjectHideFlags: 0
@@ -8351,11 +8297,9 @@ Transform:
   m_Children:
   - {fileID: 101733541}
   - {fileID: 713327689}
-  - {fileID: 796428627}
-  - {fileID: 1690232397}
-  - {fileID: 659426295}
   - {fileID: 766472969}
   - {fileID: 1410708812}
+  - {fileID: 810183433}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8620,7 +8564,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 693811390}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &774545498
 GameObject:
@@ -8832,9 +8776,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 796428627}
-  - component: {fileID: 796428626}
   - component: {fileID: 796428624}
-  - component: {fileID: 796428625}
   m_Layer: 0
   m_Name: BookcaseStateCollider
   m_TagString: Untagged
@@ -8855,58 +8797,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bookcasePathHandler: {fileID: 693811389}
---- !u!114 &796428625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796428623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83dcd8dace8b7fe449d796b980cb121d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeselectOnUp: 1
-  HideWithFinger: 0
-  IsolateSelectingFingers: 0
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 796428624}
-        m_MethodName: select
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onSelectSet:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelectUp:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls: []
-  isSelected: 0
---- !u!65 &796428626
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796428623}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &796428627
 Transform:
   m_ObjectHideFlags: 0
@@ -8918,9 +8808,59 @@ Transform:
   m_LocalPosition: {x: -0.234, y: 2.177, z: 12.86}
   m_LocalScale: {x: 5.76076, y: 5.9565296, z: 0.081}
   m_Children: []
-  m_Father: {fileID: 693811390}
-  m_RootOrder: 2
+  m_Father: {fileID: 810183433}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &810183432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 810183433}
+  - component: {fileID: 810183434}
+  m_Layer: 0
+  m_Name: stateTransition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &810183433
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810183432}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 796428627}
+  - {fileID: 1690232397}
+  - {fileID: 659426295}
+  m_Father: {fileID: 693811390}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &810183434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810183432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e74707fafa506c941b11dc42fe29cc98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shelfStateTransition: {fileID: 1690232394}
+  bookcaseStateTransition: {fileID: 796428624}
+  pageStateTransition: {fileID: 659426297}
+  current_state: 0
 --- !u!1 &834343526
 GameObject:
   m_ObjectHideFlags: 0
@@ -12123,7 +12063,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 693811390}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1413940584
 PrefabInstance:
@@ -17562,9 +17502,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1690232397}
-  - component: {fileID: 1690232396}
   - component: {fileID: 1690232394}
-  - component: {fileID: 1690232395}
   m_Layer: 0
   m_Name: ShelfStateCollider
   m_TagString: Untagged
@@ -17585,58 +17523,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   previous: {fileID: 796428624}
---- !u!114 &1690232395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1690232393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83dcd8dace8b7fe449d796b980cb121d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeselectOnUp: 1
-  HideWithFinger: 0
-  IsolateSelectingFingers: 0
-  onSelect:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1690232394}
-        m_MethodName: select
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onSelectSet:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelectUp:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeselect:
-    m_PersistentCalls:
-      m_Calls: []
-  isSelected: 0
---- !u!65 &1690232396
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1690232393}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1690232397
 Transform:
   m_ObjectHideFlags: 0
@@ -17648,8 +17534,8 @@ Transform:
   m_LocalPosition: {x: -0.371, y: 2.136, z: 10.2}
   m_LocalScale: {x: 4.9578, y: 3.17927, z: 0.081}
   m_Children: []
-  m_Father: {fileID: 693811390}
-  m_RootOrder: 3
+  m_Father: {fileID: 810183433}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1711053188
 GameObject:
@@ -19771,6 +19657,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Scene Camera and Controls
+      objectReference: {fileID: 0}
+    - target: {fileID: 2242039475632415290, guid: f6ad482656384b34592b06a209448ee8,
+        type: 3}
+      propertyPath: onFinger.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 810183434}
+    - target: {fileID: 2242039475632415290, guid: f6ad482656384b34592b06a209448ee8,
+        type: 3}
+      propertyPath: onFinger.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: focus_state
       objectReference: {fileID: 0}
     - target: {fileID: 2242039475955090976, guid: f6ad482656384b34592b06a209448ee8,
         type: 3}

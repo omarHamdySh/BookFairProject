@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class StateTransition : MonoBehaviour
 {
@@ -49,6 +50,7 @@ public class StateTransition : MonoBehaviour
             SelectionManager.instance.selectThis(transitions[current_state]);
             transitions[current_state].focus();
             current_state++;
+            LevelUI.Instance.backFromPageModeBtn.SetActive(true);
         }
     }
 
@@ -62,6 +64,18 @@ public class StateTransition : MonoBehaviour
                 SelectionManager.instance.deselectCurrent();
             }
             current_state--;
+            LevelUI.Instance.backFromPageModeBtn.SetActive(false);
+            if (current_state > 0)
+            {
+                StartCoroutine(ShowBackBtn());
+            }
         }
+    }
+
+    IEnumerator ShowBackBtn()
+    {
+        yield return new WaitUntil(() => !CameraPath.instance.cameraMoving);
+        LevelUI.Instance.backFromPageModeBtn.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 }

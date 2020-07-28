@@ -29,9 +29,6 @@ public class PageStateTransition : MonoBehaviour, IClickable
 
         // Bendary modify
         bookcasePathHandler.MoveRealBookForward(CameraPath.instance.cameraSpeed, animatedBook);
-        LevelUI.Instance.backFromBookModeBtn.SetActive(false);
-        LevelUI.Instance.backFromShelfModeBtn.SetActive(false);
-        LevelUI.Instance.backFromPageModeBtn.SetActive(true);
     }
 
     public void unfocus()
@@ -40,7 +37,6 @@ public class PageStateTransition : MonoBehaviour, IClickable
         LevelUI.Instance.backToUIModeBtn.interactable = false;
         animatedBook.CloseBook();
         animatedBook.RotateToOrign(closeBookAnimationDelay, unfocusCallback);
-        LevelUI.Instance.backFromPageModeBtn.SetActive(false);
     }
 
     void unfocusCallback()
@@ -52,7 +48,6 @@ public class PageStateTransition : MonoBehaviour, IClickable
 
     private void OnBookBackToOrign()
     {
-        GetComponent<BoxCollider>().enabled = true;
         SelectionManager.instance.selectThis(previous);
         //CameraPath.instance.setTarget(CameraPath.instance.bookNode);
         //CameraPath.instance.gotoTarget();

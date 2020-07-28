@@ -25,21 +25,16 @@ public class BookcaseStateTransition : MonoBehaviour, IClickable
 
         // Bendary modify
         bookcasePathHandler.MoveRealBookcaseForward(CameraPath.instance.cameraSpeed);
-        LevelUI.Instance.backFromPageModeBtn.SetActive(false);
-        LevelUI.Instance.backFromBookModeBtn.SetActive(false);
-        LevelUI.Instance.backFromShelfModeBtn.SetActive(true);
     }
 
     public void unfocus()
     {
-        GetComponent<BoxCollider>().enabled = true;
         CameraPath.instance.setTarget(CameraPath.instance.floorNode);
         CameraPath.instance.gotoTarget();
         GameManager.Instance.gameplayFSMManager.toFloorState();
 
         // Bendary modify
         bookcasePathHandler.MoveRealBookcaseBackword(CameraPath.instance.cameraSpeed);
-        LevelUI.Instance.backFromShelfModeBtn.SetActive(false);
     }
 
 }

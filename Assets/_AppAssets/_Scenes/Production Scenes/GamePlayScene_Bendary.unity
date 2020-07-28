@@ -8005,7 +8005,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 659426295}
-  - component: {fileID: 659426298}
   - component: {fileID: 659426297}
   m_Layer: 0
   m_Name: PageStateCollider
@@ -8044,19 +8043,6 @@ MonoBehaviour:
   bookcasePathHandler: {fileID: 693811389}
   animatedBook: {fileID: 2124461682}
   closeBookAnimationDelay: 1.1
---- !u!65 &659426298
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659426294}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.353855, y: 2.016635, z: 1}
-  m_Center: {x: -0.67692757, y: 0, z: 0}
 --- !u!1 &679845427
 GameObject:
   m_ObjectHideFlags: 0
@@ -8790,7 +8776,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 796428627}
-  - component: {fileID: 796428626}
   - component: {fileID: 796428624}
   m_Layer: 0
   m_Name: BookcaseStateCollider
@@ -8812,19 +8797,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bookcasePathHandler: {fileID: 693811389}
---- !u!65 &796428626
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 796428623}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &796428627
 Transform:
   m_ObjectHideFlags: 0
@@ -17530,7 +17502,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1690232397}
-  - component: {fileID: 1690232396}
   - component: {fileID: 1690232394}
   m_Layer: 0
   m_Name: ShelfStateCollider
@@ -17552,19 +17523,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   previous: {fileID: 796428624}
---- !u!65 &1690232396
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1690232393}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1690232397
 Transform:
   m_ObjectHideFlags: 0
