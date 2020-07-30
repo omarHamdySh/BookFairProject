@@ -136,8 +136,9 @@ public class LevelUI : UIHandller
     #region Gameplay
     [Header("Gameplay")]
     public Button backToUIModeBtn;
-    public GameObject backFromPageModeBtn, backFromBookModeBtn, backFromShelfModeBtn;
+    public GameObject backFromPageModeBtn;
     [SerializeField] private Image[] gameplayColoredUI;
+    [SerializeField] private Canvas gameplayCanvas;
 
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private Vector3 cameraUIPos;
@@ -522,13 +523,11 @@ public class LevelUI : UIHandller
             {
                 if (toggle.transform.parent.GetSiblingIndex() != currentFairIndex)
                 {
-                    fairGoBtn.GetComponent<Image>().enabled = true;
-                    fairGoBtn.transform.GetChild(0).gameObject.SetActive(true);
+                    fairGoBtn.gameObject.SetActive(true);
                 }
                 else
                 {
-                    fairGoBtn.GetComponent<Image>().enabled = false;
-                    fairGoBtn.transform.GetChild(0).gameObject.SetActive(false);
+                    fairGoBtn.gameObject.SetActive(false);
                 }
             }
         }
@@ -610,19 +609,23 @@ public class LevelUI : UIHandller
                         go.GetComponentInChildren<Toggle>().isOn = true;
                         currentPublisherIndex = i;
                     }
+                    go.GetComponentInChildren<Toggle>().onValueChanged.AddListener(CheckPublisherChanged);
                 }
             }
             UpdateCurrentPublisherOnUI();
         }
     }
 
+    /// <summary>
+    /// for update publisher toggle in ui if changed in real
+    /// </summary>
     private void UpdateCurrentPublisherOnUI()
     {
         publishersScroll.content.GetChild(BookcasePathHandller.vendorIndex).GetComponentInChildren<Toggle>().isOn = true;
         currentPublisherIndex = BookcasePathHandller.vendorIndex;
     }
 
-    public void CheckPublisherChanged()
+    public void CheckPublisherChanged(bool enabled)
     {
         if (publishersScroll.content.GetComponent<ToggleGroup>().ActiveToggles().First())
         {
@@ -631,11 +634,39 @@ public class LevelUI : UIHandller
             {
                 if (toggle.transform.parent.GetSiblingIndex() != currentPublisherIndex)
                 {
-                    endlessLoadingBar.SetActive(true);
-                    int stepsCount = 0;
-                    NearstDir nearstDir = CheckNearstDir(toggle.transform.parent.GetSiblingIndex(), ref stepsCount);
+                    publisherGoBtn.gameObject.SetActive(true);
+                }
+                else
+                {
+                    publisherGoBtn.gameObject.SetActive(false);
+                }
+            }
+        }
+    }
 
-                    BookcasePathHandller.MoveToIndex(nearstDir, stepsCount);
+    public void GoToSelectedPublisher()
+    {
+        Toggle toggle = publishersScroll.content.GetComponent<ToggleGroup>().ActiveToggles().First();
+        endlessLoadingBar.SetActive(true);
+        int stepsCount = 0;
+        NearstDir nearstDir = CheckNearstDir(toggle.transform.parent.GetSiblingIndex(), ref stepsCount);
+        publishersPanel.canvas.enabled = false;
+        gameplayCanvas.enabled = true;
+        TeleportToGamplay();
+
+        BookcasePathHandller.MoveToIndex(nearstDir, stepsCount);
+    }
+
+    public void CancelNewSelectedPublisher()
+    {
+        if (publishersScroll.content.GetComponent<ToggleGroup>().ActiveToggles().First())
+        {
+            Toggle toggle = publishersScroll.content.GetComponent<ToggleGroup>().ActiveToggles().First();
+            if (toggle)
+            {
+                if (toggle.transform.parent.GetSiblingIndex() != currentPublisherIndex)
+                {
+                    publishersScroll.content.GetChild(currentPublisherIndex).GetComponentInChildren<Toggle>().isOn = true;
                 }
             }
         }

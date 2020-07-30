@@ -44,9 +44,8 @@ public class StateTransition : MonoBehaviour
 
     public void focus_state()
     {
-        if (current_state < transitions.Count)
+        if (current_state < transitions.Count && !LevelUI.Instance.isUIOpen)
         {
-            Debug.Log("hmmmm");
             SelectionManager.instance.selectThis(transitions[current_state]);
             transitions[current_state].focus();
             current_state++;

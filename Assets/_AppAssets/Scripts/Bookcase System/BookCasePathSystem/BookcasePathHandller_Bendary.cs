@@ -12,6 +12,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     [HideInInspector] public int currentRealBookcaseInUse = 0;
     [SerializeField] private Transform realBookCaseForwordPos;
     [SerializeField] private Transform BookFowordPos;
+    [SerializeField] private StateTransition stateTransition;
 
     public int IndexOfCurrent;
     public Transform[] bookCasePathPoints;
@@ -233,11 +234,18 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
             }
         }
 
-        StartCoroutine(MoveToInexLoop(speed, stepsCount));
+        StartCoroutine(MoveToIndexLoop(speed, stepsCount));
     }
 
-    IEnumerator MoveToInexLoop(float speed, int stepCount)
+    IEnumerator MoveToIndexLoop(float speed, int stepCount)
     {
+        for(int i = stateTransition.current_state; i > 0; i--)
+        {
+            stateTransition.unfocus_state();
+            yield return new WaitUntil(() => !CameraPath.instance.cameraMoving);
+        }
+        
+
         for (int i = 0; i < stepCount; i++)
         {
             MoveAccordingToScrollSpeed(speed);
@@ -246,6 +254,8 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         }
 
         LevelUI.Instance.endlessLoadingBar.SetActive(false);
+        ZUIManager.Instance.OpenMenu("GamePlayContainer");
+        LevelUI.Instance.isUIOpen = false;
     }
 
     private void OnDepartureCall()
