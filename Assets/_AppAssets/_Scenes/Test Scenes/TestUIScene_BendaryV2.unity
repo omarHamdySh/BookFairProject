@@ -4818,6 +4818,7 @@ GameObject:
   m_Component:
   - component: {fileID: 693811390}
   - component: {fileID: 693811389}
+  - component: {fileID: 693811391}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -4979,6 +4980,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &693811391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693811388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d91d14e9970672542af4b0b06e803a85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitSeconds: 10
+  bookcasePathHandller: {fileID: 693811389}
 --- !u!1 &713327688
 GameObject:
   m_ObjectHideFlags: 0
@@ -13904,6 +13919,11 @@ PrefabInstance:
       propertyPath: pageStateColliderPos
       value: 
       objectReference: {fileID: 659426295}
+    - target: {fileID: 2242039476476766876, guid: f6ad482656384b34592b06a209448ee8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6ad482656384b34592b06a209448ee8, type: 3}
 --- !u!1 &6408712442130696662

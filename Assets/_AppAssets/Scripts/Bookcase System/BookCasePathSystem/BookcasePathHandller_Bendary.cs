@@ -22,6 +22,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     private float currentScrollSpeed;
     private bool isObjMoving = false;
     private Vector3 bookBackwordPos;
+    private Coroutine autoMoveCoroutine;
 
     public SpriteRenderer vendorContainer, fairContainer;
     public FixTextMeshPro VendorNameOntheWorld;
@@ -211,6 +212,37 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         return true;
     }
 
+    public void MoveBookcaseAutomatic()
+    {
+        float speed;
+        if (Random.Range(0, 2) == 0)
+        {
+            speed = 0.2f;
+        }
+        else
+        {
+            speed = -0.2f;
+        }
+        autoMoveCoroutine = StartCoroutine(AutoMoveCoroutine(speed));
+    }
+
+    IEnumerator AutoMoveCoroutine(float speed)
+    {
+        while (true)
+        {
+            MoveAccordingToScrollSpeed(speed);
+            yield return new WaitUntil(() => CheckAllObjectsLanded());
+        }
+    }
+
+    public void StopAutoMoveCoroutine()
+    {
+        if (autoMoveCoroutine != null)
+        {
+            StopCoroutine(autoMoveCoroutine);
+        }
+    }
+
     public void MoveToIndex(NearstDir nearstDir, int stepsCount)
     {
         float speed;
@@ -239,12 +271,12 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
 
     IEnumerator MoveToIndexLoop(float speed, int stepCount)
     {
-        for(int i = stateTransition.current_state; i > 0; i--)
+        for (int i = stateTransition.current_state; i > 0; i--)
         {
             stateTransition.unfocus_state();
             yield return new WaitUntil(() => !CameraPath.instance.cameraMoving);
         }
-        
+
 
         for (int i = 0; i < stepCount; i++)
         {
