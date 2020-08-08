@@ -202,7 +202,8 @@ public class BookPathHandller_Bendary : MonoBehaviour
                                     booksData[index].texture = (Texture2D)dummyTexture;
                                 }
                                 books[i].SetBookData(booksData[index], index);
-
+                                //New Book Scrolling Mapping Algorithm
+                                
                                 break;
                                 // Prepare cache more data on that direction
                             }
@@ -234,6 +235,8 @@ public class BookPathHandller_Bendary : MonoBehaviour
 
     public void SetAllVisibleBooks(List<BookData> booksData, int vendorIndex, int categoryIndex)
     {
+        //New Book Scrolling Mapping Algorithm
+
         this.vendorIndex = vendorIndex;
         this.categoryIndex = categoryIndex;
 
