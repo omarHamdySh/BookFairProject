@@ -144,6 +144,8 @@ public class LevelUI : UIHandller
     [SerializeField] private Vector3 cameraUIPos;
     [SerializeField] private Vector3 cameraUIRot;
     [SerializeField] private float teleportDelayBetweenUI_game;
+    [SerializeField] private GameObject categoryPanel;
+    [SerializeField] private FixTextMeshPro categoryTxt;
 
     private Vector3 currentCameraPos;
     private Vector3 currentCameraRot;
@@ -168,6 +170,12 @@ public class LevelUI : UIHandller
     private void CloseUI()
     {
         ToggleUI(false);
+    }
+
+    public void ToggleCategoryPanel(bool enabled, string text = "")
+    {
+        categoryPanel.SetActive(enabled);
+        categoryTxt.SetText(text);
     }
     #endregion
 

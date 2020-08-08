@@ -6,8 +6,9 @@ using TMPro;
 [ExecuteAlways]
 public class FixTextMeshPro : MonoBehaviour
 {
+    [SerializeField] private Canvas myCanvas;
     [SerializeField] private TMP_Text myText;
-    [SerializeField] [Multiline] private string text;
+    [Multiline] public string text;
     public bool tashkeel = true;
     public bool hinduNumbers = true;
 
@@ -43,6 +44,7 @@ public class FixTextMeshPro : MonoBehaviour
         {
             myText.text = "";
         }
+        this.text = myText.text;
     }
 
     public void SetTextColor(Color color)
@@ -52,9 +54,9 @@ public class FixTextMeshPro : MonoBehaviour
 
     public void ToggleCanvasContainer(bool enabled)
     {
-        if (myText.canvas)
+        if (myCanvas)
         {
-            myText.canvas.enabled = enabled;
+            myCanvas.enabled = enabled;
         }
     }
 }

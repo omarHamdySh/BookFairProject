@@ -13,10 +13,13 @@ public class BookPathHandller_Bendary : MonoBehaviour
 
     private float currentScrollSpeed;
     private bool isObjMoving = false;
+    private Shelf_Bendary myShelf;
+    private bool toggleCategoryPanelOnce;
 
     private void Start()
     {
         currentBookIndex = IndexOfCurrent;
+        myShelf = GetComponent<Shelf_Bendary>();
     }
 
     #region Data
@@ -27,8 +30,17 @@ public class BookPathHandller_Bendary : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.Instance.gameplayFSMManager.getCurrentState() == GameplayState.Shelf && GetComponent<Shelf_Bendary>().GetIsCurretn() && GetComponent<Shelf_Bendary>().GetIsCurrentBookcase() && !LevelUI.Instance.isUIOpen)
+        if (GameManager.Instance.gameplayFSMManager.getCurrentState() == GameplayState.Shelf && myShelf.GetIsCurretn() && myShelf.GetIsCurrentBookcase() && !LevelUI.Instance.isUIOpen)
         {
+            #region CategoryUIPanel
+            if (!toggleCategoryPanelOnce)
+            {
+                LevelUI.Instance.ToggleCategoryPanel(true, myShelf.categoryText.text);
+                myShelf.categoryText.ToggleCanvasContainer(false);
+                toggleCategoryPanelOnce = true;
+            }
+            #endregion
+
             currentScrollSpeed = GameManager.Instance.pathData.ShelfScrollSpeed;
             if (isObjMoving && currentScrollSpeed == 0)
             {
@@ -49,6 +61,15 @@ public class BookPathHandller_Bendary : MonoBehaviour
                     PrepareData();
                     MoveAccordingToScrollSpeed();
                 }
+            }
+        }
+        else if (GameManager.Instance.gameplayFSMManager.getCurrentState() != GameplayState.Shelf )
+        {
+            if (toggleCategoryPanelOnce)
+            {
+                toggleCategoryPanelOnce = false;
+                LevelUI.Instance.ToggleCategoryPanel(false);
+                myShelf.categoryText.ToggleCanvasContainer(true);
             }
         }
     }
@@ -229,7 +250,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
             }
             else
             {
-                //But the Dommy Data
+                //Put the Dommy Data
                 books[i].SetBookData(new BookData()
                 {
                     texture = (Texture2D)dummyTexture
