@@ -5765,6 +5765,21 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2079113572399958257, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079113572399958257, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079113572399958257, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2490238176828470381, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
         type: 3}
       propertyPath: m_Material
@@ -6015,6 +6030,31 @@ PrefabInstance:
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 1890772186}
+    - target: {fileID: 6720078383122125631, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6720078383122125631, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6720078383122125631, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492190558045116978, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 18.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7492190558045116978, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 37.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8127862681802765096, guid: 0d42df88ec34fd44ea35cd48bdca69f1,
         type: 3}
       propertyPath: m_Material
@@ -8552,6 +8592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0574ff4379db114b93371ffbb9c6fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myCanvas: {fileID: 0}
   myText: {fileID: 1057850879}
   text: Vendor Name
   tashkeel: 0
@@ -16316,6 +16357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0574ff4379db114b93371ffbb9c6fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myCanvas: {fileID: 0}
   myText: {fileID: 1898088650}
   text: 'Fair Name
 
