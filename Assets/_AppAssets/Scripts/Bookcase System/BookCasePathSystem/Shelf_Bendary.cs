@@ -14,7 +14,7 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
 
 
     #region Data
-    [SerializeField] private FixTextMeshPro categoryText;
+    public FixTextMeshPro categoryText;
     public int categoryIndex = -1;
     #endregion
 
