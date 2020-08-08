@@ -5,6 +5,7 @@ using UnityEngine;
 public class BookcaseAutoMovement : MonoBehaviour
 {
     [SerializeField] private float waitSeconds = 0;
+    [SerializeField] private float delayAfterMove = 0;
     [SerializeField] private BookcasePathHandller_Bendary bookcasePathHandller;
 
     private Vector3 lastMousePos;
@@ -28,7 +29,7 @@ public class BookcaseAutoMovement : MonoBehaviour
                 isAutoMoveOn = AutoMoveMode.running;
 
                 // Call Move Bookcases on random diraction
-                bookcasePathHandller.MoveBookcaseAutomatic();
+                bookcasePathHandller.MoveBookcaseAutomatic(delayAfterMove);
             }
         }
         else

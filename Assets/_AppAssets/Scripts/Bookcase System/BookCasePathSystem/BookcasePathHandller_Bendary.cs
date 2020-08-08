@@ -212,7 +212,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         return true;
     }
 
-    public void MoveBookcaseAutomatic()
+    public void MoveBookcaseAutomatic(float delayAfterMove)
     {
         float speed;
         if (Random.Range(0, 2) == 0)
@@ -223,15 +223,16 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         {
             speed = -0.2f;
         }
-        autoMoveCoroutine = StartCoroutine(AutoMoveCoroutine(speed));
+        autoMoveCoroutine = StartCoroutine(AutoMoveCoroutine(speed, delayAfterMove));
     }
 
-    IEnumerator AutoMoveCoroutine(float speed)
+    IEnumerator AutoMoveCoroutine(float speed, float delayAfterMove)
     {
         while (true)
         {
             MoveAccordingToScrollSpeed(speed);
             yield return new WaitUntil(() => CheckAllObjectsLanded());
+            yield return new WaitForSeconds(delayAfterMove);
         }
     }
 
