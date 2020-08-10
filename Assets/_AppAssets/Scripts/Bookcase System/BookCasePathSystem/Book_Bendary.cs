@@ -7,6 +7,7 @@ public class Book_Bendary : MonoBehaviour, IScrollable
 {
     public BookPathHandller_Bendary bookPathHandller;
     public MeshRenderer bookBodyMeshRenderer;
+    [SerializeField] private FixTextMeshPro bookTitle1, bookTitle2;
 
     private int objPathIndex = 0;
     private bool isLanded = true;
@@ -56,12 +57,25 @@ public class Book_Bendary : MonoBehaviour, IScrollable
     }
 
     #region Data
-    public void SetBookData(BookData bookData, int bookDataIndex)
+    public void SetBookData(BookData bookData, int bookDataIndex, bool hasCover)
     {
         bookBodyMeshRenderer.material.mainTexture = bookData.texture;
         this.bookDataIndex = bookDataIndex;
         buyURL = bookData.url;
         description = bookData.description;
+        if (!hasCover && bookDataIndex != -1)
+        {
+            bookTitle1.gameObject.SetActive(true);
+            bookTitle2.gameObject.SetActive(true);
+
+            bookTitle1.SetText(bookData.name);
+            bookTitle2.SetText(bookData.name);
+        }
+        else
+        {
+            bookTitle1.gameObject.SetActive(false);
+            bookTitle2.gameObject.SetActive(false);
+        }
     }
     #endregion
     #endregion

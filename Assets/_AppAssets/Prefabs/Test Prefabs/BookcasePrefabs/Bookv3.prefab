@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bookPathHandller: {fileID: 0}
   bookBodyMeshRenderer: {fileID: 1817617497607238609}
+  bookTitle1: {fileID: 1102166203832155580}
+  bookTitle2: {fileID: 7948659004771232369}
   bookDataIndex: 0
   buyURL: 
   description: 
@@ -270,8 +272,8 @@ MonoBehaviour:
   myCanvas: {fileID: 0}
   myText: {fileID: 1817617497598742037}
   text: sampleText
-  tashkeel: 1
-  hinduNumbers: 1
+  tashkeel: 0
+  hinduNumbers: 0
 --- !u!1 &1817617497607238615
 GameObject:
   m_ObjectHideFlags: 0

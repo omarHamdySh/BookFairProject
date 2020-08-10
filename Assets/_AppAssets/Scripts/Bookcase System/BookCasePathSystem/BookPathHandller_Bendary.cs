@@ -200,7 +200,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
                                 {
                                     booksData[index].texture = (Texture2D)dummyTexture;
                                 }
-                                books[i].SetBookData(booksData[index], index);
+                                books[i].SetBookData(booksData[index], index, (booksData[index].texture != (Texture2D)dummyTexture));
                                 //New Book Scrolling Mapping Algorithm
 
                                 break;
@@ -220,7 +220,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
                                 {
                                     booksData[index].texture = (Texture2D)dummyTexture;
                                 }
-                                books[i].SetBookData(booksData[index], index);
+                                books[i].SetBookData(booksData[index], index, (booksData[index].texture != (Texture2D)dummyTexture));
 
                                 break;
                                 // Prepare cache more data on that direction
@@ -248,7 +248,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
                     booksData[i].texture = (Texture2D)dummyTexture;
                 }
 
-                books[i].SetBookData(booksData[i], i);
+                books[i].SetBookData(booksData[i], i, (booksData[i].texture != (Texture2D)dummyTexture));
             }
             else
             {
@@ -256,7 +256,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
                 books[i].SetBookData(new BookData()
                 {
                     texture = (Texture2D)dummyTexture
-                }, -1);
+                }, -1, false);
             }
         }
     }
