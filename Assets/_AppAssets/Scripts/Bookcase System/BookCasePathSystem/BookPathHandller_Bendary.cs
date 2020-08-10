@@ -13,13 +13,12 @@ public class BookPathHandller_Bendary : MonoBehaviour
 
     private float currentScrollSpeed;
     private bool isObjMoving = false;
-    private Shelf_Bendary myShelf;
+    [SerializeField] private Shelf_Bendary myShelf;
     private bool toggleCategoryPanelOnce;
 
     private void Start()
     {
         currentBookIndex = IndexOfCurrent;
-        myShelf = GetComponent<Shelf_Bendary>();
     }
 
     #region Data
@@ -63,7 +62,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
                 }
             }
         }
-        else if (GameManager.Instance.gameplayFSMManager.getCurrentState() != GameplayState.Shelf )
+        else if (GameManager.Instance.gameplayFSMManager.getCurrentState() != GameplayState.Shelf)
         {
             if (toggleCategoryPanelOnce)
             {
@@ -157,7 +156,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
         {
             foreach (Book_Bendary i in books)
             {
-                i.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                i.transform.localRotation = Quaternion.Euler(0, myShelf.nonCurrentBookRotataion[i.getObjectIndex()], 0);
             }
         }
     }
@@ -203,7 +202,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
                                 }
                                 books[i].SetBookData(booksData[index], index);
                                 //New Book Scrolling Mapping Algorithm
-                                
+
                                 break;
                                 // Prepare cache more data on that direction
                             }

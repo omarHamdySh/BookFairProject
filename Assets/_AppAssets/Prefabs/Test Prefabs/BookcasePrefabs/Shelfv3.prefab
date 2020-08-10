@@ -191,6 +191,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shelfPathHandller: {fileID: 0}
+  nonCurrentBookRotataion:
+  - 0
+  - 0
+  - 90
+  - 90
+  - 90
+  - 90
+  - 90
+  - 0
+  - 0
   categoryText: {fileID: 2998135036092715376}
   categoryIndex: -1
 --- !u!114 &4119797456769980964
@@ -230,6 +240,7 @@ MonoBehaviour:
   - {fileID: 2753611471049449117}
   - {fileID: 7369154050852235737}
   - {fileID: 1998689908180508608}
+  myShelf: {fileID: 8417674448610182268}
   dummyTexture: {fileID: 2800000, guid: 149fb66db35131546a88355c392a8d3e, type: 3}
 --- !u!1 &8006585386587463477
 GameObject:

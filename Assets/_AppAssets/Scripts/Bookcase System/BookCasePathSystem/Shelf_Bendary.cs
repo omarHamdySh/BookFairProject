@@ -6,6 +6,7 @@ using DG.Tweening;
 public class Shelf_Bendary : MonoBehaviour, IScrollable
 {
     public ShelfPathHandller_Bendary shelfPathHandller;
+    public float[] nonCurrentBookRotataion;
 
     private int objPathIndex = 0;
     private bool isLanded = true;
@@ -137,7 +138,7 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
                 {
                     foreach (Book_Bendary i in GetComponent<BookPathHandller_Bendary>().books)
                     {
-                        i.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                        i.transform.localRotation = Quaternion.Euler(0, nonCurrentBookRotataion[i.getObjectIndex()], 0);
                     }
                 }
 
