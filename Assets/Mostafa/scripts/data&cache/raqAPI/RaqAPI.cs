@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 public class RaqAPI : MonoBehaviour
 {
 
-    private string baseUrl = "https://raaqeem.com:1000";
+    private string baseUrl = "https://raaqeem.com:5050";
     public ApiAuth authInfo;
     public int languageId = 1;
     public int fairId = -1;
@@ -42,7 +42,10 @@ public class RaqAPI : MonoBehaviour
 
     public void Init()
     {
-        StartCoroutine(GetAuthToken());
+        //StartCoroutine(GetAuthToken());
+        authInfo = new ApiAuth();
+        authInfo.access_token = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE1OTcxNzk3NTcsImV4cCI6MTkxMjUzOTc1NywiaXNzIjoiaHR0cHM6Ly9yYWFxZWVtLmNvbTo1MDUwIiwiYXVkIjpbImh0dHBzOi8vcmFhcWVlbS5jb206NTA1MC9yZXNvdXJjZXMiLCJub3BfYXBpIl0sImNsaWVudF9pZCI6IjQwMmY0YzdkLTE0NTMtNGY0Yy05MDQxLTY4NGNiYjVkYWQ4YyIsInN1YiI6IjQwMmY0YzdkLTE0NTMtNGY0Yy05MDQxLTY4NGNiYjVkYWQ4YyIsImF1dGhfdGltZSI6MTU5NzE3OTc1NywiaWRwIjoibG9jYWwiLCJzY29wZSI6WyJub3BfYXBpIiwib2ZmbGluZV9hY2Nlc3MiXSwiYW1yIjpbInB3ZCJdfQ.lJqrJ2asb76xU_cCCWJorIctEEpl8CIZcJBzbTijTfz5a-KvAVR2lNDfmkrOspZsqZKnfoEnhHxHcuLbCd5Lb48A6UgJWq1HAWGm5BgBNO54OwfTyfbR6hO6aKurl5EnuCovKsVSIAUJLgvvKinMLsQykGZG5EYTcwdMtVTyeBcCUbUqOG6tjjSafRpA9oDjozgzXBngwD-KwrgerCjVn_elkP5f3UfK1A1JjhQrL6XdtcpTsRbhl6EPb-gPvRWqhFF0XRZ6mebH_XFGk6VEFGso8b0N67Tmfg6JgeJJY5wQjYVL6PEg8DS6ScVc2MsY4rLqMOUKSxL2ZZrWe6ohqw";
+        authTokenLoadedEvent.Invoke();
     }
 
     void Start()
@@ -156,13 +159,13 @@ public class RaqAPI : MonoBehaviour
         //transmitting = false;
     }
 
-    public IEnumerator bestSellers(int fairId, int limit, int page)
+    public IEnumerator bestSellers(string fairSlug, int limit, int page)
     {
         //temporary until badawy gives us another endpoint
         string uri = baseUrl + "/api/products/best_seller_binary?";
 
         if (limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
-        if (fairId >= 0) uri += "&fairId=" + fairId.ToString();
+        if (fairSlug != null) uri += "&BookFairSlug=" + fairSlug;
 
         ProductResult res = new ProductResult();
 
