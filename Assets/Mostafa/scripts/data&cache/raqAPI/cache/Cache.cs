@@ -141,6 +141,13 @@ public class Cache : MonoBehaviour
 
     }
 
+
+    public void retrieveBestSellers(int limit, int page, int fairId)
+    {
+        cachedData.BestSellers = new List<BookData>();
+        StartCoroutine(api.bestSellers(fairId,limit, page));
+    }
+
     public void setFairId(int id)
     {
         api.fairId = id;
@@ -215,6 +222,34 @@ public class Cache : MonoBehaviour
 
 
             }
+        }
+    }
+
+    public void cacheBestSeller(ProductResult res)
+    {
+        if (res != null)
+        {
+            foreach (Product book in res.prodcutList)
+            {
+                BookData tmpBook = new BookData();
+                tmpBook.url = api.makeBookUrl(book.productSlug);
+                tmpBook.id = book.id;
+                tmpBook.texture = null;
+                tmpBook.description = book.shortDescription;
+                tmpBook.name = book.name;
+                if (book.defaultPicture != "" && book.defaultPicture != null)
+                {
+                    tmpBook.imgString = Convert.ToBase64String(Decompress(Convert.FromBase64String(book.defaultPicture)));
+                    Texture2D tmpTexture = new Texture2D(1, 1);
+                    tmpTexture.LoadImage(Convert.FromBase64String(tmpBook.imgString));
+                    tmpTexture.Apply();
+                    tmpBook.texture = tmpTexture;
+                }
+                //if(tmpBook.imgString != "" && tmpBook.imgString != null)tmpBook.texture.LoadImage(Decompress(Convert.FromBase64String(tmpBook.imgString)));
+                Debug.Log(tmpBook.name);
+                cachedData.BestSellers.Add(tmpBook);
+            }
+           
         }
     }
 

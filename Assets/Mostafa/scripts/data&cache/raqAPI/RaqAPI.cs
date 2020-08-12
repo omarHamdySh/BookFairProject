@@ -54,7 +54,7 @@ public class RaqAPI : MonoBehaviour
     [ContextMenu("foo")]
     void foo()
     {
-        Debug.Log(authInfo.access_token);
+        Cache.Instance.retrieveBestSellers(0, 0, fairId);
     }
 
 
@@ -151,6 +151,38 @@ public class RaqAPI : MonoBehaviour
         if (res != null)
         {
             Cache.Instance.cacheSearchResult(res);
+        }
+
+        //transmitting = false;
+    }
+
+    public IEnumerator bestSellers(int fairId, int limit, int page)
+    {
+        //temporary until badawy gives us another endpoint
+        string uri = baseUrl + "/api/products/best_seller_binary?";
+
+        if (limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
+        if (fairId >= 0) uri += "&fairId=" + fairId.ToString();
+
+        ProductResult res = new ProductResult();
+
+        UnityWebRequest www = UnityWebRequest.Get(uri);
+
+        www.SetRequestHeader("Authorization", authInfo.token_type + " " + authInfo.access_token);
+        www.SetRequestHeader("customerId", "1");
+        www.SetRequestHeader("Content-Type", "application/json");
+        www.SetRequestHeader("LanguageId", languageId.ToString());
+
+        transmitting = true;
+
+        yield return www.SendWebRequest();
+
+        Debug.Log(www.downloadHandler.text);
+        res = JsonUtility.FromJson<ProductResult>(www.downloadHandler.text);
+        
+        if (res != null)
+        {
+            Cache.Instance.cacheBestSeller(res);
         }
 
         //transmitting = false;
