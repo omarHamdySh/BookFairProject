@@ -1,18 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StatisticsUIHandller : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    #region Logic
+    [SerializeField] private Canvas myCanvas;
+    [SerializeField] private GameObject[] containers;
+    [SerializeField] private GameObject statisticsItemPrefab;
+    [SerializeField] private Button skipBtn;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
+    #endregion
+
+    #region NumberOfPublisher
+    [Header("Number of Publisher Menu")]
+    [SerializeField] private FixTextMeshPro numberOfPublisherTxt;
+    #endregion
+
+    #region NumberOfBooksInPublisher
+    [Header("Number of books in Publisher Menu")]
+    [SerializeField] private FixTextMeshPro numberOfBooksPublisherTxt;
+    #endregion
+
+    #region NumberOfBooksInFair
+    [Header("Number of  books in Fair Menu")]
+    [SerializeField] private FixTextMeshPro numberOfBooksFairTxt;
+    #endregion
+
+    #region BestSellingBooksInfair
+    [Header("Best Selling Books In fair Menu")]
+    [SerializeField] private ScrollRect bestSellingBooksSV;
+    #endregion
+
+    #region FairSponsors
+    [Header("Fair Sponsors Menu")]
+    [SerializeField] private ScrollRect fairSponsorsSV;
+    #endregion
 }
