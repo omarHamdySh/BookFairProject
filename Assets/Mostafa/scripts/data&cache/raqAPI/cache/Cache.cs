@@ -142,10 +142,11 @@ public class Cache : MonoBehaviour
     }
 
 
-    public void retrieveBestSellers(int limit, int page, int fairId)
+    public void retrieveBestSellers(int limit, int page, int fairId = -1)
     {
+        if (fairId == -1) fairId = api.fairId;
         cachedData.BestSellers = new List<BookData>();
-        StartCoroutine(api.bestSellers(fairId,limit, page));
+        StartCoroutine(api.bestSellers(cachedData.allFairs.Find(f => f.id == fairId).bookFairSlug ,limit, page));
     }
 
     public void setFairId(int id)
