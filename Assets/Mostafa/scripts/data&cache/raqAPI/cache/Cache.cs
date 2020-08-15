@@ -246,7 +246,6 @@ public class Cache : MonoBehaviour
                     tmpBook.texture = tmpTexture;
                 }
                 //if(tmpBook.imgString != "" && tmpBook.imgString != null)tmpBook.texture.LoadImage(Decompress(Convert.FromBase64String(tmpBook.imgString)));
-                Debug.Log(tmpBook.name);
                 cachedData.BestSellers.Add(tmpBook);
             }
            

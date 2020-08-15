@@ -183,8 +183,6 @@ public class RaqAPI : MonoBehaviour
         
         if (res != null)
         {
-            Debug.Log(res);
-            Debug.Log(www.downloadHandler.text);
             Cache.Instance.cacheBestSeller(res);
         }
 

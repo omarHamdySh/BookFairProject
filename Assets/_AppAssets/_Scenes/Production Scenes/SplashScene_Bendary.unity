@@ -215,6 +215,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0574ff4379db114b93371ffbb9c6fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myCanvas: {fileID: 0}
+  myText: {fileID: 964180593}
   text: 
   tashkeel: 0
   hinduNumbers: 0
@@ -992,6 +994,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1882423683}
+        m_MethodName: retrieveBestSellers
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   dataArrivedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1395,6 +1408,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TMP SubMeshUI [Cairo-Bold SDF Material + LiberationSans SDF Atlas]
+      objectReference: {fileID: 0}
+    - target: {fileID: 7698790283700473507, guid: 8d18dc8e5e3575b4192a593acae3d1f4,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7698790283700473507, guid: 8d18dc8e5e3575b4192a593acae3d1f4,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d18dc8e5e3575b4192a593acae3d1f4, type: 3}
