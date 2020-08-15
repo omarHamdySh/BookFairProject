@@ -146,7 +146,7 @@ public class Cache : MonoBehaviour
     {
         if (fairId == -1) fairId = api.fairId;
         cachedData.BestSellers = new List<BookData>();
-        StartCoroutine(api.bestSellers(cachedData.allFairs.Find(f => f.id == fairId).bookFairSlug ,limit, page));
+        StartCoroutine(api.bestSellers(api.fairId ,limit, page));
     }
 
     public void setFairId(int id)
@@ -393,6 +393,20 @@ public class Cache : MonoBehaviour
             }
         }
     }
+
+
+    ////misc functions///////////////////////////////////////////////////
+    public int numBooksInVendor(BookcaseData bookcase)
+    {
+        int n = 0;
+
+        foreach(CategoryData c in bookcase.categories)
+        {
+            n += c.total;
+        }
+
+        return n;
+    }    
 
 
 }
