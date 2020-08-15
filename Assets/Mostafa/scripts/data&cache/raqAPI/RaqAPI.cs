@@ -55,7 +55,7 @@ public class RaqAPI : MonoBehaviour
     [ContextMenu("foo")]
     void foo()
     {
-        Cache.Instance.retrieveBestSellers(0, 0, fairId);
+        Cache.Instance.retrieveBestSellers();
     }
 
 
@@ -183,6 +183,8 @@ public class RaqAPI : MonoBehaviour
         
         if (res != null)
         {
+            Debug.Log(res);
+            Debug.Log(www.downloadHandler.text);
             Cache.Instance.cacheBestSeller(res);
         }
 
@@ -248,6 +250,8 @@ public class RaqAPI : MonoBehaviour
 
         if (res != null)
         {
+            Debug.Log(res);
+            Debug.Log(www.downloadHandler.text);
             Cache.Instance.cacheAllCategories(res);
         }
 
@@ -277,6 +281,8 @@ public class RaqAPI : MonoBehaviour
 
         if (res != null)
         {
+            Debug.Log(res);
+            Debug.Log(www.downloadHandler.text);
             Cache.Instance.cacheAllVendors(res);
             vendorsRetrievedEvent.Invoke();//load peliminary data
             vendorsRetrievedEvent.RemoveAllListeners();
@@ -306,6 +312,8 @@ public class RaqAPI : MonoBehaviour
         res = JsonUtility.FromJson<SponsorsResult>(www.downloadHandler.text);
         if (res != null)
         {
+            Debug.Log(res);
+            Debug.Log(www.downloadHandler.text);
             Cache.Instance.cacheAllSponsors(res);
         }
 
@@ -334,6 +342,8 @@ public class RaqAPI : MonoBehaviour
         res = JsonUtility.FromJson<FairResult>(www.downloadHandler.text);
         if (res != null)
         {
+            Debug.Log(res);
+            Debug.Log(www.downloadHandler.text);
             Cache.Instance.cacheAllFairs(res);
             fairsRetrievedEvent.Invoke();
         }

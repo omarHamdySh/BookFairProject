@@ -26,7 +26,7 @@ public class StatisticsUIHandller : MonoBehaviour
             Cache cache = Cache.Instance;
             ChangeNumberPublisher(cache.cachedData.allVendors.Count);
             //ChangeNumberOfBooksInPublisher(cache.cachedData.allVendors[0].bookcaseData.)
-            ChangeNumberOfBooksInFair(cache.cachedData.allFairs[cache.getFairId()].booksCount);
+            //ChangeNumberOfBooksInFair(cache.cachedData.allFairs[cache.getFairId()].booksCount);
             //PrepareBestSellingSV(cache.cachedData.BestSellers);
             PrepareFairSponsorsSV(cache.cachedData.allSponsors);
         }
