@@ -9,6 +9,7 @@ public class StateTransition : MonoBehaviour
     public ShelfStateTransition shelfStateTransition;
     public BookcaseStateTransition bookcaseStateTransition;
     public PageStateTransition pageStateTransition;
+    [SerializeField] private StatisticsUIHandller statistics;
 
     private List<IClickable> transitions;
 
@@ -50,6 +51,10 @@ public class StateTransition : MonoBehaviour
             transitions[current_state].focus();
             current_state++;
             LevelUI.Instance.backFromPageModeBtn.SetActive(true);
+            if (statistics)
+            {
+                statistics.ToggleAllStatisticsUI(false);
+            }
         }
     }
 
@@ -67,6 +72,13 @@ public class StateTransition : MonoBehaviour
             if (current_state > 0)
             {
                 StartCoroutine(ShowBackBtn());
+            }
+            else if (current_state == 0)
+            {
+                if (statistics)
+                {
+                    statistics.ToggleAllStatisticsUI(true);
+                }
             }
         }
     }

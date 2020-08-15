@@ -929,7 +929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1409,8 +1409,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2160,11 +2160,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCanvas: {fileID: 8339673173986035289}
+  statisticsBoard: {fileID: 1095969168148257700}
   containers:
   - {fileID: 8339673174005461459}
-  - {fileID: 8339673172966387326}
   - {fileID: 8339673174101158091}
-  - {fileID: 8339673172519828087}
   - {fileID: 8339673172156410259}
   statisticsItemPrefab: {fileID: 876927932126925439, guid: 957cf32d08039f94ba285367947b826c,
     type: 3}
@@ -2421,6 +2420,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bced5ad09ee1e634ea6a0ba862a53c56, type: 3}
+--- !u!23 &1095969168148257700 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8973935411801189434, guid: bced5ad09ee1e634ea6a0ba862a53c56,
+    type: 3}
+  m_PrefabInstance: {fileID: 8339673173376415646}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7934422503219165163 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2134921361033445493, guid: bced5ad09ee1e634ea6a0ba862a53c56,

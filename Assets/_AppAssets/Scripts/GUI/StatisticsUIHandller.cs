@@ -8,6 +8,7 @@ public class StatisticsUIHandller : MonoBehaviour
 {
     #region Logic
     [SerializeField] private Canvas myCanvas;
+    [SerializeField] private MeshRenderer statisticsBoard;
     [SerializeField] private GameObject[] containers;
     [SerializeField] private GameObject statisticsItemPrefab;
     [SerializeField] private Button skipBtn;
@@ -26,7 +27,7 @@ public class StatisticsUIHandller : MonoBehaviour
             ChangeNumberPublisher(cache.cachedData.allVendors.Count);
             //ChangeNumberOfBooksInPublisher(cache.cachedData.allVendors[0].bookcaseData.)
             ChangeNumberOfBooksInFair(cache.cachedData.allFairs[cache.getFairId()].booksCount);
-            PrepareBestSellingSV(cache.cachedData.BestSellers);
+            //PrepareBestSellingSV(cache.cachedData.BestSellers);
             PrepareFairSponsorsSV(cache.cachedData.allSponsors);
         }
 
@@ -96,6 +97,7 @@ public class StatisticsUIHandller : MonoBehaviour
     {
         EventSystem.current.SetSelectedGameObject(null);
         myCanvas.enabled = enabled;
+        statisticsBoard.enabled = enabled;
     }
 
     #endregion
