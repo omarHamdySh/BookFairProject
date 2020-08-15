@@ -147,7 +147,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
 
             if (statistics)
             {
-                //statistics.ChangeNumberOfBooksInPublisher(Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.);
+                statistics.ChangeNumberOfBooksInPublisher(Cache.Instance.numBooksInVendor(Cache.Instance.cachedData.allVendors[0].bookcaseData));
             }
         }
         #endregion

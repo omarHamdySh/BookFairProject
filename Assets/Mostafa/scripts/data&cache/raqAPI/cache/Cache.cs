@@ -152,10 +152,12 @@ public class Cache : MonoBehaviour
     {
         api.fairId = id;
     }
+
     public int getFairId()
     {
         return api.fairId;
     }
+
     ////////////////////////////////caching functions//////////////////////////////////////////
     public void cacheCategoryInPublisher(ProductResult res, int publisherId, int categoryId)
     {
@@ -281,6 +283,7 @@ public class Cache : MonoBehaviour
                 searchCallBack(cachedData.searchResult, res.totalRecord);
         }
     }
+
     public void cacheAllCategories(AllCategoriesResult categoriesResult)
     {
         cachedData.allCategories = categoriesResult.categories;
@@ -320,6 +323,7 @@ public class Cache : MonoBehaviour
             }
         }
     }
+
     public void cacheAllSponsors(SponsorsResult sponsorsResult)
     {
         cachedData.allSponsors = sponsorsResult.sponsorList;
@@ -392,7 +396,6 @@ public class Cache : MonoBehaviour
             }
         }
     }
-
 
     ////misc functions///////////////////////////////////////////////////
     public int numBooksInVendor(BookcaseData bookcase)

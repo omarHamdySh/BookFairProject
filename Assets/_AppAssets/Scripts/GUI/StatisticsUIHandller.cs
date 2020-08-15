@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
 public class StatisticsUIHandller : MonoBehaviour
 {
     #region Logic
@@ -25,9 +24,10 @@ public class StatisticsUIHandller : MonoBehaviour
         {
             Cache cache = Cache.Instance;
             ChangeNumberPublisher(cache.cachedData.allVendors.Count);
-            //ChangeNumberOfBooksInPublisher(cache.cachedData.allVendors[0].bookcaseData.)
-            //ChangeNumberOfBooksInFair(cache.cachedData.allFairs[cache.getFairId()].booksCount);
-            //PrepareBestSellingSV(cache.cachedData.BestSellers);
+            if (cache.cachedData.allVendors[0].bookcaseData != null && cache.cachedData.allVendors[0].bookcaseData.categories != null)
+                ChangeNumberOfBooksInPublisher(cache.numBooksInVendor(cache.cachedData.allVendors[0].bookcaseData));
+            ChangeNumberOfBooksInFair(cache.cachedData.allFairs[cache.cachedData.allFairs.FindIndex((x) => x.id == cache.getFairId())].booksCount);
+            PrepareBestSellingSV(cache.cachedData.BestSellers);
             PrepareFairSponsorsSV(cache.cachedData.allSponsors);
         }
 
