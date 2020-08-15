@@ -69,7 +69,7 @@ public class RaqAPI : MonoBehaviour
     public IEnumerator GetAuthToken()
     {
         // Prebare data for request
-        string jsonAttributes = "{\"clientId\":\"402f4c7d-1453-4f4c-9041-684cbb5dad8c\",\"clientSecret\":\"200fae09-d003-46f9-a305-13469fabc7e6\",\"serverUrl\":\"https://raaqeem.com:1000\"}";
+        string jsonAttributes = "{\"clientId\":\"402f4c7d-1453-4f4c-9041-684cbb5dad8c\",\"clientSecret\":\"200fae09-d003-46f9-a305-13469fabc7e6\",\"serverUrl\":\"https://raaqeem.com:5050\"}";
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonAttributes);
 
         UnityWebRequest www = new UnityWebRequest(baseUrl + "/api/authorize/get_token", "Post");
@@ -89,7 +89,7 @@ public class RaqAPI : MonoBehaviour
         else
         {
             authInfo = JsonUtility.FromJson<ApiAuth>(www.downloadHandler.text);
-
+   
             authTokenLoadedEvent.Invoke();
         }
         transmitting = false;
@@ -157,13 +157,13 @@ public class RaqAPI : MonoBehaviour
         //transmitting = false;
     }
 
-    public IEnumerator bestSellers(string fairSlug, int limit, int page)
+    public IEnumerator bestSellers(int fairId, int limit, int page)
     {
         //temporary until badawy gives us another endpoint
         string uri = baseUrl + "/api/products/best_seller_binary?";
 
         if (limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
-        if (fairSlug != null) uri += "&BookFairSlug=" + fairSlug;
+        if (fairId >= 0) uri += "&fairId=" + fairId.ToString();
 
         ProductResult res = new ProductResult();
 
@@ -330,6 +330,7 @@ public class RaqAPI : MonoBehaviour
 
         yield return www.SendWebRequest();
 
+        Debug.Log(www.responseCode);
         res = JsonUtility.FromJson<FairResult>(www.downloadHandler.text);
         if (res != null)
         {
