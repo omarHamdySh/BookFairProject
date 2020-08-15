@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | BookFairProject</title>
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+      UnityLoader.instantiate("unityContainer", "Build/BookFairBuild.json");
+    </script>
+  </head>
+  <body>
+    <div id="unityContainer" style="width: 960px; height: 600px; margin: auto"></div>
+      <script>
+        var url_string = window.location.href; //window.location.href
+        var url = new URL(url_string);
+        var lang = url.searchParams.get("lang");
+        document.cookie = "lang=" + lang;
+      </script>
+  </body>
+</html>

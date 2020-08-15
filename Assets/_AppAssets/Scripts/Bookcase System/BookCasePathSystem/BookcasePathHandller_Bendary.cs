@@ -51,6 +51,8 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     }
     #endregion
 
+    [SerializeField] private StatisticsUIHandller statistics;
+
     private void Awake()
     {
         Init();
@@ -141,6 +143,11 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
             else
             {
                 vendorIndex = (vendorIndex == 0) ? Cache.Instance.cachedData.allVendors.Count - 1 : vendorIndex - 1;
+            }
+
+            if (statistics)
+            {
+                //statistics.ChangeNumberOfBooksInPublisher(Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.);
             }
         }
         #endregion
