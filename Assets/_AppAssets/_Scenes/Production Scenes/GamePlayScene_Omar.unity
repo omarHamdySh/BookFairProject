@@ -6840,6 +6840,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 92d9138747f6fac499e4da8075c90678, type: 3}
   - {fileID: 2800000, guid: 982db04a803a68d4fb2937fad71c3d06, type: 3}
   - {fileID: 2800000, guid: 0100e92759c12214d9696a18ebcfa2b1, type: 3}
+  statistics: {fileID: 0}
 --- !u!4 &693811390
 Transform:
   m_ObjectHideFlags: 0
@@ -7431,6 +7432,7 @@ MonoBehaviour:
   shelfStateTransition: {fileID: 1690232394}
   bookcaseStateTransition: {fileID: 796428624}
   pageStateTransition: {fileID: 659426297}
+  statistics: {fileID: 0}
   current_state: 0
 --- !u!1 &834343526
 GameObject:
@@ -17781,56 +17783,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scene Camera and Controls
       objectReference: {fileID: 0}
-    - target: {fileID: 2242039475249692732, guid: f6ad482656384b34592b06a209448ee8,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 2242039475249692732, guid: f6ad482656384b34592b06a209448ee8,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 10.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 2242039475329544612, guid: f6ad482656384b34592b06a209448ee8,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2242039475632415290, guid: f6ad482656384b34592b06a209448ee8,
-        type: 3}
-      propertyPath: onFinger.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2242039475632415290, guid: f6ad482656384b34592b06a209448ee8,
-        type: 3}
-      propertyPath: onFinger.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 810183434}
-    - target: {fileID: 2242039475632415290, guid: f6ad482656384b34592b06a209448ee8,
-        type: 3}
-      propertyPath: onFinger.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: focus_state
-      objectReference: {fileID: 0}
     - target: {fileID: 2242039475955090976, guid: f6ad482656384b34592b06a209448ee8,
         type: 3}
       propertyPath: pageStateColliderPos
       value: 
       objectReference: {fileID: 659426295}
-    - target: {fileID: 2242039476048744615, guid: f6ad482656384b34592b06a209448ee8,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 2242039476362543092, guid: f6ad482656384b34592b06a209448ee8,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2242039476431163185, guid: f6ad482656384b34592b06a209448ee8,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6ad482656384b34592b06a209448ee8, type: 3}
 --- !u!1 &6408712442130696662

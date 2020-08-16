@@ -42,7 +42,10 @@ public class StatisticsUIHandller : MonoBehaviour
 
     private void Update()
     {
-        delayBetweenContainers -= Time.deltaTime;
+        if (skipBtnPressed)
+        {
+            timer -= Time.deltaTime;
+        }
     }
 
     private void GenerateRandom()
