@@ -32,7 +32,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
         if (GameManager.Instance.gameplayFSMManager.getCurrentState() == GameplayState.Shelf && myShelf.GetIsCurretn() && myShelf.GetIsCurrentBookcase() && !LevelUI.Instance.isUIOpen)
         {
             #region CategoryUIPanel
-            if (!toggleCategoryPanelOnce)
+            if (!toggleCategoryPanelOnce && myShelf.categoryText.IsCanvasEnabled())
             {
                 LevelUI.Instance.ToggleCategoryPanel(true, myShelf.categoryText.text);
                 myShelf.categoryText.ToggleCanvasContainer(false);
