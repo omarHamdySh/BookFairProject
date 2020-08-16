@@ -11,6 +11,12 @@ public class BookcaseAutoMovement : MonoBehaviour
     private Vector3 lastMousePos;
     private float waitingSeconds = 0;
     private AutoMoveMode isAutoMoveOn = AutoMoveMode.ready;
+    private GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+    }
 
     private void Update()
     {
@@ -20,7 +26,8 @@ public class BookcaseAutoMovement : MonoBehaviour
            !CameraPath.instance.cameraMoving &&
            !Input.GetKeyDown(KeyCode.Escape) &&
            !Input.GetKeyDown(KeyCode.Return) &&
-           !Input.GetKeyDown(KeyCode.KeypadEnter)
+           !Input.GetKeyDown(KeyCode.KeypadEnter) &&
+           gameManager.pathData.FloorScrollSpeed == 0
            )
         {
             waitingSeconds += Time.deltaTime;
