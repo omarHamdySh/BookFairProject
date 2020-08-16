@@ -11,7 +11,8 @@ public class StateTransition : MonoBehaviour
     public ShelfStateTransition shelfStateTransition;
     public BookcaseStateTransition bookcaseStateTransition;
     public PageStateTransition pageStateTransition;
-    public BoxCollider2D bound;
+    public List<BoxCollider> bounds;
+
     [SerializeField] private StatisticsUIHandller statistics;
 
     private List<IClickable> transitions;
@@ -50,6 +51,7 @@ public class StateTransition : MonoBehaviour
     {
         if (current_state < transitions.Count && !LevelUI.Instance.isUIOpen)
         {
+            
             SelectionManager.instance.selectThis(transitions[current_state]);
             //transitions[current_state].focus();
             current_state++;
@@ -58,7 +60,9 @@ public class StateTransition : MonoBehaviour
             {
                 statistics.ToggleAllStatisticsUI(false);
             }
+            enableBound(current_state);
         }
+       
     }
 
 
@@ -84,18 +88,12 @@ public class StateTransition : MonoBehaviour
                 }
             }
         }
+        enableBound(current_state);
     }
 
     public void tap()
     {
-  
-        Vector3 mouse_position = Input.mousePosition;
-        mouse_position.z = 1f;
-        mouse_position = Camera.main.ScreenToWorldPoint(mouse_position);
-
-        bool collides = mouse_position.x < bound.bounds.max.x && mouse_position.x > bound.bounds.min.x && mouse_position.y < bound.bounds.max.y && mouse_position.y > bound.bounds.min.y;
-        Debug.Log(mouse_position);
-        if (collides){
+        if (checkBoundIsHit()){
             focus_state();
         }
     }
@@ -105,5 +103,34 @@ public class StateTransition : MonoBehaviour
         yield return new WaitUntil(() => !CameraPath.instance.cameraMoving);
         LevelUI.Instance.backFromPageModeBtn.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    void enableBound(int index)
+    {
+        if(index >= 0 && index < bounds.Count)
+        {
+            foreach(BoxCollider b in bounds)
+            {
+                b.gameObject.SetActive(false);
+            }
+            bounds[index].gameObject.SetActive(true);
+        }
+
+        return;
+    }
+
+    public bool checkBoundIsHit()
+    {
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.transform.tag.Equals("bound"))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
