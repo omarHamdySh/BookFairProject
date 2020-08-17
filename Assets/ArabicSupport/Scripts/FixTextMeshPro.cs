@@ -44,7 +44,7 @@ public class FixTextMeshPro : MonoBehaviour
         {
             myText.text = "";
         }
-        this.text = myText.text;
+        this.text = text;
     }
 
     public void SetTextColor(Color color)
@@ -58,5 +58,15 @@ public class FixTextMeshPro : MonoBehaviour
         {
             myCanvas.enabled = enabled;
         }
+    }
+
+    public bool IsCanvasEnabled()
+    {
+        if (myCanvas)
+        {
+            return myCanvas.enabled;
+        }
+
+        return false;
     }
 }
