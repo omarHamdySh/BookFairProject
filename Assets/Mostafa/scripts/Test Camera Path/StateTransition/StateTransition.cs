@@ -3,12 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Lean.Touch;
+using DG.Tweening;
 
 public class StateTransition : MonoBehaviour
 {
     public ShelfStateTransition shelfStateTransition;
     public BookcaseStateTransition bookcaseStateTransition;
     public PageStateTransition pageStateTransition;
+    public List<BoxCollider> bounds;
+
     [SerializeField] private StatisticsUIHandller statistics;
 
     private List<IClickable> transitions;
@@ -47,15 +51,18 @@ public class StateTransition : MonoBehaviour
     {
         if (current_state < transitions.Count && !LevelUI.Instance.isUIOpen)
         {
+            
             SelectionManager.instance.selectThis(transitions[current_state]);
-            transitions[current_state].focus();
+            //transitions[current_state].focus();
             current_state++;
             LevelUI.Instance.backFromPageModeBtn.SetActive(true);
             if (statistics)
             {
                 statistics.ToggleAllStatisticsUI(false);
             }
+            enableBound(current_state);
         }
+       
     }
 
 
@@ -81,6 +88,14 @@ public class StateTransition : MonoBehaviour
                 }
             }
         }
+        enableBound(current_state);
+    }
+
+    public void tap()
+    {
+        if (checkBoundIsHit()){
+            focus_state();
+        }
     }
 
     IEnumerator ShowBackBtn()
@@ -88,5 +103,34 @@ public class StateTransition : MonoBehaviour
         yield return new WaitUntil(() => !CameraPath.instance.cameraMoving);
         LevelUI.Instance.backFromPageModeBtn.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    void enableBound(int index)
+    {
+        if(index >= 0 && index < bounds.Count)
+        {
+            foreach(BoxCollider b in bounds)
+            {
+                b.gameObject.SetActive(false);
+            }
+            bounds[index].gameObject.SetActive(true);
+        }
+
+        return;
+    }
+
+    public bool checkBoundIsHit()
+    {
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.transform.tag.Equals("bound"))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
