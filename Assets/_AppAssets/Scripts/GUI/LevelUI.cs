@@ -149,6 +149,7 @@ public class LevelUI : UIHandller
 
     private Vector3 currentCameraPos;
     private Vector3 currentCameraRot;
+    private bool firstTimeShowVideo = true;
 
     public void TeleportToUI()
     {
@@ -176,6 +177,18 @@ public class LevelUI : UIHandller
     {
         categoryPanel.SetActive(enabled);
         categoryTxt.SetText(text);
+    }
+
+    public void StartTheShow()
+    {
+        if (firstTimeShowVideo)
+        {
+
+        }
+        else
+        {
+
+        }
     }
     #endregion
 
