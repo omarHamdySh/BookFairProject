@@ -135,6 +135,8 @@ public class BookPathHandller_Bendary : MonoBehaviour
 
     public void AwakeCurrent()
     {
+        currentBookIndex = IndexOfCurrent;
+
         foreach (Book_Bendary book in books)
         {
             book.Init();
@@ -298,7 +300,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
             case 4:
                 return 6;
             case 5:
-                return 1; 
+                return 1;
             case 6:
                 return 7;
             case 7:

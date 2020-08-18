@@ -51,18 +51,21 @@ public class StateTransition : MonoBehaviour
     {
         if (current_state < transitions.Count && !LevelUI.Instance.isUIOpen)
         {
-            
-            SelectionManager.instance.selectThis(transitions[current_state]);
-            //transitions[current_state].focus();
-            current_state++;
-            LevelUI.Instance.backFromPageModeBtn.SetActive(true);
-            if (statistics)
+            if (SelectionManager.instance.canSelect)
             {
-                statistics.ToggleAllStatisticsUI(false);
+                SelectionManager.instance.selectThis(transitions[current_state]);
+
+                //transitions[current_state].focus();
+                current_state++;
+                LevelUI.Instance.backFromPageModeBtn.SetActive(true);
+                if (statistics)
+                {
+                    statistics.ToggleAllStatisticsUI(false);
+                }
+                enableBound(current_state);
             }
-            enableBound(current_state);
         }
-       
+
     }
 
 
@@ -73,27 +76,29 @@ public class StateTransition : MonoBehaviour
             if (SelectionManager.instance.canSelect)
             {
                 SelectionManager.instance.deselectCurrent();
-            }
-            current_state--;
-            LevelUI.Instance.backFromPageModeBtn.SetActive(false);
-            if (current_state > 0)
-            {
-                StartCoroutine(ShowBackBtn());
-            }
-            else if (current_state == 0)
-            {
-                if (statistics)
+
+                current_state--;
+                LevelUI.Instance.backFromPageModeBtn.SetActive(false);
+                if (current_state > 0)
                 {
-                    statistics.ToggleAllStatisticsUI(true);
+                    StartCoroutine(ShowBackBtn());
+                }
+                else if (current_state == 0)
+                {
+                    if (statistics)
+                    {
+                        statistics.ToggleAllStatisticsUI(true);
+                    }
                 }
             }
+            enableBound(current_state);
         }
-        enableBound(current_state);
     }
 
     public void tap()
     {
-        if (checkBoundIsHit()){
+        if (checkBoundIsHit())
+        {
             focus_state();
         }
     }
@@ -107,9 +112,9 @@ public class StateTransition : MonoBehaviour
 
     void enableBound(int index)
     {
-        if(index >= 0 && index < bounds.Count)
+        if (index >= 0 && index < bounds.Count)
         {
-            foreach(BoxCollider b in bounds)
+            foreach (BoxCollider b in bounds)
             {
                 b.gameObject.SetActive(false);
             }

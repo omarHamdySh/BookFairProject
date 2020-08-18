@@ -122,6 +122,8 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
     {
         if (isCurrentBookcase)
         {
+            currentShelfIndex = IndexOfCurrent;
+
             foreach (Shelf_Bendary i in shelves)
             {
                 i.Init();
