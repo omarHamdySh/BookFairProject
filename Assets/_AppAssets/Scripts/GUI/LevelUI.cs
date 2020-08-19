@@ -6,6 +6,7 @@ using TMPro;
 using System.Runtime.InteropServices;
 using System.Linq;
 using DG.Tweening;
+using UnityEngine.Video;
 
 public class LevelUI : UIHandller
 {
@@ -138,14 +139,15 @@ public class LevelUI : UIHandller
     public Button backToUIModeBtn;
     public GameObject backFromPageModeBtn;
     [SerializeField] private Image[] gameplayColoredUI;
-    [SerializeField] private Canvas gameplayCanvas;
+    [SerializeField] private Canvas gameplayCanvas, videoCanvas;
 
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private Vector3 cameraUIPos;
     [SerializeField] private Vector3 cameraUIRot;
-    [SerializeField] private float teleportDelayBetweenUI_game;
+    [SerializeField] private float teleportDelayBetweenUI_game, teleportDelayBetweenVideo_game;
     [SerializeField] private GameObject categoryPanel;
     [SerializeField] private FixTextMeshPro categoryTxt;
+    [SerializeField] private VideoPlayer videoPlayer;
 
     private Vector3 currentCameraPos;
     private Vector3 currentCameraRot;
@@ -183,12 +185,33 @@ public class LevelUI : UIHandller
     {
         if (firstTimeShowVideo)
         {
-
+            videoCanvas.enabled = true;
+            ZUIManager.Instance.OpenMenu("VideoContainer");
+            firstTimeShowVideo = false;
+            videoPlayer.loopPointReached += EndVideoEvent;
         }
         else
         {
-
+            gameplayCanvas.enabled = true;
+            ZUIManager.Instance.OpenMenu("GamePlayContainer");
+            TeleportToGamplay();
+            backToUIModeBtn.interactable = true;
         }
+    }
+
+    private void EndVideoEvent(VideoPlayer vp)
+    {
+        SkipVideoBtn();
+    }
+
+    public void SkipVideoBtn()
+    {
+        videoPlayer.Stop();
+        gameplayCanvas.enabled = true;
+        ZUIManager.Instance.OpenMenu("GamePlayContainer");
+        cameraTransform.DOLocalMove(currentCameraPos, teleportDelayBetweenVideo_game).OnComplete(CloseUI);
+        cameraTransform.DOLocalRotate(new Vector3(0, 540, 0), teleportDelayBetweenVideo_game, RotateMode.FastBeyond360);
+        backToUIModeBtn.interactable = true;
     }
     #endregion
 

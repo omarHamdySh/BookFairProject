@@ -8272,7 +8272,18 @@ MonoBehaviour:
       m_Calls: []
   OnShowComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 912758592517396031}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnHideComplete:
     m_PersistentCalls:
       m_Calls:
@@ -8293,9 +8304,7 @@ MonoBehaviour:
   DeactivateWhileInvisible: 0
   AnimatedElements:
   - {fileID: 4196489997609715418}
-  - {fileID: 0}
   - {fileID: 5877394862036993413}
-  - {fileID: 0}
   SharedAnimatedElements: []
   SwitchAfter: 0.5
   OverrideBack: 0
@@ -11255,7 +11264,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
   m_RenderMode: 2
-  m_AspectRatio: 2
+  m_AspectRatio: 5
   m_DataSource: 0
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
@@ -13173,7 +13182,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 60778472610534233}
   m_HandleRect: {fileID: 5131428640296881500}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -16647,7 +16656,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1882067873630804661}
   m_HandleRect: {fileID: 5465299662887365905}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -18674,30 +18683,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8573462806703462507}
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 7429038391155985949}
-        m_MethodName: OpenMenu
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 665630394452999690}
-          m_ObjectArgumentAssemblyTypeName: Menu, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 6428605536069417339}
-        m_MethodName: TeleportToGamplay
+        m_MethodName: StartTheShow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18706,17 +18693,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6488089247330137836}
-        m_MethodName: set_interactable
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &5386657011376300567
 GameObject:
@@ -22664,12 +22640,15 @@ MonoBehaviour:
   - {fileID: 1669877772022835376}
   - {fileID: 6722792384627568147}
   gameplayCanvas: {fileID: 8573462806703462507}
+  videoCanvas: {fileID: 2592160872637925372}
   cameraTransform: {fileID: 0}
   cameraUIPos: {x: -0.24, y: 2.74, z: 17.01}
   cameraUIRot: {x: 0, y: 270, z: 0}
   teleportDelayBetweenUI_game: 0.5
+  teleportDelayBetweenVideo_game: 2
   categoryPanel: {fileID: 8882216629058428645}
   categoryTxt: {fileID: 7594294377711129176}
+  videoPlayer: {fileID: 0}
   prevSearchPageBtn: {fileID: 6428605535734530806}
   nextSearchPageBtn: {fileID: 6428605535638045972}
   seachResultCountTxt: {fileID: 3664641975577929781}
@@ -27471,27 +27450,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8573462806703462507}
-        m_MethodName: set_enabled
-        m_Mode: 6
+      - m_Target: {fileID: 6428605536069417339}
+        m_MethodName: SkipVideoBtn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 7429038391155985949}
-        m_MethodName: OpenMenu
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 665630394452999690}
-          m_ObjectArgumentAssemblyTypeName: Menu, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &5877394862036993413
 MonoBehaviour:
