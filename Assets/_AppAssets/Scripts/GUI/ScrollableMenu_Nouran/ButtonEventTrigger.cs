@@ -8,7 +8,7 @@ public class ButtonEventTrigger : MonoBehaviour
     private string _buttonName;
     private Text _buttonTitle;
 
-    public Vector3 TargetButtonScale;
+    public Vector2 TargetButtonScale;
 
     public void Start()
     {
@@ -20,14 +20,16 @@ public class ButtonEventTrigger : MonoBehaviour
     {
         //Debug.Log(_buttonName + " is hoverd !");
         _buttonTitle.enabled = true;
-        transform.localScale = new Vector3(TargetButtonScale.x, TargetButtonScale.y, TargetButtonScale.z);
+        //transform.localScale = new Vector3(TargetButtonScale.x, TargetButtonScale.y, TargetButtonScale.z);
+        gameObject.GetComponent<RectTransform>().sizeDelta += new Vector2(TargetButtonScale.x, TargetButtonScale.y);
     }
 
     public void OnButtonNotHovered()
     {
         //Debug.Log(_buttonName + " is not hovered anymore !");
         _buttonTitle.enabled = false;
-        transform.localScale = new Vector3(1f, 1f, 1f);
+        //transform.localScale = new Vector3(1f, 1f, 1f);
+        gameObject.GetComponent<RectTransform>().sizeDelta -= new Vector2(TargetButtonScale.x, TargetButtonScale.y);
     }
 
 }
