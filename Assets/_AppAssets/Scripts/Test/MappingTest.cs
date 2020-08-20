@@ -14,12 +14,30 @@ public class MappingTest : MonoBehaviour
     {
         int oddIndexFatcor = (int)((objs.Count / 2f) - .5f); //Less than the center index with 1
         int evenIndexFactor = (int)((objs.Count / 2f) + .5f); //Center Index; [Zero]
-
+     
+        //For loop context
         for (int i = 0; i < objs.Count; i++)
         {
             var obj = objs[mapBooksIndicies(i, oddIndexFatcor, evenIndexFactor, out oddIndexFatcor, out evenIndexFactor)];
             obj.transform.DOMove(new Vector3(obj.transform.position.x, -1, obj.transform.position.z), 0.5f, false);
             yield return new WaitForSeconds(0.6f);
+        }
+    } 
+    
+    
+    public void newMappingAlgorithm()
+    {
+        //objs is the list of the physical books  (objs.Count = Physical books count)
+        //int oddIndexFatcor = (int)((objs.Count / 2f) - .5f); //Less than the center index with 1
+        //int evenIndexFactor = (int)((objs.Count / 2f) + .5f); //Center Index; [Zero]
+
+        //For loop context
+        //for (int i = 0; i < objs.Count; i++)
+        {
+            //Data is to be filled
+            //Var data = "some data";
+            //var obj = objs[mapBooksIndicies(i, oddIndexFatcor, evenIndexFactor, out oddIndexFatcor, out evenIndexFactor)];
+            //obj.data=data;
         }
     }
     public int mapBooksIndicies(int index, int oddIndexFatcor, int evenIndexFactor, out int oddIndexFatcorOut, out int evenIndexFactorOut)
