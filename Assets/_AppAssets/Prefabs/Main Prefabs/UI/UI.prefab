@@ -13182,7 +13182,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 60778472610534233}
   m_HandleRect: {fileID: 5131428640296881500}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -16656,7 +16656,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1882067873630804661}
   m_HandleRect: {fileID: 5465299662887365905}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -20927,7 +20927,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6814859674165854093}
   m_HandleRect: {fileID: 6311205235380794718}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -22648,7 +22648,7 @@ MonoBehaviour:
   teleportDelayBetweenVideo_game: 2
   categoryPanel: {fileID: 8882216629058428645}
   categoryTxt: {fileID: 7594294377711129176}
-  videoPlayer: {fileID: 0}
+  videoPlayer: {fileID: 912758592517396031}
   prevSearchPageBtn: {fileID: 6428605535734530806}
   nextSearchPageBtn: {fileID: 6428605535638045972}
   seachResultCountTxt: {fileID: 3664641975577929781}

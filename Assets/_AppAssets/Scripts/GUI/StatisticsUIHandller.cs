@@ -25,7 +25,13 @@ public class StatisticsUIHandller : MonoBehaviour
             Cache cache = Cache.Instance;
             ChangeNumberPublisher(cache.cachedData.allVendors.Count);
             if (cache.cachedData.allVendors[0].bookcaseData != null && cache.cachedData.allVendors[0].bookcaseData.categories != null)
+            {
                 ChangeNumberOfBooksInPublisher(cache.numBooksInVendor(cache.cachedData.allVendors[0].bookcaseData));
+            }
+            else
+            {
+                ChangeNumberOfBooksInPublisher(0);
+            }
             ChangeNumberOfBooksInFair(cache.cachedData.allFairs[cache.cachedData.allFairs.FindIndex((x) => x.id == cache.getFairId())].booksCount);
             PrepareBestSellingSV(cache.cachedData.BestSellers);
             PrepareFairSponsorsSV(cache.cachedData.allSponsors);
@@ -111,7 +117,7 @@ public class StatisticsUIHandller : MonoBehaviour
 
     private void ChangeNumberPublisher(int count)
     {
-        numberOfBooksPublisherTxt.SetText(((PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "عدد الكتب في دار النشر : " : "Nubmer of book in Publisher : ") + count);
+        numberOfPublisherTxt.SetText(((PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "عدد الكتب في دار النشر : " : "Nubmer of book in Publisher : ") + count);
     }
     #endregion
 
@@ -131,7 +137,7 @@ public class StatisticsUIHandller : MonoBehaviour
 
     private void ChangeNumberOfBooksInFair(int count)
     {
-        numberOfBooksPublisherTxt.SetText(((PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "عدد الكتب في دار النشر : " : "Nubmer of book in Publisher : ") + count);
+        numberOfBooksFairTxt.SetText(((PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ? "عدد الكتب في دار النشر : " : "Nubmer of book in Publisher : ") + count);
     }
     #endregion
 
