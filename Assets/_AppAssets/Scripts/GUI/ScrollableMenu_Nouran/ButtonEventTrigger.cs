@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ButtonEventTrigger : MonoBehaviour
 {
-    private string _buttonName;
-    private Text _buttonTitle;
+    //private string _buttonName;
+    private TMPro.TextMeshProUGUI _buttonTitle;
 
     public Vector2 TargetButtonScale;
 
     public void Start()
     {
-        _buttonName  = gameObject.name;
-        _buttonTitle = gameObject.transform.GetChild(1).GetComponent<Text>();
+        //_buttonName  = gameObject.name;
+        _buttonTitle = gameObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
     }
 
     public void OnButtonHovered()

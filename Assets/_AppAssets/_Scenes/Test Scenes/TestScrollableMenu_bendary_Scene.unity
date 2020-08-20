@@ -3618,7 +3618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb17b05a4b677a249adfe5439fcf8ea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BtnTemplate: {fileID: 4362015396162752186, guid: dbaf963e0dc276c49a242d4ef04ac992,
+  BtnTemplate: {fileID: 1978350814695681387, guid: 3898e7c437f021041862424d9361b5ba,
     type: 3}
 --- !u!1 &1907051811
 GameObject:
