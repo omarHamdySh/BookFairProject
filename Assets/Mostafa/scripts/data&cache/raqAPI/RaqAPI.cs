@@ -178,7 +178,6 @@ public class RaqAPI : MonoBehaviour
 
         yield return www.SendWebRequest();
 
-        Debug.Log(www.downloadHandler.text);
         res = JsonUtility.FromJson<ProductResult>(www.downloadHandler.text);
         
         if (res != null)
@@ -211,11 +210,6 @@ public class RaqAPI : MonoBehaviour
         res = JsonUtility.FromJson<ProducIdstResult>(www.downloadHandler.text);
 
 
-        Debug.Log(res.prodcutList.Count);
-        foreach (BookId productList in res.prodcutList)
-        {
-            Debug.Log(productList.id);
-        }
 
 
     }
@@ -229,9 +223,9 @@ public class RaqAPI : MonoBehaviour
     {
 
         //temporary until badawy gives us another endpoint
-        string uri = baseUrl + "/api/categories/categories_list";
+        string uri = baseUrl + "/api/categories/categories_list?";
 
-        if (limit > 0) uri += "&limit=" + limit.ToString() + "&page=" + page.ToString();
+        if (limit > 0) uri += "limit=" + limit.ToString() + "&page=" + page.ToString();
 
         AllCategoriesResult res = new AllCategoriesResult();
 
@@ -248,8 +242,7 @@ public class RaqAPI : MonoBehaviour
 
         if (res != null)
         {
-            Debug.Log(res);
-            Debug.Log(www.downloadHandler.text);
+           
             Cache.Instance.cacheAllCategories(res);
         }
 
@@ -279,8 +272,8 @@ public class RaqAPI : MonoBehaviour
 
         if (res != null)
         {
-            Debug.Log(res);
-            Debug.Log(www.downloadHandler.text);
+
+  
             Cache.Instance.cacheAllVendors(res);
             vendorsRetrievedEvent.Invoke();//load peliminary data
             vendorsRetrievedEvent.RemoveAllListeners();
@@ -310,8 +303,7 @@ public class RaqAPI : MonoBehaviour
         res = JsonUtility.FromJson<SponsorsResult>(www.downloadHandler.text);
         if (res != null)
         {
-            Debug.Log(res);
-            Debug.Log(www.downloadHandler.text);
+
             Cache.Instance.cacheAllSponsors(res);
         }
 
@@ -336,12 +328,10 @@ public class RaqAPI : MonoBehaviour
 
         yield return www.SendWebRequest();
 
-        Debug.Log(www.responseCode);
         res = JsonUtility.FromJson<FairResult>(www.downloadHandler.text);
         if (res != null)
         {
-            Debug.Log(res);
-            Debug.Log(www.downloadHandler.text);
+           
             Cache.Instance.cacheAllFairs(res);
             fairsRetrievedEvent.Invoke();
         }

@@ -44,12 +44,35 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
             }
             else if (!isObjMoving && currentScrollSpeed != 0)
             {
-                isObjMoving = true;
-                if (CheckAllObjectsLanded())
+                if (Cache.Instance.cachedData.allVendors != null)
                 {
-                    OnDepartureCall();
-                    PrepareData();
-                    MoveAccordingToScrollSpeed();
+                    if (Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories != null)
+                    {
+                        int catCount = Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories.Count;
+
+                        if (catCount < shelves.Length)
+                        {
+
+                            int nextCatIndex = shelves[currentShelfIndex].categoryIndex;
+
+                            if (currentScrollSpeed > 0)
+                                nextCatIndex--;
+
+                            else
+                                nextCatIndex++;
+
+                            if (nextCatIndex >= catCount || nextCatIndex < 0) return;
+                        }
+
+                        isObjMoving = true;
+                        if (CheckAllObjectsLanded())
+                        {
+                            OnDepartureCall();
+                            PrepareData();
+                            MoveAccordingToScrollSpeed();
+                        }
+
+                    }
                 }
             }
         }
