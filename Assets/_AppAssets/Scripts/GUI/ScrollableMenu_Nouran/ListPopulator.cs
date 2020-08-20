@@ -8,7 +8,7 @@ using TMPro;
 
 public class ListPopulator : MonoBehaviour
 {
-    public GameObject BtnTemplate;  
+    public GameObject BtnTemplate;
     private int ListCount;        //the size of the vendors/publishers list.
 
     // Start is called before the first frame update
@@ -24,10 +24,11 @@ public class ListPopulator : MonoBehaviour
         {
             GameObject NewButton = Instantiate(BtnTemplate) as GameObject;
             NewButton.transform.parent = gameObject.transform;
+            NewButton.transform.localScale = Vector3.one;
             NewButton.transform.GetChild(1).GetComponent<FixTextMeshPro>().SetText(Cache.Instance.cachedData.allVendors[i].name);
             //Debug.Log("Vendor " + i + "name is " + Cache.Instance.cachedData.allVendors[i].name);
         }
     }
 
-    
+
 }
