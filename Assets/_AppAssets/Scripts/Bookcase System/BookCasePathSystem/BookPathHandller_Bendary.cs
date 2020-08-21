@@ -23,8 +23,8 @@ public class BookPathHandller_Bendary : MonoBehaviour
 
     #region Data
     [SerializeField] private Texture dummyTexture;
-    private int vendorIndex;
-    private int categoryIndex;
+    [HideInInspector] public int vendorIndex;
+    public int categoryIndex;
     #endregion
 
     private void Update()
@@ -136,10 +136,34 @@ public class BookPathHandller_Bendary : MonoBehaviour
     public void AwakeCurrent()
     {
         currentBookIndex = IndexOfCurrent;
+        bool isNewConceptArrange = false;
 
-        foreach (Book_Bendary book in books)
+        if (Cache.Instance && Cache.Instance.cachedData.allVendors.Count > 0 && categoryIndex != -1)
         {
-            book.Init();
+            if (Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData != null && Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories != null)
+            {
+                List<BookData> booksData = Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].booksData;
+                if (booksData != null)
+                {
+                    if (Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].total < books.Length)
+                    {
+                        isNewConceptArrange = true;
+                    }
+                }
+            }
+        }
+
+        //objs is the list of the physical books  (objs.Count = Physical books count)
+        int oddIndexFatcor = (int)((books.Length / 2f) - .5f); //Less than the center index with 1
+        int evenIndexFactor = (int)((books.Length / 2f) + .5f); //Center Index; [Zero]
+        for (int i = 0; i < books.Length; i++)
+        {
+            if (isNewConceptArrange)
+            {
+                int mappedIndex = mapBooksIndicies(books[i].transform.GetSiblingIndex(), oddIndexFatcor, evenIndexFactor, out oddIndexFatcor, out evenIndexFactor, books.Length);
+                books[i].Init(mappedIndex, bookPathPoints[mappedIndex].position, isNewConceptArrange);
+            }
+
         }
 
         if (GetComponent<Shelf_Bendary>().GetIsCurretn())
@@ -150,7 +174,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
 
                 books[i].transform.Rotate(new Vector3(
                     0,
-                    GetNodeRank(i).rankRotation,
+                    GetNodeRank(books[i].getObjectIndex()).rankRotation,
                     0));
             }
         }
@@ -160,6 +184,49 @@ public class BookPathHandller_Bendary : MonoBehaviour
             {
                 i.transform.localRotation = Quaternion.Euler(0, myShelf.nonCurrentBookRotataion[i.getObjectIndex()], 0);
             }
+        }
+    }
+
+    /// <summary>
+    /// Get the Index of the new arrange of odd list
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="oddIndexFatcor"></param>
+    /// <param name="evenIndexFactor"></param>
+    /// <param name="oddIndexFatcorOut"></param>
+    /// <param name="evenIndexFactorOut"></param>
+    /// <param name="count">Must be odd and biger than one</param>
+    /// <returns></returns>
+    public int mapBooksIndicies(int index, int oddIndexFatcor, int evenIndexFactor, out int oddIndexFatcorOut, out int evenIndexFactorOut, int count)
+    {
+        if (count % 2 == 0)
+        {//Avoid excuting the algorithm because the list isn't odd number
+            oddIndexFatcorOut = oddIndexFatcor;
+            evenIndexFactorOut = evenIndexFactor;
+            return index;
+        }
+
+
+        if (index % 2 == 0)
+        {//even
+            if (index == 0)
+            {
+                oddIndexFatcorOut = oddIndexFatcor;
+                evenIndexFactorOut = evenIndexFactor;
+                return evenIndexFactor - 1;
+            }
+
+            oddIndexFatcorOut = oddIndexFatcor;
+            evenIndexFactorOut = ++evenIndexFactor;
+            return evenIndexFactor - 1;
+
+        }
+        else
+        {//odd
+
+            oddIndexFatcorOut = oddIndexFatcor - 1;
+            evenIndexFactorOut = evenIndexFactor;
+            return oddIndexFatcor - 1;
         }
     }
 
@@ -236,10 +303,9 @@ public class BookPathHandller_Bendary : MonoBehaviour
 
     public void SetAllVisibleBooks(List<BookData> booksData, int vendorIndex, int categoryIndex)
     {
-        //New Book Scrolling Mapping Algorithm
-
         this.vendorIndex = vendorIndex;
         this.categoryIndex = categoryIndex;
+        AwakeCurrent();
 
         for (int i = 0; i < books.Length; i++)
         {
