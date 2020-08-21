@@ -41,7 +41,7 @@ public class StatisticsUIHandller : MonoBehaviour
         //GenerateRandom();
 
 
-        StartCoroutine(ShowStatistics());
+        //StartCoroutine(ShowStatistics());
 
     }
 

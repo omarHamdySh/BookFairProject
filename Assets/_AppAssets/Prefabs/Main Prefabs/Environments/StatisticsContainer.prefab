@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 176171312}
   - component: {fileID: 176171314}
   - component: {fileID: 176171313}
-  - component: {fileID: 176171315}
+  - component: {fileID: 8339673172143835475}
   m_Layer: 5
   m_Name: FairBooksNumberPopup
   m_TagString: Untagged
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &176171315
+--- !u!114 &8339673172143835475
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -574,7 +574,7 @@ MonoBehaviour:
         m_MethodName: OpenPopup
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 2069422491}
+          m_ObjectArgument: {fileID: 8339673172143835473}
           m_ObjectArgumentAssemblyTypeName: Popup, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -605,7 +605,7 @@ GameObject:
   - component: {fileID: 302079947}
   - component: {fileID: 302079949}
   - component: {fileID: 302079948}
-  - component: {fileID: 302079950}
+  - component: {fileID: 8339673172143835474}
   m_Layer: 5
   m_Name: BestSellingFairBooksPopup
   m_TagString: Untagged
@@ -670,7 +670,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &302079950
+--- !u!114 &8339673172143835474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1314,7 +1314,7 @@ MonoBehaviour:
         m_MethodName: OpenPopup
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 176171315}
+          m_ObjectArgument: {fileID: 8339673172143835475}
           m_ObjectArgumentAssemblyTypeName: Popup, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1596,7 +1596,6 @@ GameObject:
   - component: {fileID: 700108711}
   - component: {fileID: 700108713}
   - component: {fileID: 700108712}
-  - component: {fileID: 700108714}
   m_Layer: 5
   m_Name: NumberOfBooksInFairContainer
   m_TagString: Untagged
@@ -1660,43 +1659,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &700108714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 700108710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fba3bfed6cefac14fbc9f25bedd810f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Visible: 0
-  UseSimpleActivation: 0
-  ShowingClip: {fileID: 0}
-  HidingClip: {fileID: 0}
-  OnShow:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHide:
-    m_PersistentCalls:
-      m_Calls: []
-  OnShowComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHideComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  IgnoreEventsOnInitialization: 0
-  TitleHolder: {fileID: 0}
-  BodyHolder: {fileID: 0}
-  AnimatedElements: []
-  DeactivateWhileInvisible: 1
-  OverrideBack: 0
-  MyBack:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &801428722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1706,7 +1668,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 801428723}
-  - component: {fileID: 801428724}
   m_Layer: 5
   m_Name: BestSellingInTheFairContainer
   m_TagString: Untagged
@@ -1734,43 +1695,6 @@ RectTransform:
   m_AnchoredPosition: {x: -1.1743851, y: -0.15973091}
   m_SizeDelta: {x: 0.8135071, y: 2.1553192}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &801428724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801428722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fba3bfed6cefac14fbc9f25bedd810f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Visible: 0
-  UseSimpleActivation: 0
-  ShowingClip: {fileID: 0}
-  HidingClip: {fileID: 0}
-  OnShow:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHide:
-    m_PersistentCalls:
-      m_Calls: []
-  OnShowComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHideComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  IgnoreEventsOnInitialization: 0
-  TitleHolder: {fileID: 0}
-  BodyHolder: {fileID: 0}
-  AnimatedElements: []
-  DeactivateWhileInvisible: 1
-  OverrideBack: 0
-  MyBack:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &826176814
 GameObject:
   m_ObjectHideFlags: 0
@@ -1783,7 +1707,7 @@ GameObject:
   - component: {fileID: 826176817}
   - component: {fileID: 826176816}
   m_Layer: 5
-  m_Name: Drop Up Mens
+  m_Name: Drop Up Popups
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1806,7 +1730,7 @@ RectTransform:
   - {fileID: 302079947}
   - {fileID: 2069422490}
   m_Father: {fileID: 1723169098}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.4842857, y: 0.48246193}
@@ -2308,7 +2232,7 @@ GameObject:
   - component: {fileID: 983678789}
   - component: {fileID: 983678791}
   - component: {fileID: 983678790}
-  - component: {fileID: 983678792}
+  - component: {fileID: 8339673172143835476}
   m_Layer: 5
   m_Name: VendorBooksNumberPopup
   m_TagString: Untagged
@@ -2373,7 +2297,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &983678792
+--- !u!114 &8339673172143835476
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2533,7 +2457,7 @@ MonoBehaviour:
         m_MethodName: OpenPopup
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 983678792}
+          m_ObjectArgument: {fileID: 8339673172143835476}
           m_ObjectArgumentAssemblyTypeName: Popup, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -3227,7 +3151,7 @@ MonoBehaviour:
         m_MethodName: OpenPopup
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 302079950}
+          m_ObjectArgument: {fileID: 8339673172143835474}
           m_ObjectArgumentAssemblyTypeName: Popup, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -3258,7 +3182,7 @@ GameObject:
   - component: {fileID: 1436974367}
   - component: {fileID: 1436974369}
   - component: {fileID: 1436974368}
-  - component: {fileID: 1436974370}
+  - component: {fileID: 8339673172143835477}
   m_Layer: 5
   m_Name: FairVendorsNumberPopup
   m_TagString: Untagged
@@ -3323,7 +3247,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1436974370
+--- !u!114 &8339673172143835477
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3371,7 +3295,6 @@ GameObject:
   - component: {fileID: 1496491417}
   - component: {fileID: 1496491419}
   - component: {fileID: 1496491418}
-  - component: {fileID: 1496491420}
   m_Layer: 5
   m_Name: NumberOfBooksInPublisherContainer
   m_TagString: Untagged
@@ -3435,43 +3358,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1496491420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1496491416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fba3bfed6cefac14fbc9f25bedd810f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Visible: 0
-  UseSimpleActivation: 0
-  ShowingClip: {fileID: 0}
-  HidingClip: {fileID: 0}
-  OnShow:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHide:
-    m_PersistentCalls:
-      m_Calls: []
-  OnShowComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHideComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  IgnoreEventsOnInitialization: 0
-  TitleHolder: {fileID: 0}
-  BodyHolder: {fileID: 0}
-  AnimatedElements: []
-  DeactivateWhileInvisible: 1
-  OverrideBack: 0
-  MyBack:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1530431239
 GameObject:
   m_ObjectHideFlags: 0
@@ -3595,7 +3481,7 @@ MonoBehaviour:
         m_MethodName: OpenPopup
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1436974370}
+          m_ObjectArgument: {fileID: 8339673172143835477}
           m_ObjectArgumentAssemblyTypeName: Popup, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -3713,7 +3599,6 @@ GameObject:
   - component: {fileID: 1560100566}
   - component: {fileID: 1560100568}
   - component: {fileID: 1560100567}
-  - component: {fileID: 1560100569}
   m_Layer: 5
   m_Name: NumberOfPublisherContainer
   m_TagString: Untagged
@@ -3777,43 +3662,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1560100569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1560100565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fba3bfed6cefac14fbc9f25bedd810f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Visible: 0
-  UseSimpleActivation: 0
-  ShowingClip: {fileID: 0}
-  HidingClip: {fileID: 0}
-  OnShow:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHide:
-    m_PersistentCalls:
-      m_Calls: []
-  OnShowComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHideComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  IgnoreEventsOnInitialization: 0
-  TitleHolder: {fileID: 0}
-  BodyHolder: {fileID: 0}
-  AnimatedElements: []
-  DeactivateWhileInvisible: 1
-  OverrideBack: 0
-  MyBack:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1619589074
 GameObject:
   m_ObjectHideFlags: 0
@@ -3967,7 +3815,7 @@ RectTransform:
   - {fileID: 1361531784}
   - {fileID: 245521908}
   m_Father: {fileID: 1723169098}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4113,8 +3961,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1620468928}
   - {fileID: 826176815}
+  - {fileID: 1620468928}
   m_Father: {fileID: 3075829811055180355}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4190,7 +4038,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1723169094}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14a2c94e89739f1418e06b896cc0b5c1, type: 3}
   m_Name: 
@@ -5563,7 +5411,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2069422490}
-  - component: {fileID: 2069422491}
+  - component: {fileID: 8339673172143835473}
   m_Layer: 5
   m_Name: SponsorsOfTheFairContainer
   m_TagString: Untagged
@@ -5591,7 +5439,7 @@ RectTransform:
   m_AnchoredPosition: {x: 244.5, y: 16.2}
   m_SizeDelta: {x: -227.69296, y: -47.99872}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &2069422491
+--- !u!114 &8339673172143835473
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
