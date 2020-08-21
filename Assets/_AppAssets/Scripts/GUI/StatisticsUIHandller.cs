@@ -38,21 +38,20 @@ public class StatisticsUIHandller : MonoBehaviour
         }
 
         // Prepare Randomization
-        GenerateRandom();
+        //GenerateRandom();
 
-        timer = delayBetweenContainers;
 
         StartCoroutine(ShowStatistics());
 
     }
 
-    private void Update()
-    {
-        if (skipBtnPressed)
-        {
-            timer -= Time.deltaTime;
-        }
-    }
+    //private void Update()
+    //{
+    //    if (skipBtnPressed)
+    //    {
+    //        timer -= Time.deltaTime;
+    //    }
+    //}
 
     private void GenerateRandom()
     {
