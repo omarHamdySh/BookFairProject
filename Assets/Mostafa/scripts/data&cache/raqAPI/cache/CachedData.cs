@@ -9,4 +9,6 @@ public class CachedData {
     public List<BookData> BestSellers;
     public List<Sponsor> allSponsors;
     public List<FairData> allFairs;
+    public FairStats fairStats;
+    public FairVideo fairVideo;
 }

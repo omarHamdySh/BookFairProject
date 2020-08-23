@@ -66,3 +66,39 @@ public class Vendor
     public BookcaseData bookcaseData;
     public Texture2D pic;
 }
+
+[System.Serializable]
+public class BookfairVendorsBook
+{
+    public string vendorName;
+    public int booksCount;
+}
+
+[System.Serializable]
+public class FairStats
+{
+    public int booksCount;
+    public int vendorsCount;
+    public int sponsorsCount;
+    public List<BookfairVendorsBook> bookfairVendorsBooks;
+}
+
+
+[System.Serializable]
+public class FairVideo
+{
+    public string videoName;
+    public string description;
+    public string fileBinary;
+    public bool useDownloadUrl;
+    public string downloadUrl;
+    public string contentType;
+    public string filename;
+    public string extension;
+}
+
+[System.Serializable]
+public class FairVideoResult
+{
+    public FairVideo result;
+}

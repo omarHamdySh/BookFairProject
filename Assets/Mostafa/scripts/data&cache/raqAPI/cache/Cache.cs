@@ -6,6 +6,7 @@ using UnityEngine.Events;
 using System.Linq;
 using System.IO;
 using System.IO.Compression;
+using System.Security.Policy;
 
 public class Cache : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class Cache : MonoBehaviour
 
     public int booksLimit = 5;
     public int loadedBooks;
+
+    public bool fairVideoReady = false;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -40,8 +44,8 @@ public class Cache : MonoBehaviour
     #endregion
 
     // Start is called before the first frame update
-    
-    
+
+
     void Start()
     {
         api = GetComponent<RaqAPI>();
@@ -62,12 +66,12 @@ public class Cache : MonoBehaviour
     }
 
 
-    
+
     void clearCache()
     {
-        if(cachedData.allVendors != null)
+        if (cachedData.allVendors != null)
         {
-            foreach(Vendor v in cachedData.allVendors)
+            foreach (Vendor v in cachedData.allVendors)
             {
                 v.bookcaseData = null;
             }
@@ -132,6 +136,11 @@ public class Cache : MonoBehaviour
         StartCoroutine(api.getAllSponsors());
     }
 
+    public void retrieveFairVideo()
+    {
+        StartCoroutine(api.getFairVideo());
+    }
+
     public void search(SearchCallBack callBack, int limit, int page, string keyword, int categoryId, int fairId, int vendorId)
     {
         cachedData.searchResult = new List<BookData>();
@@ -144,12 +153,13 @@ public class Cache : MonoBehaviour
     public void retrieveBestSellers()
     {
         cachedData.BestSellers = new List<BookData>();
-        StartCoroutine(api.bestSellers(api.fairId ,0, 0));
+        StartCoroutine(api.bestSellers(api.fairId, 0, 0));
     }
 
     public void setFairId(int id)
     {
         api.fairId = id;
+        api.fairSlug = cachedData.allFairs.Find(f => f.id == id).bookFairSlug;
     }
 
     public int getFairId()
@@ -201,7 +211,8 @@ public class Cache : MonoBehaviour
 
                 foreach (Product book in res.prodcutList)
                 {
-                    if (tmpCat.booksData.Find(b => book.id == b.id) == null){
+                    if (tmpCat.booksData.Find(b => book.id == b.id) == null)
+                    {
                         BookData tmpBook = new BookData();
                         tmpBook.url = api.makeBookUrl(book.productSlug);
                         tmpBook.id = book.id;
@@ -249,7 +260,7 @@ public class Cache : MonoBehaviour
                 //if(tmpBook.imgString != "" && tmpBook.imgString != null)tmpBook.texture.LoadImage(Decompress(Convert.FromBase64String(tmpBook.imgString)));
                 cachedData.BestSellers.Add(tmpBook);
             }
-           
+
         }
     }
 
@@ -308,8 +319,8 @@ public class Cache : MonoBehaviour
     public void cacheAllFairs(FairResult fairResult)
     {
         cachedData.allFairs = fairResult.fairsList;
-        
-        foreach(FairData f in cachedData.allFairs)
+
+        foreach (FairData f in cachedData.allFairs)
         {
             if (f.logoPictureBinary != "" && f.logoPictureBinary != null)
             {
@@ -327,6 +338,13 @@ public class Cache : MonoBehaviour
         cachedData.allSponsors = sponsorsResult.sponsorList;
     }
 
+    public void cacheVideo(FairVideoResult res)
+    {
+        cachedData.fairVideo = new FairVideo();
+        cachedData.fairVideo = res.result;
+        fairVideoReady = true;
+    }
+
     public static byte[] Compress(byte[] data)
     {
         MemoryStream output = new MemoryStream();
@@ -336,6 +354,7 @@ public class Cache : MonoBehaviour
         }
         return output.ToArray();
     }
+
 
     public static byte[] Decompress(byte[] data)
     {
@@ -400,13 +419,13 @@ public class Cache : MonoBehaviour
     {
         int n = 0;
 
-        foreach(CategoryData c in bookcase.categories)
+        foreach (CategoryData c in bookcase.categories)
         {
             n += c.total;
         }
 
         return n;
-    }    
+    }
 
 
 }
