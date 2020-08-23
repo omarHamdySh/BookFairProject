@@ -16,10 +16,15 @@ public class BookPathHandller_Bendary : MonoBehaviour
     [SerializeField] private Shelf_Bendary myShelf;
     private bool toggleCategoryPanelOnce;
     private bool IsFirstTimeToArrange = false;
+    private Cache cache;
 
     private void Start()
     {
         currentBookIndex = IndexOfCurrent;
+        if (Cache.Instance)
+        {
+            cache = Cache.Instance;
+        }
     }
 
     #region Data
@@ -53,6 +58,27 @@ public class BookPathHandller_Bendary : MonoBehaviour
             }
             else if (!isObjMoving && currentScrollSpeed != 0)
             {
+                if (cache && cache.cachedData.allVendors.Count > 0 && categoryIndex != -1)
+                {
+                    if (cache.cachedData.allVendors[vendorIndex].bookcaseData != null && cache.cachedData.allVendors[vendorIndex].bookcaseData.categories != null)
+                    {
+                        int bookCount = cache.cachedData.allVendors[vendorIndex].bookcaseData.categories.Count;
+
+                        if (bookCount < books.Length)
+                        {
+                            int nextCatIndex = books[currentBookIndex].bookDataIndex;
+
+                            if (currentScrollSpeed > 0)
+                                nextCatIndex--;
+
+                            else
+                                nextCatIndex++;
+
+                            if (nextCatIndex >= bookCount || nextCatIndex < 0) return;
+                        }
+                    }
+                }
+
                 isObjMoving = true;
 
                 if (CheckAllObjectsLanded())
@@ -144,7 +170,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
             book.Init();
         }
 
-        if (GetComponent<Shelf_Bendary>().GetIsCurretn())
+        if (myShelf.GetIsCurretn())
         {
             for (int i = 0; i < books.Length; i++)
             {
@@ -222,14 +248,14 @@ public class BookPathHandller_Bendary : MonoBehaviour
     #region Data
     private void PrepareData()
     {
-        if (Cache.Instance && Cache.Instance.cachedData.allVendors.Count > 0 && categoryIndex != -1)
+        if (cache && cache.cachedData.allVendors.Count > 0 && categoryIndex != -1)
         {
-            if (Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData != null && Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories != null)
+            if (cache.cachedData.allVendors[vendorIndex].bookcaseData != null && cache.cachedData.allVendors[vendorIndex].bookcaseData.categories != null)
             {
-                List<BookData> booksData = Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].booksData;
+                List<BookData> booksData = cache.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].booksData;
                 if (booksData != null)
                 {
-                    if (Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].total > books.Length)
+                    if (cache.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].total > books.Length)
                     {
                         for (int i = 0; i < books.Length; i++)
                         {
@@ -287,14 +313,14 @@ public class BookPathHandller_Bendary : MonoBehaviour
         bool isNewConceptArrange = false;
         if (IsFirstTimeToArrange)
         {
-            if (Cache.Instance && Cache.Instance.cachedData.allVendors.Count > 0 && categoryIndex != -1)
+            if (cache && cache.cachedData.allVendors.Count > 0 && categoryIndex != -1)
             {
-                if (Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData != null && Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories != null)
+                if (cache.cachedData.allVendors[vendorIndex].bookcaseData != null && cache.cachedData.allVendors[vendorIndex].bookcaseData.categories != null)
                 {
-                    List<BookData> booksDatas = Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].booksData;
+                    List<BookData> booksDatas = cache.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].booksData;
                     if (booksDatas != null)
                     {
-                        if (Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].total < books.Length)
+                        if (cache.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].total < books.Length)
                         {
                             isNewConceptArrange = true;
                             IsFirstTimeToArrange = false;
