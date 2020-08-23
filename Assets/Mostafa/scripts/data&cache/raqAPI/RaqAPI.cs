@@ -12,6 +12,7 @@ public class RaqAPI : MonoBehaviour
     public ApiAuth authInfo;
     public int languageId = 1;
     public int fairId = -1;
+    public string fairSlug = "";
     public bool transmitting; //true if data is being requested
 
     public UnityEvent authTokenLoadedEvent;
@@ -341,6 +342,35 @@ public class RaqAPI : MonoBehaviour
     public string makeBookUrl(string slug)
     {
         return "https://raaqeem.com/" + (languageId == 1 ? "ar" : "en") + "/" + "book" + "/" + slug;
+    }
+
+    public IEnumerator getFairVideo()
+    {
+        //temporary until badawy gives us another endpoint
+        string uri = baseUrl + "/api/fairs/fairVideo?bookFairSlug=" + fairSlug; 
+
+        FairVideoResult res = new FairVideoResult();
+
+        UnityWebRequest www = UnityWebRequest.Get(uri);
+
+        www.SetRequestHeader("Authorization", authInfo.token_type + " " + authInfo.access_token);
+        www.SetRequestHeader("customerId", "1");
+        www.SetRequestHeader("Content-Type", "application/json");
+        www.SetRequestHeader("LanguageId", "1");
+
+        transmitting = true;
+
+        yield return www.SendWebRequest();
+        Debug.Log(uri);
+        Debug.Log(www.responseCode);
+        res = JsonUtility.FromJson<FairVideoResult>(www.downloadHandler.text);
+
+        if (res != null)
+        {
+            Cache.Instance.cacheVideo(res);
+        }
+
+        transmitting = false;
     }
 }
 
