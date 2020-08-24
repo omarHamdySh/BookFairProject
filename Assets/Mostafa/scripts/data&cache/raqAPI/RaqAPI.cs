@@ -361,8 +361,6 @@ public class RaqAPI : MonoBehaviour
         transmitting = true;
 
         yield return www.SendWebRequest();
-        Debug.Log(uri);
-        Debug.Log(www.responseCode);
         res = JsonUtility.FromJson<FairVideoResult>(www.downloadHandler.text);
 
         if (res != null)
