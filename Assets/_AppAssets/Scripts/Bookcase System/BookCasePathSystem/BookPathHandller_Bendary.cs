@@ -15,16 +15,22 @@ public class BookPathHandller_Bendary : MonoBehaviour
     private bool isObjMoving = false;
     [SerializeField] private Shelf_Bendary myShelf;
     private bool toggleCategoryPanelOnce;
+    private bool IsFirstTimeToArrange = false;
+    private Cache cache;
 
     private void Start()
     {
         currentBookIndex = IndexOfCurrent;
+        if (Cache.Instance)
+        {
+            cache = Cache.Instance;
+        }
     }
 
     #region Data
     [SerializeField] private Texture dummyTexture;
-    [HideInInspector] public int vendorIndex;
-    public int categoryIndex;
+    [SerializeField] private int vendorIndex;
+    [SerializeField] private int categoryIndex;
     #endregion
 
     private void Update()
@@ -52,6 +58,27 @@ public class BookPathHandller_Bendary : MonoBehaviour
             }
             else if (!isObjMoving && currentScrollSpeed != 0)
             {
+                if (cache && cache.cachedData.allVendors.Count > 0 && categoryIndex != -1)
+                {
+                    if (cache.cachedData.allVendors[vendorIndex].bookcaseData != null && cache.cachedData.allVendors[vendorIndex].bookcaseData.categories != null)
+                    {
+                        int bookCount = cache.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].total;
+
+                        if (bookCount < books.Length)
+                        {
+                            int nextBookIndex = books[currentBookIndex].bookDataIndex;
+
+                            if (currentScrollSpeed > 0)
+                                nextBookIndex = books[currentBookIndex - 1].bookDataIndex;
+
+                            else
+                                nextBookIndex = books[currentBookIndex + 1].bookDataIndex;
+
+                            if (nextBookIndex == -1) return;
+                        }
+                    }
+                }
+
                 isObjMoving = true;
 
                 if (CheckAllObjectsLanded())
@@ -136,37 +163,14 @@ public class BookPathHandller_Bendary : MonoBehaviour
     public void AwakeCurrent()
     {
         currentBookIndex = IndexOfCurrent;
-        bool isNewConceptArrange = false;
+        IsFirstTimeToArrange = true;
 
-        if (Cache.Instance && Cache.Instance.cachedData.allVendors.Count > 0 && categoryIndex != -1)
+        foreach (Book_Bendary book in books)
         {
-            if (Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData != null && Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories != null)
-            {
-                List<BookData> booksData = Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].booksData;
-                if (booksData != null)
-                {
-                    if (Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].total < books.Length)
-                    {
-                        isNewConceptArrange = true;
-                    }
-                }
-            }
+            book.Init();
         }
 
-        //objs is the list of the physical books  (objs.Count = Physical books count)
-        int oddIndexFatcor = (int)((books.Length / 2f) - .5f); //Less than the center index with 1
-        int evenIndexFactor = (int)((books.Length / 2f) + .5f); //Center Index; [Zero]
-        for (int i = 0; i < books.Length; i++)
-        {
-            if (isNewConceptArrange)
-            {
-                int mappedIndex = mapBooksIndicies(books[i].transform.GetSiblingIndex(), oddIndexFatcor, evenIndexFactor, out oddIndexFatcor, out evenIndexFactor, books.Length);
-                books[i].Init(mappedIndex, bookPathPoints[mappedIndex].position, isNewConceptArrange);
-            }
-
-        }
-
-        if (GetComponent<Shelf_Bendary>().GetIsCurretn())
+        if (myShelf.GetIsCurretn())
         {
             for (int i = 0; i < books.Length; i++)
             {
@@ -174,7 +178,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
 
                 books[i].transform.Rotate(new Vector3(
                     0,
-                    GetNodeRank(books[i].getObjectIndex()).rankRotation,
+                    GetNodeRank(i).rankRotation,
                     0));
             }
         }
@@ -244,14 +248,14 @@ public class BookPathHandller_Bendary : MonoBehaviour
     #region Data
     private void PrepareData()
     {
-        if (Cache.Instance && Cache.Instance.cachedData.allVendors.Count > 0 && categoryIndex != -1)
+        if (cache && cache.cachedData.allVendors.Count > 0 && categoryIndex != -1)
         {
-            if (Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData != null && Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories != null)
+            if (cache.cachedData.allVendors[vendorIndex].bookcaseData != null && cache.cachedData.allVendors[vendorIndex].bookcaseData.categories != null)
             {
-                List<BookData> booksData = Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].booksData;
+                List<BookData> booksData = cache.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].booksData;
                 if (booksData != null)
                 {
-                    if (Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].total > books.Length)
+                    if (cache.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].total > books.Length)
                     {
                         for (int i = 0; i < books.Length; i++)
                         {
@@ -305,10 +309,43 @@ public class BookPathHandller_Bendary : MonoBehaviour
     {
         this.vendorIndex = vendorIndex;
         this.categoryIndex = categoryIndex;
-        AwakeCurrent();
+
+        bool isNewConceptArrange = false;
+        if (IsFirstTimeToArrange)
+        {
+            if (cache && cache.cachedData.allVendors.Count > 0 && categoryIndex != -1)
+            {
+                if (cache.cachedData.allVendors[vendorIndex].bookcaseData != null && cache.cachedData.allVendors[vendorIndex].bookcaseData.categories != null)
+                {
+                    List<BookData> booksDatas = cache.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].booksData;
+                    if (booksDatas != null)
+                    {
+                        if (cache.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].total < books.Length)
+                        {
+                            isNewConceptArrange = true;
+                            IsFirstTimeToArrange = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        //objs is the list of the physical books  (objs.Count = Physical books count)
+        int oddIndexFatcor = (int)((books.Length / 2f) - .5f); //Less than the center index with 1
+        int evenIndexFactor = (int)((books.Length / 2f) + .5f); //Center Index; [Zero]
 
         for (int i = 0; i < books.Length; i++)
         {
+            int mappedIndex;
+            if (isNewConceptArrange)
+            {
+                mappedIndex = mapBooksIndicies(i, oddIndexFatcor, evenIndexFactor, out oddIndexFatcor, out evenIndexFactor, books.Length);
+            }
+            else
+            {
+                mappedIndex = i;
+            }
+
             if (i < booksData.Count)
             {
                 if (!booksData[i].texture)
@@ -316,12 +353,12 @@ public class BookPathHandller_Bendary : MonoBehaviour
                     booksData[i].texture = (Texture2D)dummyTexture;
                 }
 
-                books[i].SetBookData(booksData[i], i, (booksData[i].texture != (Texture2D)dummyTexture));
+                books[mappedIndex].SetBookData(booksData[i], i, (booksData[i].texture != (Texture2D)dummyTexture));
             }
             else
             {
                 //Put the Dommy Data
-                books[i].SetBookData(new BookData()
+                books[mappedIndex].SetBookData(new BookData()
                 {
                     texture = (Texture2D)dummyTexture
                 }, -1, false);

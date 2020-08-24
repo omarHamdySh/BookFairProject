@@ -15,37 +15,22 @@ public class Book_Bendary : MonoBehaviour, IScrollable
     private bool isLoopingDomy = false;
 
     #region Data
-    [HideInInspector] public int bookDataIndex;
+    public int bookDataIndex;
     [HideInInspector] public string buyURL;
     [HideInInspector] public string description;
     #endregion
 
     #region Helper
-    public void Init(int newConceptIndex, Vector3 newpos, bool IsNewConceptArrange = false)
+    public void Init()
     {
         // Set the object path index by sibling index
-        if (IsNewConceptArrange)
-        {
-            objPathIndex = newConceptIndex;
-        }
-        else
-        {
-            objPathIndex = transform.GetSiblingIndex();
-        }
+        objPathIndex = transform.GetSiblingIndex();
 
         // Set current accoridng to object index
         ToggleAsCurrent(((objPathIndex == bookPathHandller.IndexOfCurrent) ? true : false));
 
         // Set path position by object path index
-        if (IsNewConceptArrange)
-        {
-            transform.position = newpos;
-        }
-        else
-        {
-            transform.position = bookPathHandller.bookPathPoints[objPathIndex].position;
-        }
-
+        transform.position = bookPathHandller.bookPathPoints[objPathIndex].position;
     }
 
     public void ToggleLoopingDomy(bool isLoopingDomy)
