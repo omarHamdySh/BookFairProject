@@ -21,31 +21,16 @@ public class Book_Bendary : MonoBehaviour, IScrollable
     #endregion
 
     #region Helper
-    public void Init(int newConceptIndex, Vector3 newpos, bool IsNewConceptArrange = false)
+    public void Init()
     {
         // Set the object path index by sibling index
-        if (IsNewConceptArrange)
-        {
-            objPathIndex = newConceptIndex;
-        }
-        else
-        {
-            objPathIndex = transform.GetSiblingIndex();
-        }
+        objPathIndex = transform.GetSiblingIndex();
 
         // Set current accoridng to object index
         ToggleAsCurrent(((objPathIndex == bookPathHandller.IndexOfCurrent) ? true : false));
 
         // Set path position by object path index
-        if (IsNewConceptArrange)
-        {
-            transform.position = newpos;
-        }
-        else
-        {
-            transform.position = bookPathHandller.bookPathPoints[objPathIndex].position;
-        }
-
+        transform.position = bookPathHandller.bookPathPoints[objPathIndex].position;
     }
 
     public void ToggleLoopingDomy(bool isLoopingDomy)
