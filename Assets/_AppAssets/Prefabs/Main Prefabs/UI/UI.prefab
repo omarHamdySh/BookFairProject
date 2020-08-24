@@ -8273,8 +8273,8 @@ MonoBehaviour:
   OnShowComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 912758592517396031}
-        m_MethodName: Play
+      - m_Target: {fileID: 6428605536069417339}
+        m_MethodName: PlayVideo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11265,7 +11265,7 @@ VideoPlayer:
   m_TargetMaterialProperty: _MainTex
   m_RenderMode: 2
   m_AspectRatio: 5
-  m_DataSource: 0
+  m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
   m_TargetAudioSources:
@@ -13182,7 +13182,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 60778472610534233}
   m_HandleRect: {fileID: 5131428640296881500}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
