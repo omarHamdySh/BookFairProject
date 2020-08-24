@@ -189,6 +189,8 @@ public class RaqAPI : MonoBehaviour
         //transmitting = false;
     }
 
+  
+
     public IEnumerator productIdsByPublisher(int publisherId, int categoryId, int limit, int page)
     {
         //temporary until badawy gives us another endpoint
@@ -366,6 +368,33 @@ public class RaqAPI : MonoBehaviour
         if (res != null)
         {
             Cache.Instance.cacheVideo(res);
+        }
+
+        transmitting = false;
+    }
+
+
+    public IEnumerator getFairStats()
+    {
+        string uri = baseUrl + "/api/fairs/statistics/fairStatistics?bookFairSlug=" + fairSlug;
+
+        FairStats res = new FairStats();
+
+        UnityWebRequest www = UnityWebRequest.Get(uri);
+
+        www.SetRequestHeader("Authorization", authInfo.token_type + " " + authInfo.access_token);
+        www.SetRequestHeader("customerId", "1");
+        www.SetRequestHeader("Content-Type", "application/json");
+        www.SetRequestHeader("LanguageId", "1");
+
+        transmitting = true;
+
+        yield return www.SendWebRequest();
+        res = JsonUtility.FromJson<FairStats>(www.downloadHandler.text);
+
+        if (res != null)
+        {
+            Cache.Instance.cacheStats(res);
         }
 
         transmitting = false;

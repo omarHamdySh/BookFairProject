@@ -115,6 +115,11 @@ public class Cache : MonoBehaviour
         }
     }
 
+    public void retrieveStats()
+    {
+        StartCoroutine(api.getFairStats());
+    }
+
     //retrieves every single category
     public void retrieveCategories()
     {
@@ -343,6 +348,12 @@ public class Cache : MonoBehaviour
         cachedData.fairVideo = new FairVideo();
         cachedData.fairVideo = res.result;
         fairVideoReady = true;
+    }
+
+
+    public void cacheStats(FairStats res)
+    {
+        cachedData.fairStats = res;
     }
 
     public static byte[] Compress(byte[] data)
