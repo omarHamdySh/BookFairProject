@@ -36,9 +36,9 @@ public class LevelUI : UIHandller
         cameraTransform.localPosition = cameraUIPos;
         cameraTransform.localEulerAngles = cameraUIRot;
 
-        if (cache)
+        if (Cache.Instance)
         {
-            cache = cache;
+            cache = Cache.Instance;
             InitSearchFilters();
         }
     }
