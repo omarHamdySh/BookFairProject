@@ -364,6 +364,11 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         realBookcases[currentRealBookcaseInUse].DOMove(bookCasePathPoints[IndexOfCurrent].position, delay);
     }
 
+    public bool IsCurrentBookHasData()
+    {
+        return (realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().GetCurrentBook().bookDataIndex == -1) ? false : true;
+    }
+
     public void MoveRealBookForward(float delay, TestBookRotation_Bendary animatedBook)
     {
         // Get the currentBook 

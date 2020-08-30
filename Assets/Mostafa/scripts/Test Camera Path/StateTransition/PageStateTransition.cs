@@ -6,7 +6,7 @@ using Lean.Touch;
 public class PageStateTransition : MonoBehaviour, IClickable
 {
     public ShelfStateTransition previous;
-    [SerializeField] private BookcasePathHandller_Bendary bookcasePathHandler;
+    public BookcasePathHandller_Bendary bookcasePathHandler;
     [SerializeField] private TestBookRotation_Bendary animatedBook;
     [SerializeField] private float closeBookAnimationDelay;
 
@@ -23,12 +23,15 @@ public class PageStateTransition : MonoBehaviour, IClickable
 
     public void focus()
     {
-        CameraPath.instance.setTarget(CameraPath.instance.pageNode);
-        CameraPath.instance.gotoTarget();
-        GameManager.Instance.gameplayFSMManager.toBookPageState();
+        if (bookcasePathHandler.IsCurrentBookHasData())
+        {
+            CameraPath.instance.setTarget(CameraPath.instance.pageNode);
+            CameraPath.instance.gotoTarget();
+            GameManager.Instance.gameplayFSMManager.toBookPageState();
 
-        // Bendary modify
-        bookcasePathHandler.MoveRealBookForward(CameraPath.instance.cameraSpeed, animatedBook);
+            // Bendary modify
+            bookcasePathHandler.MoveRealBookForward(CameraPath.instance.cameraSpeed, animatedBook);
+        }
     }
 
     public void unfocus()
