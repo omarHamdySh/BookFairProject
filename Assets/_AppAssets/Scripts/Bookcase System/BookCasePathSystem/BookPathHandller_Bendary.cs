@@ -357,6 +357,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
             }
             else
             {
+                books[mappedIndex].ToggleRenderers(false);
                 //Put the Dommy Data
                 books[mappedIndex].SetBookData(new BookData()
                 {
@@ -385,6 +386,21 @@ public class BookPathHandller_Bendary : MonoBehaviour
             }
         }
         return -1;
+    }
+
+    public void ToggleRendererOfAllBooksHaveData()
+    {
+        foreach (Book_Bendary book in books)
+        {
+            if (book.bookDataIndex == -1)
+            {
+                book.ToggleRenderers(false);
+            }
+            else
+            {
+                book.ToggleRenderers(true);
+            }
+        }
     }
 
     #endregion
