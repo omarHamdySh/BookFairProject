@@ -15,7 +15,7 @@ public class Book_Bendary : MonoBehaviour, IScrollable
     private bool isLoopingDomy = false;
 
     #region Data
-    [HideInInspector] public int bookDataIndex;
+    public int bookDataIndex;
     [HideInInspector] public string buyURL;
     [HideInInspector] public string description;
     #endregion

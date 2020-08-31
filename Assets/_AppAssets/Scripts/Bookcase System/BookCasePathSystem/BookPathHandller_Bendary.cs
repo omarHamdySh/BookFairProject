@@ -62,19 +62,19 @@ public class BookPathHandller_Bendary : MonoBehaviour
                 {
                     if (cache.cachedData.allVendors[vendorIndex].bookcaseData != null && cache.cachedData.allVendors[vendorIndex].bookcaseData.categories != null)
                     {
-                        int bookCount = cache.cachedData.allVendors[vendorIndex].bookcaseData.categories.Count;
+                        int bookCount = cache.cachedData.allVendors[vendorIndex].bookcaseData.categories[categoryIndex].total;
 
                         if (bookCount < books.Length)
                         {
-                            int nextCatIndex = books[currentBookIndex].bookDataIndex;
+                            int nextBookIndex = books[currentBookIndex].bookDataIndex;
 
                             if (currentScrollSpeed > 0)
-                                nextCatIndex--;
+                                nextBookIndex = books[currentBookIndex - 1].bookDataIndex;
 
                             else
-                                nextCatIndex++;
+                                nextBookIndex = books[currentBookIndex + 1].bookDataIndex;
 
-                            if (nextCatIndex >= bookCount || nextCatIndex < 0) return;
+                            if (nextBookIndex == -1) return;
                         }
                     }
                 }
@@ -357,6 +357,7 @@ public class BookPathHandller_Bendary : MonoBehaviour
             }
             else
             {
+                books[mappedIndex].ToggleRenderers(false);
                 //Put the Dommy Data
                 books[mappedIndex].SetBookData(new BookData()
                 {
@@ -385,6 +386,21 @@ public class BookPathHandller_Bendary : MonoBehaviour
             }
         }
         return -1;
+    }
+
+    public void ToggleRendererOfAllBooksHaveData()
+    {
+        foreach (Book_Bendary book in books)
+        {
+            if (book.bookDataIndex == -1)
+            {
+                book.ToggleRenderers(false);
+            }
+            else
+            {
+                book.ToggleRenderers(true);
+            }
+        }
     }
 
     #endregion

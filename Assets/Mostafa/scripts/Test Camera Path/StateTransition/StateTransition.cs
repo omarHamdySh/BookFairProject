@@ -53,6 +53,10 @@ public class StateTransition : MonoBehaviour
         {
             if (SelectionManager.instance.canSelect)
             {
+                if (current_state + 1 == 3 && !pageStateTransition.bookcasePathHandler.IsCurrentBookHasData())
+                {
+                    return;
+                }
                 SelectionManager.instance.selectThis(transitions[current_state]);
 
                 //transitions[current_state].focus();
@@ -63,6 +67,7 @@ public class StateTransition : MonoBehaviour
                     statistics.ToggleAllStatisticsUI(false);
                 }
                 enableBound(current_state);
+
             }
         }
 
