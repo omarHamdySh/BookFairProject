@@ -201,7 +201,6 @@ MonoBehaviour:
   - 90
   - 0
   - 0
-  shelfMesh: {fileID: 8006585387679270485}
   categoryText: {fileID: 2998135036092715376}
   categoryIndex: -1
 --- !u!114 &4119797456769980964
@@ -243,8 +242,6 @@ MonoBehaviour:
   - {fileID: 1998689908180508608}
   myShelf: {fileID: 8417674448610182268}
   dummyTexture: {fileID: 2800000, guid: 149fb66db35131546a88355c392a8d3e, type: 3}
-  vendorIndex: 0
-  categoryIndex: 0
 --- !u!1 &8006585386587463477
 GameObject:
   m_ObjectHideFlags: 0

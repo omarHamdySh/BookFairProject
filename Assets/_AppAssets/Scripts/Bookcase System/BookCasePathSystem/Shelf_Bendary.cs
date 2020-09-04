@@ -7,12 +7,12 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
 {
     public ShelfPathHandller_Bendary shelfPathHandller;
     public float[] nonCurrentBookRotataion;
-    [SerializeField] private MeshRenderer shelfMesh;
 
     private int objPathIndex = 0;
     private bool isLanded = true;
     private bool isCurrent = false;
     private bool isLoopingDomy = false;
+
 
     #region Data
     public FixTextMeshPro categoryText;
@@ -39,11 +39,11 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
         // Set Domy accoridng to object index
         if (objPathIndex == shelfPathHandller.upperDomyIndex || objPathIndex == shelfPathHandller.lowerDomyIndex)
         {
-            ToggleShelfRenderer_Books(false);
+            ToggleRenderer(false);
         }
         else
         {
-            ToggleShelfRenderer(true);
+            ToggleRenderer(true);
         }
 
         GetComponent<BookPathHandller_Bendary>().AwakeCurrent();
@@ -69,12 +69,7 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
         this.isLoopingDomy = isLoopingDomy;
     }
 
-    public void ToggleShelfRenderer(bool enabled)
-    {
-        shelfMesh.enabled = enabled;
-    }
-
-    public void ToggleShelfRenderer_Books(bool enabled)
+    public void ToggleRenderer(bool enabled)
     {
         foreach (MeshRenderer i in GetComponentsInChildren<MeshRenderer>())
         {
@@ -146,8 +141,8 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
                         i.transform.localRotation = Quaternion.Euler(0, nonCurrentBookRotataion[i.getObjectIndex()], 0);
                     }
                 }
-                GetComponent<BookPathHandller_Bendary>().ToggleRendererOfAllBooksHaveData();
-                ToggleShelfRenderer(true);
+
+                ToggleRenderer(true);
                 transform.DOMove(destination, duration).OnUpdate(onMoving).OnComplete(onLand);
             }
         }
@@ -168,11 +163,11 @@ public class Shelf_Bendary : MonoBehaviour, IScrollable
         if (isLoopingDomy)
         {
             isLoopingDomy = false;
-            ToggleShelfRenderer_Books(false);
+            ToggleRenderer(false);
         }
         else if (objPathIndex == shelfPathHandller.upperDomyIndex || objPathIndex == shelfPathHandller.lowerDomyIndex)
         {
-            ToggleShelfRenderer_Books(false);
+            ToggleRenderer(false);
         }
 
         isLanded = true;

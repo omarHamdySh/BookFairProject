@@ -190,7 +190,6 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
                             index = (index + 1) % categories.Count;
 
                             shelves[i].SetCategoryData(categories[index].name, index);
-                            shelves[i].GetComponent<BookPathHandller_Bendary>().AwakeCurrent();
                             shelves[i].GetComponent<BookPathHandller_Bendary>().SetAllVisibleBooks(categories[index].booksData, vendorIndex, index);
 
                             break;
@@ -209,7 +208,6 @@ public class ShelfPathHandller_Bendary : MonoBehaviour
                             index = (index == 0) ? categories.Count - 1 : index - 1;
 
                             shelves[i].SetCategoryData(categories[index].name, index);
-                            shelves[i].GetComponent<BookPathHandller_Bendary>().AwakeCurrent();
                             shelves[i].GetComponent<BookPathHandller_Bendary>().SetAllVisibleBooks(categories[index].booksData, vendorIndex, index);
 
                             break;

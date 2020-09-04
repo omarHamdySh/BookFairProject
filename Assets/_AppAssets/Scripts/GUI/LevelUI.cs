@@ -26,8 +26,6 @@ public class LevelUI : UIHandller
     }
     #endregion
 
-    private Cache cache;
-
     private void Start()
     {
         currentCameraPos = cameraTransform.localPosition;
@@ -38,7 +36,6 @@ public class LevelUI : UIHandller
 
         if (Cache.Instance)
         {
-            cache = Cache.Instance;
             InitSearchFilters();
         }
     }
@@ -202,19 +199,6 @@ public class LevelUI : UIHandller
         }
     }
 
-    public void PlayVideo()
-    {
-        if (cache && cache.fairVideoReady)
-        {
-            print(cache.cachedData.fairVideo.downloadUrl);
-        }
-        //videoPlayer.clip = ;
-        if (!string.IsNullOrEmpty(videoPlayer.url))
-        {
-            videoPlayer.Play();
-        }
-    }
-
     private void EndVideoEvent(VideoPlayer vp)
     {
         SkipVideoBtn();
@@ -269,7 +253,7 @@ public class LevelUI : UIHandller
         option.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ?
             ImportantMesthods.FixRTLForArabic("المعرض") : ImportantMesthods.FixRTLForArabic("Fair");
         options.Add(option);
-        foreach (FairData fair in cache.cachedData.allFairs)
+        foreach (FairData fair in Cache.Instance.cachedData.allFairs)
         {
             option = new TMP_Dropdown.OptionData();
             option.text = ImportantMesthods.FixRTLForArabic(fair.fullName);
@@ -289,7 +273,7 @@ public class LevelUI : UIHandller
         option.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ?
             ImportantMesthods.FixRTLForArabic("دار النشر") : ImportantMesthods.FixRTLForArabic("Publisher");
         options.Add(option);
-        foreach (Vendor vendor in cache.cachedData.allVendors)
+        foreach (Vendor vendor in Cache.Instance.cachedData.allVendors)
         {
             option = new TMP_Dropdown.OptionData();
             option.text = ImportantMesthods.FixRTLForArabic(vendor.name);
@@ -309,7 +293,7 @@ public class LevelUI : UIHandller
         option.text = (PlayerPrefs.GetString(ImportantStrings.langPPKey).Equals(ImportantStrings.arabicPPValue)) ?
            ImportantMesthods.FixRTLForArabic("القسم") : ImportantMesthods.FixRTLForArabic("Category");
         options.Add(option);
-        foreach (ProductCategory productCategory in cache.cachedData.allCategories)
+        foreach (ProductCategory productCategory in Cache.Instance.cachedData.allCategories)
         {
             option = new TMP_Dropdown.OptionData();
             option.text = ImportantMesthods.FixRTLForArabic(productCategory.name);
@@ -351,7 +335,7 @@ public class LevelUI : UIHandller
 
     public void StartSearch(string searchWord)
     {
-        if (cache && !isSearching)
+        if (Cache.Instance && !isSearching)
         {
             if (!string.IsNullOrEmpty(searchWord) && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)))
             {
@@ -361,19 +345,19 @@ public class LevelUI : UIHandller
                 endlessLoadingBar.SetActive(true);
 
                 #region Filters
-                searchFairID = (fairsDD.value != 0) ? cache.cachedData.allFairs[fairsDD.value - 1].id : -1;
-                searchPublisherID = (publishersDD.value != 0) ? cache.cachedData.allVendors[publishersDD.value - 1].id : -1;
-                searchCategoryID = (categoriesDD.value != 0) ? cache.cachedData.allCategories[categoriesDD.value - 1].id : -1;
+                searchFairID = (fairsDD.value != 0) ? Cache.Instance.cachedData.allFairs[fairsDD.value - 1].id : -1;
+                searchPublisherID = (publishersDD.value != 0) ? Cache.Instance.cachedData.allVendors[publishersDD.value - 1].id : -1;
+                searchCategoryID = (categoriesDD.value != 0) ? Cache.Instance.cachedData.allCategories[categoriesDD.value - 1].id : -1;
                 #endregion
 
-                cache.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchWord, searchCategoryID, searchFairID, searchPublisherID);
+                Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchWord, searchCategoryID, searchFairID, searchPublisherID);
             }
         }
     }
 
     public void StartSearch(TMP_InputField searchIn)
     {
-        if (cache && !isSearching)
+        if (Cache.Instance && !isSearching)
         {
             if (!string.IsNullOrEmpty(searchIn.text))
             {
@@ -383,12 +367,12 @@ public class LevelUI : UIHandller
                 endlessLoadingBar.SetActive(true);
 
                 #region Filters
-                searchFairID = (fairsDD.value != 0) ? cache.cachedData.allFairs[fairsDD.value - 1].id : -1;
-                searchPublisherID = (publishersDD.value != 0) ? cache.cachedData.allVendors[publishersDD.value - 1].id : -1;
-                searchCategoryID = (categoriesDD.value != 0) ? cache.cachedData.allCategories[categoriesDD.value - 1].id : -1;
+                searchFairID = (fairsDD.value != 0) ? Cache.Instance.cachedData.allFairs[fairsDD.value - 1].id : -1;
+                searchPublisherID = (publishersDD.value != 0) ? Cache.Instance.cachedData.allVendors[publishersDD.value - 1].id : -1;
+                searchCategoryID = (categoriesDD.value != 0) ? Cache.Instance.cachedData.allCategories[categoriesDD.value - 1].id : -1;
                 #endregion
 
-                cache.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchIn.text, searchCategoryID, searchFairID, searchPublisherID);
+                Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchIn.text, searchCategoryID, searchFairID, searchPublisherID);
             }
         }
     }
@@ -469,9 +453,9 @@ public class LevelUI : UIHandller
         }
         endlessLoadingBar.SetActive(true);
 
-        if (cache)
+        if (Cache.Instance)
         {
-            cache.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchIN.RealText.text, searchCategoryID, searchFairID, searchPublisherID);
+            Cache.Instance.search(SearchResultCallback, searchedBookContainer.childCount, searchPageIndex + 1, searchIN.RealText.text, searchCategoryID, searchFairID, searchPublisherID);
         }
     }
 
@@ -552,18 +536,18 @@ public class LevelUI : UIHandller
 
     public void PutFairsData()
     {
-        if (cache)
+        if (Cache.Instance)
         {
-            if (fairsScroll.content.childCount < cache.cachedData.allFairs.Count)
+            if (fairsScroll.content.childCount < Cache.Instance.cachedData.allFairs.Count)
             {
-                for (int i = fairsScroll.content.childCount; i < cache.cachedData.allFairs.Count; i++)
+                for (int i = fairsScroll.content.childCount; i < Cache.Instance.cachedData.allFairs.Count; i++)
                 {
                     GameObject go = Instantiate(toggleScrollItem, fairsScroll.content);
-                    go.GetComponentInChildren<FixTextMeshPro>().SetText(cache.cachedData.allFairs[i].fullName);
+                    go.GetComponentInChildren<FixTextMeshPro>().SetText(Cache.Instance.cachedData.allFairs[i].fullName);
                     go.GetComponentInChildren<Toggle>().group = fairsScroll.content.GetComponent<ToggleGroup>();
                     //go.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().color = colors[indexOfColor];
 
-                    if (cache.cachedData.allFairs[i].id == cache.getFairId())
+                    if (Cache.Instance.cachedData.allFairs[i].id == Cache.Instance.getFairId())
                     {
                         go.GetComponentInChildren<Toggle>().isOn = true;
                         currentFairIndex = i;
@@ -596,9 +580,9 @@ public class LevelUI : UIHandller
     public void GoToSelectedFair()
     {
         Toggle toggle = fairsScroll.content.GetComponent<ToggleGroup>().ActiveToggles().First();
-        cache.setFairId(cache.cachedData.allFairs[toggle.transform.parent.GetSiblingIndex()].id);
-        PlayerPrefs.SetInt(ImportantStrings.fairIDKey, cache.getFairId());
-        Destroy(cache.gameObject);
+        Cache.Instance.setFairId(Cache.Instance.cachedData.allFairs[toggle.transform.parent.GetSiblingIndex()].id);
+        PlayerPrefs.SetInt(ImportantStrings.fairIDKey, Cache.Instance.getFairId());
+        Destroy(Cache.Instance.gameObject);
         endlessLoadingBar.SetActive(true);
         endlessLoadingBar.GetComponent<Image>().color = Color.black;
         LoadLevel(ImportantStrings.splashScene, true);
@@ -628,14 +612,14 @@ public class LevelUI : UIHandller
 
     public void PutSponsorsData()
     {
-        if (cache)
+        if (Cache.Instance)
         {
-            if (SponsorsScroll.content.childCount < cache.cachedData.allSponsors.Count)
+            if (SponsorsScroll.content.childCount < Cache.Instance.cachedData.allSponsors.Count)
             {
-                for (int i = SponsorsScroll.content.childCount; i < cache.cachedData.allSponsors.Count; i++)
+                for (int i = SponsorsScroll.content.childCount; i < Cache.Instance.cachedData.allSponsors.Count; i++)
                 {
                     GameObject go = Instantiate(regularScrollItem, SponsorsScroll.content);
-                    go.GetComponentInChildren<FixTextMeshPro>().SetText(cache.cachedData.allSponsors[i].name);
+                    go.GetComponentInChildren<FixTextMeshPro>().SetText(Cache.Instance.cachedData.allSponsors[i].name);
                 }
             }
         }
@@ -653,14 +637,14 @@ public class LevelUI : UIHandller
 
     public void PutPublishersData()
     {
-        if (cache)
+        if (Cache.Instance)
         {
-            if (publishersScroll.content.childCount < cache.cachedData.allVendors.Count)
+            if (publishersScroll.content.childCount < Cache.Instance.cachedData.allVendors.Count)
             {
-                for (int i = publishersScroll.content.childCount; i < cache.cachedData.allVendors.Count; i++)
+                for (int i = publishersScroll.content.childCount; i < Cache.Instance.cachedData.allVendors.Count; i++)
                 {
                     GameObject go = Instantiate(toggleScrollItem, publishersScroll.content);
-                    go.GetComponentInChildren<FixTextMeshPro>().SetText(cache.cachedData.allVendors[i].name);
+                    go.GetComponentInChildren<FixTextMeshPro>().SetText(Cache.Instance.cachedData.allVendors[i].name);
                     go.GetComponentInChildren<Toggle>().group = publishersScroll.content.GetComponent<ToggleGroup>();
                     //go.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>().color = colors[indexOfColor];
 
@@ -737,14 +721,14 @@ public class LevelUI : UIHandller
         int right = 0, left = 0, currentIndex = currentPublisherIndex;
         while (currentIndex != newIndex)
         {
-            currentIndex = (currentIndex == 0) ? cache.cachedData.allVendors.Count - 1 : currentIndex - 1;
+            currentIndex = (currentIndex == 0) ? Cache.Instance.cachedData.allVendors.Count - 1 : currentIndex - 1;
             right++;
         }
 
         currentIndex = currentPublisherIndex;
         while (currentIndex != newIndex)
         {
-            currentIndex = (currentIndex + 1) % cache.cachedData.allVendors.Count;
+            currentIndex = (currentIndex + 1) % Cache.Instance.cachedData.allVendors.Count;
             left++;
         }
 

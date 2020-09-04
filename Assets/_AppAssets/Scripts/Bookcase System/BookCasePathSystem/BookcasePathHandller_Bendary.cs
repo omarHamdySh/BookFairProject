@@ -53,15 +53,9 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
 
     [SerializeField] private StatisticsUIHandller statistics;
 
-    private Cache cache;
-
     private void Awake()
     {
         Init();
-        if (Cache.Instance)
-        {
-            cache = Cache.Instance;
-        }
     }
 
     private void Start()
@@ -79,7 +73,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
             wallMat[i] = meshes[i].material;
         }
 
-        if (cache)
+        if (Cache.Instance)
         {
             //mostafa
             //DataLoader.instance.funcFloorMode();
@@ -140,20 +134,20 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         newIndexInUse = (newIndexInUse + 1) % realBookcases.Length;
 
         #region Data
-        if (cache)
+        if (Cache.Instance)
         {
             if (speed < 0)
             {
-                vendorIndex = (vendorIndex + 1) % cache.cachedData.allVendors.Count;
+                vendorIndex = (vendorIndex + 1) % Cache.Instance.cachedData.allVendors.Count;
             }
             else
             {
-                vendorIndex = (vendorIndex == 0) ? cache.cachedData.allVendors.Count - 1 : vendorIndex - 1;
+                vendorIndex = (vendorIndex == 0) ? Cache.Instance.cachedData.allVendors.Count - 1 : vendorIndex - 1;
             }
 
             if (statistics)
             {
-                statistics.ChangeNumberOfBooksInPublisher(cache.numBooksInVendor(cache.cachedData.allVendors[0].bookcaseData));
+                statistics.ChangeNumberOfBooksInPublisher(Cache.Instance.numBooksInVendor(Cache.Instance.cachedData.allVendors[0].bookcaseData));
             }
         }
         #endregion
@@ -194,7 +188,7 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
                 ToggleTexts(true);
 
                 #region Data
-                if (cache)
+                if (Cache.Instance)
                 {
                     PutDataOnCurrent();
                 }
@@ -364,11 +358,6 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         realBookcases[currentRealBookcaseInUse].DOMove(bookCasePathPoints[IndexOfCurrent].position, delay);
     }
 
-    public bool IsCurrentBookHasData()
-    {
-        return (realBookcases[currentRealBookcaseInUse].GetComponent<ShelfPathHandller_Bendary>().GetCurrentBook().bookDataIndex == -1) ? false : true;
-    }
-
     public void MoveRealBookForward(float delay, TestBookRotation_Bendary animatedBook)
     {
         // Get the currentBook 
@@ -436,9 +425,9 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
     #region Data
     public void PutDataOnCurrent()
     {
-        BookcaseData tmpBookcaseData = cache.cachedData.allVendors[vendorIndex].bookcaseData;
-        VendorNameOntheWorld.SetText(cache.cachedData.allVendors[vendorIndex].name);
-        LevelUI.Instance.indexOfColor = cache.cachedData.allVendors[vendorIndex].vendorColorNumber;
+        BookcaseData tmpBookcaseData = Cache.Instance.cachedData.allVendors[vendorIndex].bookcaseData;
+        VendorNameOntheWorld.SetText(Cache.Instance.cachedData.allVendors[vendorIndex].name);
+        LevelUI.Instance.indexOfColor = Cache.Instance.cachedData.allVendors[vendorIndex].vendorColorNumber;
         if (LevelUI.Instance.indexOfColor == fairSprites.Length - 1)
         {
             VendorNameOntheWorld.SetTextColor(Color.black);
@@ -447,17 +436,17 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
         {
             VendorNameOntheWorld.SetTextColor(Color.white);
         }
-        vendorContainer.sprite = vendorSprites[cache.cachedData.allVendors[vendorIndex].vendorColorNumber];
-        if (cache.cachedData.allVendors[vendorIndex].pic)
+        vendorContainer.sprite = vendorSprites[Cache.Instance.cachedData.allVendors[vendorIndex].vendorColorNumber];
+        if (Cache.Instance.cachedData.allVendors[vendorIndex].pic)
         {
             vendorImg.enabled = true;
             vendorImg.sprite = Sprite.Create(
-                cache.cachedData.allVendors[vendorIndex].pic,
+                Cache.Instance.cachedData.allVendors[vendorIndex].pic,
                 new Rect(
                     0,
                     0,
-                    cache.cachedData.allVendors[vendorIndex].pic.width,
-                    cache.cachedData.allVendors[vendorIndex].pic.height
+                    Cache.Instance.cachedData.allVendors[vendorIndex].pic.width,
+                    Cache.Instance.cachedData.allVendors[vendorIndex].pic.height
                     ),
                 new Vector2(0.5f, 0.5f)
                 );
@@ -469,10 +458,10 @@ public class BookcasePathHandller_Bendary : MonoBehaviour
             vendorImg.enabled = false;
         }
 
-        int fairIndex = cache.cachedData.allFairs.FindIndex(x => x.id == cache.getFairId());
-        FairNameOntheWorld.SetText(cache.cachedData.allFairs[fairIndex].fullName);
-        fairContainer.sprite = fairSprites[cache.cachedData.allFairs[fairIndex].mainColorNumber];
-        currentEnvironmentTextureIndex = cache.cachedData.allFairs[fairIndex].mainColorNumber;
+        int fairIndex = Cache.Instance.cachedData.allFairs.FindIndex(x => x.id == Cache.Instance.getFairId());
+        FairNameOntheWorld.SetText(Cache.Instance.cachedData.allFairs[fairIndex].fullName);
+        fairContainer.sprite = fairSprites[Cache.Instance.cachedData.allFairs[fairIndex].mainColorNumber];
+        currentEnvironmentTextureIndex = Cache.Instance.cachedData.allFairs[fairIndex].mainColorNumber;
         if (currentEnvironmentTextureIndex == fairSprites.Length - 1)
         {
             FairNameOntheWorld.SetTextColor(Color.black);
