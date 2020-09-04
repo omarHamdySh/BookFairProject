@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_AppAssets/_Scenes/Production Scenes/GamePlayScene_Bendary.unity
     guid: ff1ecda4074dd844a96a38661dfe8e9c
+  - enabled: 1
+    path: Assets/_AppAssets/_Scenes/Production Scenes/GamePlayScene_Nouran.unity
+    guid: a4cff8b3d979d134e993861923b8363a
   m_configObjects: {}
