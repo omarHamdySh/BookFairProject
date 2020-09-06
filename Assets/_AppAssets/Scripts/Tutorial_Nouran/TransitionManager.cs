@@ -20,8 +20,8 @@ public class TransitionManager : MonoBehaviour
 
     [Header("Animation Properties")]
     public GameObject ClickAnimation;
-    public GameObject SwipeAnimation_Left;
-    public GameObject SwipeAnimation_Right;
+    //public GameObject SwipeAnimation_Left;
+    //public GameObject SwipeAnimation_Right;
 
 
     private void Start()
