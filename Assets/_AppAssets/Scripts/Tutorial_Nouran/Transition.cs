@@ -24,8 +24,18 @@ public struct TransitionMask
     public Transform MaskTransform;
 }
 
+
 [System.Serializable]
-public enum TransitionAnimation
+public struct TransitionAnimation
+{
+    public AnimationType AnimationType;
+
+    public Transform ImageTransform;
+}
+
+
+[System.Serializable]
+public enum AnimationType
 {
     ClickAnimation,
     SwipeAnimation_Left,

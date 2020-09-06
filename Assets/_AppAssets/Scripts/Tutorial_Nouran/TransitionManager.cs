@@ -10,36 +10,42 @@ public class TransitionManager : MonoBehaviour
     public List<Transition> Transitions = new List<Transition>();
 
     private int _transitionIndex;
-
     public bool _moveTransition;
+
+    [Header("Text Properties")]
     public FixTextMeshPro Text;
+
+    [Header("UIMask Properties")]
     public GameObject Mask;
 
-    //public GameObject ClickAnimation;
-    //public GameObject SwipeAnimation_Left;
-    //public GameObject SwipeAnimation_Right;
+    [Header("Animation Properties")]
+    public GameObject ClickAnimation;
+    public GameObject SwipeAnimation_Left;
+    public GameObject SwipeAnimation_Right;
 
-    
+
     private void Start()
     {
         _transitionIndex = 0;
-        _moveTransition  = false;
-        
+        _moveTransition = false;
+
 
         if (_transitionIndex < (Transitions.Count))
         {
-           StartCoroutine(DisplayTransition());
+            StartCoroutine(DisplayTransition());
         }
-               
+
     }
 
     IEnumerator DisplayTransition()
-    {      
+    {
         _moveTransition = false;
 
         SetTransitionText();
 
         SetTransitionMask();
+
+        SetTransitionImage();
 
         yield return new WaitUntil(() => _moveTransition);
 
@@ -48,8 +54,17 @@ public class TransitionManager : MonoBehaviour
 
     void SetTransitionText()
     {
-        //Transition Text.
         Text.text = Transitions[_transitionIndex].TransitionText.Text.ToString();
+        Text.GetComponent<TextMeshProUGUI>().text = Transitions[_transitionIndex].TransitionText.Text.ToString();
+    }
+
+    void SetTransitionImage()
+    {
+        ClickAnimation.transform.position = new Vector3(
+                                                          Transitions[_transitionIndex].TransitionAnimation.ImageTransform.position.x,
+                                                          Transitions[_transitionIndex].TransitionAnimation.ImageTransform.position.y,
+                                                          Transitions[_transitionIndex].TransitionAnimation.ImageTransform.position.z
+                                                       );
     }
 
     void SetTransitionMask()
@@ -71,6 +86,5 @@ public class TransitionManager : MonoBehaviour
         if (_transitionIndex < (Transitions.Count))
             StartCoroutine(DisplayTransition());
     }
-
 
 }
