@@ -23,6 +23,13 @@ public class TransitionManager : MonoBehaviour
     //public GameObject SwipeAnimation_Left;
     //public GameObject SwipeAnimation_Right;
 
+    #region Singelton
+    public static TransitionManager Instance;
+    private void Awake()
+    {
+        Instance = this;
+    }
+    #endregion
 
     private void Start()
     {

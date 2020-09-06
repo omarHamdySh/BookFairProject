@@ -17034,6 +17034,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1674992197}
   - component: {fileID: 1674992198}
+  - component: {fileID: 1674992199}
   m_Layer: 0
   m_Name: Transition Manager
   m_TagString: Untagged
@@ -17107,6 +17108,18 @@ MonoBehaviour:
   Text: {fileID: 2046865948}
   Mask: {fileID: 1006635470}
   ClickAnimation: {fileID: 1002541767}
+--- !u!114 &1674992199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1674992196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37bafa6f39e4df449b9f2486512d1036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1679507312
 PrefabInstance:
   m_ObjectHideFlags: 0
