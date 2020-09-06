@@ -10,8 +10,7 @@ public class TransitionManager : MonoBehaviour
     public List<Transition> Transitions = new List<Transition>();
 
     private int _transitionIndex;
-    public bool _moveTransition;
-
+    
     [Header("Text Properties")]
     public FixTextMeshPro Text;
 
@@ -23,40 +22,36 @@ public class TransitionManager : MonoBehaviour
     //public GameObject SwipeAnimation_Left;
     //public GameObject SwipeAnimation_Right;
 
-    #region Singelton
-    public static TransitionManager Instance;
-    private void Awake()
-    {
-        Instance = this;
-    }
-    #endregion
+    //#region Singelton
+    //public static TransitionManager Instance;
+    //private void Awake()
+    //{
+    //    Instance = this;
+    //}
+    //#endregion
 
     private void Start()
     {
         _transitionIndex = 0;
-        _moveTransition = false;
-
-
+        
         if (_transitionIndex < (Transitions.Count))
         {
-            StartCoroutine(DisplayTransition());
+            DisplayTransition();
         }
 
     }
 
-    IEnumerator DisplayTransition()
+    private void DisplayTransition()
     {
-        _moveTransition = false;
-
         SetTransitionText();
 
         SetTransitionMask();
 
         SetTransitionImage();
 
-        yield return new WaitUntil(() => _moveTransition);
+        StartCoroutine(UpdateTransition());
 
-        UpdateTransition();
+        //yield return new WaitUntil(() => _moveTransition);       
     }
 
     void SetTransitionText()
@@ -86,12 +81,15 @@ public class TransitionManager : MonoBehaviour
                                     Transitions[_transitionIndex].TransitionMask.MaskTransform.localScale.z);
     }
 
-    void UpdateTransition()
+    IEnumerator UpdateTransition()
     {
+        yield return new WaitForSeconds(4f);
+
         _transitionIndex++;
 
         if (_transitionIndex < (Transitions.Count))
-            StartCoroutine(DisplayTransition());
+            DisplayTransition();
+       
     }
 
 }

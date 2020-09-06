@@ -10,7 +10,7 @@ public class UpdateTransition : Editor
     {
         if (GUILayout.Button("Next Transition"))
         {
-            TransitionManager.Instance._moveTransition = true;
+            //TransitionManager.Instance._moveTransition = true;
         }
 
     }

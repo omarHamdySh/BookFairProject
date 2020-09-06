@@ -172,6 +172,7 @@ public class GameplayFSMManager : MonoBehaviour
             //    Lean.Touch.LeanTouch.Fingers.Add(f);
             //}
         }
+        Debug.Log(getCurrentState());
     }
     /// <summary>
     /// functions to define the stak functionality
@@ -376,5 +377,7 @@ public class GameplayFSMManager : MonoBehaviour
     {
         return stateStack.Peek().GetState();
     }
+
+    
 
 }
