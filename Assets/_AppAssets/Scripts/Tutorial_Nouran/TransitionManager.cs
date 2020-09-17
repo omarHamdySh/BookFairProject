@@ -14,13 +14,14 @@ public class TransitionManager : MonoBehaviour
     [Header("Text Properties")]
     public FixTextMeshPro Text;
 
+    [Header("Image Properties")]
+    public Image Image;
+
     [Header("UIMask Properties")]
     public GameObject Mask;
 
     [Header("Animation Properties")]
-    public GameObject ClickAnimation;
-    //public GameObject SwipeAnimation_Left;
-    //public GameObject SwipeAnimation_Right;
+    public List<GameObject> Animations;
 
     //#region Singelton
     //public static TransitionManager Instance;
@@ -47,7 +48,9 @@ public class TransitionManager : MonoBehaviour
 
         SetTransitionMask();
 
-        SetTransitionImage();
+        SetTransitionImage(Transitions[_transitionIndex].TransitionAnimation.AnimationType);
+
+        SetTransitionGIF();
 
         StartCoroutine(UpdateTransition());
 
@@ -60,9 +63,10 @@ public class TransitionManager : MonoBehaviour
         Text.GetComponent<TextMeshProUGUI>().text = Transitions[_transitionIndex].TransitionText.Text.ToString();
     }
 
-    void SetTransitionImage()
+    void SetTransitionImage(AnimationType animationType)
     {
-        ClickAnimation.transform.position = new Vector3(
+        Animations[ReturnEnumIdex(animationType)].SetActive(true);
+        Animations[ReturnEnumIdex(animationType)].transform.position = new Vector3(
                                                           Transitions[_transitionIndex].TransitionAnimation.ImageTransform.position.x,
                                                           Transitions[_transitionIndex].TransitionAnimation.ImageTransform.position.y,
                                                           Transitions[_transitionIndex].TransitionAnimation.ImageTransform.position.z
@@ -71,25 +75,71 @@ public class TransitionManager : MonoBehaviour
 
     void SetTransitionMask()
     {
-        //Transition Mask.
-        Mask.transform.position = new Vector3(Transitions[_transitionIndex].TransitionMask.MaskTransform.position.x,
-                                     Transitions[_transitionIndex].TransitionMask.MaskTransform.position.y,
-                                     Transitions[_transitionIndex].TransitionMask.MaskTransform.position.z);
+        if(Transitions[_transitionIndex].TransitionMask.HasMask)
+        {
+            //Transition Mask.
+            Mask.SetActive(true);
+            Mask.transform.position = new Vector3(Transitions[_transitionIndex].TransitionMask.MaskTransform.position.x,
+                                         Transitions[_transitionIndex].TransitionMask.MaskTransform.position.y,
+                                         Transitions[_transitionIndex].TransitionMask.MaskTransform.position.z);
 
-        Mask.transform.localScale = new Vector3(Transitions[_transitionIndex].TransitionMask.MaskTransform.localScale.x,
-                                    Transitions[_transitionIndex].TransitionMask.MaskTransform.localScale.y,
-                                    Transitions[_transitionIndex].TransitionMask.MaskTransform.localScale.z);
+            Mask.transform.localScale = new Vector3(Transitions[_transitionIndex].TransitionMask.MaskTransform.localScale.x,
+                                        Transitions[_transitionIndex].TransitionMask.MaskTransform.localScale.y,
+                                        Transitions[_transitionIndex].TransitionMask.MaskTransform.localScale.z);
+        }       
+    }
+
+    void SetTransitionGIF()
+    {
+        if (Transitions[_transitionIndex].TransitionImage.HasImage)
+        {
+            Image.transform.gameObject.SetActive(true);
+            Image.sprite = Transitions[_transitionIndex].TransitionImage.Image;
+            Image.GetComponent<Animator>().runtimeAnimatorController = Transitions[_transitionIndex].TransitionImage.AnimatorController;
+        }
+        else
+        {
+            return;
+        }
+            
     }
 
     IEnumerator UpdateTransition()
     {
         yield return new WaitForSeconds(4f);
 
+        Reset();
+
         _transitionIndex++;
 
         if (_transitionIndex < (Transitions.Count))
             DisplayTransition();
        
+    }
+
+    private void Reset()
+    {
+        Animations[ReturnEnumIdex(Transitions[_transitionIndex].TransitionAnimation.AnimationType)].SetActive(false);
+        Image.transform.gameObject.SetActive(false);
+        Mask.SetActive(false);
+    }
+
+    private int ReturnEnumIdex(AnimationType animationType)
+    {
+        if (animationType == AnimationType.ClickAnimation)
+            return 0;
+
+        if (animationType == AnimationType.SwipeAnimation_Left)
+            return 1;
+
+        if (animationType == AnimationType.SwipeAnimation_Right)
+            return 2;
+
+        if (animationType == AnimationType.SwipeAnimation_Up)
+            return 3;
+
+        else
+            return 4;
     }
 
 }

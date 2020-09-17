@@ -320,33 +320,37 @@ public class GameplayFSMManager : MonoBehaviour
 
     public void toFloorState()
     {
+        Debug.Log("toFloorState()");
         PopState();
         PushState(floorState);
     }
     public void toBookCaseState()
     {
-
+        Debug.Log("toBookCaseState()");
         PopState();
         PushState(bookCaseState);
     }
     public void toSearchState()
     {
-
+        Debug.Log("toSearchState()");
         PopState();
         PushState(searchState);
     }
     public void toShelfState()
     {
+        Debug.Log("toShelfState()");
         PopState();
         PushState(shelfState);
     }
     public void toBookState()
     {
+        Debug.Log("toBookState()");
         PopState();
         PushState(bookState);
     }
     public void toBookPageState()
     {
+        Debug.Log("toBookPageState()");
         PopState();
         PushState(bookPageState);
     }
